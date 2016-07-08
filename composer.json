@@ -1,0 +1,57 @@
+{
+	"name": "laravel/laravel",
+	"description": "The Laravel Framework.",
+	"keywords": ["framework", "laravel"],
+	"license": "MIT",
+	"type": "project",
+	"require": {
+		"laravel/framework": "4.2.*",
+		"laracasts/commander": "~1.0",
+		"laracasts/validation": "1.1.*",
+        "laracasts/flash": "~1.0",
+        "facebook/php-sdk-v4" : "4.0.*",
+        "maatwebsite/excel": "~1.2.1",
+		"guzzlehttp/guzzle": "~5.2",
+		"way/generators": "2.*",
+        "gloudemans/shoppingcart": "~1.2",
+        "doctrine/dbal": "v2.4.2",
+		"florianv/swap": "~2.2"
+	},
+	"autoload": {
+		"classmap": [
+			"app/commands",
+			"app/controllers",
+			"app/database/migrations",
+			"app/database/seeds",
+			"app/tests/TestCase.php"
+		],
+        "files": [
+            "app/eideal/helpers.php"
+        ],
+		"psr-4": {
+            "eideal\\": "app/eideal"
+		}
+	},
+	"scripts": {
+		"post-install-cmd": [
+			"php artisan clear-compiled",
+			"php artisan optimize"
+		],
+		"post-update-cmd": [
+			"php artisan clear-compiled",
+			"php artisan optimize"
+		],
+		"post-create-project-cmd": [
+			"php artisan key:generate"
+		]
+	},
+	"config": {
+		"preferred-install": "dist"
+	},
+	"minimum-stability": "stable",
+	"require-dev": {
+		"codeception/codeception": "~2.0",
+		"laracasts/testdummy": "~1.0",
+        "fzaninotto/faker": "v1.4.0"
+	}
+}

@@ -1,0 +1,1174 @@
+/*  General
+        ----------------------------------------------------
+*/
+
+/*  Dark
+*/
+.dark, .dark a, .dark p, .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6, .light .dark, .light .dark a, .light .dark p, .light .dark h1, .light .dark h2, .light .dark h3, .light .dark h4, .light .dark h5, .light .dark h6, .dark select, .light .dark select, .dark input, .light .dark input, /*.dark input:-webkit-autofill, .light .dark input:-webkit-autofill,*/ .dark input[type="button"], .dark input[type="reset"], .dark input[type="submit"], .light .dark input[type="button"], .light .dark input[type="reset"], .light .dark input[type="submit"], .dark footer.cart_buttons a.button, .light .dark footer.cart_buttons a.button {
+    color: #000;
+    text-shadow: 0 1px 1px rgba(255,255,255,0.1);
+}
+.dark input, .light .dark input, .dark textarea, .light .dark textarea, .dark select, .light .dark select, .dark .widget ul li, .light .dark .widget ul li, .dark .widget_pages ul, .light .dark .widget_pages ul, .dark .widget ul.menu, .light .dark .widget ul.menu, .dark .left_sidebar, .light .dark .left_sidebar, .dark .right_sidebar, .light .dark .right_sidebar, .dark .grid_entry article.entry, .light .dark .grid_entry article.entry, .dark ul.products li.product .entry_product, .light .dark ul.products li.product .entry_product, .dark div.product .woocommerce-tabs, #content.dark div.product .woocommerce-tabs, .light .dark div.product .woocommerce-tabs, .dark #content.dark div.product .woocommerce-tabs, .dark div.product .woocommerce-tabs .panel, #content.dark div.product .woocommerce-tabs .panel, .light .dark div.product .woocommerce-tabs .panel, .dark #content.dark div.product .woocommerce-tabs .panel, .dark div.product .woocommerce-tabs ul.tabs li, .light .dark div.product .woocommerce-tabs ul.tabs li, #content.dark div.product .woocommerce-tabs ul.tabs li, .dark #content .dark div.product .woocommerce-tabs ul.tabs li, .dark .quantity .plus, .light .dark .quantity .plus, #content.dark .quantity .plus, .dark #content.dark .quantity .plus, .dark .quantity .minus, .light .dark .quantity .minus, #content.dark .quantity .minus, .dark #content.dark .quantity .minus, .dark .quantity input.qty, .light .dark .quantity input.qty, #content.dark .quantity input.qty, .dark #content.dark .quantity input.qty, .dark table.shop_table, .light .dark table.shop_table, .dark table.shop_table td, .light .dark table.shop_table td, .dark .woo_title, .light .dark .woo_title, /*.dark input:-webkit-autofill, .light .dark input:-webkit-autofill,*/ .dark .cart-collaterals .cart_totals tr td, .light .dark .cart-collaterals .cart_totals tr td, .dark .cart-collaterals .cart_totals tr th, .light .dark .cart-collaterals .cart_totals tr th, .dark table.shop_table tfoot td, .light .dark table.shop_table tfoot td, .dark table.shop_table tfoot th, .light .dark table.shop_table tfoot th, .dark .widget_shopping_cart .total, .light .dark .widget_shopping_cart .total, .dark .medium_top_image .entry_format, .light .dark .medium_top_image .entry_format, .dark .blog_big .entry_meta ul, .dark ul.top_meta, .dark .medium_left_image .entry_meta ul, .dark .medium_right_image .entry_meta ul, .light .dark .blog_big .entry_meta ul, .light .dark ul.top_meta, .light .dark .medium_left_image .entry_meta ul, .light .dark .medium_right_image .entry_meta ul, .dark .blox_elem_placeholder, .light .dark .blox_elem_placeholder, .dark .commentlist > li.comment, .light .dark .commentlist > li.comment, .dark .single_footer, .light .dark .single_footer, .dark #comments-title, .dark h3.comment-reply-title, .light .dark #comments-title, .light .dark h3.comment-reply-title, .dark table#wp-calendar tr, .light .dark table#wp-calendar tr, .dark .form-allowed-tags code, .light .dark .form-allowed-tags code, .dark .commentlist > li.comment ul.children li.comment, .light .dark .commentlist > li.comment ul.children li.comment, .dark .entry_meta_big, .light .dark .entry_meta_big, .dark .blog_big .entry_content_big_container, .light .dark .blog_big .entry_content_big_container, .dark .blog_medium .entry_media, .dark .blog_big .entry_media, .light .dark .blog_medium .entry_media, .light .dark .blog_big .entry_media, .dark .tt_tabs ul.tab_header:before, .dark .tt_tabs ul.tab_header li.active, .dark .tt_tabs.horizontal_tab ul.tab_header li, .dark .tt_accordion .accordion_title, .dark .tt_accordion .accordion_title:first-child, .dark .tt_toggle .tt_toggle_title:first-child, .dark .tt_toggle .tt_toggle_title, .dark .tt_accordion .accordion_content, .dark .tt_toggle .tt_toggle_inner, .dark .hr, .light .dark .tt_tabs ul.tab_header:before, .light .dark .tt_tabs ul.tab_header li.active, .light .dark .tt_tabs.horizontal_tab ul.tab_header li, .light .dark .tt_accordion .accordion_title, .light .dark .tt_accordion .accordion_title:first-child, .light .dark .tt_toggle .tt_toggle_title:first-child, .light .dark .tt_toggle .tt_toggle_title, .light .dark .tt_accordion .accordion_content, .light .dark .tt_toggle .tt_toggle_inner, .light .dark .hr, .dark .blox_elem_audio, .dark .blox_elem_video, .light .dark .blox_elem_audio, .light .dark .blox_elem_video, .dark .blox_elem_audio ul.jp-controls-play, .dark .blox_elem_video ul.jp-controls-play, .light .dark .blox_elem_audio ul.jp-controls-play, .light .dark .blox_elem_video ul.jp-controls-play, .dark .jp-time-holder, .light .dark .jp-time-holder, .dark ul.jp-controls-sound, .light .dark ul.jp-controls-sound, .dark .jp-seek-bar, .light .dark .jp-seek-bar, .dark .blox_elem_progress.style1, .light .dark .blox_elem_progress.style1, .dark .blox_elem_progress.style3, .light .dark .blox_elem_progress.style3, .dark .blox_elem_progress.style5, .light .dark .blox_elem_progress.style5, .dark input[type="button"], .dark input[type="reset"], .dark input[type="submit"], .light .dark input[type="button"], .light .dark input[type="reset"], .light .dark input[type="submit"] {
+    border-color: rgba(0,0,0,.1);
+}
+.dark .grid_entry article.entry:hover, .light .dark .grid_entry article.entry:hover, .dark .grid_entry, .light .dark .grid_entr, .dark .post-filter, .light .dark .post-filter, .dark .blog_medium, .light .dark .blog_medium, .dark ul.products li.product .entry_product:hover, .light .dark ul.products li.product .entry_product:hover, .woocommerce .dark nav.woocommerce-pagination ul.page-numbers, .woocommerce .light .dark nav.woocommerce-pagination ul.page-numbers, .woocommerce-page .dark nav.woocommerce-pagination ul.page-numbers, .woocommerce-page .light .dark nav.woocommerce-pagination ul.page-numbers, .woocommerce #content.dark nav.woocommerce-pagination ul.page-numbers, .woocommerce .dark #content.dark nav.woocommerce-pagination ul.page-numbers, .woocommerce-page #content.dark nav.woocommerce-pagination ul.page-numbers, .woocommerce-page .dark #content.dark nav.woocommerce-pagination ul.page-numbers, /*.dark input:-webkit-autofill, .light .dark input:-webkit-autofill,*/ .dark .blox_elem_price_plan_price, .light .dark .blox_elem_price_plan_price, .dark .blox_elem_price_col, .light .dark .blox_elem_price_col, .dark .blox_elem_price_plan_text, .light .dark .blox_elem_price_plan_text, .dark .blox_elem_price_plan_name, .light .dark .blox_elem_price_plan_name {
+    border-color: rgba(0,0,0,.5);
+}
+.dark .entry_hover, .light .dark .entry_hover, .dark .entry_media:hover .entry_hover, .light .dark .entry_media:hover .entry_hover, .dark span.onsale, .light .dark span.onsale {
+    background-color: rgba(255,255,255,.9);
+}
+.dark input, .light .dark input, .dark textarea, .light .dark textarea, .dark select, .light .dark select, .dark .tt_post_widget ul li, .light .dark .tt_post_widget ul li, .dark .widget_pages ul, .light .dark .widget_pages ul, .dark .widget ul.menu, .light .dark .widget ul.menu, .dark .tt_post_widget ul li, .dark .tt_widget_thumb, .light .dark .tt_widget_thumb, .dark .tagcloud a, .light .dark .tagcloud a, .dark ul.products li.product .entry_product, .light .dark ul.products li.product .entry_product, .dark .medium_top_image .entry_format, .light .dark .medium_top_image .entry_format, .dark .blox_elem_placeholder, .light .dark .blox_elem_placeholder, .dark .grid_entry article.entry, .light .dark .grid_entry article.entry, .dark .blox_elem_audio, .dark .blox_elem_video, .light .dark .blox_elem_audio, .light .dark .blox_elem_video, .dark .jp-seek-bar, .light .dark .jp-seek-bar, .dark .blox_elem_progress.style1, .light .dark .blox_elem_progress.style1, .dark .blox_elem_progress.style3, .light .dark .blox_elem_progress.style3, .dark .blox_elem_progress.style5, .light .dark .blox_elem_progress.style5, .dark .blox_elem_progress.style6 .blox_progress_vline, .light .dark .blox_elem_progress.style6 .blox_progress_vline, .dark .blox_elem_progress.style8 .blox_progress_vline, .light .dark .blox_elem_progress.style8 .blox_progress_vline, .dark .blox_elem_price_col, .light .dark .blox_elem_price_col, .dark .blox_elem_price_plan_name, .light .dark .blox_elem_price_plan_name {
+    background-color: rgba(0,0,0,.1) !important;
+}
+.dark .widget_archive ul li span, .dark .widget_categories ul li span, .light .dark .widget_archive ul li span, .light .dark .widget_categories ul li span, .dark .addresses .title .edit, .light .dark .addresses .title .edit, .dark .widget_product_categories ul li span, .light .dark .widget_product_categories ul li span, .dark .blox_elem_heading.style5 h3::after, .light .dark .blox_elem_heading.style5 h3::after {
+    background-color: rgba(0,0,0,1);
+    color: #FFF;
+}
+.dark a, .light .dark a {
+    color: #000;
+}
+.dark a:hover, .light .dark a:hover, .dark ul.menu li a:hover, .light .dark ul.menu li a.active, .light .dark ul.menu li a:hover, .dark ul.menu li a.active {
+    opacity: .6;
+    color: #000;
+}
+/*  Light
+*/
+.light, .light a, .light p, .light h1, .light h2, .light h3, .light h4, .light h5, .light h6, .dark .light, .dark .light a, .dark .light p, .dark .light h1, .dark .light h2, .dark .light h3, .dark .light h4, .dark .light h5, .dark .light h6, .light select, .dark .light select, .light input, .dark .light input,/* .light input:-webkit-autofill, .dark .light input:-webkit-autofill,*/ .light input[type="button"], .light input[type="reset"], .light input[type="submit"], .dark .light input[type="button"], .dark .light input[type="reset"], .dark .light input[type="submit"], .light footer.cart_buttons a.button, .dark .light footer.cart_buttons a.button {
+    color: #FFF;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+.light input, .dark .light input, .light textarea, .dark .light textarea, .light select, .dark .light select, .light .widget ul li, .dark .light .widget ul li, .light .widget_pages ul, .dark .light .widget_pages ul, .light .widget ul.menu, .dark .light .widget ul.menu, .light .left_sidebar, .dark .light .left_sidebar, .light .right_sidebar, .dark .light .right_sidebar, .light .grid_entry article.entry, .dark .light .grid_entry article.entry, .light ul.products li.product .entry_product, .dark .light ul.products li.product .entry_product, .light div.product .woocommerce-tabs, #content.light div.product .woocommerce-tabs, .dark .light div.product .woocommerce-tabs, .dark #content.light div.product .woocommerce-tabs, .light div.product .woocommerce-tabs .panel, #content.light div.product .woocommerce-tabs .panel, .dark .light div.product .woocommerce-tabs .panel, .dark #content.light div.product .woocommerce-tabs .panel, .light div.product .woocommerce-tabs ul.tabs li, .dark .light div.product .woocommerce-tabs ul.tabs li, #content.light div.product .woocommerce-tabs ul.tabs li, .dark #content .light div.product .woocommerce-tabs ul.tabs li, .light .quantity .plus, .dark .light .quantity .plus, #content.light .quantity .plus, .dark #content.light .quantity .plus, .light .quantity .minus, .dark .light .quantity .minus, #content.light .quantity .minus, .dark #content.light .quantity .minus, .light .quantity input.qty, .dark .light .quantity input.qty, #content.light .quantity input.qty, .dark #content.light .quantity input.qty, .light table.shop_table, .dark .light table.shop_table, .light table.shop_table td, .dark .light table.shop_table td, .light .woo_title, .dark .light .woo_title, /*.light input:-webkit-autofill, .dark .light input:-webkit-autofill,*/ .light .cart-collaterals .cart_totals tr td, .dark .light .cart-collaterals .cart_totals tr td, .light .cart-collaterals .cart_totals tr th, .dark .light .cart-collaterals .cart_totals tr th, .light table.shop_table tfoot td, .dark .light table.shop_table tfoot td, .light table.shop_table tfoot th, .dark .light table.shop_table tfoot th, .light .widget_shopping_cart .total, .dark .light .widget_shopping_cart .total, .light .medium_top_image .entry_format, .dark .light .medium_top_image .entry_format, .light .blog_big .entry_meta ul, .light ul.top_meta, .light .medium_left_image .entry_meta ul, .light .medium_right_image .entry_meta ul, .dark .light .blog_big .entry_meta ul, .dark .light ul.top_meta, .dark .light .medium_left_image .entry_meta ul, .dark .light .medium_right_image .entry_meta ul, .light .blox_elem_placeholder, .dark .light .blox_elem_placeholder, .light .commentlist > li.comment, .dark .light .commentlist > li.comment, .light .single_footer, .dark .light .single_footer, .light #comments-title, .light h3.comment-reply-title, .dark .light #comments-title, .dark .light h3.comment-reply-title, .light table#wp-calendar tr, .dark .light table#wp-calendar tr, .light .form-allowed-tags code, .dark .light .form-allowed-tags code, .light .commentlist > li.comment ul.children li.comment, .dark .light .commentlist > li.comment ul.children li.comment, .light .entry_meta_big, .dark .light .entry_meta_big, .light .blog_big .entry_content_big_container, .dark .light .blog_big .entry_content_big_container, .light .blog_medium .entry_media, .light .blog_big .entry_media, .dark .light .blog_medium .entry_media, .dark .light .blog_big .entry_media, .light .tt_tabs ul.tab_header:before, .light .tt_tabs ul.tab_header li.active, .light .tt_tabs.horizontal_tab ul.tab_header li, .light .tt_accordion .accordion_title, .light .tt_accordion .accordion_title:first-child, .light .tt_toggle .tt_toggle_title:first-child, .light .tt_toggle .tt_toggle_title, .light .tt_accordion .accordion_content, .light .tt_toggle .tt_toggle_inner, .light .hr, .dark .light .tt_tabs ul.tab_header:before, .dark .light .tt_tabs ul.tab_header li.active, .dark .light .tt_tabs.horizontal_tab ul.tab_header li, .dark .light .tt_accordion .accordion_title, .dark .light .tt_accordion .accordion_title:first-child, .dark .light .tt_toggle .tt_toggle_title:first-child, .dark .light .tt_toggle .tt_toggle_title, .dark .light .tt_accordion .accordion_content, .dark .light .tt_toggle .tt_toggle_inner, .dark .light .hr, .light .blox_elem_audio, .light .blox_elem_video, .dark .light .blox_elem_audio, .dark .light .blox_elem_video, .light .blox_elem_audio ul.jp-controls-play, .light .blox_elem_video ul.jp-controls-play, .dark .light .blox_elem_audio ul.jp-controls-play, .dark .light .blox_elem_video ul.jp-controls-play, .light .jp-time-holder, .dark .light .jp-time-holder, .light ul.jp-controls-sound, .dark .light ul.jp-controls-sound, .light .jp-seek-bar, .dark .light .jp-seek-bar, .light .blox_elem_progress.style1, .dark .light .blox_elem_progress.style1, .light .blox_elem_progress.style3, .dark .light .blox_elem_progress.style3, .light .blox_elem_progress.style5, .dark .light .blox_elem_progress.style5 {
+    border-color: rgba(255,255,255,.1);
+}
+.light .grid_entry article.entry:hover, .dark .light .grid_entry article.entry:hover, .light .grid_entry, .dark .light .grid_entr, .light .post-filter, .dark .light .post-filter, .light .blog_medium, .dark .light .blog_medium, .light ul.products li.product .entry_product:hover, .dark .light ul.products li.product .entry_product:hover, .woocommerce .light nav.woocommerce-pagination ul.page-numbers, .woocommerce .dark .light nav.woocommerce-pagination ul.page-numbers, .woocommerce-page .light nav.woocommerce-pagination ul.page-numbers, .woocommerce-page .dark .light nav.woocommerce-pagination ul.page-numbers, .woocommerce #content.light nav.woocommerce-pagination ul.page-numbers, .woocommerce .dark #content.light nav.woocommerce-pagination ul.page-numbers, .woocommerce-page #content.light nav.woocommerce-pagination ul.page-numbers, .woocommerce-page .dark #content.light nav.woocommerce-pagination ul.page-numbers, /*.light input:-webkit-autofill, .dark .light input:-webkit-autofill,*/ .light .blox_elem_price_plan_price, .dark .light .blox_elem_price_plan_price, .light .blox_elem_price_col, .dark .light .blox_elem_price_col, .light .blox_elem_price_plan_text, .dark .light .blox_elem_price_plan_text, .light .blox_elem_price_plan_name, .dark .light .blox_elem_price_plan_name {
+    border-color: rgba(255,255,255,.5);
+}
+.light .entry_hover, .dark .light .entry_hover, .light .entry_media:hover .entry_hover, .dark .light .entry_media:hover .entry_hover, .light span.onsale, .dark .light span.onsale {
+    background-color: rgba(0,0,0,.9);
+}
+.light input, .dark .light input, .light textarea, .dark .light textarea, .light select, .dark .light select, .light .tt_post_widget ul li, .dark .light .tt_post_widget ul li, .light .widget_pages ul, .dark .light .widget_pages ul, .light .widget ul.menu, .dark .light .widget ul.menu, .light .tt_post_widget ul li, .light .tt_widget_thumb, .dark .light .tt_widget_thumb, .light .tagcloud a, .dark .light .tagcloud a, .light ul.products li.product .entry_product, .dark .light ul.products li.product .entry_product, .light .medium_top_image .entry_format, .dark .light .medium_top_image .entry_format, .light .blox_elem_placeholder, .dark .light .blox_elem_placeholder, .light .grid_entry article.entry, .dark .light .grid_entry article.entry, .light .blox_elem_audio, .light .blox_elem_video, .dark .light .blox_elem_audio, .dark .light .blox_elem_video, .light .jp-seek-bar, .dark .light .jp-seek-bar, .light .blox_elem_progress.style1, .dark .light .blox_elem_progress.style1, .light .blox_elem_progress.style3, .dark .light .blox_elem_progress.style3, .light .blox_elem_progress.style5, .dark .light .blox_elem_progress.style5, .light .blox_elem_progress.style6 .blox_progress_vline, .dark .light .blox_elem_progress.style6 .blox_progress_vline, .light .blox_elem_progress.style8 .blox_progress_vline, .dark .light .blox_elem_progress.style8 .blox_progress_vline, .light .blox_elem_price_col, .dark .light .blox_elem_price_col, .light .blox_elem_price_plan_name, .dark .light .blox_elem_price_plan_name {
+    background-color: rgba(255,255,255,.1) !important;
+}
+.light .widget_archive ul li span, .light .widget_categories ul li span, .dark .light .widget_archive ul li span, .dark .light .widget_categories ul li span, .light .addresses .title .edit, .dark .light .addresses .title .edit, .light .widget_product_categories ul li span, .dark .light .widget_product_categories ul li span, .light .blox_elem_heading.style5 h3::after, .dark .light .blox_elem_heading.style5 h3::after {
+    background-color: rgba(255,255,255,1);
+    color: #000;
+}
+.light a, .dark .light a {
+    color: #FFF;
+}
+.light a:hover, .dark .light a:hover, .light ul.menu li a:hover, .dark .light ul.menu li a.active, .dark .light ul.menu li a:hover, .light ul.menu li a.active {
+    opacity: .6;
+    color: #FFF;
+}
+.hidden {
+    display: none;
+    visibility: hidden;
+}
+.align_left {
+    text-align: left;
+}
+.align_right {
+    text-align: right;
+}
+.align_center {
+    text-align: center;
+}
+.pull_left {
+    float: left;
+}
+.pull_right {
+    float: right;
+}
+.dash20 {
+    position: relative;
+    top: -20px;
+}
+.boxed > .wrapper, .boxed > .wrapper #header.stuck .container {
+    margin-left: auto;
+    margin-right: auto;
+}
+.boxed > .wrapper #header.stuck .container {
+}
+.boxed > .wrapper .container {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.boxed > .wrapper #header.header_transparent .container {
+    margin-left: auto;
+    margin-right: auto;
+}
+#header.header_transparent.dark {
+    background-color: rgba(255,255,255,.5) !important;
+}
+#header.header_transparent.light {
+    background-color: rgba(0,0,0,.6) !important;
+}
+/*  Top Bar
+        ----------------------------------------------------
+*/
+#top_bar, #message_bar {
+    padding: 13px 0;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    line-height: 1;
+    font-size: 11px;
+    line-height: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+#message_bar {
+    width: 100%;
+    padding: 20px 0;
+}
+.top_left {
+    text-align: left;
+}
+.top_right {
+    text-align: right;
+}
+/*  Top Bar Menu
+*/
+#top_bar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+#top_bar ul li {
+    display: inline-block;
+    zoom: 1;
+ *display: inline;
+}
+#top_bar ul li a {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+#top_bar [class^="icon-"] {
+    margin-right: 5px;
+}
+#top_bar ul li:after {
+    content: "/";
+    margin: 0 10px;
+    font-weight: 100;
+    opacity: .8
+}
+#top_bar ul li:last-child:after {
+    display: none;
+}
+/*  Site Message
+*/
+.site_message {
+    position: relative;
+    font-size: 14px;
+    line-height: 1.5em;
+}
+.site_message [class^="icon-"]:first-child {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    font-size: 18px;
+    margin-top: -9px;
+}
+.site_message [class^="icon-"]:last-child {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    font-size: 18px;
+    margin-top: -9px;
+}
+.ie8 .site_message .icon-remove {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    font-size: 18px;
+    margin-top: -9px;
+}
+.site_message p.message {
+    text-align: center;
+    margin: 0 10%;
+}
+
+
+/*  Header
+        ----------------------------------------------------
+*/
+#header {
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    position: relative;
+}
+.ie8 #header {
+    border-bottom: 1px solid #ececec;
+}
+#header.header_transparent {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 9499;
+    background-color: rgba(0,0,0,.6);
+}
+#header.stuck {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: 9499;
+    padding: 20px 0;
+    opacity: .95;
+    position: fixed;
+    box-shadow: 0 0 40px rgba(0,0,0,.6);
+    -webkit-box-shadow: 0 0 40px rgba(0,0,0,.6);
+    -moz-box-shadow: 0 0 40px rgba(0,0,0,.6);
+}
+body.admin-bar #header.stuck {
+    top: 27px;
+}
+.wide_menu.stuck {
+    top: 0px;
+    width: 100%;
+    z-index: 9499;
+    position: fixed;
+    box-shadow: 0 0 40px rgba(0,0,0,.6);
+    -webkit-box-shadow: 0 0 40px rgba(0,0,0,.6);
+    -moz-box-shadow: 0 0 40px rgba(0,0,0,.6);
+}
+.boxed .wide_menu.stuck {
+    width: auto;
+}
+.admin-bar .wide_menu.stuck {
+    top: 27px;
+}
+
+#logo img {
+    max-width: 395px;
+}
+
+header.stuck #logo img {
+    max-height: 120px;
+    max-width: none !important;
+}
+
+
+@media screen and (min-width: 992px) and (max-width: 1199px){ /* ---md ----*/
+
+    #logo img 
+  {
+    max-width: 300px;
+  }
+
+  .mainmenu
+  {
+    margin-top:-8px;
+  }
+
+  .navMenu input {
+
+    float:right;
+    position:relative;
+    top:3px;
+
+    }
+
+
+}
+
+
+@media screen and (max-width: 991px) { /* ---sm xs ----*/
+
+  #logo img 
+  {
+    max-width: 110px;
+  }
+
+}
+
+
+@media screen and (max-width: 990px ) { /*--  sm  xs-- */
+
+
+
+
+}
+
+
+
+/*  Menu
+*/
+ul.menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+ul.menu li {
+    list-style: none;
+    position: relative;
+    display: inline-block;
+    zoom: 1;
+ *display: inline;
+}
+ul.menu li .menu_text {
+    white-space: nowrap;
+}
+ul.menu ul .menu_item .new:after {
+    content: "NEW";
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 7px;
+    padding: 2px;
+    background: #00b4cc;
+    color: #FFF;
+    line-height: 7px;
+    font-weight: 800;
+    border-radius: 2px;
+}
+#tt-mobile-menu ul .menu_item .new:after, #tt-mobile-menu ul .menu_item .hot:after {
+    margin: 4px 0;
+}
+#tt-mobile-menu ul .menu_column h3 {
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 100;
+}
+ul.menu ul .menu_item {
+    position: relative;
+}
+ul.menu ul .menu_item .hot:after {
+    content: "HOT";
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 7px;
+    padding: 2px;
+    background: red;
+    color: #FFF;
+    line-height: 7px;
+    font-weight: 800;
+    border-radius: 2px;
+}
+.menu_item a [class^="icon-"], .menu_item a [class*=" icon-"], .default_menu a [class^="icon-"], .menu_item a [class*=" icon-"] {
+    margin-right: 5px;
+}
+/*  Icon Menu
+*/
+.icon_menu {
+    margin-top: -50px;
+    margin-bottom: 0;
+    position: absolute;
+    right: -5px;
+}
+header:not(.stuck) .no-menu {
+    padding: 50px 20px;
+}
+header.stuck .icon_menu {
+    margin-top: 0;
+}
+.icon_menu ul.menu li {
+    text-align: center;
+}
+.icon_menu ul.menu li a > [class^="icon-"] {
+ display: block;
+ font-size: 28px;
+ width: 28px;
+ margin: 0 auto;
+ height: 28px;
+ position: absolute;
+ top: 50%;
+ margin-top: -30px;
+ left: 50%;
+ margin-left: -14px;
+}
+.icon_menu ul.menu li ul a > [class^="icon-"] {
+ position: relative;
+ left: auto;
+ top: auto;
+ margin: 0;
+ margin-right: 5px;
+ height: inherit;
+ width: inherit;
+ font-size: inherit;
+ display: initial;
+}
+.icon_menu ul.menu li a > .menu_text {
+    position: relative;
+    top: 20px;
+    white-space: nowrap;
+}
+.menu_description {
+    display: block;
+    font-size: 9px;
+    text-transform: uppercase;
+    font-weight: normal;
+    margin-top: 2px;
+}
+.mainmenu ul.menu li ul .menu_description {
+    margin-top: 5px;
+    opacity: .7;
+}
+.icon_menu .menu_description, .metro_menu .menu_description {
+    display: none;
+}
+.icon_menu ul ul .menu_description, .metro_menu ul ul .menu_description {
+    display: block;
+}
+.icon_menu ul.menu li a {
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 0 20px;
+    display: block;
+    position: relative;
+    height: 137px;
+    line-height: 137px;
+}
+.icon_menu ul.menu li a:hover {
+    color: #666;
+}
+.icon_menu.only_icon ul.menu li a > .menu_text {
+    display: none;
+}
+.icon_menu.only_icon ul.menu li a > [class^="icon-"] {
+ margin-top: -14px;
+}
+/*  Metro Menu
+*/
+#header .row {
+    position: relative;
+}
+#header [class^="col-"] {
+    position: initial;
+}
+.metro_menu {
+    position: absolute;
+    top: 50%;
+    margin-top: -56px;
+    right: 15px;
+}
+header.stuck .metro_menu ul li a {
+    padding: 0 15px;
+    min-width: initial;
+}
+.metro_menu ul li {
+    margin-left: 5px;
+}
+.metro_menu ul li:first-child {
+    margin-left: 0px;
+}
+.metro_menu ul li a {
+    padding: 15px;
+    background-color: #ededed;
+    display: block;
+    min-width: 112px;
+    text-align: center;
+    border-radius: 1px;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+}
+.metro_menu ul li a [class^="icon-"] {
+    display: block;
+    font-size: 58px;
+    width: 1em;
+    height: 1em;
+    margin: 0 auto;
+    margin-bottom: 5px;
+}
+.metro_menu ul li ul a [class^="icon-"] {
+    display: initial;
+    font-size: inherit;
+    margin-bottom: 0;
+    margin-right: 5px;
+}
+.metro_menu ul li a > .menu_text {
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: bold;
+    white-space: nowrap;
+}
+/*  Default Menu
+*/
+.default_menu {
+    position: absolute;
+    top: 50%;
+    font-size: 13px;
+    line-height: 13px;
+    font-weight: bold;
+    margin-top: -7px;
+    right: 0px;
+    text-transform: uppercase;
+}
+.default_menu ul.menu {
+    text-align: left;
+}
+.default_menu ul.menu li {
+    margin: 0 15px;
+}
+header.stuck .default_menu {
+    margin-top: -18px;
+}
+header.stuck .default_menu ul li .menu_description {
+    display: none;
+}
+header.stuck .default_menu ul li ul .menu_description {
+    display: block;
+}
+.default_menu .page_item_has_children .menu_text:after, .wide_menu .page_item_has_children .menu_text:after {
+    content: "\f078";
+    font-family: fontawesome;
+    font-size: .5em;
+    position: relative;
+    top: -.3em;
+    margin-left: 1em;
+}
+.icon_menu .page_item_has_children .menu_text:after, .metro_menu .page_item_has_children .menu_text:after {
+    display: none;
+}
+/*      Mobile Menu 
+*/
+a.show-mobile-menu {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    margin-top: -18px;
+    font-size: 36px;
+    line-height: 36px;
+    height: 36px;
+}
+a.show-mobile-cart {
+    position: absolute;
+    top: 50%;
+    right: 66px;
+    margin-top: -21px;
+    font-size: 14px;
+    line-height: 23px;
+    height: 36px;
+    padding: 5px;
+    border: 1px solid;
+    width: 36px;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 1px;
+    padding-left: 4px;
+    display: none;
+}
+a.show-mobile-menu::after {
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    text-decoration: inherit;
+    -webkit-font-smoothing: antialiased;
+    content: "\f039";
+    position: absolute;
+    font-size: 28px;
+    line-height: 28px;
+    right: 1px;
+    top: 1px
+}
+#tt-mobile-menu {
+    margin: 0;
+    padding: 0px 20px;
+    background: black;
+    position: relative;
+    z-index: 10;
+}
+#tt-mobile-menu a.show-mobile-menu, #tt-mobile-menu a.show-mobile-menu:hover {
+    font-size: 20px;
+    font-weight: bolder;
+    height: 24px;
+    line-height: 20px;
+    color: #FFF;
+    text-decoration: none;
+
+}
+#tt-mobile-menu ul {
+    margin: 0px auto;
+    padding: 10px 0;
+    width: 100%;
+    background:black;
+}
+#tt-mobile-menu ul.sub-menu {
+    display: none;  
+}
+
+#tt-mobile-menu ul.sub-menu li {
+    list-style-type: none;
+}
+
+
+#tt-mobile-menu ul li, #tt-mobile-menu ul li .menu_item {
+    border-top: 1px solid rgba(255,255,255,.15);
+    display: block;
+    position: relative;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 15px 0;
+}
+#tt-mobile-menu ul li:first-child {
+    border-top: none
+}
+#tt-mobile-menu ul li a {
+    display: block;
+    color: #FFF;
+    font-weight: bold;
+    font-size: 13px;
+    text-transform: uppercase;
+    position: relative;
+}
+#tt-mobile-menu ul li a [class^="icon-"] {
+    margin-right: 5px;
+}
+#tt-mobile-menu ul li a:hover {
+    text-decoration: none;
+    color: #FFF
+}
+#tt-mobile-menu ul li.has-children>span.collapse {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 15px 0
+}
+#tt-mobile-menu ul li.has-children>span.collapse:after {
+    content: '\f067';
+    font-size: 12px;
+    font-family: fontawesome;
+    height: 24px;
+    line-height: 20px;
+    color: #FFF;
+}
+#tt-mobile-menu ul li.has-children>span.collapse:hover {
+    cursor: pointer
+}
+#tt-mobile-menu ul li.has-children.tt-open>span.collapse:after {
+    content: '\f068';
+    font-size: 12px;
+    font-family: fontawesome;
+    height: 24px;
+    line-height: 20px;
+    color: #FFF;
+}
+
+.open ul{
+    display:none !important;
+}
+
+#tt-mobile-menu ul ul li a:before {
+    content: '-';
+    margin-right: 5px
+}
+#tt-mobile-menu ul ul ul li a:before {
+    content: '- -';
+    margin-right: 5px
+}
+#tt-mobile-menu ul ul ul ul li a:before {
+    content: '- - -';
+    margin-right: 5px
+}
+#tt-mobile-menu ul ul li:first-child {
+    border-top: 1px solid rgba(255,255,255,.15)
+}
+#tt-mobile-menu ul.children {
+    display: none
+}
+/*  Custom Box
+*/
+.custom_box {
+    display: block;
+}
+/*  Wide Menu
+*/
+.wide_menu {
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.ie8 .wide_menu {
+    border-bottom: 1px solid #ececec;
+}
+.wide_menu ul.menu li a {
+    padding: 20px;
+    border-left: 1px solid rgba(0,0,0,0.1);
+    display: block;
+    text-transform: uppercase;
+    font-size: 14px;
+    line-height: 14px;
+    font-weight: bold;
+    color: #000;
+}
+.ie8 .wide_menu ul.menu li a {
+    border-left: 1px solid #ececec;
+}
+.wide_menu ul.menu li a > [class^="icon-"] {
+ margin-right: 5px;
+}
+.wide_menu ul.menu li:last-child a {
+    border-right: 1px solid rgba(0,0,0,0.1)
+}
+.ie8 .wide_menu ul.menu li a {
+    border-right: 1px solid #ececec;
+}
+ul.menu li a:hover, ul.menu li a.active {
+    color: #00b4cc;
+}
+.wide_menu #searchform div#s_input {
+    border: none;
+    border-left: 1px solid rgba(0,0,0,0.1);
+    border-right: 1px solid rgba(0,0,0,0.1);
+    float: right;
+    position: relative;
+    margin-right: 55px;
+}
+.wide_menu #searchform div#s_input input#s {
+    border: none;
+    outline: none;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+    line-height: 14px;
+    padding: 18px;
+    max-width: 150px;
+    height: 54px;
+    background: transparent !important;
+}
+.wide_menu #searchform div#s_input input#s::-webkit-input-placeholder { /* WebKit browsers */
+ padding-top:3px;
+}
+.wide_menu #searchform div#s_input input#s:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+ padding-top:3px;
+}
+.wide_menu #searchform div#s_input input#s::-moz-placeholder { /* Mozilla Firefox 19+ */
+ padding-top:3px;
+}
+.wide_menu #searchform div#s_input input#s:-ms-input-placeholder { /* Internet Explorer 10+ */
+ padding-top:3px;
+}
+.wide_menu #searchform div#s_input:after {
+    position: absolute;
+    right: -7px;
+    top: 19px;
+    display: inline-block;
+    border-top: 7px solid transparent;
+    border-left: 7px solid #ffffff;
+    border-bottom: 7px solid transparent;
+    border-right-color: rgba(255,255,255,1);
+    content: '';
+}
+.wide_menu #searchform div#s_input:before {
+    position: absolute;
+    right: -8px;
+    top: 18px;
+    display: inline-block;
+    border-top: 8px solid transparent;
+    border-left: 8px solid #ccc;
+    border-bottom: 8px solid transparent;
+    border-right-color: rgba(0, 0, 0, 0.2);
+    content: '';
+}
+.wide_menu.dark #searchform div#s_input:after, .wide_menu.light #searchform div#s_input:after, .wide_menu.dark #searchform div#s_input:before, .wide_menu.light #searchform div#s_input:before {
+    display: none;
+}
+.wide_menu #searchform input#searchsubmit {
+    padding: 20px;
+    border: none;
+    border-right: 1px solid rgba(0,0,0,0.05);
+    background-color: transparent !important;
+    float: right;
+    line-height: 14px;
+    font-size: 14px;
+    margin-right: 0;
+    text-shadow: none;
+    color: #000;
+    padding-right: 33px;
+}
+/*  Ajax Search
+*/
+#searchform:hover .ajax_search_response {
+    display: inline-block;
+}
+.ajax_search_response {
+    position: absolute;
+    top: 54px;
+    width: 350px;
+    right: 0px;
+    display: inline-block;
+    display: none;
+    background-color: #fff;
+    z-index: 999999;
+    font-size: 11px;
+    font-weight: bold;
+    color: #000;
+    border: 1px solid #E5E5E5;
+    padding: 18px;
+}
+.ajax_search_response .ajax_load {
+    display: block;
+    text-align: center;
+}
+.ajax_search_response .ajax_load .ajax_load_inner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url(framework/Pagebuilder/images/spinner.gif);
+}
+.ajax_search_response > a {
+    display: block;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    border-bottom: 1px dotted #e5e5e5;
+    min-height: 52px;
+}
+.ajax_search_response .ajax_search_image {
+    display: inline-block;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 1px solid #e5e5e5;
+    float: left;
+}
+.ajax_search_response .ajax_search_image [class^="icon-"], .ajax_search_response .ajax_search_image [class*=" icon-"] {
+    font-size: 14px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -7px;
+    margin-left: -6px;
+    line-height: 14px;
+    text-align: center;
+    width: 14px;
+    height: 14px;
+}
+.ajax_search_response .ajax_search_content {
+    display: block;
+    margin-left: 56px;
+}
+.ajax_search_response .ajax_search_title {
+    font-size: 12px;
+    line-height: 1.1;
+    color: #333;
+    max-height: 40px;
+    overflow: hidden;
+    display: block;
+}
+.ajax_search_response .ajax_search_excerpt {
+    font-size: 11px;
+    display: block;
+    margin-top: 5px;
+    font-style: italic;
+    color: #ccc;
+    font-weight: normal;
+}
+.ajax_search_response > a.ajax_search_entry_view_all {
+    margin: -18px;
+    border-bottom: none;
+    padding: 18px 0;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+/*  Menu Sub menu
+*/
+.mainmenu ul.menu li > a {
+    z-index: 9499;
+    position: relative;
+}
+.mainmenu ul.menu li ul {
+    display: none;
+    position: absolute;
+    top: -1px;
+    left: 0px;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    z-index: 9498;
+    width: 230px;
+}
+.mainmenu ul.menu li ul ul {
+    top: 0;
+}
+/*.mainmenu ul.menu li ul > li:first-child::after,*/
+.mainmenu ul.menu li ul > li .menu_arrow {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: -5px;
+    left: 30px;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    border-bottom: 0px;
+    border-right: 0px;
+    transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+.mainmenu ul.menu li.megamenu ul > li:first-child::after {
+    left: 42%;
+    left: 55%;
+}
+.mainmenu ul.menu li ul li ul {
+    margin-left: 228px;
+    margin-top: -1px;
+}
+.mainmenu ul.menu li ul.floar_right_menu li ul {
+    margin-left: -228px;
+}
+.mainmenu ul.menu > li > ul.floar_right_menu > li ul::after {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 14px;
+    right: -5px;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    border-top: 1px;
+    border-right: 1px;
+    transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    z-index: 99999;
+    border-left: 0px;
+    border-bottom: 0px;
+    border-top: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
+}
+.mainmenu ul.menu > li > ul:not(.floar_right_menu) > li ul::after {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 14px;
+    left: -5px;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    border-top: 0px;
+    border-right: 0px;
+    transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    z-index: 99999;
+}
+.mainmenu ul.menu li ul li ul>li:first-child::after {
+    display: none;
+}
+.mainmenu ul.menu li ul li {
+    margin: 0px;
+    padding: 0px;
+    background-color: #FFF;
+    background-color: rgba(255,255,255, 1);
+    display: block;
+    line-height: 0px;
+    padding: 12px 18px;
+    border: 1px solid rgba(192,192,192, .3);
+    border-bottom-width: 0;
+}
+.dark_sub_menu .mainmenu ul.menu li ul li {
+    background-color: #333;
+}
+.dark_sub_menu .mainmenu ul.menu li ul > li .menu_arrow {
+    background-color: #333;
+    border: 1px solid #333;
+    border-left-color: rgba(192,192,192, .3);
+    border-top-color: rgba(192,192,192, .3);
+}
+.dark_sub_menu .mainmenu ul.menu > li > ul:not(.floar_right_menu) > li ul::after {
+    background-color: #333;
+    border: 1px solid #333;
+    border-left-color: rgba(192,192,192, .3);
+    border-bottom-color: rgba(192,192,192, .3);
+}
+.dark_sub_menu .mainmenu ul.menu li ul li a:hover, .dark_sub_menu .icon_menu ul.menu li ul li a:hover, .dark_sub_menu .default_menu ul.menu li ul li a:hover, .dark_sub_menu .metro_menu ul.menu li ul li a:hover, .dark_sub_menu .mainmenu ul.menu li ul li a:focus, .dark_sub_menu .icon_menu ul.menu li ul li a:focus, .dark_sub_menu .default_menu ul.menu li ul li a:focus, .dark_sub_menu .metro_menu ul.menu li ul li a:focus {
+    color: #FFF;
+}
+.mainmenu ul.menu li ul li:last-child {
+    border-bottom-width: 1px;
+}
+.mainmenu ul.menu li ul li:last-child a {
+    border: 0px;
+}
+.mainmenu ul.menu li ul li a, .icon_menu ul.menu li ul li a, .default_menu ul.menu li ul li a, .metro_menu ul.menu li ul li a {
+    height: auto;
+    margin: 0px;
+    padding: 0px;
+    line-height: 1em;
+    font-size: 11px;
+    font-weight: normal;
+    text-transform: uppercase;
+    text-align: left;
+    color: white;
+    background-color: black;
+    border: 0px;
+}
+.mainmenu ul.menu li ul li a:hover, .icon_menu ul.menu li ul li a:hover, .default_menu ul.menu li ul li a:hover, .metro_menu ul.menu li ul li a:hover {
+    color: #000;
+}
+.mainmenu ul.menu li ul li.page_item_has_children > a:after, .icon_menu ul.menu li ul li.page_item_has_children > a:after, .default_menu ul.menu li ul.page_item_has_children > li a:after, .metro_menu ul.menu li ul li.page_item_has_children > a:after {
+    content: "\f054";
+    font-family: fontawesome;
+    font-size: .5em;
+    position: relative;
+    top: -.3em;
+    margin-left: 1em;
+}
+.mainmenu ul.menu .menu_column ul {
+    position: relative;
+    display: block;
+    top: 0px;
+    left: 0px;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+.mainmenu ul.menu .menu_column ul::after {
+    display: none;
+}
+.mainmenu ul.menu .megamenu > ul {
+}
+.mainmenu ul.menu .megamenu > ul > li {
+    display: block;
+}
+.mainmenu ul.menu .megamenu .menu_column {
+}
+.mainmenu ul.menu .megamenu .menu_column h3 {
+    font-size: 13px;
+    color: #333;
+    margin: 20px 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: left;
+}
+.dark_sub_menu .mainmenu ul.menu .megamenu .menu_column h3 {
+    color: #FFF;
+}
+.mainmenu ul.menu .megamenu .menu_column .menu_item {
+    border-bottom: 1px solid #ededed;
+    margin: 12px 18px;
+    padding-bottom: 12px;
+}
+.mainmenu ul.menu .megamenu .menu_column .menu_item [class^="icon-"] {
+    line-height: 0
+}
+.mainmenu ul.menu .megamenu .menu_column .menu_item:last-child {
+    border: 0px;
+}
+.mainmenu ul.menu .megamenu .menu_column > div {
+}
+header.stuck .icon_menu, header.stuck .metro_menu {
+    position: relative;
+    margin: 0;
+    right: 0;
+}
+header.stuck ul.menu li a {
+    height: inherit;
+    font-weight: bold;
+    font-size: 13px;
+    text-transform: uppercase;
+    line-height: 36px;
+}
+header.stuck ul.menu li:first-child a {
+    padding-left: 5px
+}
+header.stuck ul.menu li:last-child a {
+    padding-right: 5px
+}
+header.stuck ul.menu li a > [class^="icon-"] {
+ display: none;
+ position: relative;
+ top: auto;
+ left: auto;
+ margin: 0;
+}
+header.stuck ul.menu li a > .menu_text {
+    top: 0;
+}
+#header.metro_menu_header {
+    padding-top: 90px;
+    padding-bottom: 90px;
+}
+#header.metro_menu_header.stuck {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+/* Default Menu */
+/*
+.default_menu .mainmenu ul.menu > li > ul{
+        padding-top: 67px;
+}
+*/
+header.stuck .default_menu .mainmenu ul.menu > li > ul {
+    padding-top: 48px;
+}
+/*
+.default_menu .mainmenu ul.menu li ul > li .menu_arrow{
+        left: 52%;
+}
+*/
+
+/* Icon Menu */
+/*
+.icon_menu .mainmenu ul.menu > li > ul{
+        padding-top: 137px;
+        left: 0px;
+}
+*/
+header.stuck .icon_menu .mainmenu ul.menu > li > ul {
+    padding-top: 57px;
+}
+/* Metro menu */
+/*
+.metro_menu .mainmenu ul.menu > li > ul{
+        padding-top: 165px;
+}
+*/
+header.stuck .metro_menu .mainmenu ul.menu > li > ul {
+    padding-top: 57px;
+}
+/* Wide Menu */
+.wide_menu .mainmenu ul.menu > li > ul {
+    padding-top: 54px;
+}
+/*
+.wide_menu .mainmenu ul.menu li ul > li .menu_arrow{
+        left: 30px;
+}
+*/
+
+.navMenu input {
+    background: url('../images/magnifier.png') 5px center no-repeat;
+    background-size: 12px 12px;
+    border:none;
+    color: transparent;
+    font-size: 12px;
+    position:relative;
+
+    outline: none;
+    padding: 3px 5px 3px 20px;
+    width: 40px;
+    /* CSS3 */
+   color:white;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    border-radius:10px;
+}
+
+.navMenu input:hover { opacity: 1 }
+
+.navMenu input:focus {
+    opacity: 1;
+    width: 110px;
+    border-radius: 10px;
+    border: 1px solid #AAA;
+    cursor:;
+}
+
+.navMenu input:focus ~ a { width: 110px }
+
+
+.navMenu input::-webkit-input-placeholder { color:transparent; }
+.navMenu input:-moz-placeholder { color:transparent; }
+
+
+.navMenu input:focus::-webkit-input-placeholder { color:#c7c7cd; }
+.navMenu input:focus:-moz-placeholder { color:#c7c7cd; }
