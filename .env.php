@@ -4,8 +4,8 @@
 return array(
     'DB_HOST' => 'localhost',
     'DB_NAME' => 'eideal',
-    'DB_USERNAME' => 'forge',
-    'DB_PASSWORD' => 'dm80s2rxHnWw2o14GGFz',
+    'DB_USERNAME' => 'michel',
+    'DB_PASSWORD' => '1be783ec',
     'MANDRILL_SECRET' => 'f5sMDJOqFLsIxE0nURi3Iw'
 );
 
