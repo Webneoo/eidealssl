@@ -8,7 +8,7 @@
                  <h1 class="page_h1"> WHERE TO BUY </h1>
                  <h2 class="page_h1"> SALON GUIDE </h2>
                  <h2 class="page_h2" style="margin-top:0px;"> 
-                     <a style="color:#9a9a9a;" href="{{ route('products_path', 1) }}">Shop online and benefit from a free express delivery !</a> 
+                     <a style="color:#9a9a9a;" href="{{ route('all_products_path') }}">Shop online and benefit from a free express delivery !</a> 
                  </h2>
             </div>
         </div>

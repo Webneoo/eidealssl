@@ -20,7 +20,7 @@
                       <ul class="menu" style="display: block;">
 
                         <li <?php if($pagename == 'about-us') echo 'class="active"'; ?>><a href="{{ route('about_us_path') }}">ABOUT US <span class="sr-only">(current)</span></a></li>
-                        <li <?php if($pagename == 'products') echo 'class="active"'; ?> ><a href="{{ route('products_path',1) }}">PRODUCTS</a></li>
+                        <li <?php if($pagename == 'products') echo 'class="active"'; ?> ><a href="{{ route('all_products_path') }}">PRODUCTS</a></li>
                         <li <?php if($pagename == 'news-0') echo 'class="active"'; ?>><a href="{{ route('news_path',0) }}">NEWS</a></li>
                         <li class="dropdown" <?php if($pagename == 'brands-1' || $pagename == 'brands-2' || $pagename == 'brands-3' || $pagename == 'brands-4') echo 'class="active"'; ?>>
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">BRANDS <span class="caret"></span></a>

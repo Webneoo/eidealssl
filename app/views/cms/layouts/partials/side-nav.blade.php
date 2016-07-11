@@ -24,7 +24,7 @@
              <li> <a <?php if ($pagename == "brands-management") echo 'class="active"'; ?> href="{{ route('brands_management_path') }}">  <i class="fa fa-tags fa-fw"></i> Brands</a></li>
              <li> <a <?php if ($pagename == "users-management") echo 'class="active"'; ?> href="{{ route('users_management_path') }}">  <i class="fa fa-users fa-fw"></i> Users</a></li>
              <li> <a <?php if ($pagename == "shopping-management") echo 'class="active"'; ?> href="{{ route('shopping_management_path') }}">  <i class="fa fa-shopping-cart fa-fw"></i> Shopping </a></li>
-           <!--   <li> <a <?php if ($pagename == "management-products-category") echo 'class="active"'; ?> href="{{ route('products_category_management_path') }}">  <i class="fa fa-th fa-fw"></i> Products category </a></li> -->
+             <li> <a <?php if ($pagename == "management-products-category") echo 'class="active"'; ?> href="{{ route('products_category_management_path') }}">  <i class="fa fa-th fa-fw"></i> Products category </a></li>
        </ul>
    </div>
    <!-- /.sidebar-collapse -->

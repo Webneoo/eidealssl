@@ -15,7 +15,7 @@
         <table class="table table-striped table-bordered table-hover" id="dataTables-example">
             <thead>
                 <tr>
-                    
+                    <th>#</th>
                     <th>Title</th>
                     <th>Image</th>
                     <th>Order date</th>
@@ -25,7 +25,8 @@
             <tbody>
 
                 @foreach($products_category as $p)
-                 <tr>    
+                 <tr>   
+                    <td>{{ $p->sub_category_id }}</td> 
                     <td>{{ $p->title }}</td>
                     <td><img style="width:80px;" src="images/products_category/{{ $p->image }}"/></td>
                     <td>{{ $p->updated_at }}</td>

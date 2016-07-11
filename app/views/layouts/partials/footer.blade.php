@@ -10,7 +10,7 @@
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3">
                 <h1> EIDEAL </h1>
-                <a href="{{ route('products_path', 1) }}">PRODUCTS</a><br/>
+                <a href="{{ route('all_products_path') }}">PRODUCTS</a><br/>
                 <a href="{{ route('brands_path',1) }}">BRANDS</a><br/>     
                 <a href="{{ route('eteam_path') }}">E-TEAM</a><br/>           
                 <a href="{{ route('news_path') }}">NEWS</a>

@@ -896,7 +896,7 @@ class ProductController extends \BaseController {
         else // If no image has been selected we must keep the old image in the database
         {
             $productCategoryDetails = $this->productsRepository->getSubcategoryFromSubcategory_id($sub_category_id);  
-            $input['product_category_img'] = $productCategoryDetails->img;  
+            $input['product_category_img'] = $productCategoryDetails->image;  
         }
 
        

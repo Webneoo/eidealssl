@@ -31,7 +31,7 @@ class ProductsRepository {
     public function getAllSubcategoryOrderedByDate()
     {   
           $q = \DB::select(
-                \DB::raw("SELECT image 
+                \DB::raw("SELECT * 
                           FROM ta_sub_category
                           ORDER BY updated_at DESC")
         );     
@@ -70,12 +70,12 @@ class ProductsRepository {
          $q = \DB::select(
             \DB::raw("UPDATE ta_sub_category
                       SET title = :title, 
-                          img = :img,
+                          image = :image,
                           updated_at = :updated_at
                       WHERE sub_category_id = :sub_category_id"),
             array(':sub_category_id' => $sub_category_id, 
                   ':title' => $input['title'], 
-                  ':img' => $input['product_category_img'], 
+                  ':image' => $input['product_category_img'], 
                   ':updated_at' => $input['product_category_date']
                   )
             );
