@@ -71,19 +71,29 @@
                             <td style="text-align:center;"></td>
                             <td style="text-align:center;"></td>
                             <td style="text-align:center;"><b>Total</b></td>
-                            <td style="text-align:center;"><b>${{ $order_id_info[0]->purchase_price }}</b></td>
+                            <td style="text-align:center;"><b>${{ $order_id_info[0]->original_price }}</b></td>
                         </tr>
                       </table>
                     </td>
                 </tr>
-                <!-- <tr>
-                    <td style="text-align:center;"><b>Promo code</b></td>
-                    <td style="text-align:center;">34636</td>
+               
+                @if($order_id_info[0]->percentage != NULL)
+
+                <tr>
+                    <td style="text-align:center;"><b>Promo</b></td>
+                    <td style="text-align:center;">#{{ $order_id_info[0]->promo_id }} - {{ $order_id_info[0]->title }}</td>
                 </tr>
                 <tr>
-                    <td style="text-align:center;"><b>Shipping Fees</b></td>
-                    <td style="text-align:center;">Free</td>
-                </tr> -->
+                    <td style="text-align:center;"><b>Promo percentage</b></td>
+                    <td style="text-align:center;">{{ $order_id_info[0]->percentage }} %</td>
+                </tr>
+
+                <tr>
+                    <td style="text-align:center; font-size: 19px;"><b>OVERALL TOTAL</b></td>
+                    <td style="text-align:center; font-size: 19px;"> <b>$ {{ $order_id_info[0]->purchase_price }} </b></td>
+                </tr>
+
+                @endif
 
                 <tr>
                     <td colspan="2" style="text-align:center; font-size:17px; background:#337ab7; color:white"><b>Payment Details</b></td>
@@ -96,13 +106,12 @@
 
                 <tr>
                     <td style="text-align:center;"><b>Purchased Amount</b></td>
-
                     <td style="text-align:center;">$ {{ $order_id_info[0]->purchase_price }}</td>
                 </tr>
 
                 <tr>
                     <td style="text-align:center;"><b>Transaction date</b></td>
-                    <td style="text-align:center;">$ {{ $order_id_info[0]->purchase_date }}</td>
+                    <td style="text-align:center;">{{ $order_id_info[0]->purchase_date }}</td>
                 </tr>
 
                 @if($order_id_info[0]->order_status_id == 3 || $order_id_info[0]->order_status_id == 4)

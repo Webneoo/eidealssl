@@ -72,6 +72,8 @@
               @endif <!-- end if(!is_null($c->product_id)) -->
             @endforeach
           @endif <!-- !empty($cartList) -->
+          
+
           <tr>
               <td style="font-family:MontserratLight; font-size:25px;"><b>Total</b></td>
               <td></td>
@@ -108,7 +110,7 @@
           </tr>
           <tr>
             <td></td>
-            <td></td> 
+            <td></td>
             <td></td>
             <td style="text-align:center">
               <a type="button" class="btn" style="width:100px; font-family:MontserratLight; color:white;
@@ -116,6 +118,7 @@
             </td>
             <td></td>
           </tr>
+
 
   </tbody>
  </table>

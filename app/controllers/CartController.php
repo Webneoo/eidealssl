@@ -3,6 +3,7 @@
 use eideal\Home\HomeRepository;
 use eideal\Media\MediasRepository;
 use eideal\Products\ProductsRepository;
+use eideal\Promo\PromoRepository;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 use Laracasts\Flash\Flash;
@@ -16,17 +17,19 @@ class CartController extends \BaseController {
     private $cart;
     private $session;
     private $productsRepository;
+    private $promoRepository;
     private $homeRepository;
     private $mediasRepository;
     private $checkoutForm;
 
 
     function __construct(Cart $cart, \Illuminate\Session\SessionManager $session, \Illuminate\Events\Dispatcher $event, ProductsRepository $productsRepository,
-                         HomeRepository $homeRepository, MediasRepository $mediasRepository, CheckoutForm $checkoutForm)
+                         PromoRepository $promoRepository, HomeRepository $homeRepository, MediasRepository $mediasRepository, CheckoutForm $checkoutForm)
     {
         $this->cart = $cart;
         $this->session = $session;
         $this->productsRepository = $productsRepository;
+        $this->promoRepository = $promoRepository;
         $this->homeRepository = $homeRepository;
         $this->mediasRepository = $mediasRepository;
         $this->checkoutForm = $checkoutForm;
@@ -59,6 +62,7 @@ class CartController extends \BaseController {
 
         return View::make('cart.index', array('pagename' => $pagename, 'cartList' => $cartList, 'itemNb' => $itemNb));
 	}
+
 
     public function store($product_id)
     {   
@@ -271,8 +275,16 @@ class CartController extends \BaseController {
 
     public function placeOrder()
     {   
+
+        Session::forget('promo_id'); // clear the promo_id session variable if it exists 
+        Session::forget('total_after_discount'); // clear the total_after_discount session variable if it exists
+        Session::forget('promo_percentage'); // clear the total_after_discount session variable if it exists
+        Session::forget('promo_id'); // clear the promo_id session variable if it exists
+
+
         $pagename = pageName();
-        
+        $flag = 0;
+
         if(!Auth::check())
         {
             return View::make('signin.index', array('pagename' => $pagename, 'cartList' => $cartList, 'itemNb' => $itemNb));
@@ -307,12 +319,96 @@ class CartController extends \BaseController {
 
                 Session::put('cart_item', $itemNb);
 
-                return View::make('cart.placeOrder', array('pagename' => $pagename, 'cartList' => $cartList, 'itemNb' => $itemNb, 'total_amount' => $total_amount));
+                // get all the active promo
+                $active_promo = $this->promoRepository->getActivePromo();
+
+                return View::make('cart.placeOrder', array('pagename' => $pagename, 'cartList' => $cartList, 'itemNb' => $itemNb, 'total_amount' => $total_amount, 'active_promo' => $active_promo, 'flag' =>$flag));
 
         }// end else of if(!Auth::check())
     }
 
 
+    public function applyPromoCode()
+    {   
+        $pagename = pageName();
+
+        $input = Input::all();
+        $promo_valid = $this->promoRepository->getInfoFromPromoCode($input['promo_code'], Session::get('user_id'));
+        $flag = 0; // flag to hide the promo error message if valid
+
+        //check if the promo code is valid (not used before, active and in range date)
+        if(empty($promo_valid))
+        {   
+           $flag= 0; 
+           Flash::error('Invalid promo code'); 
+
+           Session::forget('promo_id'); // clear the promo_id session variable if it exists 
+           Session::forget('total_after_discount'); // clear the total_after_discount session variable if it exists
+           Session::forget('promo_percentage'); // clear the total_after_discount session variable if it exists
+
+           //get the total amout of your cart 
+            $q = $this->productsRepository->getTotalAmountOrderId(Session::get('user_id'));
+            $total_amount = $q[0]->total;
+
+            // get the cart that exist in the database
+            $cartList = $this->productsRepository->getProductsInCartFromUserId(Session::get('user_id')); 
+
+            // count the number of the item in your cart from the database
+            $itemNb = $this->productsRepository->countProductInCart(Session::get('user_id'));
+            $itemNb = $itemNb[0]->qty_in_cart; 
+
+            Session::put('cart_item', $itemNb);
+
+            // get all the active promo
+            $active_promo = $this->promoRepository->getActivePromo();
+
+            return View::make('cart.placeOrder', array('pagename' => $pagename, 'cartList' => $cartList, 'itemNb' => $itemNb, 'total_amount' => $total_amount, 'active_promo' => $active_promo, 'flag' => $flag));
+
+        }
+
+        else // if promo code is valid
+        {   
+            $flag= 1; // set the flag to zero to remove the invalid promo msg if exist
+            
+           
+            //get the total amout of your cart 
+            $q = $this->productsRepository->getTotalAmountOrderId(Session::get('user_id'));
+            $total_amount = $q[0]->total;
+           
+
+            // get the cart that exist in the database
+            $cartList = $this->productsRepository->getProductsInCartFromUserId(Session::get('user_id')); 
+
+            // count the number of the item in your cart from the database
+            $itemNb = $this->productsRepository->countProductInCart(Session::get('user_id'));
+            $itemNb = $itemNb[0]->qty_in_cart; 
+
+            Session::put('cart_item', $itemNb);
+
+            // get all the active promo
+            $active_promo = $this->promoRepository->getActivePromo();
+
+            Session::forget('promo_id'); // clear the promo_id session variable if it exists 
+            Session::forget('total_after_discount'); // clear the total_after_discount session variable if it exists
+            Session::forget('promo_percentage'); // clear the promo_percentage session variable if it exists
+   
+            //get the latest promo code selected
+            $promo_valid = $this->promoRepository->getInfoFromPromoCode($input['promo_code'], Session::get('user_id'));
+
+            // set a new session variable
+            Session::put('promo_id', $promo_valid[0]->promo_id);
+
+            // calculate the price after applying the promo and stock it into a session variable
+            $total_after_discount = (float)$total_amount*(100-$promo_valid[0]->percentage)/100;
+            Session::put('total_after_discount', $total_after_discount);
+
+
+            Session::put('promo_percentage', $promo_valid[0]->percentage);
+
+             return View::make('cart.placeOrder', array('pagename' => $pagename, 'cartList' => $cartList, 'itemNb' => $itemNb, 'total_amount' => $total_amount, 'active_promo' => $active_promo, 'promo_valid' => $promo_valid, 'flag' => $flag));
+        }
+        
+    }
 
     public function cashOndelivery()
     {   
@@ -333,14 +429,43 @@ class CartController extends \BaseController {
                 $order_id = $q[0]->order_id;
                 $total_amount = $q[0]->total;
 
+
+                // check if there is a promo applied 
+                if (Session::has('total_after_discount'))
+                {
+                    $original_price = $q[0]->total;
+                    $total_amount = Session::get('total_after_discount');
+                    $promo_price  = Session::pull('total_after_discount');
+                    $promo_percentage = Session::pull('promo_percentage');   
+                }
+                else // if no promo is applied
+                {
+                    $original_price = $q[0]->total;
+                    $total_amount = $q[0]->total;
+                    $promo_price  = NULL;
+                    $promo_percentage  = NULL;
+                }
+               
+                if (Session::has('promo_id'))
+                $promo_id = Session::get('promo_id');
+                else 
+                $promo_id = NULL;
+
+
+
                 // get the cart that exist in the database
                 $cartList = $this->productsRepository->getProductsInCartFromUserId(Session::get('user_id')); 
                 
                 // update the the order_status_id to 2 and the shipping information
-                $this->productsRepository->updateWhenCashOnDelivery(Session::get('user_id'), $order_id, $total_amount, 
-                                        Session::get('checkout_firstname'), Session::get('checkout_lastname'), Session::get('checkout_email'), 
+                $this->productsRepository->updateWhenCashOnDelivery(Session::get('user_id'), $order_id, $original_price, $promo_price, $promo_id, $total_amount, Session::get('checkout_firstname'), Session::get('checkout_lastname'), Session::get('checkout_email'), 
                                         Session::get('checkout_phone'), Session::get('checkout_country'), Session::get('checkout_city'),
                                         Session::get('checkout_address'));
+
+                // mark the promo as used if there is a promo
+                if (Session::has('promo_id'))
+                {
+                    $this->promoRepository->markPromoAsUsed(Session::get('promo_id'), Session::get('user_id'));
+                }
 
                 // empty the cart item counter 
                 Session::put('cart_item', 0);
@@ -354,8 +479,7 @@ class CartController extends \BaseController {
                  Mail::send('emails.cash-on-delivery-client-email', 
                             array('cartList' => $cartList, 'firstname' => Session::get('checkout_firstname'), 'lastname' => Session::get('checkout_lastname'),
                                   'email_address' => Session::get('checkout_email'), 'phone' => Session::get('checkout_phone'),
-                                  'country' => Session::get('checkout_country'), 'city' => Session::get('checkout_city'), 'shipping_address' => Session::get('checkout_address'),
-                                  'order_id' => $order_id), 
+                                  'country' => Session::get('checkout_country'), 'city' => Session::get('checkout_city'), 'shipping_address' => Session::get('checkout_address'), 'order_id' => $order_id, 'original_price' => $original_price, 'total_amount' => $total_amount, 'promo_percentage' => $promo_percentage, 'promo_price' => $promo_price), 
                             function($message) use ($email_client)
                         {
                             $message->from('ecommerce@eideal.com', 'Eideal Online')->subject('Thank you for your purchase | Eideal');
@@ -370,7 +494,7 @@ class CartController extends \BaseController {
                             array('cartList' => $cartList, 'firstname' => Session::get('checkout_firstname'), 'lastname' => Session::get('checkout_lastname'),
                                   'email_address' => Session::get('checkout_email'), 'phone' => Session::get('checkout_phone'),
                                   'country' => Session::get('checkout_country'), 'city' => Session::get('checkout_city'), 
-                                  'shipping_address' => Session::get('checkout_address'), 'order_id' => $order_id), 
+                                  'shipping_address' => Session::get('checkout_address'), 'order_id' => $order_id, 'original_price' => $original_price, 'total_amount' => $total_amount, 'promo_percentage' => $promo_percentage, 'promo_price' => $promo_price), 
                             function($message) use ($email_admin)
                         {
                             $message->from(Session::get('checkout_email'), Session::get('checkout_firstname').' '.Session::get('checkout_lastname'))->subject('Product Purchase | Cash on delivery');
@@ -412,9 +536,15 @@ class CartController extends \BaseController {
 
             //get the total amout of your cart 
             $q = $this->productsRepository->getTotalAmountOrderId(Session::get('user_id'));
+            
+            // test if the user applied a promo discount
+            if (Session::has('total_after_discount'))
+            $total_amount = Session::get('total_after_discount');
+            else 
             $total_amount = $q[0]->total;
 
 
+           
 
             if($itemNb == 0)
             {
@@ -438,10 +568,22 @@ class CartController extends \BaseController {
                 $param['merchant']= "845601";
                 $param['orderInfo']= time().'-'.$user_id; // concatenate the time stamp and the user id
 
-                $param['amount'] = $total_amount*100;
-                $param['returnURL'] = "https://eideal.com/bank-audi-response?action=py";
-                
+                //function that ceil with specific digits number
+                function round_up ($value, $places=0) 
+                {
+                  if ($places < 0) { $places = 0; }
+                  $mult = pow(10, $places);
+                  return ceil($value * $mult) / $mult;
+                }
 
+                 $bank_audi_total = round_up($total_amount, 2);
+                 $bank_audi_total = $total_amount*100;
+                
+                $param['amount'] = (int)$bank_audi_total;
+               
+
+                $param['returnURL'] = "https://eideal.com/bank-audi-response?action=py";
+               
              // if all the parameteres exists
                 if (isset($param['accessCode']))
                 {
@@ -719,10 +861,32 @@ class CartController extends \BaseController {
 
                 {       
 
-                    // get the total amout and the order_id of the cart to buy 
+                    // get the total amount and the order_id of the cart to buy 
                             $q = $this->productsRepository->getTotalAmountOrderId(Session::get('user_id'));
                             $order_id = $q[0]->order_id;
-                            $total_amount = $q[0]->total;  
+                           
+                            // check if there is a promo applied 
+                            if (Session::has('total_after_discount'))
+                            {
+                                $original_price = $q[0]->total;
+                                $total_amount = Session::get('total_after_discount');
+                                $promo_price  = Session::pull('total_after_discount');
+                                $promo_percentage = Session::pull('promo_percentage');
+                            }
+                            else // if no promo is applied
+                            {
+                                $original_price = $q[0]->total;
+                                $total_amount = $q[0]->total;
+                                $promo_price  = NULL;
+                                $promo_percentage  = NULL;
+                            }
+                           
+                            if (Session::has('promo_id'))
+                            $promo_id = Session::get('promo_id');
+                            else 
+                            $promo_id = NULL;
+
+
 
                             $firstname = Session::get('checkout_firstname');
                             $lastname = Session::get('checkout_lastname');
@@ -739,22 +903,24 @@ class CartController extends \BaseController {
                         if($txnResponseCode == "0" && $errorExists == false)
                         {   
                             // update the status of the order (3)(payment approved) using the bank repsonse and the shipping info 
-                            $this->productsRepository->updateBankPayment($user_id, $order_id, $amount, $firstname, $lastname, $email, 
+                            $this->productsRepository->updateBankPayment($user_id, $order_id, $original_price, $promo_price, $promo_id, $total_amount, $firstname, $lastname, $email, 
                                         $phone, $country, $city, $shipping_address, $orderInfo, $transactionNo, $message, 
                                         $txnResponseCodeDesc, $issuerResponseCodeDesc, $receiptNo, $cardType, 3);
-                                
-
+                            
+                            // if promo applied, insert the promo id in the ta_promo_user table to mark as used    
+                            if (Session::has('promo_id'))
+                                $this->promoRepository->markPromoAsUsed(Session::pull('promo_id'), Session::get('user_id'));
                                 
                             
                         //send the receipt to the client by mail -------------------
                          Mail::send('emails.purchase-email-success-client', 
                             array('cartList' => $cartList, 'merchTxnRef' => $merchTxnRef,
-                                  'transactionNo' => $transactionNo, 'orderInfo' => $orderInfo, 'amount' => $amount, 
+                                  'transactionNo' => $transactionNo, 'orderInfo' => $orderInfo, 'amount' => $total_amount, 
                                   'txnResponseCodeDesc' => $txnResponseCodeDesc, 'receiptNo' => $receiptNo, 'cardType' => $cardType, 
                                   'issuerResponseCodeDesc' => $issuerResponseCodeDesc,'txn_message' => $message, 'txnResponseCode' => $txnResponseCode, 
                                   'trans_date' => $trans_date,'errorExists' => $errorExists, 'firstname' => $firstname, 'lastname' => $lastname,
                                   'email_address' => $email, 'phone' => $phone, 'country' => $country, 'city' => $city, 
-                                  'shipping_address' => $shipping_address),
+                                  'shipping_address' => $shipping_address,'promo_percentage' => $promo_percentage, 'original_price' => $original_price),
                             function($message) use ($email)
                         {
                             $message->from('ecommerce@eideal.com', 'EIDEAL')->subject('Thank you for your purchase | EIDEAL');
@@ -766,12 +932,12 @@ class CartController extends \BaseController {
                           
                          Mail::send('emails.purchase-email-success-admin', 
                             array('cartList' => $cartList, 'firstname' => $firstname,'merchTxnRef' => $merchTxnRef,
-                                  'transactionNo' => $transactionNo, 'orderInfo' => $orderInfo, 'amount' => $amount, 
+                                  'transactionNo' => $transactionNo, 'orderInfo' => $orderInfo, 'amount' => $total_amount, 
                                   'txnResponseCodeDesc' => $txnResponseCodeDesc, 'receiptNo' => $receiptNo, 'cardType' => $cardType, 
                                   'issuerResponseCodeDesc' => $issuerResponseCodeDesc,'txn_message' => $message, 'txnResponseCode' => $txnResponseCode, 
                                   'trans_date' => $trans_date,'errorExists' => $errorExists, 'firstname' => $firstname, 'lastname' => $lastname,
                                   'email_address' => $email, 'phone' => $phone, 'country' => $country, 'city' => $city, 
-                                  'shipping_address' => $shipping_address), 
+                                  'shipping_address' => $shipping_address,'promo_percentage' => $promo_percentage, 'original_price' => $original_price), 
                             function($message) use ($admin_email)
                         {
                             $message->from(Session::get('checkout_email'), Session::get('checkout_firstname').' '.Session::get('checkout_lastname'))->subject('Online product purchase | online payment');
@@ -800,7 +966,7 @@ class CartController extends \BaseController {
                         else //transaction not approved, other error
                         {
                             // update the status of the order (4)(bank audi error) using the bank repsonse and the shipping info 
-                            $this->productsRepository->updateBankPayment($user_id, $order_id, $amount, $firstname, $lastname, $email, 
+                            $this->productsRepository->updateBankPayment($user_id, $order_id, $original_price, $promo_price, $promo_id, $total_amount, $firstname, $lastname, $email, 
                                         $phone, $country, $city, $shipping_address, $orderInfo, $transactionNo, $message, 
                                         $txnResponseCodeDesc, $issuerResponseCodeDesc, $receiptNo, $cardType, 4);
                                 
@@ -809,12 +975,12 @@ class CartController extends \BaseController {
                         //send the email failed notification to the client  -------------------
                          Mail::send('emails.purchase-email-failed-client', 
                             array('cartList' => $cartList, 'merchTxnRef' => $merchTxnRef,
-                                  'transactionNo' => $transactionNo, 'orderInfo' => $orderInfo, 'amount' => $amount, 
+                                  'transactionNo' => $transactionNo, 'orderInfo' => $orderInfo, 'amount' => $total_amount, 
                                   'txnResponseCodeDesc' => $txnResponseCodeDesc, 'receiptNo' => $receiptNo, 'cardType' => $cardType, 
                                   'issuerResponseCodeDesc' => $issuerResponseCodeDesc,'txn_message' => $message, 'txnResponseCode' => $txnResponseCode, 
                                   'trans_date' => $trans_date,'errorExists' => $errorExists, 'firstname' => $firstname, 'lastname' => $lastname,
                                   'email_address' => $email, 'phone' => $phone, 'country' => $country, 'city' => $city, 
-                                  'shipping_address' => $shipping_address),
+                                  'shipping_address' => $shipping_address, 'promo_percentage' => $promo_percentage, 'original_price' => $original_price),
                             function($message) use ($email)
                         {
                             $message->from('ecommerce@eideal.com', 'EIDEAL')->subject('Purchase transaction failed | EIDEAL');
@@ -826,12 +992,12 @@ class CartController extends \BaseController {
 
                          Mail::send('emails.purchase-email-failed-admin', 
                             array('cartList' => $cartList, 'firstname' => $firstname,'merchTxnRef' => $merchTxnRef,
-                                  'transactionNo' => $transactionNo, 'orderInfo' => $orderInfo, 'amount' => $amount, 
+                                  'transactionNo' => $transactionNo, 'orderInfo' => $orderInfo, 'amount' => $total_amount, 
                                   'txnResponseCodeDesc' => $txnResponseCodeDesc, 'receiptNo' => $receiptNo, 'cardType' => $cardType, 
                                   'issuerResponseCodeDesc' => $issuerResponseCodeDesc,'txn_message' => $message, 'txnResponseCode' => $txnResponseCode, 
                                   'trans_date' => $trans_date,'errorExists' => $errorExists, 'firstname' => $firstname, 'lastname' => $lastname,
                                   'email_address' => $email, 'phone' => $phone, 'country' => $country, 'city' => $city, 
-                                  'shipping_address' => $shipping_address), 
+                                  'shipping_address' => $shipping_address, 'promo_percentage' => $promo_percentage, 'original_price' => $original_price), 
                             function($message) use ($admin_email)
                         {
                             $message->from(Session::get('checkout_email'), Session::get('checkout_firstname').' '.Session::get('checkout_lastname'))->subject('Online purchase failed | Bank Error');
@@ -844,7 +1010,7 @@ class CartController extends \BaseController {
 
                         return View::make('cart.bankAudiResponse', 
                                 array('pagename' => $pagename, 'cartList' => $cartList, 'itemNb' => $itemNb, 'merchTxnRef' => $merchTxnRef,
-                                      'transactionNo' => $transactionNo, 'orderInfo' => $orderInfo, 'amount' => $amount, 
+                                      'transactionNo' => $transactionNo, 'orderInfo' => $orderInfo, 'amount' => $total_amount, 
                                       'txnResponseCodeDesc' => $txnResponseCodeDesc, 'receiptNo' => $receiptNo, 'cardType' => $cardType, 
                                       'issuerResponseCodeDesc' => $issuerResponseCodeDesc,'message' => $message, 'txnResponseCode' => $txnResponseCode, 
                                       'trans_date' => $trans_date, 'errorExists' => $errorExists));

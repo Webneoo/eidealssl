@@ -38,7 +38,7 @@
                       <div class="panel panel-default">          
                           <div class="panel-body product_hover_click less_padding" onclick="location.href='{{ route('products_path', $a->sub_category_id) }}'">
                               <h1 class="best-seller-h1" style="margin-top:0px; height:30px;">{{ $a->title }}</h1>
-                              <img alt="{{ $a->title }}" title="{{ $a->title }}" style="border:1px solid #ddd;" src="images/products_category/{{ $a->image }}" class="best-seller-image height_img"/> 
+                              <img alt="{{ $a->title }}" title="{{ $a->title }}" src="images/products_category/{{ $a->image }}" class="best-seller-image height_img"/> 
                           </div> 
                        </div>
                    </div>
@@ -59,7 +59,7 @@
              </br>
              <i class="fa fa-5x fa-truck bottom-icon symbol"></i>
              <h3>48 hours Free Delivery</h3>
-             <p><b> Products found in stock </b></p>
+             <p>Products available in stock</p>
            </br>
         </div> 
           

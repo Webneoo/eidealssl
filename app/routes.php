@@ -160,6 +160,7 @@ Route::get('shopping-cart',[
     'uses' => 'CartController@index'
 ]);
 
+
 Route::get('checkout',[
     'as' => 'checkout_path',
     'uses' => 'CartController@checkout'
@@ -168,6 +169,12 @@ Route::get('checkout',[
 Route::post('place-your-order',[
     'as' => 'place_your_order_path',
     'uses' => 'CartController@placeOrder'
+]);
+
+
+Route::post('apply-promo-code',[
+    'as' => 'apply_promo_code_path',
+    'uses' => 'CartController@applyPromoCode'
 ]);
 
 
@@ -747,6 +754,36 @@ Route::get('/display-transaction-{order_id}', [
     'before' => 'auth',
     'as' => 'display_transaction_path',
     'uses' => 'ShoppingController@display'
+]);
+
+
+/* -------------------
+PROMO MANAGEMENT
+----------------- */
+
+Route::get('/promo-management', [
+    'before' => 'auth',
+    'as' => 'promo_management_path',
+    'uses' => 'PromoController@show'
+]);
+
+
+Route::post('/promo-management', [
+    'before' => 'auth',
+    'as' => 'promo_management_path',
+    'uses' => 'PromoController@updateStatus'
+]);
+
+Route::get('/create-promo-management', [
+    'before' => 'auth',
+    'as' => 'create_promo_path',
+    'uses' => 'PromoController@createPromo'
+]);
+
+Route::post('/create-promo-management', [
+    'before' => 'auth',
+    'as' => 'create_promo_path',
+    'uses' => 'PromoController@addPromo'
 ]);
 
 

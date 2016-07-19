@@ -222,22 +222,22 @@
   <div class="col-lg-9 col-lg-offset-3">
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 icon_awesome_detail product_bottom_icons" style="padding-top:15px;" >
       <i class="fa fa-4x fa-money" style="color:#676767;"></i>
-      <h4 class="h4_details_delivery">Cash on Delivery</h4>
+      <h4 class="h4_details_delivery"><b>Cash on Delivery</b></h4>
       <p> We offer competitve prices on our 30 plus product range</p>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 icon_awesome_detail product_bottom_icons">
       <i class="fa fa-4x fa-truck" style="color:#676767;"></i>
       <h4 class="h4_details_delivery"><b>48 hours Free Delivery</b></h4>
-      <p><b> Products found in stock </b></p>
+      <p>Products available in stock</p>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 icon_awesome_detail product_bottom_icons">
       <i class="fa fa-4x fa-credit-card" style="color:#676767;"></i>
-      <h4 class="h4_details_delivery">Safe Payment</h4>
+      <h4 class="h4_details_delivery"><b>Safe Payment</b></h4>
       <p>Pay with the world's most popular and secure payment methods</p>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 icon_awesome_detail product_bottom_icons">
       <i class="fa  fa-4x fa-cart-arrow-down" style="color:#676767;"></i>
-      <h4 class="h4_details_delivery">Shop with Confidence</h4>
+      <h4 class="h4_details_delivery"><b>Shop with Confidence</b></h4>
       <p>Our buyer Protection covers your purchase from click to delivery</p>
     </div>
   </div>

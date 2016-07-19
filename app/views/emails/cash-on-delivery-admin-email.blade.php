@@ -35,7 +35,46 @@
 
   			<?php
                 }
+
+                if($promo_price != NULL)
+                {
              ?>
+
+             <tr>  
+                <td style="text-align:left; padding-left:15px;"><p></p></td>
+                <td style="text-align:left; padding-left:15px;"><p></p></td>
+                <td style="text-align:left; padding-left:15px;"><p></p></td>
+                <td style="text-align:left; padding-left:15px;"><p></p></td>
+                <td style="text-align:left; padding-left:15px;"><p></p></td>
+             </tr> 
+
+             <tr>  
+                <td style="text-align:left; padding-left:15px;"><p></p></td>
+                <td style="text-align:left; padding-left:15px;"><p></p></td>
+                <td style="text-align:left; padding-left:15px;"><p></p></td>
+                <td style="text-align:left; padding-left:15px;"><p> <b>Original price </b></p></td>
+                <td style="text-align:left; padding-left:15px;"><p>{{ $original_price }} $</p></td>
+             </tr> 
+
+             <tr>  
+                <td style="text-align:left; padding-left:15px;"><p></p></td>
+                <td style="text-align:left; padding-left:15px;"><p></p></td>
+                <td style="text-align:left; padding-left:15px;"><p></p></td>
+                <td style="text-align:left; padding-left:15px;"><p> <b>Promo discount</b></p></td>
+                <td style="text-align:left; padding-left:15px;"><p>{{ $promo_percentage }}% </p></td>
+             </tr> 
+
+             <?php 
+                }
+              ?>
+
+              <tr>  
+                <td style="text-align:left; padding-left:15px;"><p></p></td>
+                <td style="text-align:left; padding-left:15px;"><p></p></td>
+                <td style="text-align:left; padding-left:15px;"><p></p></td>
+                <td style="text-align:left; padding-left:15px;"><p> <b>Overall Total Amount</b></p></td>
+                <td style="text-align:left; padding-left:15px;"><p><b>{{ $total_amount }} $</b></p></td>
+             </tr> 
 
         </table>
 

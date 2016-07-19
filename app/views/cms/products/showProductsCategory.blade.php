@@ -33,7 +33,7 @@
                     <td>
                         <a href="{{ route('edit_products_category_path', $p->sub_category_id) }}"><i class="fa fa-edit fa-fw"></i></a>
                     </td>                
-                  </tr>
+                </tr>
                 @endforeach
           
             </tbody>

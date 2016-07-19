@@ -162,7 +162,7 @@
         <div class="row">
              <i class="fa fa-5x fa-truck bottom-icon symbol"></i>
              <h3>48 hours Free Delivery</h3>
-             <p> <b> Products found in stock </b></p>
+             <p> Products available in stock </p>
            </br>
         </div> 
           

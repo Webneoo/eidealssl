@@ -220,7 +220,7 @@
                       <td class="bottom-table delivery_box">
                           <i style="margin-top:-20px;" class="fa fa-4x fa-truck bottom-icon"></i>
                           <h1> 48 Hours Free Delivery </h1>
-                          <p class="delivery_product"> <b>Products found in stock </b>  </p>
+                          <p class="delivery_product"> Products available in stock </p>
                       </td>
                       <td class="bottom-table">
                           <i class="fa fa-4x fa-credit-card bottom-icon"></i>

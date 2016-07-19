@@ -97,6 +97,19 @@
                    <td style="text-align:right;"><p><b>Order ID:</b></p></td>
                    <td style="text-align:left; padding-left:15px;"><p>{{ $transactionNo }}</p></td>
                 </tr>
+
+                @if($promo_percentage != NULL)
+                <tr>
+                   <td style="text-align:right;"><p><b>Original Price:</b></p></td>
+                   <td style="text-align:left; padding-left:15px;"><p>$ {{ $original_price }} </p></td>
+                </tr>
+
+                <tr>
+                   <td style="text-align:right;"><p><b>Promotion discount %:</b></p></td>
+                   <td style="text-align:left; padding-left:15px;"><p>{{ $promo_percentage }} %</p></td>
+                </tr>
+
+                @endif
                 
                	<tr>
                    <td style="text-align:right;"><p><b>Purchase Amount:</b></p></td>

@@ -25,6 +25,9 @@
              <li> <a <?php if ($pagename == "users-management") echo 'class="active"'; ?> href="{{ route('users_management_path') }}">  <i class="fa fa-users fa-fw"></i> Users</a></li>
              <li> <a <?php if ($pagename == "shopping-management") echo 'class="active"'; ?> href="{{ route('shopping_management_path') }}">  <i class="fa fa-shopping-cart fa-fw"></i> Shopping </a></li>
              <li> <a <?php if ($pagename == "management-products-category") echo 'class="active"'; ?> href="{{ route('products_category_management_path') }}">  <i class="fa fa-th fa-fw"></i> Products category </a></li>
+             <li> <a <?php if ($pagename == "promo-management") echo 'class="active"'; ?> href="{{ route('promo_management_path') }}">  <i class="fa fa-gift fa-fw"></i> Promotions </a></li>
+
+             
        </ul>
    </div>
    <!-- /.sidebar-collapse -->

@@ -45,7 +45,7 @@
                     <td>{{ $p->sub_category_title }}</td>
                     <td>
                         <a href="{{ route('edit_products_path', $p->product_id) }}"><i class="fa fa-edit fa-fw"></i></a>
-                        <a onclick="return confirm('Are you sure you want to delete?')" href="{{ route('delete_products_path', $p->product_id) }}"><i class="fa fa-trash-o fa-fw"></i></a>
+                      <!--   <a onclick="return confirm('Are you sure you want to delete?')" href="{{ route('delete_products_path', $p->product_id) }}"><i class="fa fa-trash-o fa-fw"></i></a> -->
                     </td>
                  
                 </tr>

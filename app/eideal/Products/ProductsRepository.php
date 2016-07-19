@@ -535,13 +535,15 @@ class ProductsRepository {
 
 
 
-    public function updateWhenCashOnDelivery($user_id, $order_id, $total_amout, $firstname, $lastname, $email, $phone, $country, $city, $shipping_address)
+    public function updateWhenCashOnDelivery($user_id, $order_id, $original_price, $promo_price, $promo_id, $total_amout, $firstname, $lastname, $email, $phone, $country, $city, $shipping_address)
     {
         \DB::table('ta_orders')
             ->where('user_id' ,  $user_id)
             ->where('order_id' , $order_id)
             ->update(array(
-                      'original_price' => $total_amout,
+                      'original_price' => $original_price,
+                      'promo_price' => $promo_price,
+                      'promo_id' => $promo_id,
                       'purchase_price' => $total_amout,
                       'order_status_id' => 2,
                       'firstname' => $firstname,
@@ -558,15 +560,15 @@ class ProductsRepository {
 
 
 
-    public function updateBankPayment($user_id, $order_id, $total_amout, $firstname, $lastname, $email, $phone, $country, $city, $shipping_address,
-                                      $audi_order_ref, $audi_order_id, $audi_transaction_status, $audi_transaction_response, $audi_issuer_response,
-                                      $audi_receipt_number, $audi_card_type, $order_status_id)
+    public function updateBankPayment($user_id, $order_id, $original_price, $promo_price, $promo_id, $total_amout, $firstname, $lastname, $email, $phone,                                $country, $city, $shipping_address, $audi_order_ref, $audi_order_id, $audi_transaction_status, $audi_transaction_response,                                $audi_issuer_response,$audi_receipt_number, $audi_card_type, $order_status_id)
     {
         \DB::table('ta_orders')
             ->where('user_id' ,  $user_id)
             ->where('order_id' , $order_id)
             ->update(array(
-                      'original_price' => $total_amout,
+                      'original_price' => $original_price,
+                      'promo_price' => $promo_price,
+                      'promo_id' => $promo_id,
                       'purchase_price' => $total_amout,
                       'order_status_id' => $order_status_id,
                       'firstname' => $firstname,
@@ -593,13 +595,14 @@ class ProductsRepository {
     public function getAllTransactions()
     {
       $q = \DB::select(
-            \DB::raw("SELECT A.order_id, A.user_id, A.purchase_price, A.country, A.purchase_date, A.audi_order_id, A.order_status_id, B.name as payment_status, C.name as payment_method, D.username
-                      FROM ta_orders A
-                      JOIN ta_order_status B ON A.order_status_id = B.order_status_id
-                      JOIN ta_payment_methods C ON A.payment_method_id = C.payment_method_id
-                      JOIN users D ON A.user_id = D.id
-                      WHERE A.order_status_id != 1
-                      ORDER BY purchase_date DESC")
+            \DB::raw("SELECT A.order_id, A.user_id, A.original_price, A.purchase_price, A.country, A.purchase_date, A.audi_order_id, A.order_status_id, B.name as payment_status, C.name as payment_method, D.username, E.title, E.percentage
+              FROM ta_orders A
+              JOIN ta_order_status B ON A.order_status_id = B.order_status_id
+              JOIN ta_payment_methods C ON A.payment_method_id = C.payment_method_id
+              JOIN users D ON A.user_id = D.id
+              LEFT JOIN ta_promo E ON A.promo_id = E.promo_id
+              WHERE A.order_status_id != 1
+              ORDER BY purchase_date DESC")
         );
                   
         return $q;
@@ -619,10 +622,11 @@ class ProductsRepository {
     public function getOrderIdInfo($order_id)
     {
       $q = \DB::select(
-            \DB::raw("SELECT A.*, B.name as payment_status, C.name as payment_method
+            \DB::raw("SELECT A.*, B.name as payment_status, C.name as payment_method, D.title, D.percentage
                       FROM ta_orders A
                       JOIN ta_order_status B ON A.order_status_id = B.order_status_id
                       JOIN ta_payment_methods C ON A.payment_method_id = C.payment_method_id
+                      LEFT JOIN ta_promo D ON A.promo_id = D.promo_id
                       WHERE A.order_id = :order_id"),
                 array('order_id' => $order_id)
         );
