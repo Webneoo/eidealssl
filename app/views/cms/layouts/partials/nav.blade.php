@@ -8,7 +8,7 @@
            <span class="icon-bar"></span>
            <span class="icon-bar"></span>
        </button>
-       <a class="navbar-brand" href=""><img src="" class="logo_transparent"/> </a>
+       <a class="navbar-brand" href=""><img style="height:51px; position:relative; top:-13px;" src="../images/eideal_logo_cms.png"/> </a>
     </div>
    <!-- /.navbar-header -->
 

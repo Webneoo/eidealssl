@@ -3,7 +3,7 @@
 
    <li class="dropdown">
        <a class="dropdown-toggle" data-toggle="dropdown" href="">
-        Hi, {{ Session::get('username') }}
+        Hi, {{ $currentUser->username }}
         {{--
            <img class="nav-gravatar" src="{{ gravatar_link($currentUser->email) }}" alt="{{ $currentUser->username }}">
            Hi, {{ $currentUser->username }}
