@@ -66,7 +66,7 @@
                  $product_id = $productMonth[0]->product_id;
                  $sub_category_id = $productMonth[0]->sub_category_id;
                 ?>
-              <a class="product_img_link" href="{{ route('products_details_path', array($product_id, $sub_category_id, 'AED') ) }}"><img id="main_img_src" src="images/products/{{ $productMonth[0]->img1 }}" class="best-seller-image" style="margin-bottom: 10px; border:1px solid #e0e0e0;"/></a>
+              <a class="product_img_link" href="{{ route('products_details_path', array($product_id, $sub_category_id, 'USD') ) }}"><img id="main_img_src" src="images/products/{{ $productMonth[0]->img1 }}" class="best-seller-image" style="margin-bottom: 10px; border:1px solid #e0e0e0;"/></a>
            
               <div>
                     
@@ -159,7 +159,7 @@
                       $product_id = $b->product_id;
                       $sub_category_id = $b->sub_category_id;
                       ?>
-                      <a class="product_img_link" href="{{ route('products_details_path', array($product_id, $sub_category_id, 'AED') ) }}"> 
+                      <a class="product_img_link" href="{{ route('products_details_path', array($product_id, $sub_category_id, 'USD') ) }}"> 
                         <img src="images/products/{{ $b->img1 }}" class="best-seller-image img_height_index"/>
                       </a>
                         <h1 class="best-seller-h1">{{ $b->title }}</h1>

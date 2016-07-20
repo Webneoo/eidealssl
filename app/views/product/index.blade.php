@@ -60,7 +60,7 @@
                    <div class="col-lg-4 col-md-4 product_box">
                       <div class="panel panel-default panel_product_box">
                               <?php $product_id = $p->product_id; ?>
-                                <div class="panel-body product_hover_click less_padding" onclick="location.href='{{ route('products_details_path', array($product_id, $id, "AED") ) }}'">
+                                <div class="panel-body product_hover_click less_padding" onclick="location.href='{{ route('products_details_path', array($product_id, $id, "USD") ) }}'">
                                   
                                     <img src="images/products/{{ $p->img1 }}" class="best-seller-image height_img"/>
                                     
