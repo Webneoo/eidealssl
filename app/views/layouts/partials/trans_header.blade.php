@@ -117,17 +117,17 @@
 
 <script type="text/javascript">
   
- $('#curr_change').change(function() {
+  $(document).on('blur change','#curr_change',function(){
+ 
       // set the window's location property to the value of the option the user has selected
      
-
       var quoteCurrency = $(this).val();
       
-  $.ajaxSetup({
-  headers: {
-    'X-CSRF-TOKEN': $('[name="_token"]').val()
-  }
-});
+      $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('[name="_token"]').val()
+      }
+    });
 
    $.ajax({
           type: "POST",
