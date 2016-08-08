@@ -767,7 +767,7 @@ footer a:hover{
 
     .select_currency_div
     {
-        float:left;
+       margin-bottom: 18px;
     }
 
 
@@ -824,7 +824,7 @@ footer a:hover{
 
     .select_currency_div
     {
-        float:left;
+       margin-bottom: 18px;
     }
 }
 
