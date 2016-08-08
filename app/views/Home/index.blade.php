@@ -70,17 +70,18 @@
            
               <div>
                     
-                <div style="padding-left:0px;" class="col-lg-10 col-md-10 col-sm-10">
+                <div style="padding-left:0px;" class="col-lg-9 col-md-9 col-sm-9">
                     <h1 class="main-product-h1">{{ $productMonth[0]->title }}</h1>
                     <p>{{ $productMonth[0]->small_desc }} </p>
                 </div>
 
-                <div class="col-lg-2 col-md-2 col-sm-2">
+                <div class="col-lg-3 col-md-3 col-sm-3">
                   <?php 
                     $price = $productMonth[0]->price; 
-                    $price = number_format((float)$price, 2, '.', '');
+                    $price = number_format((float)$price*$curr, 2, '.', '');
                   ?>
-                <div class="main-product-price" style="position:relative; top:10px;"> ${{ $price }}</div>
+                <div class="main-product-price" style="position:relative; top:10px;"> {{ $price }} {{ $quoteCurr }} </div>
+
 
                   <!-- test if the product is not liquid -->
                     @if($productMonth[0]->liquid_product == 0)
@@ -166,9 +167,9 @@
                         <p> {{$b->small_desc}} </p>
                         <?php 
                           $price = $b->price; 
-                          $price = number_format((float)$price, 2, '.', '');
+                          $price = number_format((float)$price*$curr, 2, '.', '');
                         ?>
-                        <div class="best-seller-price absolute_best_seller"> ${{ $price }} </div>
+                        <div class="best-seller-price absolute_best_seller"> {{ $price }} {{ $quoteCurr }} </div>
 
                          <!-- test if the product is not liquid -->
                           @if($b->liquid_product == 0)

@@ -13,29 +13,7 @@
           @foreach ($product_info as $p)
           <h3 class="col-lg-9 col-md-9 col-sm-9 col-xs-6">{{ strtoupper($p->title) }}</h3>
           @endforeach
-          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4 currency_dropdownlist" style="margin-bottom:10px;">
-            <b>Currency:</b> 
-            <select class="sortby_input" name="price" id="currency">
-                  <option <?php if($quoteCurrency == "USD") echo "selected"; ?> value="details-products-{{ $product_id }}-{{ $id }}-USD">USD - Us Dollars</option>
-                  <option <?php if($quoteCurrency == "EUR") echo "selected"; ?> value="details-products-{{ $product_id }}-{{ $id }}-EUR">EUR - Euro</option>
-                  <option <?php if($quoteCurrency == "LBP") echo "selected"; ?> value="details-products-{{ $product_id }}-{{ $id }}-LBP">LBP - Lebanese Pound</option>
-                  <option <?php if($quoteCurrency == "AED") echo "selected"; ?> value="details-products-{{ $product_id }}-{{ $id }}-AED">AED - UAE Dirham</option>
-                  <option <?php if($quoteCurrency == "BHD") echo "selected"; ?> value="details-products-{{ $product_id }}-{{ $id }}-BHD">BHD - Bahraini Dinar</option>
-                  <option <?php if($quoteCurrency == "EGP") echo "selected"; ?> value="details-products-{{ $product_id }}-{{ $id }}-EGP">EGP - Egyptian Pound</option>
-                  <option <?php if($quoteCurrency == "SYP") echo "selected"; ?> value="details-products-{{ $product_id }}-{{ $id }}-SYP">SYP - Syrian Pound</option>
-                  <option <?php if($quoteCurrency == "QAR") echo "selected"; ?> value="details-products-{{ $product_id }}-{{ $id }}-QAR">QAR - Qatar Rial</option>
-                  <option <?php if($quoteCurrency == "TRY") echo "selected"; ?> value="details-products-{{ $product_id }}-{{ $id }}-TRY">TRY - Turkish Lira</option>
-                  <option <?php if($quoteCurrency == "JOD") echo "selected"; ?> value="details-products-{{ $product_id }}-{{ $id }}-JOD">JOD - Jordanian Dinar</option>
-                  <option <?php if($quoteCurrency == "IQD") echo "selected"; ?> value="details-products-{{ $product_id }}-{{ $id }}-IQD">IQD - Iraqi Dinar</option>
-                  <option <?php if($quoteCurrency == "IRR") echo "selected"; ?> value="details-products-{{ $product_id }}-{{ $id }}-IRR">IRR - Iran Rial</option>
-                  <option <?php if($quoteCurrency == "YER") echo "selected"; ?> value="details-products-{{ $product_id }}-{{ $id }}-YER">YER - Yemen Riyal</option>
-                  <option <?php if($quoteCurrency == "OMR") echo "selected"; ?> value="details-products-{{ $product_id }}-{{ $id }}-OMR">OMR - Omani Rial</option>
-                  <option <?php if($quoteCurrency == "KWD") echo "selected"; ?> value="details-products-{{ $product_id }}-{{ $id }}-KWD">KWD - Kuwaiti Dinar</option>
-                  <option <?php if($quoteCurrency == "INR") echo "selected"; ?> value="details-products-{{ $product_id }}-{{ $id }}-INR">INR - Indian Rupee</option>
-                  <option <?php if($quoteCurrency == "SAR") echo "selected"; ?> value="details-products-{{ $product_id }}-{{ $id }}-SAR">SAR - Saudi Arabian Riyal</option>
-                  <option <?php if($quoteCurrency == "GBP") echo "selected"; ?> value="details-products-{{ $product_id }}-{{ $id }}-GBP">GBP - British Pound</option>
-            </select>
-          </div>
+         
 
       </div> <!-- end row -->
 
@@ -70,6 +48,8 @@
 
           </div>
 
+          
+           
 
           <div class="col-lg-8 col-md-8">
             <div class="panel-body">
@@ -81,20 +61,12 @@
                   <div class="best-seller-price">
                     <?php 
                         $price = $p->price; 
-                        $price = number_format((float)$price, 2, '.', '');
+                        $price = number_format((float)$price*$curr, 2, '.', '');
                       ?>
                   </div>
                   <b style="font-size:18px;">Price: </b>
-                    <span class="best-seller-price">
-                     <b>  
-                          <?php 
-                            $converted_price = number_format($price*$ex_rate, 2, '.', ',') 
-                          ?>
-
-                        {{ $converted_price }} {{ $quoteCurrency }} 
-                     </b>  
-                    </span><br/>
-                  <br/>
+                  <span class="best-seller-price"> <b> {{ $price }} {{ $quoteCurr }} </b></span>
+                    <br/><br/>
                   <div class="row">
                     <?php 
                     for($r=1; $r<=4; $r++) 

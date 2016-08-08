@@ -286,6 +286,10 @@ Route::get('faq',[
     ]);
 
 
+Route::post('/currency-convert', [
+    'as' => 'currency_convert_path',
+    'uses' => 'CurrencyController@index'
+]);
 
 
 
@@ -799,6 +803,7 @@ Route::get('/frontend-sign-out', [
     'as' => 'sign_out_frontend_path',
     'uses' => 'SessionsController@destroy_fronted'
 ]);
+
 
 
 

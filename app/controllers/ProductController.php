@@ -39,7 +39,6 @@ class ProductController extends \BaseController {
         // save the last session of the product in order to return to the same product when clicking "continue shopping" in the cart list
         Session::put('product_id', $id);
 
-        
         $pagename = pageName();
          $input = Input::all(); 
         // select the dynamic sidebar menu

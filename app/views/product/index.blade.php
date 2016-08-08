@@ -9,7 +9,7 @@
         <hr style="border-top:2px solid #dfdfdf;"> </hr>
         @include('layouts.partials.sidebar')
       </div>
-
+      
       <div id="products" class="visible-xs" style="height:45px"></div>
       <div class="col-lg-7 col-md-7 col-sm-9">
 
@@ -68,10 +68,10 @@
                                     <p class="product_small_desc"> {{ $p->small_desc }} </p>
                                     <?php 
                                       $price = $p->price; 
-                                      $price = number_format((float)$price, 2, '.', '');
+                                      $price = number_format((float)$price*$curr, 2, '.', '');
                                     ?>
 
-                                    <div class="best-seller-price absolute_position"> ${{ $price }} </div>
+                                    <div class="best-seller-price absolute_position">  <span class="prod_price"> {{ $price }} </span> {{ $quoteCurr }}</div>
                                  </div> 
 
 
@@ -133,7 +133,9 @@
     $('#price').change(function() {
       // set the window's location property to the value of the option the user has selected
       window.location = $(this).val();
+      
     }); 
+
 </script>
 <script type='text/javascript' src='js/header_margin.js'></script>
 

@@ -80,6 +80,7 @@ header
 .header-div
 {
     display: inline-block;
+    min-width:400px;
 }
 
 .navbar-default
@@ -764,6 +765,11 @@ footer a:hover{
         min-width:162px;
     }
 
+    .select_currency_div
+    {
+        float:left;
+    }
+
 
 }
 
@@ -814,6 +820,11 @@ footer a:hover{
     .delivery_box
     {
         width:50%;
+    }
+
+    .select_currency_div
+    {
+        float:left;
     }
 }
 
@@ -1556,4 +1567,14 @@ cursor:pointer;
 .no_results
 {
  font-size:16px;
+}
+
+.currency_select option
+{
+    color:black;
+}
+
+.main-product-price
+{
+
 }

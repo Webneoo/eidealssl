@@ -8,7 +8,7 @@
     <meta name="description" content="@yield('description')">
     <link rel="shortcut icon" href="images/logo.ico"/>
     
-    
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="stylesheet" href="css/style.css?v=<?php echo filemtime('css/style.css');?>" type="text/css" media="all" />
     <link rel="stylesheet" href="css/header_css.css?v=<?php echo filemtime('css/header_css.css');?>" type="text/css" media="all" />
