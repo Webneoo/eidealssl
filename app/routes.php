@@ -747,6 +747,13 @@ Route::get('/user-{id}', [
 SHOPPING MANAGEMENT
 ----------------- */
 
+Route::get('/validating-paypal-payment-{order_id}-{order_status_id}', [
+    'before' => 'auth',
+    'as' => 'paypal_validation_path',
+    'uses' => 'ShoppingController@paypalValidation'
+]);
+
+
 Route::get('/shopping-management', [
     'before' => 'auth',
     'as' => 'shopping_management_path',
@@ -764,9 +771,6 @@ Route::get('/display-transaction-{order_id}', [
     'as' => 'display_transaction_path',
     'uses' => 'ShoppingController@display'
 ]);
-
-
-
 
 /* -------------------
 PROMO MANAGEMENT
