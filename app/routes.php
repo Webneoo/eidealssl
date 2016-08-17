@@ -765,11 +765,7 @@ Route::get('/display-transaction-{order_id}', [
     'uses' => 'ShoppingController@display'
 ]);
 
-Route::get('/paypal-validation-{order_id}-{order_status_id}', [
-    'before' => 'auth',
-    'as' => 'paypal_validation_path',
-    'uses' => 'ShoppingController@paypalValidation'
-]);
+
 
 
 /* -------------------
