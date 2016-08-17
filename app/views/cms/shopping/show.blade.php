@@ -13,12 +13,12 @@
         <table class="table table-striped table-bordered table-hover" id="dataTables-example">
             <thead>
                 <tr>
-                    <th>order ID</th>
+                    <th>Order ID</th>
                     <th>Audi order ID</th>
+                    <th>Paypal order ID</th>
                     <th>User</th>
                     <th>Amount</th>
-                    <th>Country</th>
-                    <th>Payement Method</th>
+                    <th>Payment Method</th>
                     <th>Purchase date</th>
                     <th>Status</th>
                     <th>Action</th>
@@ -38,17 +38,17 @@
                         @endif
                     </td>
                     <td><a href="{{ route('display_transaction_path', $t->order_id) }}">{{ $t->audi_order_id }}</a></td>
+                    <td><a href="{{ route('display_transaction_path', $t->order_id) }}">{{ $t->paypal_order_id }}</td>
                     <td><a href="{{ route('display_user_path', $t->user_id) }}">{{ $t->username }}</a></td>
                     <td> $ {{ $t->purchase_price  }}</td>
-                    <td> {{ $t->country}}</td>
                     <td> {{ $t->payment_method }}</td>
                     <td>{{ $t->purchase_date }}</td>
                     <td>
-                        @if($t->order_status_id == 2)
+                        @if($t->order_status_id == 2 || $t->order_status_id == 6)
                              <b style="color:orange">
-                        @elseif($t->order_status_id == 3 || $t->order_status_id == 5)
+                        @elseif($t->order_status_id == 3 || $t->order_status_id == 5 || $t->order_status_id == 8)
                              <b style="color:green">
-                        @elseif($t->order_status_id == 4)
+                        @elseif($t->order_status_id == 4 || $t->order_status_id == 7 || $t->order_status_id == 9)
                              <b style="color:red">
                         @endif
                         {{ $t->payment_status }}
@@ -60,6 +60,14 @@
                             <input type="hidden" name="order_id" value="{{ $t->order_id }}">
                             <input type="submit" value="Mark as paid" style="display: block; margin:auto;" type="button" class="btn btn-success"/>
                         </form>
+                        @endif
+
+                        @if($t->order_status_id == 6)
+                        <div style="text-align:center"> 
+                       
+                            <a onclick="return confirm('Are you sure you want to accept the order ID # {{ $t->order_id }} ?');" href="{{ route('paypal_validation_path', array($t->order_id, '8') ) }}" class="btn btn-success"> Accept </a>
+                            <a onclick="return confirm('Are you sure you want to decline the order ID # {{ $t->order_id }} ?');"" href="{{ route('paypal_validation_path', array($t->order_id, '9')) }}" class="btn btn-danger"> Decline </a>
+                        </div>
                         @endif
                     </td>
                 </tr>

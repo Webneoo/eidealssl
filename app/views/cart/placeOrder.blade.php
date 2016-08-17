@@ -68,6 +68,8 @@
                                 <b> Cash on delivery </b>  
                                 @elseif(Session::get('checkout_payment') == 0)
                                 <b> Online payment </b> 
+                                @elseif(Session::get('checkout_payment') == 2)
+                                <b> PayPal </b> 
                             @endif
                         </td>
                       </tr>
@@ -134,17 +136,19 @@
                         @if(Session::get('checkout_country') != 'United Arab Emirates' && Session::get('checkout_payment') == 0)
                             <td> <div class="alert alert-danger" style="text-align:center;">For temporary shipment reasons, you can only pay online for a shipping address inside the UAE </div> </td>
                         @elseif(Session::get('checkout_country') != 'United Arab Emirates' && Session::get('checkout_payment') == 1)
-                            <td> <div class="alert alert-danger" style="text-align:center;"> You can online use the payment method "Cash on delivery" inside the UAE </div></td>
+                            <td> <div class="alert alert-danger" style="text-align:center;"> You can only use the payment method "Cash on delivery" inside the UAE </div></td>
+                        @elseif(Session::get('checkout_country') != 'United Arab Emirates' && Session::get('checkout_payment') == 2)
+                            <td> <div class="alert alert-danger" style="text-align:center;"> You can only use the payment method "Cash on delivery" inside the UAE </div></td>
                         @else
                               <td></td>
                               <td class="pull-right">
                                  @if(Session::get('checkout_payment') == 1)
-                                     <input type="submit" class="btn" style="width:140px; font-family:MontserratLight; color:white;
+                                    <input type="submit" class="btn" style="width:140px; font-family:MontserratLight; color:white;
                                      background-color:#5d8c7a;" value="Place your order" name="checkout"/> 
                                     @elseif(Session::get('checkout_payment') == 0)
                                     <a class="btn" style="width:140px; font-family:MontserratLight; color:white;
-                                     background-color:#5d8c7a;" href="{{ route('buy_result_path') }}">Place your order</a>
-                                @endif
+                                     background-color:#5d8c7a;" href="{{ route('buy_result_path') }}">Place your order</a>  
+                                @endif  
                               </td>
                         @endif
                       </tr>
@@ -164,6 +168,48 @@
                     <div <?php if($flag == 1) echo "style='display:none' "; ?>class="error_message" style="width:200px;"> @include('flash::message')</div>
                 </div>
               @endif
+
+
+              @if(Session::get('checkout_payment') == 2)
+
+                 <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                    <!-- Identify your business so that you can collect the payments. -->
+                      <input type="hidden" name="business" value="ecommerce@eideal.com">
+
+                      <!-- Specify a cart button. -->
+                      <input type="hidden" name="cmd" value="_cart">
+                      <input type="hidden" name="upload" value="1">
+                      <!-- identiy token from eideal paypal -> profile -> My selling tools -> website payment preferences -->
+                      <input type="hidden" name="at" value="0HLXE_fFm450ZXyP3kcPxJOsWyRKR58XGpleIBOJJBKWSCYtX1ygWqN11Oq">
+                      <input type="hidden" name="return" value="https://eideal.com/paypal-response">
+                   
+                      <input type="hidden" name="currency_code" value="USD"> 
+
+                        
+                      <!-- Specify details about the item that buyers will purchase. -->
+                      <input type="hidden" name="item_name_1" value="Eideal Shopping">
+                      @if(Session::has('total_after_discount'))
+                      <?php $t = Session::get('total_after_discount'); ?>
+                      
+                      <input type="hidden" name="amount_1" value="{{ number_format((float)$t, 2, '.', '') }}">
+                      @else
+                      <input type="hidden" name="amount_1" value="{{ number_format((float)$total_amount, 2, '.', '') }}">
+                      @endif
+                      
+                      
+                      <input type="hidden" name="quantity_1" value="1">
+                 
+                      
+                      <!-- Display the payment button. -->
+                      <input type="submit" class="btn paypal_placeorder" style="width:140px; font-family:MontserratLight; color:white;
+                             background-color:#5d8c7a;" value="Place your order" name="checkout"/> 
+                  </form>
+              @endif
+
+
+
+
+
 
              </div> <!-- end application_form -->
             <br/>

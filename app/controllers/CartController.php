@@ -368,7 +368,7 @@ class CartController extends \BaseController {
 
         else // if promo code is valid
         {   
-            $flag= 1; // set the flag to zero to remove the invalid promo msg if exist
+            $flag= 1; // set the flag to one to remove the invalid promo msg if exist
             
            
             //get the total amout of your cart 
@@ -1025,4 +1025,198 @@ class CartController extends \BaseController {
     } // end bankAudiResponse
 
 
-} // end carController
+
+    public function paypalResponse()
+    {   
+        $user_id = Session::get('user_id');
+        $pagename = pageName();
+
+        // get the cart that exist in the database
+        $cartList = $this->productsRepository->getProductsInCartFromUserId($user_id); 
+
+         // get the total amount and the order_id of the cart to buy 
+        $q = $this->productsRepository->getTotalAmountOrderId(Session::get('user_id'));
+
+        if(!empty($q))
+        {
+            $order_id = $q[0]->order_id;
+          
+            // check if there is a promo applied 
+            if (Session::has('total_after_discount'))
+            {
+                $original_price = $q[0]->total;
+                $total_amount = Session::get('total_after_discount');
+                $total_amount = number_format((float)$total_amount, 2, '.', '');
+                $promo_price  = Session::pull('total_after_discount');
+                $promo_percentage = Session::pull('promo_percentage');
+            }
+            else // if no promo is applied
+            {
+                $original_price = $q[0]->total;
+                $total_amount = $q[0]->total;
+                $total_amount = number_format((float)$total_amount, 2, '.', '');
+                $promo_price  = NULL;
+                $promo_percentage  = NULL;
+            }
+           
+            if (Session::has('promo_id'))
+            $promo_id = Session::get('promo_id');
+            else 
+            $promo_id = NULL;
+
+
+            $firstname = Session::get('checkout_firstname');
+            $lastname = Session::get('checkout_lastname');
+            $email = Session::get('checkout_email');
+            $phone = Session::get('checkout_phone');
+            $country = Session::get('checkout_country');
+            $city = Session::get('checkout_city');
+            $shipping_address = Session::get('checkout_address');
+
+            $admin_email="ecommerce@eideal.com";
+
+
+            // get the current date and time
+            $trans_date = Carbon::now();
+
+            // ======= IF TRANSACTION APPROVED ===============
+           
+
+            // verify that paypal had return the response GET parameters
+            if(isset($_GET['tx']) && isset($_GET['amt']) && isset($_GET['cc']) && isset($_GET['st']))
+            {   
+                // check if the sent paypal amount is the same as the real cost amount
+                if($_GET['amt'] == $total_amount)
+                {  
+                    $paypal_transaction_id = $_GET['tx'];
+                   // $paypal_amount = $_GET['amt'];
+                   // $paypal_currency = $_GET['cc'];
+                    $paypal_status = $_GET['st'];
+                    $paypal_message = $_GET['cm'];
+
+
+                    // update the status of the order using the paypal repsonse and the shipping info 
+                    $this->productsRepository->updatePayPalPayment($user_id, $order_id, $paypal_transaction_id, $original_price, $promo_price, $promo_id, $total_amount, $firstname, $lastname, $email, $phone, $country, $city, $shipping_address, $paypal_message, 6);
+                    
+                    // if promo applied, insert the promo id in the ta_promo_user table to mark as used    
+                    if (Session::has('promo_id'))
+                        $this->promoRepository->markPromoAsUsed(Session::pull('promo_id'), Session::get('user_id'));
+
+
+
+
+                    //send the receipt to the client by mail -------------------
+                     Mail::send('emails.paypal-purchase-email-success-client', 
+                        array('cartList' => $cartList, 'amount' => $total_amount, 'trans_date' => $trans_date, 'firstname' => $firstname, 'lastname' => $lastname, 'email_address' => $email, 'phone' => $phone, 'country' => $country, 'city' => $city, 
+                              'shipping_address' => $shipping_address, 'promo_percentage' => $promo_percentage, 'original_price' => $original_price, 'paypal_transaction_id' => $paypal_transaction_id, 'order_id' => $order_id, 'paypal_message' => $paypal_message),
+                        function($message) use ($email)
+                    {
+                        $message->from('ecommerce@eideal.com', 'EIDEAL')->subject('Thank you for your purchase | EIDEAL');
+                        $message->to($email);
+                    });
+
+
+                     //send an email notification to the admin -------------------
+                      
+                     Mail::send('emails.paypal-purchase-email-success-admin', 
+                       array('cartList' => $cartList, 'amount' => $total_amount, 'trans_date' => $trans_date, 'firstname' => $firstname, 'lastname' => $lastname, 'email_address' => $email, 'phone' => $phone, 'country' => $country, 'city' => $city, 
+                              'shipping_address' => $shipping_address, 'promo_percentage' => $promo_percentage, 'original_price' => $original_price, 'paypal_transaction_id' => $paypal_transaction_id, 'order_id' => $order_id, 'paypal_message' => $paypal_message), 
+                        function($message) use ($admin_email)
+                    {
+                        $message->from(Session::get('checkout_email'), Session::get('checkout_firstname').' '.Session::get('checkout_lastname'))->subject('Online product purchase | online payment');
+                        $message->to($admin_email);
+                    });
+
+
+
+
+
+
+                    //destroy the cart 
+                    $this->cart->instance('shopping')->destroy();
+                             
+                    // set the number of items in the cart to zero  
+                    Session::put('cart_item', 0);
+
+                    
+
+                    return View::make('cart.paypalResponse', 
+                            array('pagename' => $pagename,'paypal_transaction_id' => $paypal_transaction_id,
+                                  'order_id' => $order_id, 'amount' => $total_amount, 'trans_date' => $trans_date, 'paypal_message' => $paypal_message));
+
+                }
+
+            }
+
+            // if paypal failed to return response
+            else
+
+            {
+                if(!isset($_GET['tx']))
+                    $paypal_transaction_id = 'none';
+                if(!isset($_GET['cm']) || empty($_GET['cm']))
+                    $paypal_message = 'Paypal error';
+
+                 // update the status of the order using the paypal repsonse and the shipping info 
+                    $this->productsRepository->updatePayPalPayment($user_id, $order_id, $paypal_transaction_id, $original_price, $promo_price, $promo_id, $total_amount, $firstname, $lastname, $email, $phone, $country, $city, $shipping_address, $paypal_message, 7);
+
+                    //send the failed transaction receipt to the client by mail -------------------
+                     Mail::send('emails.paypal-purchase-email-failed-client', 
+                        array('cartList' => $cartList, 'amount' => $total_amount, 'trans_date' => $trans_date, 'firstname' => $firstname, 'lastname' => $lastname, 'email_address' => $email, 'phone' => $phone, 'country' => $country, 'city' => $city, 
+                              'shipping_address' => $shipping_address, 'promo_percentage' => $promo_percentage, 'original_price' => $original_price, 'paypal_transaction_id' => $paypal_transaction_id, 'order_id' => $order_id, 'paypal_message' => $paypal_message),
+                        function($message) use ($email)
+                    {
+                        $message->from('ecommerce@eideal.com', 'EIDEAL')->subject('Failed Transaction | EIDEAL');
+                        $message->to($email);
+                    });
+
+
+                     //send a failed transaction email notification to the admin -------------------
+                      
+                     Mail::send('emails.paypal-purchase-email-failed-admin', 
+                       array('cartList' => $cartList, 'amount' => $total_amount, 'trans_date' => $trans_date, 'firstname' => $firstname, 'lastname' => $lastname, 'email_address' => $email, 'phone' => $phone, 'country' => $country, 'city' => $city, 
+                              'shipping_address' => $shipping_address, 'promo_percentage' => $promo_percentage, 'original_price' => $original_price, 'paypal_transaction_id' => $paypal_transaction_id, 'order_id' => $order_id, 'paypal_message' => $paypal_message), 
+                        function($message) use ($admin_email)
+                    {
+                        $message->from(Session::get('checkout_email'), Session::get('checkout_firstname').' '.Session::get('checkout_lastname'))->subject('Failed purchase transaction | Paypal Error');
+                        $message->to($admin_email);
+                    });
+
+                     return View::make('cart.paypalResponse', 
+                            array('pagename' => $pagename,'paypal_transaction_id' => $paypal_transaction_id,
+                                  'order_id' => $order_id, 'amount' => $total_amount, 'trans_date' => $trans_date, 'paypal_message' => $paypal_message));
+
+            }
+
+        }// end if(!empty($q))
+
+        else // if the cart is empty
+        {
+            // if the user is online
+            if(Auth::check())
+            {   
+                //check if the user already has a filled cart
+                $cartList = $this->productsRepository->getProductsInCartFromUserId(Session::get('user_id'));  
+
+                // count the number of the item in your cart from the database
+                    $itemNb = $this->productsRepository->countProductInCart(Session::get('user_id'));
+                    $itemNb = $itemNb[0]->qty_in_cart;
+            }
+
+             // if the user is offline
+            else
+            {   
+                $cartList = $this->cart->instance('shopping')->content();
+                $itemNb = $this->cart->instance('shopping')->count();
+            }
+
+
+            Session::put('cart_item', $itemNb);
+
+            return View::make('cart.index', array('pagename' => $pagename, 'cartList' => $cartList, 'itemNb' => $itemNb));
+            }
+
+
+        }
+
+} // end cartController

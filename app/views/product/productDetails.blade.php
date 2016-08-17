@@ -104,10 +104,10 @@
                     <div class="media_pictures_details">
                       <a target="blank" style="text-decoration:none;" 
                          onclick="window.open(this.href, 'mywin', 'left=350, top=50, width=700,height=400,toolbar=1,resizable=0'); return false;" 
-                         href="http://www.facebook.com/sharer.php?u=http://178.62.208.247/details-products-{{ $p->product_id }}-{{ $p->sub_category_id }}">
+                         href="http://www.facebook.com/sharer.php?u=https://eideal.com/details-products-{{ $p->product_id }}-{{ $p->sub_category_id }}">
                          <i class="fa fa-3x fa-facebook-square" style="color:#676767;"></i>
                       </a>  
-                      <a href="mailto:?subject=Eideal Products&body=Hi,%0D%0A%0D%0A Check out the new item that I found on the website http://eidealonline.com %0D%0A" ><i class="fa fa-3x fa-envelope-square" style="color:#676767;"></i></a>
+                      <a href="mailto:?subject=Eideal Products&body=Hi,%0D%0A%0D%0A Check out the new item that I found on the website https://eideal.com %0D%0A" ><i class="fa fa-3x fa-envelope-square" style="color:#676767;"></i></a>
 
                     </div>
                   </div>

@@ -103,7 +103,7 @@
                 </a>
               </td>
               <td style="text-align:center">
-                <a type="button" class="btn" style="width:170px; font-family:MontserratLight; color:white;
+                <a <?php if($itemNb  == 0) echo 'onclick = "return false"';?> type="button" class="btn" style="width:170px; font-family:MontserratLight; color:white;
                 background-color:#5d8c7a;" href="{{ route('checkout_path') }}">Proceed to checkout</a>
               </td>
               <td></td>

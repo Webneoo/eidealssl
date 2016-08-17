@@ -215,6 +215,11 @@ Route::get('bank-audi-response',[
     'uses' => 'CartController@bankAudiResponse'
 ]);
 
+Route::get('paypal-response',[
+    'as' => 'paypal_response_path',
+    'uses' => 'CartController@paypalResponse'
+]);
+
 
 
 /* ------------------- SIGNIN  ---------------*/
@@ -758,6 +763,12 @@ Route::get('/display-transaction-{order_id}', [
     'before' => 'auth',
     'as' => 'display_transaction_path',
     'uses' => 'ShoppingController@display'
+]);
+
+Route::get('/paypal-validation-{order_id}-{order_status_id}', [
+    'before' => 'auth',
+    'as' => 'paypal_validation_path',
+    'uses' => 'ShoppingController@paypalValidation'
 ]);
 
 

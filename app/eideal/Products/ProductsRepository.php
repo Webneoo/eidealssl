@@ -595,7 +595,7 @@ class ProductsRepository {
     public function getAllTransactions()
     {
       $q = \DB::select(
-            \DB::raw("SELECT A.order_id, A.user_id, A.original_price, A.purchase_price, A.country, A.purchase_date, A.audi_order_id, A.order_status_id, B.name as payment_status, C.name as payment_method, D.username, E.title, E.percentage
+            \DB::raw("SELECT A.order_id, A.paypal_order_id, A.user_id, A.original_price, A.purchase_price, A.country, A.purchase_date, A.audi_order_id, A.order_status_id, B.name as payment_status, C.name as payment_method, D.username, E.title, E.percentage
               FROM ta_orders A
               JOIN ta_order_status B ON A.order_status_id = B.order_status_id
               JOIN ta_payment_methods C ON A.payment_method_id = C.payment_method_id
@@ -613,7 +613,7 @@ class ProductsRepository {
     public function updateOrderStatusId($input, $order_status_id)
     {
         \DB::table('ta_orders')
-            ->where('order_id' , $input['order_id'])
+            ->where('order_id' , $input)
             ->update(array('order_status_id' => $order_status_id));
     }
 
@@ -622,7 +622,7 @@ class ProductsRepository {
     public function getOrderIdInfo($order_id)
     {
       $q = \DB::select(
-            \DB::raw("SELECT A.*, B.name as payment_status, C.name as payment_method, D.title, D.percentage
+            \DB::raw("SELECT A.*, B.name as payment_status, C.name as payment_method, D.title, D.percentage, B.name as order_status
                       FROM ta_orders A
                       JOIN ta_order_status B ON A.order_status_id = B.order_status_id
                       JOIN ta_payment_methods C ON A.payment_method_id = C.payment_method_id
@@ -649,6 +649,32 @@ class ProductsRepository {
         );
                   
         return $q;
+    }
+
+
+    public function updatePayPalPayment($user_id, $order_id, $paypal_order_id, $original_price, $promo_price, $promo_id, $total_amount, $firstname, $lastname, $email, $phone,$country, $city, $shipping_address, $paypal_resp_msg, $order_status_id)
+    {
+        \DB::table('ta_orders')
+            ->where('user_id' ,  $user_id)
+            ->where('order_id' , $order_id)
+            ->update(array(
+                'paypal_order_id' => $paypal_order_id,
+                'original_price' => $original_price,
+                'promo_price' => $promo_price,
+                'promo_id' => $promo_id,
+                'purchase_price' => $total_amount,
+                'order_status_id' => $order_status_id,
+                'firstname' => $firstname,
+                'lastname'=> $lastname,
+                'email'=> $email,
+                'phone'=> $phone,
+                'country' => $country,
+                'city'=> $city,
+                'shipping_address' => $shipping_address,
+                'payment_method_id' => 3,
+                'purchase_date' => Carbon::now(),
+                'paypal_resp_msg' => $paypal_resp_msg
+              ));
     }
 
 

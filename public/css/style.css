@@ -770,6 +770,14 @@ footer a:hover{
        margin-bottom: 18px;
     }
 
+    .paypal_placeorder
+    {
+        float:right;
+        position:relative;
+        top:30px;
+        right:50px;
+    }
+
 
 }
 
@@ -1572,9 +1580,13 @@ cursor:pointer;
 .currency_select option
 {
     color:black;
+    background:white;
 }
 
-.main-product-price
+.paypal_placeorder
 {
-
+    float:right;
+    position:relative;
+    top:-50px;
+    right:50px;
 }

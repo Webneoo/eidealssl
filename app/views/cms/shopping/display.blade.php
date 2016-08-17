@@ -114,6 +114,12 @@
                     <td style="text-align:center;">{{ $order_id_info[0]->purchase_date }}</td>
                 </tr>
 
+                <tr>
+                    <td style="text-align:center;"><b>Status</b></td>
+                    <td style="text-align:center;">{{ $order_id_info[0]->order_status }}</td>
+                </tr>
+
+
                 @if($order_id_info[0]->order_status_id == 3 || $order_id_info[0]->order_status_id == 4)
 
                 <tr>
@@ -152,6 +158,22 @@
                 </tr>
 
                 @endif
+
+
+                 @if($order_id_info[0]->order_status_id == 6 || $order_id_info[0]->order_status_id == 7 || $order_id_info[0]->order_status_id == 8 || $order_id_info[0]->order_status_id == 9)
+
+                <tr>
+                    <td style="text-align:center;"><b>Paypal Order ID</b></td>
+                    <td style="text-align:center;">{{ $order_id_info[0]->paypal_order_id }}</td>
+                </tr>
+
+                <tr>
+                    <td style="text-align:center;"><b>Paypal response message</b></td>
+                    <td style="text-align:center;">{{ $order_id_info[0]->paypal_resp_msg }}</td>
+                </tr>
+
+                @endif
+
            </tbody>
           </table>
           <a href="{{ route('shopping_management_path') }}"><button type="button" class="btn btn-primary" style="float:right;">Back</button></a>

@@ -49,24 +49,24 @@
                               <b style="color:white;">Currency:</b> 
                              
                               <select class="currency_select" name="price" id="curr_change">
-                                 <option <?php if(Session::get('quoteCurrency') == "USD") echo "selected"; ?> value="USD" title="US Dollars"> USD - $ </option>
-                                 <option <?php if(Session::get('quoteCurrency') == "LBP") echo "selected"; ?> value="LBP" title="Lebanese Pound"> LBP - L.L </option>
-                                 <option <?php if(Session::get('quoteCurrency') == "EUR") echo "selected"; ?> value="EUR" title="Euro"> EUR - € </option>
                                  <option <?php if(Session::get('quoteCurrency') == "AED") echo "selected"; ?> value="AED" title="UAE Dirham"> AED - د.إ </option>
                                  <option <?php if(Session::get('quoteCurrency') == "BHD") echo "selected"; ?> value="BHD" title="Bahraini Dinar"> BHD - د.ب </option>
                                  <option <?php if(Session::get('quoteCurrency') == "EGP") echo "selected"; ?> value="EGP" title="Egyptian Pound"> EGP - £ </option>
-                                 <option <?php if(Session::get('quoteCurrency') == "SYP") echo "selected"; ?> value="SYP" title="Syrian Pound"> SYP - £ </option>
-                                 <option <?php if(Session::get('quoteCurrency') == "QAR") echo "selected"; ?> value="QAR" title="Qatar Rial"> QAR - ﷼ </option>
-                                 <option <?php if(Session::get('quoteCurrency') == "TRY") echo "selected"; ?> value="TRY" title="Turkish Lira"> TRY  </option>
-                                 <option <?php if(Session::get('quoteCurrency') == "JOD") echo "selected"; ?> value="JOD" title="Jordanian Dinar"> JOD - ينار </option>
-                                 <option <?php if(Session::get('quoteCurrency') == "IQD") echo "selected"; ?> value="IQD" title="Iraqi Dinar"> IQD - د.ع </option>
-                                 <option <?php if(Session::get('quoteCurrency') == "IRR") echo "selected"; ?> value="IRR" title="Iran Rial"> IRR - ﷼</option>
-                                 <option <?php if(Session::get('quoteCurrency') == "YER") echo "selected"; ?> value="YER" title="Yemen Riyal"> YER - ﷼ </option>     
-                                 <option <?php if(Session::get('quoteCurrency') == "OMR") echo "selected"; ?> value="OMR" title="Omani Rial"> OMR - ﷼ </option>
-                                 <option <?php if(Session::get('quoteCurrency') == "KWD") echo "selected"; ?> value="KWD" title="Kuwaiti Dinar"> KWD - ‎د.ك </option>
-                                 <option <?php if(Session::get('quoteCurrency') == "INR") echo "selected"; ?> value="INR" title="Indian Rupee"> INR </option>
-                                 <option <?php if(Session::get('quoteCurrency') == "SAR") echo "selected"; ?> value="SAR" title="Saudi Arabian Riyal"> SAR - ﷼ </option>
+                                 <option <?php if(Session::get('quoteCurrency') == "EUR") echo "selected"; ?> value="EUR" title="Euro"> EUR - € </option>
                                  <option <?php if(Session::get('quoteCurrency') == "GBP") echo "selected"; ?> value="GBP" title="British Pound"> GBP - £ </option>
+                                 <option <?php if(Session::get('quoteCurrency') == "IQD") echo "selected"; ?> value="IQD" title="Iraqi Dinar"> IQD - د.ع </option>
+                                 <option <?php if(Session::get('quoteCurrency') == "INR") echo "selected"; ?> value="INR" title="Indian Rupee"> INR </option>
+                                 <option <?php if(Session::get('quoteCurrency') == "IRR") echo "selected"; ?> value="IRR" title="Iran Rial"> IRR - ﷼</option>
+                                 <option <?php if(Session::get('quoteCurrency') == "JOD") echo "selected"; ?> value="JOD" title="Jordanian Dinar"> JOD - ينار </option>
+                                 <option <?php if(Session::get('quoteCurrency') == "KWD") echo "selected"; ?> value="KWD" title="Kuwaiti Dinar"> KWD - ‎د.ك </option>
+                                 <option <?php if(Session::get('quoteCurrency') == "LBP") echo "selected"; ?> value="LBP" title="Lebanese Pound"> LBP - L.L </option>
+                                 <option <?php if(Session::get('quoteCurrency') == "OMR") echo "selected"; ?> value="OMR" title="Omani Rial"> OMR - ﷼ </option>
+                                 <option <?php if(Session::get('quoteCurrency') == "QAR") echo "selected"; ?> value="QAR" title="Qatar Rial"> QAR - ﷼ </option>     
+                                 <option <?php if(Session::get('quoteCurrency') == "SAR") echo "selected"; ?> value="SAR" title="Saudi Arabian Riyal"> SAR - ﷼ </option>
+                                 <option <?php if(Session::get('quoteCurrency') == "SYP") echo "selected"; ?> value="SYP" title="Syrian Pound"> SYP - £ </option>
+                                 <option <?php if(Session::get('quoteCurrency') == "TRY") echo "selected"; ?> value="TRY" title="Turkish Lira"> TRY  </option>
+                                 <option <?php if(Session::get('quoteCurrency') == "USD") echo "selected"; ?> value="USD" title="US Dollars"> USD - $ </option>
+                                 <option <?php if(Session::get('quoteCurrency') == "YER") echo "selected"; ?> value="YER" title="Yemen Riyal"> YER - ﷼ </option>
                               </select>
                             </div>
 

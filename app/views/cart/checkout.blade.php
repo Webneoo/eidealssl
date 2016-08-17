@@ -394,8 +394,9 @@
                       <tr>
                         <td class="tooltip_td"> Payment Method <span class="red_asterix">*</span>: </td>
                         <td>
+                          <input class="payment_method" id="online_payment" type="radio" name="payement" value="0" checked/> <label for="online_payment"> Online payment </label><br/>
                           <input class="payment_method" id="cash_on_delivery" type="radio" name="payement" value="1" disabled = "disabled"/> <label for="cash_on_delivery"> Cash on Delivery <i>(Available only for UAE)</i> </label><br/>
-                          <input class="payment_method" id="online_payment" type="radio" name="payement" value="0" checked/> <label for="online_payment"> Online payment </label>
+                          <input class="payment_method" id="paypal_payment" type="radio" name="payement" value="2"/> <label for="paypal_payment"> PayPal </label>
                         </td>
                       </tr>
 
@@ -439,13 +440,13 @@
 
             if($("input[name='payement']:checked").val() == 1 ) // cash on delivery
                 {
-                    alert('You can online use the payment method "Cash on delivery" inside the UAE');
+                    alert('You can only use the payment method "Cash on delivery" inside the UAE');
                     $('#country').val('United Arab Emirates');  
                   //  $('#cash_on_delivery').attr("disabled",true); // disable the cash on delivery radio button
                   //  $("#online_payment").prop("checked", true); // check the online payment radio button     
                 }
 
-            if($("input[name='payement']:checked").val() == 0 ) // online payment
+            if($("input[name='payement']:checked").val() == 0 || $("input[name='payement']:checked").val() == 2) // online payment
                 {
                      alert('For temporary shipment reasons, you can only pay online for a shipping address inside the UAE');
                      $('#country').val('United Arab Emirates');

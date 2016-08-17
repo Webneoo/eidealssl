@@ -45,9 +45,22 @@ class ShoppingController extends \BaseController {
         $input = Input::all(); 
 
         // update the status of the order_id from cash on delivery (2) to paid on delivery (5)
-        $this->productsRepository->updateOrderStatusId($input, 5);
+        $this->productsRepository->updateOrderStatusId($input['order_id'], 5);
 
         $transactions = $this->productsRepository->getAllTransactions();
+
+        return View::make('cms.shopping.show', array('pagename' => $pagename, 'transactions' => $transactions));
+    }
+
+
+
+    public function paypalValidation($order_id, $order_status_id)
+    {
+        $pagename = pageName();
+
+         $this->productsRepository->updateOrderStatusId($order_id, $order_status_id);
+
+         $transactions = $this->productsRepository->getAllTransactions();
 
         return View::make('cms.shopping.show', array('pagename' => $pagename, 'transactions' => $transactions));
     }

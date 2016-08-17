@@ -27,7 +27,7 @@ class BaseController extends Controller {
 
        
         if (!Session::has('quoteCurrency'))
-         Session::put('quoteCurrency', 'USD');
+         Session::put('quoteCurrency', 'AED');
       
         $quoteCurrency = Session::get('quoteCurrency');
  

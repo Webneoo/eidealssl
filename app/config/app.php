@@ -126,6 +126,7 @@ return array(
 		'Laracasts\Validation\ValidationServiceProvider',
         'Laracasts\Flash\FlashServiceProvider',
         'Maatwebsite\Excel\ExcelServiceProvider',
+        'Anouar\Paypalpayment\PaypalpaymentServiceProvider',
 
 	),
 
@@ -197,6 +198,7 @@ return array(
 		'View'              => 'Illuminate\Support\Facades\View',
         'Excel'             => 'Maatwebsite\Excel\Facades\Excel',
         'Cart'              => 'Gloudemans\Shoppingcart\Facades\Cart',
+        'Paypalpayment'     => 'Anouar\Paypalpayment\Facades\PaypalPayment',
 	),
 
 );

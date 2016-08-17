@@ -15,7 +15,9 @@
 		"way/generators": "2.*",
         "gloudemans/shoppingcart": "~1.2",
         "doctrine/dbal": "v2.4.2",
-		"florianv/swap": "~2.2"
+		"florianv/swap": "~2.2",
+    	"anouar/paypalpayment": "dev-l4"
+
 	},
 	"autoload": {
 		"classmap": [
