@@ -7,7 +7,7 @@
     <div id="start" class="container">
         <div class="page-title">
              <h1 class="page_h1"> CONTACT INFORMATION </h1>
-             <h2 class="page_h2" style="margin-top:0px;"> <a style="color:#9a9a9a;" href="mailto:info@eidealonline.com">info@eidealonline.com </a> </h2>
+             <h2 class="page_h2" style="margin-top:0px;"> <a style="color:#9a9a9a;" href="mailto:info@eidealonline.com">info@eideal.com </a> </h2>
             @include('layouts.partials.errors')
              @include('flash::message')
         </div>

@@ -30,7 +30,7 @@ class BaseController extends Controller {
          Session::put('quoteCurrency', 'AED');
       
         $quoteCurrency = Session::get('quoteCurrency');
- 
+
         //Google currency convertion rate
          $url = "http://www.google.com/finance/converter?a=1&from=USD&to=$quoteCurrency"; 
          $request = curl_init(); 
@@ -51,12 +51,13 @@ class BaseController extends Controller {
         //split 
         $this->ex_rate = preg_split('/>/', $html_number[0]);
         $this->ex_rate = (float)$this->ex_rate[1];
-        $this->ex_rate = number_format($this->ex_rate, 2, '.', '');
+        $this->ex_rate = number_format($this->ex_rate, 5, '.', '');
 
-
+ 
         // sharing the ex_rate to all the views
         View::share ( 'curr', $this->ex_rate);
         View::share ( 'quoteCurr', $quoteCurrency);
+
 	}
 
 }

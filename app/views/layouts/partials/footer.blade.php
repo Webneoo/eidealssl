@@ -31,6 +31,14 @@
                 <a class="sm_links" target="_blank" href="https://www.linkedin.com/in/eideal"><i class="fa fa-3x fa-linkedin-square" style="color:white;"></i></a>
                 <a class="sm_links" target="_blank" href="https://www.youtube.com/user/eidealonline/"><i class="fa fa-3x fa-youtube-square" style="color:white;"></i></a>
                 <a class="sm_links" target="_blank" href="https://eidealonline.wordpress.com/"><i class="fa fa-3x fa-wordpress" style="color:white;"></i></a>
+
+                <h1 style="font-size:15px;">PAYMENT METHODS</h1>
+                <div>
+                    <img style="height:35px;" src="images/visa-mastercard-paypal.png">
+
+
+                </div>
+
             </div>
         </div>
     </div>

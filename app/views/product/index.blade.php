@@ -68,7 +68,7 @@
                                     <p class="product_small_desc"> {{ $p->small_desc }} </p>
                                     <?php 
                                       $price = $p->price; 
-                                      $price = number_format((float)$price*$curr, 2, '.', '');
+                                      $price = number_format($price*$curr, 2, '.', '');
                                     ?>
 
                                     <div class="best-seller-price absolute_position">  <span class="prod_price"> {{ $price }} </span> {{ $quoteCurr }}</div>
