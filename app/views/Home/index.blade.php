@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
-  
+
   <div class="home_carousel_margin">
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="margin-bottom: 20px;">
       <!-- Indicators -->
