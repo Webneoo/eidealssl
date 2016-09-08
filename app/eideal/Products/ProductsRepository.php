@@ -216,7 +216,9 @@ class ProductsRepository {
                           img4 = :img4, 
                           sub_category_id = :sub_category_id,  
                           updated_at = :updated_at,
-                          liquid_product = :liquid_product
+                          liquid_product = :liquid_product,
+                          youtube_title = :youtube_title,
+                          youtube_url = :youtube_url
                       WHERE product_id = :product_id"),
             array(':product_id' => $product_id, 
                   ':code' => $input['product_code'], 
@@ -230,7 +232,9 @@ class ProductsRepository {
                   ':img4' => $input['product_img_4'], 
                   ':sub_category_id' => $input['product_category'],  
                   ':updated_at' => $input['product_date'],
-                  ':liquid_product' => $input['liquid_product']
+                  ':liquid_product' => $input['liquid_product'],
+                  ':youtube_title' => $input['youtube_title'],
+                  ':youtube_url' => $input['youtube_url']
                   )
             );
     }
@@ -238,8 +242,8 @@ class ProductsRepository {
     public function createProduct($input)
     {  
          $q = \DB::select(
-            \DB::raw("INSERT INTO ta_products (code, title, small_desc, text, price, img1, img2, img3, img4, sub_category_id, created_at, updated_at, liquid_product)
-                      VALUES (:code, :title, :small_desc, :text, :price, :img1, :img2, :img3, :img4, :sub_category_id, :created_at, :updated_at, :liquid_product)"),
+            \DB::raw("INSERT INTO ta_products (code, title, small_desc, text, price, img1, img2, img3, img4, sub_category_id, created_at, updated_at, liquid_product, youtube_title, youtube_url)
+                      VALUES (:code, :title, :small_desc, :text, :price, :img1, :img2, :img3, :img4, :sub_category_id, :created_at, :updated_at, :liquid_product, :youtube_title, :youtube_url)"),
             array(':code' => $input['product_code'], 
                   ':title' => $input['product_title'], 
                   ':small_desc' => $input['product_short_desc'],
@@ -252,7 +256,10 @@ class ProductsRepository {
                   ':sub_category_id' => $input['product_category'],
                   ':created_at' => $input['product_date'],  
                   ':updated_at' => $input['product_date'],
-                  ':liquid_product' => $input['liquid_product']
+                  ':liquid_product' => $input['liquid_product'],
+                  ':youtube_title' => $input['youtube_title'],
+                  ':youtube_url' => $input['youtube_url']
+
                   )
             );
     }

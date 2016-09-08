@@ -130,6 +130,16 @@
                  </div>
                </div>
 
+               <div class="form-group">
+                    {{ Form::label('youtube_title', 'YouTube video title') }}
+                    {{ Form::text('youtube_title', $p->youtube_title, ['class' => 'form-control', 'placeholder' => 'YouTube video title'])  }}
+                </div>
+
+                <div class="form-group">
+                    {{ Form::label('youtube_url', 'YouTube video code') }}
+                    {{ Form::text('youtube_url', $p->youtube_url, ['class' => 'form-control', 'placeholder' => 'YouTube video code'])  }}
+                </div>
+
                <input type="submit" value="EDIT" class="btn btn-primary button">
 
             {{ Form::close() }}

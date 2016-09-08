@@ -96,6 +96,17 @@
                </div>
 
 
+               <div class="form-group">
+                    {{ Form::label('youtube_title', 'YouTube video title') }}
+                    {{ Form::text('youtube_title', null, ['class' => 'form-control', 'placeholder' => 'YouTube video title'])  }}
+                </div>
+
+                <div class="form-group">
+                    {{ Form::label('youtube_url', 'YouTube video code') }}
+                    {{ Form::text('youtube_url', null, ['class' => 'form-control', 'placeholder' => 'YouTube video code'])  }}
+                </div>
+
+
                 <input type="submit" value="SAVE" class="btn btn-primary button">
 
             {{ Form::close() }}

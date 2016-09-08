@@ -9,7 +9,7 @@
       <hr style="border-top:2px solid #dfdfdf; margin-top:0px;"> </hr>
     </div>
     <div class="col-lg-9 col-md-9">
-      <div class="row">
+      <div class="row"> 
           @foreach ($product_info as $p)
           <h3 class="col-lg-9 col-md-9 col-sm-9 col-xs-6">{{ strtoupper($p->title) }}</h3>
           @endforeach
@@ -111,6 +111,17 @@
 
                     </div>
                   </div>
+
+                  @if($p->youtube_url != NULL)
+                  <br/><br/><br/><br/>
+                  <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+                       <div class="news_title">{{ $p->youtube_title }}</div><br/>
+                       <iframe class="youtube_iframe_products" width="100%" src="https://www.youtube.com/embed/{{ $p->youtube_url }}" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                  </div>
+                  @endif
+
             
             </div> <!-- panel-body -->
           </div> <!-- end col-8 -->

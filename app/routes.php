@@ -153,6 +153,15 @@ Route::get('display-news-{id}',[
     ]);
 
 
+/* ------------------- VIDEOS  ---------------*/
+
+
+Route::get('videos',[
+    'as' => 'videos_path',
+    'uses' => 'VideoController@index'
+    ]);
+
+
 /* ------------------- CART  ---------------*/
 
 Route::get('shopping-cart',[
@@ -587,6 +596,49 @@ Route::get('/delete-news-{id}', [
     'as' => 'delete_news_path',
     'uses' => 'NewController@delete'
 ]);
+
+
+
+/* -------------
+VIDEOS MANAGEMENT
+------------ */
+
+Route::get('/cms-video-management', [
+    'before' => 'auth',
+    'as' => 'video_management_path',
+    'uses' => 'VideoController@show'
+]);
+
+Route::get('/create-video', [
+    'before' => 'auth',
+    'as' => 'create_video_path',
+    'uses' => 'VideoController@create'
+]);
+
+Route::post('/create-video', [
+    'before' => 'auth',
+    'as' => 'create_video_path',
+    'uses' => 'VideoController@add'
+]);
+
+Route::get('/edit-video-{id}', [
+    'before' => 'auth',
+    'as' => 'edit_video_path',
+    'uses' => 'VideoController@edit'
+]);
+
+Route::post('/edit-video-{id}', [
+    'before' => 'auth',
+    'as' => 'edit_video_path',
+    'uses' => 'VideoController@update'
+]);
+
+Route::get('/delete-video-{id}', [
+    'before' => 'auth',
+    'as' => 'delete_video_path',
+    'uses' => 'VideoController@delete'
+]);
+
 
 
 

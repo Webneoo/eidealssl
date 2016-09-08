@@ -641,6 +641,16 @@ footer a:hover{
     {
         min-width:256px;
     }
+
+    .youtube_iframe
+    {
+        height:202px;
+    }
+
+    .youtube_iframe_products
+    {
+        height:295px;
+    }
     
 }
 
@@ -730,6 +740,16 @@ footer a:hover{
         min-width:211px;
     }
     
+
+    .youtube_iframe
+    {
+        height:195px;
+    }
+
+    .youtube_iframe_products
+    {
+        height:238px;
+    }
     
 }
 
@@ -776,6 +796,11 @@ footer a:hover{
         position:relative;
         top:30px;
         right:50px;
+    }
+
+      .youtube_iframe_products
+    {
+        height:280px;
     }
 
 
@@ -833,6 +858,16 @@ footer a:hover{
     .select_currency_div
     {
        margin-bottom: 18px;
+    }
+
+    .youtube_iframe
+    {
+        height:240px;
+    }
+
+      .youtube_iframe_products
+    {
+        height:174px;
     }
 }
 
@@ -1473,7 +1508,7 @@ cursor:pointer;
     }
 
     .dropdown-menu
-    {   margin-top:18px !important;
+    {   margin-top:16px !important;
         background:transparent !important;
         padding-top:20px !important;
         border:none !important;
