@@ -12,10 +12,13 @@ Route::get('/', [
     'uses' => 'HomeController@index'
 ]);
 
+
+
 Route::post('/', [
-    'as' => 'home_path',
-    'uses' => 'HomeController@index'
+    'as' => 'home_newsletters_signup',
+    'uses' => 'HomeController@newlettersSignup'
 ]);
+
 
 Route::get('about-us', [
     'as' => 'about_us_path',
@@ -38,6 +41,10 @@ Route::get('e-team', [
     'as' => 'eteam_path',
     'uses' => 'HomeController@eteam'
 ]);
+
+
+
+
 
 
 
@@ -866,6 +873,26 @@ Route::get('/frontend-sign-out', [
     'as' => 'sign_out_frontend_path',
     'uses' => 'SessionsController@destroy_fronted'
 ]);
+
+
+
+
+/* -------------
+NEWS LETTERS MANAGEMENT
+------------ */
+
+Route::get('/newsletters-management', [
+    'before' => 'auth',
+    'as' => 'newsletters_management_path',
+    'uses' => 'HomeController@editNewsLetters'
+]);
+
+Route::post('/newsletters-management', [
+    'before' => 'auth',
+    'as' => 'newsletters_management_path',
+    'uses' => 'HomeController@updateNewsLetters'
+]);
+
 
 
 

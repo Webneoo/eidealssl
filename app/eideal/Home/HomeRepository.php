@@ -370,5 +370,104 @@ class HomeRepository {
             );
     }
 
+
+
+    // NEWSLETTERS ---------------------------------------------
+
+    public function getNewsLettersEmailsList()
+    {   
+         $q = \DB::select(
+            \DB::raw("SELECT email 
+                      FROM users
+                      WHERE newsletters = 1
+
+                      UNION
+
+                      SELECT newsletters_email as email
+                      FROM ta_newsletters_emails")
+            );
+
+        return $q;
+    }
+
+
+    public function getUsersNewslettersEmail($email)
+    {   
+         $q = \DB::select(
+            \DB::raw("SELECT email, newsletters 
+                      FROM users
+                      WHERE email = :email"
+            ),
+            array(':email' => $email)
+            );
+
+        return $q;
+    }
+
+     public function getNewsLettersInfo()
+    {   
+         $q = \DB::select(
+            \DB::raw("SELECT * 
+                      FROM ta_newsletters_info")
+            );
+
+        return $q;
+    }
+
+
+    public function updateNewsletterStatus($email)
+    {  
+         $q = \DB::select(
+            \DB::raw("UPDATE users
+                      SET newsletters = 1
+                      WHERE email = :email"),
+            array(':email' => $email)
+            );
+    }
+
+     public function CheckEmailExistInNewsletters($email)
+    {   
+         $q = \DB::select(
+            \DB::raw("SELECT * 
+                      FROM ta_newsletters_emails
+                       WHERE newsletters_email = :email"),
+            array(':email' => $email)
+            );
+
+        if(empty($q))
+          return false;
+        else
+          return true;
+    }
+
+
+     public function insertNewsletterEmail($email)
+    {   
+         $q = \DB::select(
+            \DB::raw("INSERT INTO ta_newsletters_emails 
+                      VALUES (NULL, :email)"),
+            array(':email' => $email)
+            );
+    }
+
+    
+
+    
+
+  
+
+     public function updateNewletters($input)
+    {  
+         $q = \DB::select(
+            \DB::raw("UPDATE ta_newsletters_info
+                      SET newsletters_title = :newsletters_title, 
+                          newsletters_text = :newsletters_text
+                      WHERE newsletters_id = 1"),
+            array(':newsletters_title' => $input['title'], 
+                  ':newsletters_text' => $input['content'])
+            );
+    }
+    
+
 }
 

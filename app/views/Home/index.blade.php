@@ -243,8 +243,115 @@
     </div>
   </div> <!-- end home_carousel_margin -->
 
+
+
+@if (!Session::has('newsletters_flag'))
+
+  <div id="myModal_newsletters" class="modal fade all_modal" role="dialog" style="z-index:9500;">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="background:#666666; color:white;">
+          <button type="button" style="color:white; opacity:1;" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" style="text-align:center;">
+          <?php echo strtoupper($newsletters_info[0]->newsletters_title) ?>
+            
+          </h4>
+        </div>
+        <div class="modal-body">
+
+          <div class="row">
+            <div class="col-lg-10 col-lg-offset-1">
+             {{ $newsletters_info[0]->newsletters_text }}
+
+             {{ Form::open(['route' => 'home_newsletters_signup', 'role' => 'form', 'id' => 'newsletters_form']) }}
+
+                   <div class="form-group">
+                        {{ Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Email'])  }}
+                    </div>
+                    <span class="newletters_error"></span>
+                    
+                    <input id="sign_up_newsletters" type="submit" value="SIGN UP!" class="newsletters_signup">
+                    <br/>
+                {{ Form::close() }}
+              </div>
+              
+          </div>
+        </div> 
+
+      </div>
+
+    </div>
+  </div>
+
+  @endif
+
+
+@if(isset($_POST['email']) && Session::has('newsletters_flag'))
+
+<div id="myModal_flash_message" class="modal fade all_modal" role="dialog" style="z-index:9500;">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="background:#666666; color:white;">
+          <button type="button" style="color:white; opacity:1;" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" style="text-align:center;"></h4><br/>
+        </div>
+        <div class="modal-body newsletters_response">
+
+           @include('flash::message')
+          
+        </div> 
+
+      </div>
+
+    </div>
+</div>
+
+@endif
+
+
+  <!--  initiate a flag for the pop up letter (=1) to avoid showing it everytime during the same session -->
+  <?php  
+  Session::put('newsletters_flag', '1');
+  ?>
+
+
     <script>
 
+  $( document ).ready(function() {
+
+      function isEmail(email) {
+          var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+          return regex.test(email);
+        }
+
+
+        $("#myModal_newsletters").modal('show');
+        $("#myModal_flash_message").modal('show');
+
+
+        $( "#sign_up_newsletters" ).click(function( event ) {
+          
+          var email = $("input[name*='email']").val();
+          
+          var valid_email = isEmail(email);
+
+          if(valid_email == false)
+          {
+            $('.newletters_error').html('Invalid email address');
+            event.preventDefault();
+          }
+          
+
+          });
+
+
+     
+
+         
         $('.carousel[data-type="multi"] .item').each(function(){
           var next = $(this).next();
           if (!next.length) {
@@ -284,6 +391,7 @@
 
       }
 
+   }); 
 
     </script>
      

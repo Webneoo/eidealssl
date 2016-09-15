@@ -13,6 +13,7 @@ use eideal\Media\MediasRepository;
 use Illuminate\Support\Facades\Session;
 use eideal\Users\UserRepository;
 use eideal\Brands\BrandsRepository;
+use eideal\Forms\NewslettersForm;
 
 
 
@@ -27,11 +28,11 @@ class HomeController extends \BaseController {
      private $mediasRepository;
      private $userRepository;
      private $brandsRepository;
+     private $newslettersForm;
 
     function __construct(HomeRepository $homeRepository, MediasRepository $mediasRepository,
                          CreateStoreForm $createStoreForm, ProductsRepository $productsRepository,
-                         CreateAboutUsForms $createAboutUsForms, CreateSlideshowForm $createSlideshowForm, 
-                         UserRepository $userRepository, BrandsRepository $brandsRepository)
+                         CreateAboutUsForms $createAboutUsForms, CreateSlideshowForm $createSlideshowForm, UserRepository $userRepository, BrandsRepository $brandsRepository, NewslettersForm $newslettersForm)
     {
         $this->homeRepository = $homeRepository;
         $this->createStoreForm = $createStoreForm;
@@ -41,6 +42,7 @@ class HomeController extends \BaseController {
         $this->mediasRepository = $mediasRepository;
         $this->userRepository = $userRepository;
         $this->brandsRepository = $brandsRepository;
+        $this->newslettersForm = $newslettersForm;
     }
 
  public function index()
@@ -119,11 +121,137 @@ class HomeController extends \BaseController {
 
         }
 
+        $newsletters_info = $this->homeRepository->getNewsLettersInfo();
 
-
-        return View::make('Home.index', array('pagename' => $pagename, 'slideShowList' => $slideShowList, 'mediaList' => $mediaList,
-                                              'bestSeller' => $bestSeller , 'productMonth' => $productMonth, 'brandsImages' => $brandsImages));
+        return View::make('Home.index', array('pagename' => $pagename, 'slideShowList' => $slideShowList, 'mediaList' => $mediaList, 'bestSeller' => $bestSeller , 'productMonth' => $productMonth, 'brandsImages' => $brandsImages, 'newsletters_info' => $newsletters_info));
  }
+
+
+ public function newlettersSignup()
+ { 
+    $pagename = pageName();
+        $input = Input::all(); 
+
+        // ========================== NEWSLETTERS SIGN UP PROCESS =============================
+
+        $this->newslettersForm->validate($input);
+    
+        $email_in_user_exist = $this->homeRepository->getUsersNewslettersEmail($input['email']);
+
+        // if the email exist in the user table
+        if(!empty($email_in_user_exist))
+        { 
+          // if the user is already subscribed for newsletters
+          if($email_in_user_exist[0]->newsletters == 1)
+            Flash::success('You are already subscribed to the newsletters');
+
+          // else user exist in the user table but not subscribe to the news letters
+          else
+          { 
+            // update the value of the news letters to 1 
+            $this->homeRepository->updateNewsletterStatus($input['email']);
+            Flash::success('You have been successfully subscribed to the newsletters');
+          }
+
+        }
+
+        // else the email is not in the user table then check in the ta_newsletters_email table
+        else
+        {
+           $email_in_newsletters_exist = $this->homeRepository->CheckEmailExistInNewsletters($input['email']);
+
+           // if the email exist in the newletters table
+           if($email_in_newsletters_exist)
+            Flash::success('You are already subscribed to the newsletters');
+
+          else
+          {
+            // insert the email in the newsletters table
+             $this->homeRepository->insertNewsletterEmail($input['email']);
+             Flash::success('You have been successfully subscribed to the newsletters');
+          }
+
+        }
+
+        // ======================= END NEWSLETTERS SIGN UP PROCESS =============================
+
+
+
+        $slideShowList = $this->homeRepository->showSlideshow();
+       
+
+        $bestSeller = $this->homeRepository->getBestSellerProducts();
+
+        $productMonth = $this->productsRepository->selectProductOfTheMonth();
+
+
+        $mediaList = $this->mediasRepository->getAllMediasListByProductId($productMonth[0]->product_id);
+
+        $brandsImages = $this->brandsRepository->getAllBrandsImages();
+        
+         // if the product is liquid
+        if(isset($input['submit_liquid_product']))
+        {   
+            //if the user is online
+            if(!Auth::check())
+            {   
+
+                 echo "
+                <script type=\"text/javascript\">
+                    alert('The product that you are trying to buy is a liquid product. Please sign in to proceed due to shipping restrictions');
+                </script>
+                ";
+
+                return View::make('signin.index', array('pagename' => $pagename));         
+            }
+
+            else
+            {   
+
+                $liquid_product_id = $input['liquid_product_id'];
+                $user_id = Session::get('user_id');
+
+
+                $liquid_product_info = $this->productsRepository->getProductInfoFromId($liquid_product_id);
+                $user_info = $this->userRepository->getUserInfoById($user_id);
+
+
+                $name = $user_info[0]->firstname. ' '.$user_info[0]->lastname;
+                $username = $user_info[0]->username;
+                $email = $user_info[0]->email;
+                $phone = $user_info[0]->phone;
+                $country = $user_info[0]->country;
+                $city = $user_info[0]->city;
+                $address = $user_info[0]->address;
+
+                $code = $liquid_product_info[0]->code;
+                $product_name = $liquid_product_info[0]->title;
+              
+
+               
+                 Mail::send('emails.liquid-product', array('user_id' => $user_id, 'name' => $name, 'username' => $username, 'email' => $email, 'phone' => $phone, 
+                                                           'country' => $country, 'liquid_product_id' => $liquid_product_id, 'code' => $code, 
+                                                           'product_name' => $product_name, 'city' => $city, 'address' => $address), 
+                        function($message) use ($email)
+                    {
+                        $message->from($email, 'Eideal website')->subject('Liquid product email');
+                        $message->to('info@eidealonline.com');
+                    });
+
+                echo "
+                <script type=\"text/javascript\">
+                  alert('The selected product is a liquid product and cannot be added to the cart due to shipping restrictions. An email containing your purchase information has been sent to info@eidealonline.com and they will contact you soon.Thank you.');
+                </script>
+                ";          
+            }
+
+        }
+
+        $newsletters_info = $this->homeRepository->getNewsLettersInfo();
+
+        return View::make('Home.index', array('pagename' => $pagename, 'slideShowList' => $slideShowList, 'mediaList' => $mediaList, 'bestSeller' => $bestSeller , 'productMonth' => $productMonth, 'brandsImages' => $brandsImages, 'newsletters_info' => $newsletters_info));
+
+    }
 
     public function aboutUs()
     {   
@@ -616,5 +744,39 @@ class HomeController extends \BaseController {
         $eteam = $this->homeRepository->getEteam();
        return View::make('cms.home.editEteam', array('pagename' => $pagename, 'eteam' => $eteam));
     }
+
+
+
+     public function editNewsLetters()
+    {   
+        $pagename = pageName();
+
+        
+        $newsletters_email_list = $this->homeRepository->getNewsLettersEmailsList();
+
+        $newsletters_info = $this->homeRepository->getNewsLettersInfo();
+        
+        return View::make('cms.newsletters.edit', array('pagename' => $pagename, 'newsletters_info' => $newsletters_info, 'newsletters_email_list' => $newsletters_email_list));
+    }
+
+
+    public function updateNewsLetters()
+    {   
+        $pagename = pageName();
+        $input = Input::all();
+
+        $this->homeRepository->updateNewletters($input);
+        Flash::success('Your newsletters info has been UPDATED');
+        
+        $newsletters_email_list = $this->homeRepository->getNewsLettersEmailsList();
+
+        $newsletters_info = $this->homeRepository->getNewsLettersInfo();
+
+
+        return View::make('cms.newsletters.edit', array('pagename' => $pagename, 'newsletters_info' => $newsletters_info, 'newsletters_email_list' => $newsletters_email_list));
+    }
+
+
+    
 
 }

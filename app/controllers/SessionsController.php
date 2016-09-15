@@ -175,10 +175,10 @@ class SessionsController extends \BaseController {
 
         }
 
-
+        $newsletters_info = $this->homeRepository->getNewsLettersInfo();
 
         return View::make('Home.index', array('pagename' => $pagename, 'slideShowList' => $slideShowList, 'mediaList' => $mediaList,
-                                              'bestSeller' => $bestSeller , 'productMonth' => $productMonth, 'brandsImages' => $brandsImages));
+                                              'bestSeller' => $bestSeller , 'productMonth' => $productMonth, 'brandsImages' => $brandsImages, 'newsletters_info' => $newsletters_info));
     }
 
 
