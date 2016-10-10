@@ -224,7 +224,8 @@ class HomeRepository {
     {   
          $q = \DB::select(
             \DB::raw("SELECT * FROM ta_products 
-                      WHERE best_seller = 1")
+                      WHERE best_seller = 1
+                      ORDER BY price ASC")
             );
 
         return $q;

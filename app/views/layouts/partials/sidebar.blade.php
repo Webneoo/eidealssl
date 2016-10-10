@@ -1,6 +1,6 @@
 <h1 class="product_type"> PRODUCTS </h1>
 <ul class="product_list">
-	<li class="hidden-xs"><a <?php if($pagename == "all-products") echo 'class="product_li_selected";' ?> href="{{ route('all_products_path') }}"> Products categories </a></li>
+	<li class="hidden-xs"><a <?php if($pagename == "all-products") echo 'class="product_li_selected";' ?> href="{{ route('all_products_path') }}"> Product Categories </a></li>
 </ul>
 <?php
   $categ_number = $i-1;        

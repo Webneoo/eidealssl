@@ -229,7 +229,7 @@
                           <p> Pay with the world's most popular and secure payment methods </p>
                       </td>
                       <td class="bottom-table hidden-xs">
-                          <i class="fa fa-4x fa-floppy-o bottom-icon"></i>
+                          <i class="fa fa-4x fa-cart-arrow-down bottom-icon"></i>
                           <h1> Shop with Confidence </h1>
                           <p> Our Buyer Protection covers your purchase from click to delivery </p>
                       </td>
@@ -251,7 +251,7 @@
     <div class="modal-dialog">
 
       <!-- Modal content-->
-      <div class="modal-content">
+      <div class="modal-content new_letter_box">
         <div class="modal-header" style="background:#666666; color:white;">
           <button type="button" style="color:white; opacity:1;" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title" style="text-align:center;">
@@ -348,9 +348,6 @@
 
           });
 
-
-     
-
          
         $('.carousel[data-type="multi"] .item').each(function(){
           var next = $(this).next();
@@ -368,7 +365,6 @@
             next.children(':first-child').clone().appendTo($(this));
           }
         });
-
 
 
 

@@ -84,7 +84,7 @@
                       <tr>
                           <th style="padding-left:40px;">Product</th>
                           <th style="text-align:center">Quantity</th>
-                          <th style="text-align:center">Unit Price ($)</th>
+                          <th style="text-align:center">Unit Price ({{ $quoteCurr }})</th>
                           <th style="text-align:center">Total</th>
                       </tr>
                   </thead>
@@ -95,15 +95,15 @@
                             <tr>
                                 <td style="padding-left:40px;"><p class="item_name_cart">{{ $c->name }} - {{ $c->id }} </p></td>
                                 <td style="text-align:center;"><div class="cart_item_value">{{ $c->qty }}</div></td>
-                                <td style="text-align:center"><div class="cart_item_value">{{ number_format((float)$c->price, 2, '.', '')  }}</div></td>
-                                <td style="text-align:center"><div class="cart_item_value">{{ number_format((float)($c->price*$c->qty), 2, '.', '')  }}</div></td>
+                                <td style="text-align:center"><div class="cart_item_value">{{ number_format((float)$c->price*$curr, 2, '.', '')  }}</div></td>
+                                <td style="text-align:center"><div class="cart_item_value">{{ number_format((float)($c->price*$c->qty*$curr), 2, '.', '')  }}</div></td>
                             </tr>
                         @endforeach
                               <tr>
                                   <td style="padding-left:40px; font-family:MontserratLight; font-size:25px;"><b>Total</b></td>
                                   <td></td>
                                   <td></td>
-                                  <td style="text-align:center; font-family:MontserratLight; font-size:25px;"><b>$ {{ number_format((float)$total_amount, 2, '.', '') }}</b></td>
+                                  <td style="text-align:center; font-family:MontserratLight; font-size:25px;"><b>{{ number_format((float)$total_amount*$curr, 2, '.', ' ') }} ({{ $quoteCurr }})</b></td>
                                   <td></td>
                               </tr>
                         @if(isset($promo_valid) && !empty($promo_valid))
@@ -120,8 +120,8 @@
                                   <td></td>
                                   <td></td>
                                   <td style="text-align:center; font-family:MontserratLight; font-size:25px;">
-                                  <?php $total_after_discount = (float)$total_amount*(100-$promo_valid[0]->percentage)/100; ?>
-                                   <b> $ {{ number_format($total_after_discount, 2, '.', '') }} </b>
+                                  <?php $total_after_discount = (float)$total_amount*$curr*(100-$promo_valid[0]->percentage)/100; ?>
+                                   <b> {{ number_format($total_after_discount, 2, '.', ' ') }} ( {{ $quoteCurr }})</b>
                                   </td>
                                   <td></td>
                               </tr>

@@ -114,12 +114,28 @@
            </br>
         </div> 
           
-          <div class="row">
+        <div class="row">
           </br>
             <i class="fa fa-5x fa-credit-card bottom-icon symbol"></i>
             <h3>Safe Payment</h3>
              <p>Pay with the world's most popular and secure payment methods</p></br></br>
           </div>
+
+        <div class="row">
+             </br>
+             <i class="fa fa-5x fa-money bottom-icon symbol"></i>
+             <h3>Cash on Delivery</h3>
+             <p>We offer competitive prices on our 30 plus product range</p>
+           </br>
+        </div> 
+          
+        <div class="row">
+          </br>
+            <i class="fa fa-5x fa-cart-arrow-down bottom-icon symbol"></i>
+            <h3>Shop with Confidence</h3>
+            <p>Our Buyer Protection covers your purchase from click to delivery</p></br></br>
+          </div>
+        </div> 
       </div>   
       <br/>
       <br/>

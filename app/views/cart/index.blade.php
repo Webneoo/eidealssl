@@ -15,7 +15,7 @@
       <tr>
           <th>Product</th>
           <th style="text-align:center">Quantity</th>
-          <th style="text-align:center">Unit Price ($)</th>
+          <th style="text-align:center">Unit Price ({{ $quoteCurr }})</th>
           <th style="text-align:center">Total</th>
           <th></th>
       </tr>
@@ -47,9 +47,9 @@
                               name="{{ $c->id }}" onclick="add_one_item(this.id);"> <i class="fa fa-plus-circle"></i> </span>
                       </div>
                     </td>
-                    <td style="text-align:center"><p class="cart_item_value">{{ number_format((float)$c->price, 2, '.', '') }}</p></td>
+                    <td style="text-align:center"><p class="cart_item_value">{{ number_format((float)$c->price*$curr, 2, '.', ' ') }}</p></td>
                     <td style="text-align:center"><p class="cart_item_value">
-                      {{ number_format((float)($c->price*$c->qty), 2, '.', '')  }}
+                      {{ number_format((float)($c->price*$c->qty*$curr), 2, '.', ' ')  }}
                     </p></td>
                     <td style="text-align:center">
                       <a onclick="return confirm('Are you sure that you want to remove this product <?php echo $c->name.' - '.$c->id; ?> from the cart?');" class="" 
@@ -66,8 +66,8 @@
                   </tr>
 
                   <?php // calculating the total of the cart
-                     $price =  $price + ($c->price*$c->qty);
-                     $price = number_format((float)$price, 2, '.', ''); 
+                     $price =  $price + ($c->price*$c->qty*$curr);
+                     $price = number_format((float)$price, 2, '.', ' '); 
                   ?>
               @endif <!-- end if(!is_null($c->product_id)) -->
             @endforeach
@@ -78,7 +78,7 @@
               <td style="font-family:MontserratLight; font-size:25px;"><b>Total</b></td>
               <td></td>
               <td></td>
-              <td style="text-align:center; font-family:MontserratLight; font-size:25px;"><b>$ {{ $price }}</b></td>
+              <td style="text-align:center; font-family:MontserratLight; font-size:25px;"><b>{{ $price }} ({{ $quoteCurr }})</b></td>
               <td></td>
           </tr>
           <tr>

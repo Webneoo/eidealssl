@@ -12,14 +12,14 @@ return array(
 
 // localhost
 
-// return array(
+/*return array(
 
-//     'DB_HOST' => 'localhost',
-//     'DB_NAME' => 'eideal',
-//     'DB_USERNAME' => 'homestead',
-//     'DB_PASSWORD' => 'secret',
-//     'MANDRILL_SECRET' => 'f5sMDJOqFLsIxE0nURi3Iw'
-// );
+    'DB_HOST' => 'localhost',
+    'DB_NAME' => 'eideal',
+    'DB_USERNAME' => 'homestead',
+    'DB_PASSWORD' => 'secret',
+    'MANDRILL_SECRET' => 'f5sMDJOqFLsIxE0nURi3Iw'
+);*/
 
 
 ?>

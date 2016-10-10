@@ -39,7 +39,7 @@
                           </ul>
                         </li>
 
-                        <li <?php if($pagename == 'where-to-buy-0') echo 'class="active"'; ?>><a href="{{ route('where_to_buy_path',0) }}">WHERE TO BUY</a></li>
+                  <!--      <li <?php if($pagename == 'where-to-buy-0') echo 'class="active"'; ?>><a href="{{ route('where_to_buy_path',0) }}">WHERE TO BUY</a></li> -->
                         <li <?php if($pagename == 'contact-us') echo 'class="active"'; ?>><a href="{{ route('contact_us_path') }}">CONTACT US</a></li>
                         <li>
                           {{ Form::open(['route' => 'products_path_search', 'role' => 'form']) }}

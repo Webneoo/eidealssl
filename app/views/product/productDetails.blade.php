@@ -117,7 +117,7 @@
                   <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
                        <div class="news_title">{{ $p->youtube_title }}</div><br/>
-                       <iframe class="youtube_iframe_products" width="100%" src="https://www.youtube.com/embed/{{ $p->youtube_url }}" frameborder="0" allowfullscreen></iframe>
+                       <iframe class="youtube_iframe_products" width="100%" src="https://www.youtube.com/embed/{{ $p->youtube_url }}?modestbranding=0&autohide=1&showinfo=0&rel=0" frameborder="0" allowfullscreen></iframe>
                     </div>
                   </div>
                   @endif
