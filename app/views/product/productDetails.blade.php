@@ -98,7 +98,10 @@
                   {{ Form::close() }}
                   @endif
 
-
+                  <button type="button" class="btn btn-default" style="position:relative; top:26px; left:8px;">
+                    <a href="{{ route('contact_us_path') }}" style="color:black;"> Ask the expert 
+                    </a>
+                  </button>   
                   <div class="sm_share_div">
                     <div class="share_details"><b>Share: </b></div> 
                     <div class="media_pictures_details">
@@ -117,7 +120,7 @@
                   <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
                        <div class="news_title">{{ $p->youtube_title }}</div><br/>
-                       <iframe class="youtube_iframe_products" width="100%" src="https://www.youtube.com/embed/{{ $p->youtube_url }}?modestbranding=0&autohide=1&showinfo=0&rel=0" frameborder="0" allowfullscreen></iframe>
+                       <iframe class="youtube_iframe_products" width="100%" src="https://www.youtube.com/embed/{{ $p->youtube_url }}?modestbranding=1&autohide=1&showinfo=0&rel=0" frameborder="0" allowfullscreen></iframe>
                     </div>
                   </div>
                   @endif

@@ -1665,3 +1665,9 @@ cursor:pointer;
     top:110px;
 }
 
+
+.ytp-watermark
+{
+    display:none !important;
+}
+

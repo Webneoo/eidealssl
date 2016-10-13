@@ -9,7 +9,7 @@
              <h1 class="page_h1"> CONTACT INFORMATION </h1>
              <h2 class="page_h2" style="margin-top:0px;"> <a style="color:#9a9a9a;" href="mailto:info@eidealonline.com">info@eideal.com </a> </h2>
              <p class="careers_intro" style="text-align:center">
-               Whether you are a salon owner or an end user, feel free to contact us and we will be happy to assist you further.
+              EIDEAL Fans! Hairdressers and consumers, feel free to contact us and we would be happy to assist you further.
               </p>   
             @include('layouts.partials.errors')
              @include('flash::message')
