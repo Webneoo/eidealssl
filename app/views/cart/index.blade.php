@@ -122,12 +122,22 @@
 
   </tbody>
  </table>
+ <input type="hidden" id="refreshed" value="no">
 </div>
 </div>
 
 
 <script type="text/javascript">
   
+  onload=function(){
+    var e=document.getElementById("refreshed");
+      if(e.value=="no")e.value="yes";
+      else
+        {
+          e.value="no";location.reload();
+        }
+    }
+
 
   function add_one_item(product_id)
   {
@@ -141,6 +151,13 @@
     //var product_id = $("#add").attr( "productId" );
     window.location = 'remove-shopping-cart-'+product_id;
   }
+
+
+  
+
+
+  
+
 
 
 </script>
