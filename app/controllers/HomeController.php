@@ -109,12 +109,12 @@ class HomeController extends \BaseController {
                         function($message) use ($email)
                     {
                         $message->from($email, 'Eideal website')->subject('Liquid product email');
-                        $message->to('info@eidealonline.com');
+                        $message->to('info@eideal.com');
                     });
 
                 echo "
                 <script type=\"text/javascript\">
-                  alert('The selected product is a liquid product and cannot be added to the cart due to shipping restrictions. An email containing your purchase information has been sent to info@eidealonline.com and they will contact you soon.Thank you.');
+                  alert('The selected product is a liquid product and cannot be added to the cart due to shipping restrictions. An email containing your purchase information has been sent to info@eideal.com and they will contact you soon.Thank you.');
                 </script>
                 ";          
             }
@@ -150,6 +150,17 @@ class HomeController extends \BaseController {
           { 
             // update the value of the news letters to 1 
             $this->homeRepository->updateNewsletterStatus($input['email']);
+           
+            // send an email to the subscribed user
+            $email = $input['email'];
+
+             Mail::send('emails.newsletters', array('email' => $input['email']),  function($message) use ($email)
+                {
+                    $message->from('info@eideal.com', 'Eideal website')->subject('EIDEAL | Thanks for subscribing');
+                    $message->to($email);
+                });
+
+
             Flash::success('You have been successfully subscribed to the newsletters');
           }
 
@@ -168,6 +179,16 @@ class HomeController extends \BaseController {
           {
             // insert the email in the newsletters table
              $this->homeRepository->insertNewsletterEmail($input['email']);
+
+              // send an email to the subscribed user
+            $email = $input['email'];
+
+             Mail::send('emails.newsletters', array('email' => $input['email']), function($message) use ($email)
+                {
+                    $message->from('info@eideal.com', 'Eideal website')->subject('EIDEAL | Thanks for subscribing');
+                    $message->to($email);
+                });
+
              Flash::success('You have been successfully subscribed to the newsletters');
           }
 
@@ -235,12 +256,12 @@ class HomeController extends \BaseController {
                         function($message) use ($email)
                     {
                         $message->from($email, 'Eideal website')->subject('Liquid product email');
-                        $message->to('info@eidealonline.com');
+                        $message->to('info@eideal.com');
                     });
 
                 echo "
                 <script type=\"text/javascript\">
-                  alert('The selected product is a liquid product and cannot be added to the cart due to shipping restrictions. An email containing your purchase information has been sent to info@eidealonline.com and they will contact you soon.Thank you.');
+                  alert('The selected product is a liquid product and cannot be added to the cart due to shipping restrictions. An email containing your purchase information has been sent to info@eideal.com and they will contact you soon.Thank you.');
                 </script>
                 ";          
             }
