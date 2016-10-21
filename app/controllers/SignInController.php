@@ -77,7 +77,7 @@ class SignInController extends \BaseController {
         // update the cart -----------------------------------------------
 
         $cart_content_db = $this->productsRepository->getProductsInCartFromUserId(Session::get('user_id')); 
-        
+
         //if the cart of the user in the database is completely empty (NO order id)
         if(empty($cart_content_db))
         {    
@@ -92,7 +92,7 @@ class SignInController extends \BaseController {
                 {
                     if($i==1)
                     {   // insert order_id + first product
-                        $this->productsRepository->insertOrderIdProduct($c->options->size, Session::get('user_id'), $c->qty);
+                        $this->productsRepository->insertOrderIdProduct($c->options->size, Session::get('user_id'), $c->qty); 
                     }
                     else
                     {   

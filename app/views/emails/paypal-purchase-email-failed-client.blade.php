@@ -2,6 +2,8 @@
 
 @section('content')
 
+<?php $actual_date = Carbon::now('Asia/Beirut'); ?>
+
 	<h1> Dear {{ $firstname }},  </h1>
  
        Thank you for purchasing the following products, please find below the details of your purchase:<br/>
@@ -26,6 +28,16 @@
                 {     
             ?>
         		<tr>  
+
+                <?php
+                  // check if the product has a product promo
+                  if( ($c->promo_start_date != NULL && $c->promo_end_date != NULL) && ($actual_date >= $c->promo_start_date && $actual_date <= $c->promo_end_date) )
+                  {
+                      // affect the promo price to the product
+                      $c->price = $c->price*(100-$c->percentage)/100;
+                  }
+                ?>
+
 	              <td style="text-align:left; padding-left:15px;"><p> {{ $c->id }} </p></td>
 	              <td style="text-align:left; padding-left:15px;"><p> {{ $c->name }} </p></td>
 	              <td style="text-align:left; padding-left:15px;"><p> {{ $c->price }} </p></td>

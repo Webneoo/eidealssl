@@ -69,9 +69,17 @@ class CartController extends \BaseController {
         $pagename = pageName();
         $products = $this->productsRepository->getProductInfoFromId($product_id);
 
+        $actual_date = Carbon::now('Asia/Beirut');
+        // check if the product has a product promo
+        if( ($products[0]->promo_start_date != NULL && $products[0]->promo_end_date != NULL) && ($actual_date >= $products[0]->promo_start_date && $actual_date <= $products[0]->promo_end_date) )
+        {
+            // affect the promo price to the product
+            $products[0]->price = $products[0]->price*(100-$products[0]->percentage)/100;
+        }
+
             // if the user is online
             if(Auth::check())
-            {   
+            {  
                 //check if the user already has a filled cart
                 $cartList = $this->productsRepository->getProductsInCartFromUserId(Session::get('user_id'));  
                 if(empty($cartList)) // if the cart is empty => add a new order_id
@@ -108,7 +116,7 @@ class CartController extends \BaseController {
 
             // if the user is offline
             else
-            {
+            {   
                 $options = array('size' => $products[0]->product_id);
                 $this->cart->instance('shopping')->add($products[0]->code, $products[0]->title, 1, $products[0]->price, $options);
 

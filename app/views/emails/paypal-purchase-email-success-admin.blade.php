@@ -2,6 +2,8 @@
 
 @section('content')
 
+<?php $actual_date = Carbon::now('Asia/Beirut'); ?>
+
 	<h1> Dear Admin,  </h1>
  
        The following user has purchased the following products:<br/>
@@ -61,7 +63,15 @@
             <?php 
 
             	foreach($cartList as $c)
-                {     
+                {   
+
+                 // check if the product has a product promo
+                  if( ($c->promo_start_date != NULL && $c->promo_end_date != NULL) && ($actual_date >= $c->promo_start_date && $actual_date <= $c->promo_end_date) )
+                  {
+                      // affect the promo price to the product
+                      $c->price = $c->price*(100-$c->percentage)/100;
+                  }
+
             ?>
         		<tr>  
               <td style="text-align:left; padding-left:15px;"><p> {{ $c->id }} </p></td>

@@ -86,8 +86,9 @@ class ProductsRepository {
     public function getAllProductsList()
     {   
           $q = \DB::select(
-                \DB::raw("SELECT A.product_id, A.code, A.title, A.price, A.img1, A.img2, A.img3, A.img4, A.best_seller, A.sub_category_id, B.title AS sub_category_title, A.liquid_product
-                          FROM ta_products A, ta_sub_category B
+                \DB::raw("SELECT A.product_id, A.code, A.title, A.price, A.img1, A.img2, A.img3, A.img4, A.best_seller, A.sub_category_id, B.title AS sub_category_title, A.liquid_product, A.promo_start_date, A.promo_end_date, A.percentage
+                          FROM ta_products A
+                          JOIN ta_sub_category B ON A.sub_category_id = B.sub_category_id
                           WHERE A.sub_category_id = B.sub_category_id")
         );
 
@@ -112,13 +113,13 @@ class ProductsRepository {
     public function getAllProductsFromSearch($sequence)
     {   
           $q = \DB::select(
-                \DB::raw("SELECT A.product_id, A.code, A.title, A.small_desc, A.text, A.price, A.img1, A.sub_category_id, A.liquid_product, A.updated_at
+                \DB::raw("SELECT A.product_id, A.code, A.title, A.small_desc, A.text, A.price, A.img1, A.sub_category_id, A.liquid_product, A.updated_at, A.promo_start_date, A.promo_end_date, A.percentage 
                           FROM ta_products A
                           WHERE A.title LIKE '%".$sequence."%' OR A.small_desc LIKE '%".$sequence."%' OR A.text LIKE '%".$sequence."%'
 
                           UNION
                             
-                          SELECT A.product_id, A.code, A.title, A.small_desc, A.text, A.price, A.img1, A.sub_category_id, A.liquid_product, A.updated_at
+                          SELECT A.product_id, A.code, A.title, A.small_desc, A.text, A.price, A.img1, A.sub_category_id, A.liquid_product, A.updated_at, A.promo_start_date, A.promo_end_date, A.percentage
                           FROM ta_products as A 
                           WHERE A.sub_category_id IN (SELECT A.sub_category_id
                           FROM ta_sub_category as A
@@ -242,8 +243,8 @@ class ProductsRepository {
     public function createProduct($input)
     {  
          $q = \DB::select(
-            \DB::raw("INSERT INTO ta_products (code, title, small_desc, text, price, img1, img2, img3, img4, sub_category_id, created_at, updated_at, liquid_product, youtube_title, youtube_url)
-                      VALUES (:code, :title, :small_desc, :text, :price, :img1, :img2, :img3, :img4, :sub_category_id, :created_at, :updated_at, :liquid_product, :youtube_title, :youtube_url)"),
+            \DB::raw("INSERT INTO ta_products (code, title, small_desc, text, price, img1, img2, img3, img4, sub_category_id, created_at, updated_at, liquid_product, youtube_title, youtube_url, promo_start_date, promo_end_date, percentage)
+                      VALUES (:code, :title, :small_desc, :text, :price, :img1, :img2, :img3, :img4, :sub_category_id, :created_at, :updated_at, :liquid_product, :youtube_title, :youtube_url, NULL, NULL, NULL)"),
             array(':code' => $input['product_code'], 
                   ':title' => $input['product_title'], 
                   ':small_desc' => $input['product_short_desc'],
@@ -328,7 +329,7 @@ class ProductsRepository {
 
          $q = \DB::select(
             \DB::raw("SELECT A.product_id, A.code, A.title, A.small_desc, A.text, 
-                             A.price, A.img1, A.img2, A.img3, A.img4, A.best_seller, A.sub_category_id, A.liquid_product
+                             A.price, A.img1, A.img2, A.img3, A.img4, A.best_seller, A.sub_category_id, A.liquid_product, A.promo_start_date, A.promo_end_date, A.percentage
                       FROM ta_products A, ta_product_month B
                       WHERE A.product_id = B.product_id
                        ")
@@ -370,7 +371,8 @@ class ProductsRepository {
     {
 
         $q = \DB::select(
-            \DB::raw("SELECT A.order_id, A.user_id, A.order_status_id, C.product_id, C.code as id, C.price, B.quantity as qty, C.title as name, C.price
+            \DB::raw("SELECT A.order_id, A.user_id, A.order_status_id, C.product_id, C.code as id, C.price, B.quantity as qty, C.title as name, C.price,
+                             C.promo_start_date, C.promo_end_date, C.percentage
                       FROM ta_orders as A
                       LEFT JOIN ta_order_products as B ON A.order_id = B.order_id
                       LEFT JOIN ta_products as C on B.product_id = C.product_id
@@ -524,19 +526,52 @@ class ProductsRepository {
 
     public function getTotalAmountOrderId($user_id)
     {
-
-        $q = \DB::select(
-            \DB::raw("SELECT A.order_id, SUM(B.quantity*C.price) as total
+        // return the total sum of all the products that don't have a "product promo"
+        $q1 = \DB::select(
+            \DB::raw("SELECT A.order_id, SUM(B.quantity*C.price) as normal_total
                       FROM ta_orders as A
                       LEFT JOIN ta_order_products as B ON A.order_id = B.order_id
                       LEFT JOIN ta_products as C on B.product_id = C.product_id
                       WHERE A.user_id = :user_id
                       AND A.order_status_id IN (1,4)
-                      GROUP by A.order_id"),
+                      AND C.product_id NOT IN (
+                          SELECT C.product_id
+                          FROM ta_orders as A
+                          LEFT JOIN ta_order_products as B ON A.order_id = B.order_id
+                          LEFT JOIN ta_products as C on B.product_id = C.product_id
+                          WHERE A.user_id = :user_id_2
+                          AND (C.promo_start_date IS NOT NULL AND C.promo_end_date IS NOT NULL) 
+                          AND (NOW() >= C.promo_start_date AND NOW() <= C.promo_end_date)
+                          AND A.order_status_id IN (1,4)
+                      )
+                      GROUP BY B.order_id"),
+
+            array(':user_id' => $user_id,
+                  ':user_id_2' => $user_id)
+        );
+
+        // return the total sum of all the products that have a "product promo"
+        $q2 = \DB::select(
+            \DB::raw("SELECT A.order_id, SUM(B.quantity*C.price*((100-C.percentage)/100)) as promo_total
+                          FROM ta_orders as A
+                          LEFT JOIN ta_order_products as B ON A.order_id = B.order_id
+                          LEFT JOIN ta_products as C on B.product_id = C.product_id
+                          WHERE A.user_id = :user_id
+                          AND (C.promo_start_date IS NOT NULL AND C.promo_end_date IS NOT NULL) 
+                          AND (NOW() >= C.promo_start_date AND NOW() <= C.promo_end_date)
+                          AND A.order_status_id IN (1,4)
+                          GROUP BY B.order_id"),
 
             array(':user_id' => $user_id)
         );
-                  
+              
+        // add the 2 results $q1 + $q2
+        $total_amount = $q1[0]->normal_total + $q2[0]->promo_total;
+
+        $q = $q1;
+
+        $q[0]->total = $total_amount;
+
         return $q;
     }
 

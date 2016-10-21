@@ -9,7 +9,11 @@
       <ol class="carousel-indicators">
 
         <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-      <?php $i =1; ?>
+      <?php 
+        $actual_date = Carbon::now('Asia/Beirut');
+        $i =1; 
+      ?>
+
      <?php 
       for($i=1; $i<=sizeof($slideShowList)-1; $i++) 
       {
@@ -66,7 +70,14 @@
                  $product_id = $productMonth[0]->product_id;
                  $sub_category_id = $productMonth[0]->sub_category_id;
                 ?>
-              <a class="product_img_link" href="{{ route('products_details_path', array($product_id, $sub_category_id, 'USD') ) }}"><img id="main_img_src" src="images/products/{{ $productMonth[0]->img1 }}" class="best-seller-image" style="margin-bottom: 10px; border:1px solid #e0e0e0;"/></a>
+              <a class="product_img_link" href="{{ route('products_details_path', array($product_id, $sub_category_id, 'USD') ) }}">
+              
+              @if( ($productMonth[0]->promo_start_date != NULL && $productMonth[0]->promo_end_date != NULL) && ($actual_date >= $productMonth[0]->promo_start_date && $actual_date <= $productMonth[0]->promo_end_date) )
+                <div class="discount_percentage_prod_of_month"> - {{ $productMonth[0]->percentage }}% </div>
+              @endif
+
+              <img id="main_img_src" src="images/products/{{ $productMonth[0]->img1 }}" class="best-seller-image" style="margin-bottom: 10px; border:1px solid #e0e0e0;"/>
+              </a>
            
               <div>
                     
@@ -80,7 +91,20 @@
                     $price = $productMonth[0]->price; 
                     $price = number_format((float)$price*$curr, 2, '.', '');
                   ?>
-                <div class="main-product-price" style="position:relative; top:10px;"> {{ $price }} {{ $quoteCurr }} </div>
+
+
+                @if( ($productMonth[0]->promo_start_date != NULL && $productMonth[0]->promo_end_date != NULL) && ($actual_date >= $productMonth[0]->promo_start_date && $actual_date <= $productMonth[0]->promo_end_date) )
+                          <div class="main-product-price" style="position:relative; top:10px;">
+                          {{ number_format($price*(100-$productMonth[0]->percentage)/100, 2, '.', ' ') }} {{ $quoteCurr }} 
+                          <span class="discount_price_home_page"> <strike>{{ number_format($price, 2, '.', ' ') }} {{ $quoteCurr }}</strike></span>
+                          </div>
+                        @else
+                          <div class="main-product-price" style="position:relative; top:10px;"> {{ number_format($price, 2, '.', ' ') }} {{ $quoteCurr }} </div>
+                        @endif
+
+
+
+               
 
 
                   <!-- test if the product is not liquid -->
@@ -159,8 +183,14 @@
                       <?php 
                       $product_id = $b->product_id;
                       $sub_category_id = $b->sub_category_id;
+
+
                       ?>
                       <a class="product_img_link" href="{{ route('products_details_path', array($product_id, $sub_category_id, 'USD') ) }}"> 
+                        @if( ($b->promo_start_date != NULL && $b->promo_end_date != NULL) && ($actual_date >= $b->promo_start_date && $actual_date <= $b->promo_end_date) )
+                          <div class="discount_percentage"> - {{ $b->percentage }}% </div>
+                        @endif
+
                         <img src="images/products/{{ $b->img1 }}" class="best-seller-image img_height_index"/>
                       </a>
                         <h1 class="best-seller-h1">{{ $b->title }}</h1>
@@ -169,7 +199,15 @@
                           $price = $b->price; 
                           $price = number_format((float)$price*$curr, 2, '.', '');
                         ?>
-                        <div class="best-seller-price absolute_best_seller"> {{ $price }} {{ $quoteCurr }} </div>
+
+                        @if( ($b->promo_start_date != NULL && $b->promo_end_date != NULL) && ($actual_date >= $b->promo_start_date && $actual_date <= $b->promo_end_date) )
+                          <div class="best-seller-price absolute_best_seller"> 
+                          {{ number_format($price*(100-$b->percentage)/100, 2, '.', ' ') }} {{ $quoteCurr }} 
+                          <span class="discount_price_home_page"> <strike>{{ number_format($price, 2, '.', ' ') }} {{ $quoteCurr }}</strike></span>
+                          </div>
+                        @else
+                          <div class="best-seller-price absolute_best_seller"> {{ number_format($price, 2, '.', ' ') }} {{ $quoteCurr }} </div>
+                        @endif
 
                          <!-- test if the product is not liquid -->
                           @if($b->liquid_product == 0)

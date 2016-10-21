@@ -28,6 +28,7 @@
              <li> <a <?php if ($pagename == "management-products-category") echo 'class="active"'; ?> href="{{ route('products_category_management_path') }}">  <i class="fa fa-th fa-fw"></i> Products category </a></li>
              <li> <a <?php if ($pagename == "promo-management") echo 'class="active"'; ?> href="{{ route('promo_management_path') }}">  <i class="fa fa-gift fa-fw"></i> Promotions </a></li>
              <li> <a <?php if ($pagename == "newsletters-management") echo 'class="active"'; ?> href="{{ route('newsletters_management_path') }}">  <i class="fa fa-envelope fa-fw"></i> Newsletters </a></li>
+             <li> <a <?php if ($pagename == "promo-products-management") echo 'class="active"'; ?> href="{{ route('promo_products_management_path') }}">  <i class="fa fa-percent fa-fw"></i> Promo by product </a></li>
 
              
        </ul>

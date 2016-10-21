@@ -92,6 +92,16 @@
                   <tbody>
                         <?php $price = 0; ?>
                         @foreach($cartList as $c)
+
+                        <?php
+                          $actual_date = Carbon::now('Asia/Beirut');
+                          // check if the product has a product promo
+                          if( ($c->promo_start_date != NULL && $c->promo_end_date != NULL) && ($actual_date >= $c->promo_start_date && $actual_date <= $c->promo_end_date) )
+                          {
+                              // affect the promo price to the product
+                              $c->price = $c->price*(100-$c->percentage)/100;
+                          }
+                        ?>
                             <tr>
                                 <td style="padding-left:40px;"><p class="item_name_cart">{{ $c->name }} - {{ $c->id }} </p></td>
                                 <td style="text-align:center;"><div class="cart_item_value">{{ $c->qty }}</div></td>

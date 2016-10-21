@@ -137,6 +137,7 @@ header
     color:#8d5f6a;
     font-size: 18px;
     text-align: right;
+    width:125px;
 }
 
 
@@ -1660,8 +1661,7 @@ cursor:pointer;
 }
 
 .new_letter_box
-{   
-   
+{     
     top:110px;
 }
 
@@ -1669,5 +1669,41 @@ cursor:pointer;
 .ytp-watermark
 {
     display:none !important;
+}
+
+.discount_percentage, .discount_percentage_prod_of_month
+{
+    width:45px;
+    height:20px;
+    background-color:#676767;
+    color:white;
+    font-weight:bold;
+    position:absolute;
+    left:0px;
+    text-align:center; /* center horizontally */
+    vertical-align:middle; /* center vertically */
+    z-index:1;
+}
+
+.discount_percentage_prod_of_month
+{
+    top:15px;
+}
+
+.discount_price
+{
+    color:#333333 !important;
+    font-weight: normal !important;
+    font-size:14px;
+    position:absolute;
+    top:18px; 
+    left:0px;
+}
+
+.discount_price_home_page
+{
+  color:#333333 !important;
+  font-weight: normal !important;
+  font-size:13px;  
 }
 

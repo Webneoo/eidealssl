@@ -61,7 +61,15 @@
                       <div class="panel panel-default panel_product_box">
                               <?php $product_id = $p->product_id; ?>
                                 <div class="panel-body product_hover_click less_padding" onclick="location.href='{{ route('products_details_path', array($product_id, $id, "USD") ) }}'">
-                                  
+
+                                <!-- check if the product has an active promo -->
+
+                                   <?php $actual_date = Carbon::now('Asia/Beirut'); ?>
+
+                                    @if( ($p->promo_start_date != NULL && $p->promo_end_date != NULL) && ($actual_date >= $p->promo_start_date && $actual_date <= $p->promo_end_date) )
+                                      <div class="discount_percentage"> - {{ $p->percentage }}% </div>
+                                    @endif
+
                                     <img src="images/products/{{ $p->img1 }}" class="best-seller-image height_img"/>
                                     
                                     <h1 class="best-seller-h1">{{ $p->title }}</h1>
@@ -71,7 +79,16 @@
                                       $price = number_format($price*$curr, 2, '.', '');
                                     ?>
 
-                                    <div class="best-seller-price absolute_position">  <span class="prod_price"> {{ $price }} </span> {{ $quoteCurr }}</div>
+
+                                    @if( ($p->promo_start_date != NULL && $p->promo_end_date != NULL) && ($actual_date >= $p->promo_start_date && $actual_date <= $p->promo_end_date) )
+
+                                      <div class="best-seller-price absolute_position">  <span class="prod_price"> {{ number_format($price*(100-$p->percentage)/100, 2, '.', ' ') }} </span> {{ $quoteCurr }}
+                                        <span class="discount_price"> <strike>{{ number_format($price, 2, '.', ' ') }} {{ $quoteCurr }}</strike></span>
+                                      </div>
+                                    @else
+                                    <div class="best-seller-price absolute_position">  <span class="prod_price"> {{ number_format($price, 2, '.', ' ') }} </span> {{ $quoteCurr }}</div>
+                                    @endif
+                                
                                  </div> 
 
 

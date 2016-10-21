@@ -95,6 +95,44 @@ class PromoRepository {
                   'created_at' => Carbon::now('Asia/Beirut'))
             );
     }
+
+
+
+    public function createPromoForProducts($input, $start_date, $end_date)
+    {   
+            \DB::select(
+            \DB::raw("UPDATE ta_products
+                      SET promo_start_date = :start_date,
+                          promo_end_date = :end_date,
+                          percentage = :percentage,
+                          updated_at = :updated_at
+                      WHERE product_id = :product_id"),
+            array(':product_id' => $input['product_id'],
+                  ':start_date' => $start_date,
+                  ':end_date' => $end_date,
+                  ':percentage' => $input['percentage'],
+                  ':updated_at' => Carbon::now('Asia/Beirut'))
+            );
+    }
+
+
+
+    public function stopPromoForProducts($input)
+    {   
+            \DB::select(
+            \DB::raw("UPDATE ta_products
+                      SET promo_start_date = NULL,
+                          promo_end_date = NULL,
+                          percentage = NULL,
+                          updated_at = :updated_at
+                      WHERE product_id = :product_id"),
+            array(':product_id' => $input['product_id'],
+                  ':updated_at' => Carbon::now('Asia/Beirut'))
+            );
+    }
+
+
+    
     
 
 }

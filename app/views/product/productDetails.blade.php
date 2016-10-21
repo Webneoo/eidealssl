@@ -33,6 +33,15 @@
         <div class="row"> 
        @foreach ($product_info as $p)
 
+          <!-- check if the product has an active promo -->
+
+         <?php $actual_date = Carbon::now('Asia/Beirut'); ?>
+
+          @if( ($p->promo_start_date != NULL && $p->promo_end_date != NULL) && ($actual_date >= $p->promo_start_date && $actual_date <= $p->promo_end_date) )
+            <div class="discount_percentage_prod_of_month" style="position:relative; left:-10px;"> - {{ $p->percentage }}% </div>
+          @endif
+
+
           <?php $main_img = 'images/products/'.$p->img1; ?>
 
           <div class="col-lg-4 col-md-4">
@@ -65,7 +74,16 @@
                       ?>
                   </div>
                   <b style="font-size:18px;">Price: </b>
+
+                  @if( ($p->promo_start_date != NULL && $p->promo_end_date != NULL) && ($actual_date >= $p->promo_start_date && $actual_date <= $p->promo_end_date) )
+
+                    <span class="best-seller-price"> <b> {{ $price*(100-$p->percentage)/100 }} {{ $quoteCurr }} </b></span>
+                      <span class="discount_price_home_page"> <strike>{{ $price }} {{ $quoteCurr }}</strike></span>
+                    </div>
+                  @else
                   <span class="best-seller-price"> <b> {{ $price }} {{ $quoteCurr }} </b></span>
+                  @endif
+
                     <br/><br/>
                   <div class="row">
                     <?php 
@@ -128,7 +146,9 @@
             
             </div> <!-- panel-body -->
           </div> <!-- end col-8 -->
-        @endforeach
+        @endforeach 
+
+        <br/>
         </div> <!-- end row -->
 
         @if(!empty($mediaList))

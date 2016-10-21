@@ -47,6 +47,18 @@
                               name="{{ $c->id }}" onclick="add_one_item(this.id);"> <i class="fa fa-plus-circle"></i> </span>
                       </div>
                     </td>
+
+                    <?php
+                      $actual_date = Carbon::now('Asia/Beirut');
+                      // check if the product has a product promo
+                      if( ($c->promo_start_date != NULL && $c->promo_end_date != NULL) && ($actual_date >= $c->promo_start_date && $actual_date <= $c->promo_end_date) )
+                      {
+                          // affect the promo price to the product
+                          $c->price = $c->price*(100-$c->percentage)/100;
+                      }
+                    ?>
+
+
                     <td style="text-align:center"><p class="cart_item_value">{{ number_format((float)$c->price*$curr, 2, '.', ' ') }}</p></td>
                     <td style="text-align:center"><p class="cart_item_value">
                       {{ number_format((float)($c->price*$c->qty*$curr), 2, '.', ' ')  }}

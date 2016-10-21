@@ -13,7 +13,6 @@ Route::get('/', [
 ]);
 
 
-
 Route::post('/', [
     'as' => 'home_newsletters_signup',
     'uses' => 'HomeController@newlettersSignup'
@@ -859,6 +858,34 @@ Route::post('/create-promo-management', [
     'as' => 'create_promo_path',
     'uses' => 'PromoController@addPromo'
 ]);
+
+// ------------- promo per product ----------
+
+Route::get('/promo-products-management', [
+    'before' => 'auth',
+    'as' => 'promo_products_management_path',
+    'uses' => 'PromoController@showPromoProducts'
+]);
+
+Route::post('/create-promo-product-management', [
+    'before' => 'auth',
+    'as' => 'post_create_promo_product_path',
+    'uses' => 'PromoController@addPromoForProduct'
+]);
+
+Route::get('/create-promo-product-management-{product_id}', [
+    'before' => 'auth',
+    'as' => 'create_promo_product_path',
+    'uses' => 'PromoController@createPromoForProduct'
+]);
+
+
+Route::post('/stop-promo-product-management', [
+    'before' => 'auth',
+    'as' => 'stop_promo_product_path',
+    'uses' => 'PromoController@stopPromoForProduct'
+]);
+
 
 
 
