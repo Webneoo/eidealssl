@@ -13,7 +13,8 @@
                 <a href="{{ route('all_products_path') }}">PRODUCTS</a><br/>
                 <a href="{{ route('brands_path',1) }}">BRANDS</a><br/>     
                 <a href="{{ route('eteam_path') }}">E-TEAM</a><br/>           
-                <a href="{{ route('news_path') }}">NEWS</a>
+                <a href="{{ route('news_path') }}">NEWS</a><br/>
+                <a href="{{ route('videos_path') }}">VIDEOS</a>
                 
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3">

@@ -489,9 +489,20 @@ class CartController extends \BaseController {
                                   'email_address' => Session::get('checkout_email'), 'phone' => Session::get('checkout_phone'),
                                   'country' => Session::get('checkout_country'), 'city' => Session::get('checkout_city'), 'shipping_address' => Session::get('checkout_address'), 'order_id' => $order_id, 'original_price' => $original_price, 'total_amount' => $total_amount, 'promo_percentage' => $promo_percentage, 'promo_price' => $promo_price), 
                             function($message) use ($email_client)
-                        {
-                            $message->from('ecommerce@eideal.com', 'Eideal Online')->subject('Thank you for your purchase | Eideal');
-                            $message->to($email_client);
+                        {   
+                            $emails = array();
+
+                            $emails[0] = $email_client;
+                            $emails[1] = 'ecommerce@eideal.com';
+
+                            foreach($emails as $e)
+                            {
+                                $message->from('ecommerce@eideal.com', 'EIDEAL')->subject('Thank you for your purchase | Eideal');
+                                $message->to($e);
+                            }
+
+                             $headers = $message->getHeaders();
+                             $headers->addTextHeader('X-MC-PreserveRecipients', 'false');
                         });
 
 
@@ -930,9 +941,20 @@ class CartController extends \BaseController {
                                   'email_address' => $email, 'phone' => $phone, 'country' => $country, 'city' => $city, 
                                   'shipping_address' => $shipping_address,'promo_percentage' => $promo_percentage, 'original_price' => $original_price),
                             function($message) use ($email)
-                        {
-                            $message->from('ecommerce@eideal.com', 'EIDEAL')->subject('Thank you for your purchase | EIDEAL');
-                            $message->to($email);
+                        {   
+                            $emails = array();
+
+                            $emails[0] = $email;
+                            $emails[1] = 'ecommerce@eideal.com';
+
+                            foreach($emails as $e)
+                            {
+                                $message->from('ecommerce@eideal.com', 'EIDEAL')->subject('Thank you for your purchase | EIDEAL');
+                                $message->to($e);
+                            }
+
+                             $headers = $message->getHeaders();
+                             $headers->addTextHeader('X-MC-PreserveRecipients', 'false');
                         });
 
 
@@ -990,9 +1012,20 @@ class CartController extends \BaseController {
                                   'email_address' => $email, 'phone' => $phone, 'country' => $country, 'city' => $city, 
                                   'shipping_address' => $shipping_address, 'promo_percentage' => $promo_percentage, 'original_price' => $original_price),
                             function($message) use ($email)
-                        {
-                            $message->from('ecommerce@eideal.com', 'EIDEAL')->subject('Purchase transaction failed | EIDEAL');
-                            $message->to($email);
+                        {   
+                            $emails = array();
+
+                            $emails[0] = $email;
+                            $emails[1] = 'ecommerce@eideal.com';
+
+                            foreach($emails as $e)
+                            {
+                                $message->from('ecommerce@eideal.com', 'EIDEAL')->subject('Purchase transaction failed | EIDEAL');
+                                $message->to($e);
+                            }
+
+                             $headers = $message->getHeaders();
+                             $headers->addTextHeader('X-MC-PreserveRecipients', 'false');
                         });
 
 
@@ -1118,9 +1151,20 @@ class CartController extends \BaseController {
                         array('cartList' => $cartList, 'amount' => $total_amount, 'trans_date' => $trans_date, 'firstname' => $firstname, 'lastname' => $lastname, 'email_address' => $email, 'phone' => $phone, 'country' => $country, 'city' => $city, 
                               'shipping_address' => $shipping_address, 'promo_percentage' => $promo_percentage, 'original_price' => $original_price, 'paypal_transaction_id' => $paypal_transaction_id, 'order_id' => $order_id, 'paypal_message' => $paypal_message),
                         function($message) use ($email)
-                    {
-                        $message->from('ecommerce@eideal.com', 'EIDEAL')->subject('Thank you for your purchase | EIDEAL');
-                        $message->to($email);
+                    {   
+                        $emails = array();
+
+                        $emails[0] = $email;
+                        $emails[1] = 'ecommerce@eideal.com';
+
+                        foreach($emails as $e)
+                        {
+                            $message->from('ecommerce@eideal.com', 'EIDEAL')->subject('Thank you for your purchase | EIDEAL');
+                            $message->to($e);
+                        }
+
+                         $headers = $message->getHeaders();
+                         $headers->addTextHeader('X-MC-PreserveRecipients', 'false');
                     });
 
 
@@ -1174,8 +1218,19 @@ class CartController extends \BaseController {
                               'shipping_address' => $shipping_address, 'promo_percentage' => $promo_percentage, 'original_price' => $original_price, 'paypal_transaction_id' => $paypal_transaction_id, 'order_id' => $order_id, 'paypal_message' => $paypal_message),
                         function($message) use ($email)
                     {
-                        $message->from('ecommerce@eideal.com', 'EIDEAL')->subject('Failed Transaction | EIDEAL');
-                        $message->to($email);
+                        $emails = array();
+
+                        $emails[0] = $email;
+                        $emails[1] = 'ecommerce@eideal.com';
+
+                        foreach($emails as $e)
+                        {
+                            $message->from('ecommerce@eideal.com', 'EIDEAL')->subject('Failed Transaction | EIDEAL');
+                            $message->to($e);
+                        }
+
+                         $headers = $message->getHeaders();
+                         $headers->addTextHeader('X-MC-PreserveRecipients', 'false');
                     });
 
 

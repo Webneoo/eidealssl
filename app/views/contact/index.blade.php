@@ -9,7 +9,7 @@
              <h1 class="page_h1"> CONTACT INFORMATION </h1>
              <h2 class="page_h2" style="margin-top:0px;"> <a style="color:#9a9a9a;" href="mailto:info@eidealonline.com">info@eideal.com </a> </h2>
              <p class="careers_intro" style="text-align:center">
-              EIDEAL Fans! Hairdressers and consumers, feel free to contact us and we would be happy to assist you further.
+              EIDEAL Fans! <span style="font-weight:bold; font-size:15px;">Hairdressers and Consumers</span>, feel free to contact us and we would be happy to assist you further.
               </p>   
             @include('layouts.partials.errors')
              @include('flash::message')
@@ -51,7 +51,7 @@
                     <p class="contact_info_p">
                         EIDEAL TRADING L.L.C <br/> 
                         P.O. Box: 187123 <br/>
-                        Dubai, UAE. <br/>
+                        Dubai, UAE <br/>
                         Tel: +97142594665 <br/>
                         Fax: +97142594669 <br/>
                         Mob: +971564452369 <br/>

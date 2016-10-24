@@ -4,9 +4,11 @@
 
 <?php $actual_date = Carbon::now('Asia/Beirut'); ?>
 
-	<h1> Dear {{ $firstname }},  </h1>
+  <div style="font-style:italic">
+
+     Dear {{ $firstname }},  <br/><br/>
  
-       Thank you for purchasing the following products, please find below the details of your purchase:<br/>
+       Thank you for your interest and recent purchase from eideal.com, please find below the details of your purchase:<br/>
       
        <br/>
 
@@ -174,11 +176,10 @@
         </table>
         </hr>
         <br/>
-
-
-
         
   Thank you,
+
+</div>
 
 
 @stop

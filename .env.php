@@ -19,8 +19,8 @@ return array(
     'DB_USERNAME' => 'homestead',
     'DB_PASSWORD' => 'secret',
     'MANDRILL_SECRET' => 'f5sMDJOqFLsIxE0nURi3Iw'
-);
-*/
+);*/
+
 
 ?>
 

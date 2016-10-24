@@ -4,9 +4,11 @@
 
 <?php $actual_date = Carbon::now('Asia/Beirut'); ?>
 
-	<h1> Dear {{ $firstname }},  </h1>
+	  <div style="font-style:italic">
+
+     Dear {{ $firstname }},  <br/><br/>
  
-       Your purchase transaction for the following products has been failed, please contact EIDEAL for more information:
+       Thank you for your interest and recent purchase from eideal.com, please find below the details of your purchase:<br/>
       
        <br/>
         <hr/> 
@@ -168,5 +170,6 @@
         
   Thank you,
 
+</div>
 
 @stop

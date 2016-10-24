@@ -116,8 +116,8 @@
                   {{ Form::close() }}
                   @endif
 
-                  <button type="button" class="btn btn-default" style="position:relative; top:26px; left:8px;">
-                    <a href="{{ route('contact_us_path') }}" style="color:black;"> Ask the expert 
+                  <button type="button" class="ask_the_expert" style="position:relative; top:26px; left:8px;">
+                    <a href="{{ route('contact_us_path') }}"> ASK THE EXPERT
                     </a>
                   </button>   
                   <div class="sm_share_div">

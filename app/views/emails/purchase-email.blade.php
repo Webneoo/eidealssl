@@ -4,9 +4,12 @@
 
 <?php $actual_date = Carbon::now('Asia/Beirut'); ?>
 
-	<h1> Dear {{ $firstname }},  </h1>
+	<div style="font-style:italic">
+
+     Dear {{ $firstname }},  <br/><br/>
  
-       Thank you for purchasing the following products:<br/>
+     Thank you for your interest and recent purchase from eideal.com:<br/><br/>
+     This e-mail confirms that we have received your inquiry<br/><br/>
       
        <br/>
 
@@ -116,7 +119,16 @@
         <br/>
         <hr/>
         
-  Thank you,
+One of our team members will get in touch with you ASAP from 9am-6pm, Sunday through Thursday to further update you about your order’s status.<br/><br/>
+
+       Should you have any questions, please feel free to contact our Customer Care team on info@eideal.com or +97142594665 who will be happy to help.
+      <br/><br/>                  
+      
+      Best wishes,<br/><br/>
+        
+      The EIDEAL Team
+
+</div>
 
 
 @stop

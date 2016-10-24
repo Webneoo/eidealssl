@@ -28,6 +28,17 @@
          url('../fonts/MontserratLight.svg#MontserratLight') format('svg');
 }
 
+
+@font-face {
+  font-family: 'ComicSansMS';
+  src: url('../fonts/ComicSansMS.eot');
+  src: url('../fonts/ComicSansMS.eot') format('embedded-opentype'),  
+       url('../fonts/ComicSansMS.woff') format('woff'), 
+       url('../fonts/ComicSansMS.ttf')  format('truetype'), 
+       url('../fonts/ComicSansMS.svg#ComicSansMS') format('svg');
+}
+
+
 header
 {
     background: #676767;
@@ -1707,3 +1718,37 @@ cursor:pointer;
   font-size:13px;  
 }
 
+.ask_the_expert
+{
+    width:150px;
+    height:36px;
+    font-size:16px;
+    text-align:center;
+    border:none;
+    background-color: #9a9a9a;
+    color:white;
+    margin-top:-1px;
+}
+
+.ask_the_expert a
+{
+    color:white;
+}
+
+.ask_the_expert a:hover
+{
+    color:white;
+    text-decoration:underline;
+}
+
+.ask_the_expert:hover
+{
+    opacity:0.85;
+    text-decoration:underline;
+}
+
+.newsletters_email_template
+{
+    font-family:ComicSansMS;
+    color:red;
+}

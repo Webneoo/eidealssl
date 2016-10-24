@@ -5,7 +5,6 @@
  <div id="start" class="container">
         <div class="page-title">
              <h1 class="page_h1"> VIDEOS </h1>
-             <h2 class="page_h2"> OUR COLLECTION OF VIDEOS </h2>
         </div>
    
      <div class="row" style="text-align:center">
@@ -22,11 +21,11 @@
            <hr style="width:100%;" class="gray_spliter">
             <iframe class="youtube_iframe" width="100%" src="https://www.youtube.com/embed/{{ $a->url }}" frameborder="0" allowfullscreen></iframe>
             <div class="news_title">{{ $a->title }}</div>
-             <?php // change the format of the date 
+            <!--  <?php // change the format of the date 
                   $date=date_create($a->updated_at);  
                   $real_date = date_format($date,"Y-m-d");
               ?>
-            <div class="news_date">{{ $real_date }}</div>
+            <div class="news_date">{{ $real_date }}</div> -->
           </div>  
       <?php $i++; ?>
       @endforeach

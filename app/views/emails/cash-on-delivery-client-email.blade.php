@@ -3,136 +3,144 @@
 @section('content')
 <?php $actual_date = Carbon::now('Asia/Beirut'); ?>
 
-	<h1> Dear {{ $firstname }},  </h1>
+  <div style="font-style:italic">
+
+     Dear {{ $firstname }},  <br/><br/>
  
-       Thank you for purchasing the following products:<br/>
-       <b> Your order id is {{$order_id}} </b>
-      
-       <br/>
+     Thank you for your interest and recent purchase from eideal.com:<br/><br/>
+     This e-mail confirms that we have received your inquiry<br/><br/>
+     <b> Your order ID is {{$order_id}} </b>
+    
+     <br/>
 
-       <hr/>
-       <h3>Purchased products</h3>
-        <table>
+     <hr/>
+     <h3>Purchased products</h3>
+      <table>
 
-        	<tr>  
-              <td style="text-align:left; padding-left:15px;"><p><b>Product Code</b> </p></td>
-              <td style="text-align:left; padding-left:15px;"><p><b>Product_title </b> </p></td>
-              <td style="text-align:left; padding-left:15px;"><p><b>Price </b> </p></td>
-              <td style="text-align:left; padding-left:15px;"><p><b>Quantity </b> </p></td>
-              <td style="text-align:left; padding-left:15px;"><p><b>Total </b> </p></td>
-            </tr>
+      	<tr>  
+            <td style="text-align:left; padding-left:15px;"><p><b>Product Code</b> </p></td>
+            <td style="text-align:left; padding-left:15px;"><p><b>Product_title </b> </p></td>
+            <td style="text-align:left; padding-left:15px;"><p><b>Price </b> </p></td>
+            <td style="text-align:left; padding-left:15px;"><p><b>Quantity </b> </p></td>
+            <td style="text-align:left; padding-left:15px;"><p><b>Total </b> </p></td>
+          </tr>
 
-            <?php 
+          <?php 
 
-            	foreach($cartList as $c)
-                {     
-            ?>
-        		<tr>  
-            <?php
-              // check if the product has a product promo
-              if( ($c->promo_start_date != NULL && $c->promo_end_date != NULL) && ($actual_date >= $c->promo_start_date && $actual_date <= $c->promo_end_date) )
+          	foreach($cartList as $c)
+              {     
+          ?>
+      		<tr>  
+          <?php
+            // check if the product has a product promo
+            if( ($c->promo_start_date != NULL && $c->promo_end_date != NULL) && ($actual_date >= $c->promo_start_date && $actual_date <= $c->promo_end_date) )
+            {
+                // affect the promo price to the product
+                $c->price = $c->price*(100-$c->percentage)/100;
+            }
+          ?>
+              <td style="text-align:left; padding-left:15px;"><p> {{ $c->id }} </p></td>
+              <td style="text-align:left; padding-left:15px;"><p> {{ $c->name }} </p></td>
+              <td style="text-align:left; padding-left:15px;"><p> {{ $c->price }} USD </p></td>
+              <td style="text-align:left; padding-left:15px;"><p> {{ $c->qty }} </p></td>
+              <td style="text-align:left; padding-left:15px;"><p> {{ ($c->qty)*($c->price) }} </p></td>
+         </tr>	
+
+			<?php
+              }
+
+              if($promo_price != NULL)
               {
-                  // affect the promo price to the product
-                  $c->price = $c->price*(100-$c->percentage)/100;
+           ?>
+
+           <tr>  
+              <td style="text-align:left; padding-left:15px;"><p></p></td>
+              <td style="text-align:left; padding-left:15px;"><p></p></td>
+              <td style="text-align:left; padding-left:15px;"><p></p></td>
+              <td style="text-align:left; padding-left:15px;"><p></p></td>
+              <td style="text-align:left; padding-left:15px;"><p></p></td>
+           </tr> 
+
+           <tr>  
+              <td style="text-align:left; padding-left:15px;"><p></p></td>
+              <td style="text-align:left; padding-left:15px;"><p></p></td>
+              <td style="text-align:left; padding-left:15px;"><p></p></td>
+              <td style="text-align:left; padding-left:15px;"><p> <b>Original price </b></p></td>
+              <td style="text-align:left; padding-left:15px;"><p>{{ $original_price }} $</p></td>
+           </tr> 
+
+           <tr>  
+              <td style="text-align:left; padding-left:15px;"><p></p></td>
+              <td style="text-align:left; padding-left:15px;"><p></p></td>
+              <td style="text-align:left; padding-left:15px;"><p></p></td>
+              <td style="text-align:left; padding-left:15px;"><p> <b>Promo discount</b></p></td>
+              <td style="text-align:left; padding-left:15px;"><p>{{ $promo_percentage }}% </p></td>
+           </tr> 
+
+
+           <?php 
               }
             ?>
-	              <td style="text-align:left; padding-left:15px;"><p> {{ $c->id }} </p></td>
-	              <td style="text-align:left; padding-left:15px;"><p> {{ $c->name }} </p></td>
-	              <td style="text-align:left; padding-left:15px;"><p> {{ $c->price }} USD </p></td>
-	              <td style="text-align:left; padding-left:15px;"><p> {{ $c->qty }} </p></td>
-                <td style="text-align:left; padding-left:15px;"><p> {{ ($c->qty)*($c->price) }} </p></td>
-	         </tr>	
-
-  			<?php
-                }
-
-                if($promo_price != NULL)
-                {
-             ?>
 
              <tr>  
-                <td style="text-align:left; padding-left:15px;"><p></p></td>
-                <td style="text-align:left; padding-left:15px;"><p></p></td>
-                <td style="text-align:left; padding-left:15px;"><p></p></td>
-                <td style="text-align:left; padding-left:15px;"><p></p></td>
-                <td style="text-align:left; padding-left:15px;"><p></p></td>
-             </tr> 
+              <td style="text-align:left; padding-left:15px;"><p></p></td>
+              <td style="text-align:left; padding-left:15px;"><p></p></td>
+              <td style="text-align:left; padding-left:15px;"><p></p></td>
+              <td style="text-align:left; padding-left:15px;"><p> <b>Overall Total Amount</b></p></td>
+              <td style="text-align:left; padding-left:15px;"><p><b>{{ $total_amount }} $</b></p></td>
+           </tr> 
 
-             <tr>  
-                <td style="text-align:left; padding-left:15px;"><p></p></td>
-                <td style="text-align:left; padding-left:15px;"><p></p></td>
-                <td style="text-align:left; padding-left:15px;"><p></p></td>
-                <td style="text-align:left; padding-left:15px;"><p> <b>Original price </b></p></td>
-                <td style="text-align:left; padding-left:15px;"><p>{{ $original_price }} $</p></td>
-             </tr> 
+      </table>
 
-             <tr>  
-                <td style="text-align:left; padding-left:15px;"><p></p></td>
-                <td style="text-align:left; padding-left:15px;"><p></p></td>
-                <td style="text-align:left; padding-left:15px;"><p></p></td>
-                <td style="text-align:left; padding-left:15px;"><p> <b>Promo discount</b></p></td>
-                <td style="text-align:left; padding-left:15px;"><p>{{ $promo_percentage }}% </p></td>
-             </tr> 
+      <br/>
+      <hr/> 
 
+      <h3>Shipping info</h3>
+      <table>
 
-             <?php 
-                }
-              ?>
+          <tr>  
+            <td style="text-align:left; padding-left:15px;"><p><b>Name:</b> </p></td>
+            <td style="text-align:left; padding-left:15px;"><p> {{ $firstname }} {{ $lastname }} </p></td>
+          </tr>
 
-               <tr>  
-                <td style="text-align:left; padding-left:15px;"><p></p></td>
-                <td style="text-align:left; padding-left:15px;"><p></p></td>
-                <td style="text-align:left; padding-left:15px;"><p></p></td>
-                <td style="text-align:left; padding-left:15px;"><p> <b>Overall Total Amount</b></p></td>
-                <td style="text-align:left; padding-left:15px;"><p><b>{{ $total_amount }} $</b></p></td>
-             </tr> 
+          <tr>
+            <td style="text-align:left; padding-left:15px;"><p><b> Email </b></p></td>
+            <td style="text-align:left; padding-left:15px;"><p> {{ $email_address }} </p></td>
+          </tr>
 
-        </table>
+          <tr>
+            <td style="text-align:left; padding-left:15px;"><p><b> Phone </b></p></td>
+            <td style="text-align:left; padding-left:15px;"><p> {{ $phone }} </p></td>
+          </tr>
 
-        <br/>
-        <hr/> 
+          <tr>
+            <td style="text-align:left; padding-left:15px;"><p><b> Country </b></p></td>
+            <td style="text-align:left; padding-left:15px;"><p> {{ $country }} </p></td>
+          </tr>
 
-        <h3>Shipping info</h3>
-        <table>
+          <tr>
+            <td style="text-align:left; padding-left:15px;"><p><b> City </b></p></td>
+            <td style="text-align:left; padding-left:15px;"><p> {{ $city }} </p></td>
+          </tr>
 
-            <tr>  
-              <td style="text-align:left; padding-left:15px;"><p><b>Name:</b> </p></td>
-              <td style="text-align:left; padding-left:15px;"><p> {{ $firstname }} {{ $lastname }} </p></td>
-            </tr>
+          <tr>
+            <td style="text-align:left; padding-left:15px;"><p><b> Shipping address </b></p></td>
+            <td style="text-align:left; padding-left:15px;"><p> {{ $shipping_address }} </p></td>
+          </tr>
 
-            <tr>
-              <td style="text-align:left; padding-left:15px;"><p><b> Email </b></p></td>
-              <td style="text-align:left; padding-left:15px;"><p> {{ $email_address }} </p></td>
-            </tr>
+      </table>
+      <hr/>
+       <br/>
 
-            <tr>
-              <td style="text-align:left; padding-left:15px;"><p><b> Phone </b></p></td>
-              <td style="text-align:left; padding-left:15px;"><p> {{ $phone }} </p></td>
-            </tr>
+       One of our team members will get in touch with you ASAP from 9am-6pm, Sunday through Thursday to further update you about your order’s status.<br/><br/>
 
-            <tr>
-              <td style="text-align:left; padding-left:15px;"><p><b> Country </b></p></td>
-              <td style="text-align:left; padding-left:15px;"><p> {{ $country }} </p></td>
-            </tr>
-
-            <tr>
-              <td style="text-align:left; padding-left:15px;"><p><b> City </b></p></td>
-              <td style="text-align:left; padding-left:15px;"><p> {{ $city }} </p></td>
-            </tr>
-
-            <tr>
-              <td style="text-align:left; padding-left:15px;"><p><b> Shipping address </b></p></td>
-              <td style="text-align:left; padding-left:15px;"><p> {{ $shipping_address }} </p></td>
-            </tr>
-
-        </table>
-        <hr/>
-         <br/>
-        EIDEAL will contact you shortly for more info about the shipping address and the payment method.
-          <br/><br/>                  
+       Should you have any questions, please feel free to contact our Customer Care team on info@eideal.com or +97142594665 who will be happy to help.
+      <br/><br/>                  
       
+      Best wishes,<br/><br/>
         
-  Thank you,
+      The EIDEAL Team
 
+</div>
 
 @stop

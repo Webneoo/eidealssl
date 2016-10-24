@@ -564,11 +564,27 @@ class ProductsRepository {
 
             array(':user_id' => $user_id)
         );
-              
-        // add the 2 results $q1 + $q2
-        $total_amount = $q1[0]->normal_total + $q2[0]->promo_total;
+        
+        // set to 0 the subtotal in case $q1 doesn't exist
+        if(empty($q1))
+          $normal_total = 0;
+        else
+          $normal_total =  $q1[0]->normal_total;
 
-        $q = $q1;
+        // set to 0 the subtotal in case $q2 doesn't exist
+        if(empty($q2))
+          $promo_total = 0;
+        else
+          $promo_total =  $q2[0]->promo_total;
+
+
+        // add the 2 results $q1 + $q2
+        $total_amount = $normal_total + $promo_total;
+
+        if(empty($q2))
+          $q = $q1;
+        else
+          $q = $q2;
 
         $q[0]->total = $total_amount;
 
