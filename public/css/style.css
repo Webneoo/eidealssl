@@ -151,6 +151,12 @@ header
     width:125px;
 }
 
+.product-details-price
+{
+    color:#8d5f6a;
+    font-size: 18px;
+}
+
 
 .best-seller-button
 {
@@ -761,8 +767,7 @@ footer a:hover{
     .youtube_iframe_products
     {
         height:238px;
-    }
-    
+    }    
 }
 
 @media screen and (min-width: 767px) and (max-width: 991px ) { /*--  sm -- */

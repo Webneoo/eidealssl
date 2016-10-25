@@ -73,16 +73,18 @@
                         $price = number_format((float)$price*$curr, 2, '.', '');
                       ?>
                   </div>
-                  <b style="font-size:18px;">Price: </b>
+                  <div>
+                      <b style="font-size:18px;">Price: </b>
 
-                  @if( ($p->promo_start_date != NULL && $p->promo_end_date != NULL) && ($actual_date >= $p->promo_start_date && $actual_date <= $p->promo_end_date) )
+                      @if( ($p->promo_start_date != NULL && $p->promo_end_date != NULL) && ($actual_date >= $p->promo_start_date && $actual_date <= $p->promo_end_date) )
 
-                    <span class="best-seller-price"> <b> {{ $price*(100-$p->percentage)/100 }} {{ $quoteCurr }} </b></span>
-                      <span class="discount_price_home_page"> <strike>{{ $price }} {{ $quoteCurr }}</strike></span>
-                    </div>
-                  @else
-                  <span class="best-seller-price"> <b> {{ $price }} {{ $quoteCurr }} </b></span>
-                  @endif
+                        <span class="product-details-price"> <b> {{ $price*(100-$p->percentage)/100 }} {{ $quoteCurr }} </b></span>
+                          <span class="discount_price_home_page"> <strike>{{ $price }} {{ $quoteCurr }}</strike></span>
+                    
+                      @else
+                      <span class="best-seller-price"> <b> {{ $price }} {{ $quoteCurr }} </b></span>
+                      @endif
+                  </div>
 
                     <br/><br/>
                   <div class="row">
