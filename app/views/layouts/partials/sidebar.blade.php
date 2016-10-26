@@ -25,4 +25,4 @@ for($a=1; $a<=$categ_number; $a++)
   ?>    
 <br/>
 
-  <button type="button" class="ask_the_expert"><a href="{{ route('contact_us_path') }}"> Ask the expert </a></button>    
+  <button type="button" class="ask_the_expert"><a href="{{ route('contact_us_path') }}"> ASK THE EXPERT </a></button>    
