@@ -1,6 +1,6 @@
-<div class="newsletters_email_template">
+<div class="newsletters_email_template" style="font-family: 'Comic Sans MS', 'Comic Sans', cursive;">
 
-Dear EIDEAL Fan, <br/><br/>
+<b>Dear EIDEAL Fan,</b> <br/><br/>
 
 
 Welcome to eideal.com <br/><br/>
