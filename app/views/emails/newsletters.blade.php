@@ -8,3 +8,6 @@ You will now be the first one to know about our latest products, promotions and 
 Join our journey and become a #HairToolsGuru<br/><br/>
 
 </div>
+
+
+<img src="https://eideal.com/images/eideal_mail_signature.png">

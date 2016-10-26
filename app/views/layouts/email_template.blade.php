@@ -8,6 +8,7 @@
     <title>	EIDEAL </title>
 
     <link rel="stylesheet" href="https://eideal.com/css/style.css?v=<?php echo filemtime('css/style.css');?>" type="text/css" media="all" />
+
   </head>
 
 <body >
