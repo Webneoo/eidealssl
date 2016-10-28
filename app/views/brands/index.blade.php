@@ -15,7 +15,7 @@
     </div> 
       
       <div class="row">
-        <i class="fa fa-5x fa-floppy-o bottom-icon symbol"></i>
+        <i class="fa fa-5x fa-cart-arrow-down bottom-icon symbol"></i>
         <h3>Shop with Confidence</h3>
          <p>Our Buyer Protection covers your purchase from click to delivery</p></br></br>
       </div>
