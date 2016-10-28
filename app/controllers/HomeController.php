@@ -165,7 +165,7 @@ class HomeController extends \BaseController {
              Mail::send('emails.newsletters-admin', array('email' => $input['email']),  function($message) use ($email)
                 {
                     $message->from('noreply@eideal.com', 'EIDEAL website')->subject('EIDEAL | Thanks for subscribing');
-                    $message->to('info@webneoo.com');
+                    $message->to('ecommerce@eideal.com');
                 });
 
 
@@ -201,9 +201,9 @@ class HomeController extends \BaseController {
              Mail::send('emails.newsletters-admin', array('email' => $input['email']),  function($message) use ($email)
                 {
                     $message->from('noreply@eideal.com', 'EIDEAL website')->subject('EIDEAL | Thanks for subscribing');
-                    $message->to('info@webneoo.com');
+                    $message->to('ecommerce@eideal.com');
                 });
-             
+
 
              Flash::success('You have been successfully subscribed to the newsletters');
           }
