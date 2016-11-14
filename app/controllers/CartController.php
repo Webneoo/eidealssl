@@ -1047,8 +1047,6 @@ class CartController extends \BaseController {
 
 
 
-
-
                         return View::make('cart.bankAudiResponse', 
                                 array('pagename' => $pagename, 'cartList' => $cartList, 'itemNb' => $itemNb, 'merchTxnRef' => $merchTxnRef,
                                       'transactionNo' => $transactionNo, 'orderInfo' => $orderInfo, 'amount' => $total_amount, 

@@ -5,8 +5,8 @@
  <div id="start"class="container">
   <br/>
       <div class="col-lg-3 col-md-3 col-sm-3 ">
-        <br/>
-        <hr style="border-top:2px solid #dfdfdf;"> </hr>
+        <br/ class="hidden-xs">
+        <hr class="hidden-xs" style="border-top:2px solid #dfdfdf;"> </hr>
         @include('layouts.partials.sidebar')
       </div>
 

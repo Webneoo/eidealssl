@@ -154,12 +154,24 @@ class HomeController extends \BaseController {
             // send an email to the subscribed user
             $email = $input['email'];
 
-            // email for the subscriber
+            // email for the subscriber + bcc
              Mail::send('emails.newsletters', array('email' => $input['email']),  function($message) use ($email)
-                {
-                    $message->from('ecommerce@eideal.com', 'EIDEAL website')->subject('EIDEAL | Thanks for subscribing');
-                    $message->to($email);
+               {   
+                  $emails = array();
+
+                  $emails[0] = $email;
+                  $emails[1] = 'ecommerce@eideal.com';
+
+                  foreach($emails as $e)
+                  {
+                      $message->from('ecommerce@eideal.com', 'EIDEAL')->subject('EIDEAL | Thanks for subscribing');
+                      $message->to($e);
+                  }
+
+                   $headers = $message->getHeaders();
+                   $headers->addTextHeader('X-MC-PreserveRecipients', 'false');
                 });
+
 
              // email for the admin
              Mail::send('emails.newsletters-admin', array('email' => $input['email']),  function($message) use ($email)
@@ -188,13 +200,24 @@ class HomeController extends \BaseController {
             // insert the email in the newsletters table
              $this->homeRepository->insertNewsletterEmail($input['email']);
 
-              // send an email to the subscribed user
+              // send an email to the subscribed user + bcc 
             $email = $input['email'];
 
-             Mail::send('emails.newsletters', array('email' => $input['email']), function($message) use ($email)
-                {
-                    $message->from('ecommerce@eideal.com', 'EIDEAL website')->subject('EIDEAL | Thanks for subscribing');
-                    $message->to($email);
+             Mail::send('emails.newsletters', array('email' => $input['email']), function($message) use ($email) 
+                {   
+                  $emails = array();
+
+                  $emails[0] = $email;
+                  $emails[1] = 'ecommerce@eideal.com';
+
+                  foreach($emails as $e)
+                  {
+                      $message->from('ecommerce@eideal.com', 'EIDEAL')->subject('EIDEAL | Thanks for subscribing');
+                      $message->to($e);
+                  }
+
+                   $headers = $message->getHeaders();
+                   $headers->addTextHeader('X-MC-PreserveRecipients', 'false');
                 });
 
              // email for the admin
