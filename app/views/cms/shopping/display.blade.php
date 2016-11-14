@@ -3,7 +3,7 @@
 @section('content')
 
    
-        <h1> Transaction #4</h1>
+        <h1> Transaction No. {{ order_id }}</h1>
     
 
     

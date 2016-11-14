@@ -57,7 +57,7 @@ class PasswordForgottenController extends \BaseController {
 
                 Mail::send('emails.reset-password', array('random_password' => $random_password), function($message) use ($email)
                 {
-                    $message->from('info@eidealonline.com', 'Eideal website')->subject('Reset Your Password');
+                    $message->from('noreply@eideal.com', 'Eideal website')->subject('Reset Your Password');
                     $message->to($email);
                 });
 

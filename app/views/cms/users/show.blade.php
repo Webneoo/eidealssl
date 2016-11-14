@@ -34,7 +34,8 @@
                     <td>{{ $u->phone }}</td>
                     <td>{{ $u->country }}</td>
                     <td>
-                        <a onclick="return confirm('Are you sure you want to delete?')" href="{{ route('delete_user_path', $u->id) }}"><i class="fa fa-trash-o fa-fw"></i></a>
+                        <a onclick="return confirm('Are you sure you want to delete?')" class="delete_post"
+                           href="{{ route('delete_user_path', $u->id) }}"><i class="fa fa-trash-o fa-fw"></i></a>
                     </td>
                 </tr>
                 @endforeach
