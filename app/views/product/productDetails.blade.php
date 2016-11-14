@@ -3,15 +3,15 @@
 @section('content')
 
  <div id="start" class="container">
-  <br/><br/>
+  <br/ class="hidden-xs"><br/ class="hidden-xs">
   <div class="row">
-    <div class="col-lg-3 col-md-3" style='padding-top:56px'>
+    <div class="col-lg-3 col-md-3 product_detail_sidebar">
       <hr style="border-top:2px solid #dfdfdf; margin-top:0px;"> </hr>
     </div>
     <div class="col-lg-9 col-md-9">
       <div class="row"> 
           @foreach ($product_info as $p)
-          <h3 class="col-lg-9 col-md-9 col-sm-9 col-xs-6">{{ strtoupper($p->title) }}</h3>
+          <h3 class="col-lg-9 col-md-9 col-sm-9 col-xs-6 product_details_name">{{ strtoupper($p->title) }}</h3>
           @endforeach
          
 

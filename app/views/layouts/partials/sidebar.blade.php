@@ -23,6 +23,8 @@ for($a=1; $a<=$categ_number; $a++)
   echo "</ul>";  
 }
   ?>    
-<br/>
+<br/ class="hidden-xs">
 
   <button type="button" class="ask_the_expert"><a href="{{ route('contact_us_path') }}"> ASK THE EXPERT </a></button>    
+
+  <br/><br/>

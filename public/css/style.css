@@ -669,7 +669,11 @@ footer a:hover{
     {
         height:295px;
     }
-    
+
+    .product_detail_sidebar
+    {
+        padding-top:56px;
+    } 
 }
 
 
@@ -768,6 +772,11 @@ footer a:hover{
     {
         height:238px;
     }    
+
+    .product_detail_sidebar
+    {
+        padding-top:56px;
+    }
 }
 
 @media screen and (min-width: 767px) and (max-width: 991px ) { /*--  sm -- */
@@ -820,7 +829,13 @@ footer a:hover{
         height:280px;
     }
 
-
+    .product_details_name
+    {
+        margin-top:0px !important;
+        margin-bottom:0px !important;
+        position:relative;
+        bottom:10px;
+    }
 }
 
 
@@ -885,6 +900,19 @@ footer a:hover{
       .youtube_iframe_products
     {
         height:174px;
+    }
+
+    .product_detail_sidebar
+    {
+        margin-top:40px;
+    }
+
+    .product_details_name
+    {
+        margin-top:0px !important;
+        margin-bottom:0px !important;
+        position:relative;
+        bottom:10px;
     }
 }
 
