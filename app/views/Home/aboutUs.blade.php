@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
-    
+
     <div id="start" class="container">
         <div class="page-title">
              <h1 class="page_h1"> ABOUT US </h1>

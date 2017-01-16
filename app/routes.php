@@ -44,10 +44,6 @@ Route::get('e-team', [
 
 
 
-
-
-
-
 /* ------------------- CONTACT  ---------------*/
 
 
@@ -296,6 +292,15 @@ Route::get('brands-{brand_id}',[
     'as' => 'brands_path',
     'uses' => 'BrandController@index'
     ]);
+
+
+/* ------------------- BRANDS   ---------------*/
+
+Route::get('service-{service_id}',[
+    'as' => 'service_path',
+    'uses' => 'ServiceController@index'
+    ]);
+
 
 
 /* ------------------- BRANDS   ---------------*/
@@ -922,6 +927,143 @@ Route::post('/newsletters-management', [
 
 
 
+
+/* ---------------------------------------------------------
+SERVICE MANAGEMENT
+---------------------------------------------------------- */
+
+Route::get('/cms-services-management', [
+    'before' => 'auth',
+    'as' => 'services_management_path',
+    'uses' => 'ServiceController@show'
+]);
+
+
+Route::get('/create-service', [
+    'before' => 'auth',
+    'as' => 'create_service_path',
+    'uses' => 'ServiceController@createService'
+]);
+
+Route::post('/create-service', [
+    'before' => 'auth',
+    'as' => 'create_service_path',
+    'uses' => 'ServiceController@addService'
+]);
+
+
+Route::get('/edit-service-{id}', [
+    'before' => 'auth',
+    'as' => 'edit_service_path',
+    'uses' => 'ServiceController@editService'
+]);
+
+Route::post('/update-service', [
+    'before' => 'auth',
+    'as' => 'update_service_path',
+    'uses' => 'ServiceController@updateService'
+]);
+
+Route::post('/delete-service', [
+    'before' => 'auth',
+    'as' => 'delete_service_path',
+    'uses' => 'ServiceController@deleteService'
+]);
+
+
+
+/* ------------------------
+IMAGES SERVICE MANAGEMENT
+--------------------------- */
+
+
+Route::get('/show-service-images-{service_id}', [
+    'before' => 'auth',
+    'as' => 'show_service_images_path',
+    'uses' => 'ServiceController@showServiceImages'
+]);
+
+
+Route::get('/create-images-service-{service_id}', [
+    'before' => 'auth',
+    'as' => 'create_images_service_path',
+    'uses' => 'ServiceController@createImagesService'
+]);
+
+
+Route::post('/add-images-service', [
+    'before' => 'auth',
+    'as' => 'add_images_service_path',
+    'uses' => 'ServiceController@addImageService'
+]);
+
+
+Route::get('/edit-image-service-{service_carousel_id}', [
+    'before' => 'auth',
+    'as' => 'edit_image_service_path',
+    'uses' => 'ServiceController@editImageService'
+]);
+
+
+Route::post('/update-image-service-{service_carousel_id}', [
+    'before' => 'auth',
+    'as' => 'update_image_service_path',
+    'uses' => 'ServiceController@updateImageService'
+]);
+
+
+Route::post('/delete-img-service', [
+    'before' => 'auth',
+    'as' => 'delete_image_service_path',
+    'uses' => 'ServiceController@deleteImageService'
+]);
+
+
+/* ------------------------
+VIDEOS SERVICE MANAGEMENT
+--------------------------- */
+
+
+Route::get('/show-service-videos-{service_id}', [
+    'before' => 'auth',
+    'as' => 'show_service_videos_path',
+    'uses' => 'ServiceController@showServiceVideos'
+]);
+
+
+Route::get('/create-video-service-{service_id}', [
+    'before' => 'auth',
+    'as' => 'create_video_service_path',
+    'uses' => 'ServiceController@createVideoService'
+]);
+
+
+Route::post('/add-video-service', [
+    'before' => 'auth',
+    'as' => 'add_video_service_path',
+    'uses' => 'ServiceController@addVideoService'
+]);
+
+
+Route::get('/video-edit-service-{service_video_id}', [
+    'before' => 'auth',
+    'as' => 'video_edit_service_path',
+    'uses' => 'ServiceController@editVideoService'
+]);
+
+
+Route::post('/video-update-service-{service_video_id}', [
+    'before' => 'auth',
+    'as' => 'video_update_service_path',
+    'uses' => 'ServiceController@updateVideoService'
+]);
+
+
+Route::post('/video-delete-service', [
+    'before' => 'auth',
+    'as' => 'video_delete_service_path',
+    'uses' => 'ServiceController@deleteVideoService'
+]);
 
 
 

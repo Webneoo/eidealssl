@@ -1,0 +1,12 @@
+.modal-backdrop.in
+{
+	z-index:-1;
+}
+
+.blue_icons
+{
+	border:none; 
+	background:transparent; 
+	color:#337ab7;
+}
+

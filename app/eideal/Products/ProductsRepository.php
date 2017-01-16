@@ -612,7 +612,7 @@ class ProductsRepository {
                       'city'=> $city,
                       'shipping_address' => $shipping_address,
                       'payment_method_id' => 1,
-                      'purchase_date' => Carbon::now()
+                      'purchase_date' => Carbon::now('Asia/Beirut')
                     ));
     }
 
@@ -637,7 +637,7 @@ class ProductsRepository {
                       'city'=> $city,
                       'shipping_address' => $shipping_address,
                       'payment_method_id' => 2,
-                      'purchase_date' => Carbon::now(),
+                      'purchase_date' => Carbon::now('Asia/Beirut'),
                       'audi_order_reference' => $audi_order_ref,
                       'audi_order_id' => $audi_order_id,
                       'audi_transaction_status' => $audi_transaction_status,
@@ -730,7 +730,7 @@ class ProductsRepository {
                 'city'=> $city,
                 'shipping_address' => $shipping_address,
                 'payment_method_id' => 3,
-                'purchase_date' => Carbon::now(),
+                'purchase_date' => Carbon::now('Asia/Beirut'),
                 'paypal_resp_msg' => $paypal_resp_msg
               ));
     }

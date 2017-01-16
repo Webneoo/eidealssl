@@ -35,7 +35,6 @@ class ProductController extends \BaseController {
 
 	public function index($id)
 	{  
-
         // save the last session of the product in order to return to the same product when clicking "continue shopping" in the cart list
         Session::put('product_id', $id);
 
@@ -85,10 +84,8 @@ class ProductController extends \BaseController {
                 return View::make('signin.index', array('pagename' => $pagename));         
             }
 
-
             else
             {   
-
                 $liquid_product_id = $input['liquid_product_id'];
                 $user_id = Session::get('user_id');
 
@@ -184,8 +181,6 @@ class ProductController extends \BaseController {
                         'all_subcategoryList' => $all_subcategoryList,
                         'id' => $id
                         ));
-
-
     }
     
 

@@ -1785,3 +1785,15 @@ cursor:pointer;
     font-family:ComicSansMS;
     color:red;
 }
+
+.delete_button
+{
+    border:none;
+    background:transparent;
+    color:#337ab7;
+}
+
+.menu_seleted
+{
+    text-decoration: underline !important;
+}

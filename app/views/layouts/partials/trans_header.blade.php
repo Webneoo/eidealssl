@@ -19,28 +19,37 @@
                     <nav class="mainmenu hidden-xs hidden-sm visible-md visible-lg navbar">
                       <ul class="menu" style="display: block;">
 
-                        <li <?php if($pagename == 'about-us') echo 'class="active"'; ?>><a href="{{ route('about_us_path') }}">ABOUT US <span class="sr-only">(current)</span></a></li>
-                        <li <?php if($pagename == 'products') echo 'class="active"'; ?> ><a href="{{ route('all_products_path') }}">PRODUCTS</a></li>
-                        <li class="dropdown" <?php if($pagename == 'news-0' || $pagename == 'videos') echo 'class="active"'; ?>>
+                        <li <?php if($pagename == 'about-us') echo 'class="menu_seleted"'; ?>><a href="{{ route('about_us_path') }}">ABOUT US <span class="sr-only">(current)</span></a></li>
+                        <li <?php if($pagename == 'products') echo 'class="menu_seleted"'; ?> ><a href="{{ route('all_products_path') }}">PRODUCTS</a></li>
+                        <li class="dropdown" <?php if($pagename == 'news-0' || $pagename == 'videos') echo 'class="menu_seleted"'; ?>>
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MEDIA <span class="caret"></span></a>
                           <ul class="dropdown-menu">
                             <li><a href="{{ route('news_path',0) }}">NEWS</a></li>
                             <li><a href="{{ route('videos_path') }}">VIDEOS</a></li>
-
                           </ul>
                         </li>
 
-                        <li class="dropdown" <?php if($pagename == 'brands-1' || $pagename == 'brands-2' || $pagename == 'brands-3' || $pagename == 'brands-4') echo 'class="active"'; ?>>
+                        <li class="dropdown {{ ( (strpos($pagename, 'brands-') !== false) ) ? 'menu_seleted' : '' }}" >
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">BRANDS <span class="caret"></span></a>
                           <ul class="dropdown-menu">
-                            <li><a href="brands-1">AMAZON KERATIN</a></li>
-                            <li><a href="brands-2">FacePro</a></li>
-                            <li><a href="brands-4">Vern</a></li>
+                            @foreach($menu_brands as $b)
+                             <li><a href="service-{{$b->brand_id}}">{{ $b->brand_title}}</a></li>
+                            @endforeach
                           </ul>
                         </li>
 
-                  <!--      <li <?php if($pagename == 'where-to-buy-0') echo 'class="active"'; ?>><a href="{{ route('where_to_buy_path',0) }}">WHERE TO BUY</a></li> -->
-                        <li <?php if($pagename == 'contact-us') echo 'class="active"'; ?>><a href="{{ route('contact_us_path') }}">CONTACT US</a></li>
+                        <li class="dropdown {{ ( (strpos($pagename, 'services-') !== false) ) ? 'menu_seleted' : '' }}" >
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">LEARN MORE <span class="caret"></span></a>
+                          <ul class="dropdown-menu">
+                          @foreach($menu_services as $s)
+                            <li><a href="service-{{$s->service_id}}">{{ $s->title}}</a></li>
+                          @endforeach
+                          </ul>
+                        </li>
+
+
+                  <!--      <li <?php if($pagename == 'where-to-buy-0') echo 'class="menu_seleted"'; ?>><a href="{{ route('where_to_buy_path',0) }}">WHERE TO BUY</a></li> -->
+                        <li <?php if($pagename == 'contact-us') echo 'class="menu_seleted"'; ?>><a href="{{ route('contact_us_path') }}">CONTACT US</a></li>
                         <li>
                           {{ Form::open(['route' => 'products_path_search', 'role' => 'form']) }}
                             <div class="navMenu expander">

@@ -2,6 +2,8 @@
 
 use Laracasts\Commander\CommanderTrait;
 
+use eideal\Services\ServicesRepository;
+
 class BaseController extends Controller {
 
     use CommanderTrait;
@@ -13,7 +15,6 @@ class BaseController extends Controller {
 	 *
 	 * @return void
 	 */
-
 
 	protected function setupLayout()
 	{   
@@ -59,10 +60,18 @@ class BaseController extends Controller {
             $this->ex_rate = (float)$this->ex_rate[1];
             $this->ex_rate = number_format($this->ex_rate, 5, '.', '');
         }
- 
+
+        // get all services for the menu
+        View::share('menu_services', \DB::select(\DB::raw("SELECT * FROM ta_services ORDER BY updated_at DESC") ));
+        // get all brands for the menu
+        View::share('menu_brands', \DB::select(\DB::raw("SELECT * FROM ta_brands ORDER BY updated_at DESC") ));
+
+
         // sharing the ex_rate to all the views
         View::share ( 'curr', $this->ex_rate);
         View::share ( 'quoteCurr', $quoteCurrency);
+
+     //   View::share ( 'a', $a);
 
 	}
 

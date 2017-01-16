@@ -21,6 +21,8 @@
           <!-- Custom Fonts -->
           <link href="/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+          <link rel="stylesheet" href="/css/cms_style.css?v=<?php echo filemtime('css/style.css');?>" type="text/css" media="all" />
+
           <!-- DataTables CSS -->
           <link href="/css/plugins/dataTables.bootstrap.css" rel="stylesheet">
 
