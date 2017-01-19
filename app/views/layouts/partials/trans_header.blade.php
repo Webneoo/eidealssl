@@ -33,7 +33,7 @@
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">BRANDS <span class="caret"></span></a>
                           <ul class="dropdown-menu">
                             @foreach($menu_brands as $b)
-                             <li><a href="service-{{$b->brand_id}}">{{ $b->brand_title}}</a></li>
+                             <li><a href="brands-{{$b->brand_id}}">{{ $b->brand_title}}</a></li>
                             @endforeach
                           </ul>
                         </li>
