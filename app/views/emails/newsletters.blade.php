@@ -1,4 +1,4 @@
-<div class="newsletters_email_template" style="font-family: 'Comic Sans MS', 'Comic Sans', cursive;">
+<div class="newsletters_email_template" style="font-family: helvetica;">
 
 <b>Dear EIDEAL Fan,</b> <br/><br/>
 
@@ -10,4 +10,4 @@ Join our journey and become a #HairToolsGuru<br/><br/>
 </div>
 
 
-<img src="https://eideal.com/images/eideal_mail_signature.png">
+<a href="https://eideal.com"><img src="https://eideal.com/images/eideal_mail_signature.png"></a>

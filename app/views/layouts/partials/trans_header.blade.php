@@ -39,7 +39,7 @@
                         </li>
 
                         <li class="dropdown {{ ( (strpos($pagename, 'services-') !== false) ) ? 'menu_seleted' : '' }}" >
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">LEARN MORE <span class="caret"></span></a>
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SERVICES <span class="caret"></span></a>
                           <ul class="dropdown-menu">
                           @foreach($menu_services as $s)
                             <li><a href="service-{{$s->service_id}}">{{ $s->title}}</a></li>

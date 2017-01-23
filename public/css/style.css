@@ -674,6 +674,11 @@ footer a:hover{
     {
         padding-top:56px;
     } 
+
+    .second_sub_footer
+    {
+        padding-left:4% !important;
+    }
 }
 
 
@@ -777,6 +782,11 @@ footer a:hover{
     {
         padding-top:56px;
     }
+
+    .second_sub_footer
+    {
+        padding-left:4.5% !important;
+    }
 }
 
 @media screen and (min-width: 767px) and (max-width: 991px ) { /*--  sm -- */
@@ -835,6 +845,11 @@ footer a:hover{
         margin-bottom:0px !important;
         position:relative;
         bottom:10px;
+    }
+
+      .second_sub_footer
+    {
+        padding-left:6.5% !important;
     }
 }
 

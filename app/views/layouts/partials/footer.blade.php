@@ -8,18 +8,19 @@
                 <a href="{{ route('disclaimer_path') }}">DISCLAIMER</a><br/>  
                 <a href="{{ route('about_us_path') }}">ABOUT US</a>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-3">
+            <div class="col-lg-3 col-md-3 col-sm-3 second_sub_footer">
                 <h1> EIDEAL </h1>
                 <a href="{{ route('all_products_path') }}">PRODUCTS</a><br/>
-                <a href="{{ route('brands_path',1) }}">BRANDS</a><br/>     
+                <a href="{{ route('brands_path', $menu_brands[0]->brand_id) }}">BRANDS</a><br/>     
                 <a href="{{ route('eteam_path') }}">E-TEAM</a><br/>           
-                <a href="{{ route('news_path') }}">NEWS</a><br/>
-                <a href="{{ route('videos_path') }}">VIDEOS</a>
+                <a href="{{ route('videos_path') }}">VIDEOS</a><br/>
+                <a href="{{ route('news_path') }}">NEWS</a>
                 
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3">
-                <h1> SERVICES </h1>
+                <h1> LEARN MORE </h1>
                 <!-- <a href="{{ route('where_to_buy_path',0) }}">WHERE TO BUY</a><br/> -->
+                <a href="{{ route('service_path', $menu_services[0]->service_id) }}">SERVICES</a><br/>
                 <a href="{{ route('contact_us_path') }}">CONTACT US</a><br/>
                 <a href="{{ route('contact_us_path') }}#careers">CAREERS</a><br/>
                 <a href="{{ route('faq_path') }}">FAQs</a>

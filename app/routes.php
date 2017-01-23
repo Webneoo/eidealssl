@@ -294,7 +294,7 @@ Route::get('brands-{brand_id}',[
     ]);
 
 
-/* ------------------- BRANDS   ---------------*/
+/* ------------------- SERVICES   ---------------*/
 
 Route::get('service-{service_id}',[
     'as' => 'service_path',
@@ -303,7 +303,7 @@ Route::get('service-{service_id}',[
 
 
 
-/* ------------------- BRANDS   ---------------*/
+/* ------------------- FAQ  ---------------*/
 
 Route::get('faq',[
     'as' => 'faq_path',
