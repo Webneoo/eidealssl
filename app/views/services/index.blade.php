@@ -96,7 +96,7 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-sx-12 news_click">
 
              <hr style="width:100%;" class="gray_spliter">
-              <iframe class="youtube_iframe" width="100%" src="https://www.youtube.com/embed/{{ $v->url }}" frameborder="0" allowfullscreen></iframe>
+              <iframe class="youtube_iframe" width="100%" src="https://www.youtube.com/embed/{{ $v->url }}?modestbranding=1&autohide=1&showinfo=0&rel=0" frameborder="0" allowfullscreen></iframe>
               <div class="news_title">{{ $v->title }}</div>
             </div>  
         <?php $i++; ?>

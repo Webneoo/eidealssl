@@ -31,7 +31,7 @@
 
         <div class="privacy_section">
             <h3 class="privacy_2"><b>ELECTRONIC COMMUNICATIONS</b></h3>
-            <p class="privacy_2">When you visit EIDEALonline.com or send e-mails to us, you are communicating with us electronically. You consent to receive communications from us electronically. We will communicate with you by e-mail e-mail (two different ways of phrasing email throughout) or by posting notices on this site. You agree that all agreements, notices, disclosures, invoices, and other communications that we provide to you electronically, satisfy any legal requirement that such communications be in writing.
+            <p class="privacy_2">When you visit eideal.com or send e-mails to us, you are communicating with us electronically. You consent to receive communications from us electronically. We will communicate with you by e-mail e-mail (two different ways of phrasing email throughout) or by posting notices on this site. You agree that all agreements, notices, disclosures, invoices, and other communications that we provide to you electronically, satisfy any legal requirement that such communications be in writing.
             </p>
         </div>
 
@@ -63,7 +63,7 @@
             <h3 class="privacy_2"><b>Cash on Delivery Terms</b></h3>
             <p class="privacy_2">Cash on Delivery service is available to customers in the UAE and Lebanon. Customers placing orders for delivery outside these locations must pay via the online payment option.
                   <br/><br/>
-             Before placing a Cash on Delivery order on eidealonline.com, please note the following terms:
+             Before placing a Cash on Delivery order on eideal.com, please note the following terms:
             </p>
               <ul class="privacy_2">
                 <li>Please provide a valid mobile phone number before confirming your order so that our courier may contact 
@@ -71,7 +71,7 @@
                 <li>Only cash payments will be accepted. Any other payment methods like personal cheques or credit cards will not be accepted; therefore you will not be able to receive your shipment. 
                     If you would like to use your credit card, please proceed to online payment</li>
                 <li>Not accepting an order, intentionally avoiding the Cash on Delivery courier, or not being able to make a full payment at time of delivery may result in loss of Cash On Delivery buying
-                 privilege at eidealonline.com and/or account suspension.</li>
+                 privilege at eideal.com and/or account suspension.</li>
               </ul>
         </div>
 
@@ -79,7 +79,7 @@
             <h3 class="privacy_2"><b>Product Return Policy</b></h3>
             <h4 class="privacy_2"><b>Can I cancel the order after I have made my purchase?</b></h4>
                <p class="privacy_2">If you have changed your mind after purchasing an EIDEAL product, please Contact Us to explain the reason behind it. If the products have still not been delivered to the delivery service provider, we can instantly cancel the purchase order and give you a full refund. If the products have been sent, we will not be able to refund the cost of the products. 
-                     Please return the items in a secured package, with a copy of the invoice to the following address: EIDEAL TRADING L.L.C, P.O. Box: 187123, Office 409, Al DANA Center, Al Maktoum Strt., Deira, Dubai, UAE. </br>
+                     Please return the items in a secured package, with a copy of the invoice to the following address: EIDEAL TRADING L.L.C, P.O. Box: 187123, Office 905, Sama Tower, Sheikh Zayed Road, Trade Center Area, Dubai, UAE. </br>
                      Tel: +97142594665 Fax: +97142594669
                 </p>
         </div>
