@@ -34,14 +34,14 @@
           </div>
 
             <!-- if the search didn't return any result --> 
-            @if(empty($productsList))
+            @if(empty($productsList) && isset($sequence))
             <br/>
             <div class="no_results"> <i style="color:#eecc38" class="fa fa-exclamation-triangle"></i> No results found for <b>"{{ $sequence }}"</b> </div> 
 
             @endif
 
 
-
+        @if(!empty($productsList))    
           <div class="row product_squares">
 
               <?php 
@@ -118,7 +118,7 @@
               ?>
 
           </div>
-
+        @endif
           <br/>
       </div>   
 
