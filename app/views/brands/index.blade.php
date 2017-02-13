@@ -33,6 +33,7 @@
     @endforeach
     </div>
 
+    @if($brand_images != NULL)
     <div class="row">
   		<div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0" style="text-align:center;">
 
@@ -91,7 +92,8 @@
   			<hr style="border-top:2px solid #dfdfdf;"> </hr>
   		</div>
       </div>
-
+    @endif
+    
       @foreach ($brand_info as $b)
         <div class="row" style="font-family: 'MontserratRegular';">
           @if(!empty($b->title1) && !empty($b->desc1))

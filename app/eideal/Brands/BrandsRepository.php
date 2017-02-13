@@ -115,7 +115,8 @@ class BrandsRepository {
     public function getImagesFromBrandId($brand_id)
     {   
          $q = \DB::select(
-            \DB::raw("SELECT * FROM ta_brand_image 
+            \DB::raw("SELECT * 
+                      FROM ta_brand_image 
                       WHERE brand_id = :brand_id
                       ORDER BY updated_at DESC"),
             array(':brand_id' => $brand_id)
