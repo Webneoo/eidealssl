@@ -11,8 +11,11 @@ class ProductsRepository {
      public function getAllCategory()
     {   
           $q = \DB::select(
-                \DB::raw("SELECT * 
-                          FROM ta_category")
+                \DB::raw("SELECT *
+                          FROM ta_category
+                          ORDER BY
+                            CASE WHEN title = 'EIDEAL' THEN 0 ELSE 1 END,
+                          title")
         );
 
         return $q;
