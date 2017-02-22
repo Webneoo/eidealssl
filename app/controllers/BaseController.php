@@ -64,7 +64,7 @@ class BaseController extends Controller {
         // get all services for the menu
         View::share('menu_services', \DB::select(\DB::raw("SELECT * FROM ta_services ORDER BY updated_at DESC") ));
         // get all brands for the menu
-        View::share('menu_brands', \DB::select(\DB::raw("SELECT * FROM ta_brands ORDER BY updated_at DESC") ));
+        View::share('menu_brands', \DB::select(\DB::raw("SELECT * FROM ta_brands ORDER BY brand_title ASC") ));
 
 
         // sharing the ex_rate to all the views
