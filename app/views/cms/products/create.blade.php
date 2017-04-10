@@ -49,18 +49,22 @@
                     </script>
                 </div>
 
-                 <div class="form-group">
+                <div class="form-group">
                     {{ Form::label('product_price', 'Price in USD ($)') }}
-                    {{ Form::text('product_price', null, ['class' => 'form-control', 'placeholder' => 'Prodcut price', 'required' => 'required'])  }}
+                    {{ Form::text('product_price', null, ['class' => 'form-control', 'placeholder' => 'Prodcut price'])  }}
                 </div>
 
 
                 <div class="form-group">
-                    <input type="checkbox" name="liquid_product" class="form-control" value="1" style="width:20px; height:20px; display:inline;">  
-                     {{ Form::label('liquid_product', 'Liquid product') }}         
+                    <input id="disable_price" type="checkbox" name="disable_price" class="form-control" value="1" style="width:20px; height:20px; display:inline; position:relative; top:3px; cursor:pointer;"> 
+                    <label class="disable_price" for="disable_price" style="cursor:pointer">Disable the price</label>    
                 </div>
 
-                
+                <div class="form-group">
+                    <input id="liquid_product" type="checkbox" name="liquid_product" class="form-control" value="1" style="width:20px; height:20px; display:inline; position:relative; top:3px; cursor:pointer">  
+                     <label class="liquid_product" for="liquid_product" style="cursor:pointer">Liquid product</label>       
+                </div>    
+            
 
                 <div class="form-group" >
                     <label for="product_img_1"> Product Main Image: <span style="color:red">(Image size 247 x 178 px or a proportional one) </span></label>
@@ -122,7 +126,19 @@
              pickTime: true,
              format: 'YYYY-MM-DD H:m:00'
          });
+
+         $('.bootstrap-datetimepicker-widget').css('display', 'none'); 
      });
+
+
+     $('#disable_price').change(function(){
+        if($('#disable_price:checked').length){
+            $('#product_price').attr('readonly',true); //If checked - Read only
+        }else{
+            $('#product_price').attr('readonly',false);//Not Checked - Normal
+        }
+    });
+
 
 $('#product_best_seller').on('change', function(){
    this.value = this.checked ? 1 : 0;

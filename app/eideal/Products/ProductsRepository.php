@@ -116,13 +116,13 @@ class ProductsRepository {
     public function getAllProductsFromSearch($sequence)
     {   
           $q = \DB::select(
-                \DB::raw("SELECT A.product_id, A.code, A.title, A.small_desc, A.text, A.price, A.img1, A.sub_category_id, A.liquid_product, A.updated_at, A.promo_start_date, A.promo_end_date, A.percentage 
+                \DB::raw("SELECT A.product_id, A.code, A.title, A.small_desc, A.text, A.price, A.img1, A.sub_category_id, A.liquid_product, A.updated_at, A.promo_start_date, A.promo_end_date, A.percentage, A.disable_price 
                           FROM ta_products A
                           WHERE A.title LIKE '%".$sequence."%' OR A.small_desc LIKE '%".$sequence."%' OR A.text LIKE '%".$sequence."%'
 
                           UNION
                             
-                          SELECT A.product_id, A.code, A.title, A.small_desc, A.text, A.price, A.img1, A.sub_category_id, A.liquid_product, A.updated_at, A.promo_start_date, A.promo_end_date, A.percentage
+                          SELECT A.product_id, A.code, A.title, A.small_desc, A.text, A.price, A.img1, A.sub_category_id, A.liquid_product, A.updated_at, A.promo_start_date, A.promo_end_date, A.percentage, A.disable_price 
                           FROM ta_products as A 
                           WHERE A.sub_category_id IN (SELECT A.sub_category_id
                           FROM ta_sub_category as A
@@ -206,7 +206,13 @@ class ProductsRepository {
 
 
     public function updateProduct($product_id, $input)
-    {   
+    {    
+        // check if we have disabled the price of the product 
+        if(isset($input['disable_price']) && $input['disable_price'] == 1)
+          $disable_price = 1;
+        else
+          $disable_price =0;
+
          $q = \DB::select(
             \DB::raw("UPDATE ta_products
                       SET code = :code, 
@@ -222,7 +228,8 @@ class ProductsRepository {
                           updated_at = :updated_at,
                           liquid_product = :liquid_product,
                           youtube_title = :youtube_title,
-                          youtube_url = :youtube_url
+                          youtube_url = :youtube_url,
+                          disable_price = :disable_price
                       WHERE product_id = :product_id"),
             array(':product_id' => $product_id, 
                   ':code' => $input['product_code'], 
@@ -238,16 +245,24 @@ class ProductsRepository {
                   ':updated_at' => $input['product_date'],
                   ':liquid_product' => $input['liquid_product'],
                   ':youtube_title' => $input['youtube_title'],
-                  ':youtube_url' => $input['youtube_url']
+                  ':youtube_url' => $input['youtube_url'],
+                  ':disable_price' => $disable_price
                   )
             );
     }
 
     public function createProduct($input)
-    {  
+    {    
+        // check if we have disabled the price of the product 
+        if(isset($input['disable_price']) && $input['disable_price'] == 1)
+          $disable_price = 1;
+        else
+          $disable_price =0;
+
+
          $q = \DB::select(
-            \DB::raw("INSERT INTO ta_products (code, title, small_desc, text, price, img1, img2, img3, img4, sub_category_id, created_at, updated_at, liquid_product, youtube_title, youtube_url, promo_start_date, promo_end_date, percentage)
-                      VALUES (:code, :title, :small_desc, :text, :price, :img1, :img2, :img3, :img4, :sub_category_id, :created_at, :updated_at, :liquid_product, :youtube_title, :youtube_url, NULL, NULL, NULL)"),
+            \DB::raw("INSERT INTO ta_products (code, title, small_desc, text, price, img1, img2, img3, img4, sub_category_id, created_at, updated_at, liquid_product, youtube_title, youtube_url, promo_start_date, promo_end_date, percentage, disable_price)
+                      VALUES (:code, :title, :small_desc, :text, :price, :img1, :img2, :img3, :img4, :sub_category_id, :created_at, :updated_at, :liquid_product, :youtube_title, :youtube_url, NULL, NULL, NULL, :disable_price)"),
             array(':code' => $input['product_code'], 
                   ':title' => $input['product_title'], 
                   ':small_desc' => $input['product_short_desc'],
@@ -262,7 +277,8 @@ class ProductsRepository {
                   ':updated_at' => $input['product_date'],
                   ':liquid_product' => $input['liquid_product'],
                   ':youtube_title' => $input['youtube_title'],
-                  ':youtube_url' => $input['youtube_url']
+                  ':youtube_url' => $input['youtube_url'],
+                  ':disable_price' => $disable_price
 
                   )
             );
@@ -332,7 +348,7 @@ class ProductsRepository {
 
          $q = \DB::select(
             \DB::raw("SELECT A.product_id, A.code, A.title, A.small_desc, A.text, 
-                             A.price, A.img1, A.img2, A.img3, A.img4, A.best_seller, A.sub_category_id, A.liquid_product, A.promo_start_date, A.promo_end_date, A.percentage
+                             A.price, A.img1, A.img2, A.img3, A.img4, A.best_seller, A.sub_category_id, A.liquid_product, A.promo_start_date, A.promo_end_date, A.percentage, A.disable_price
                       FROM ta_products A, ta_product_month B
                       WHERE A.product_id = B.product_id
                        ")

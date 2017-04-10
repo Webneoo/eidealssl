@@ -63,6 +63,14 @@
         <div class="row">
             <p class="best-seller-title"><b>PRODUCT OF THE MONTH</b></p>
         </div>
+
+        <?php  
+           $disable_price_flag = 0;
+
+           //test if the product has an disabled price or price = 0 => set flag to 1 
+           if($productMonth[0]->disable_price == 1 || $productMonth[0]->price == 0)
+             $disable_price_flag = 1;
+         ?>
         
         <div class="row">
             <div class=" col-lg-offset-3 col-lg-6 col-md-offset-3 col-md-6 col-sm-offset-1 col-sm-10 col-xs-12">
@@ -92,19 +100,16 @@
                     $price = number_format((float)$price*$curr, 2, '.', '');
                   ?>
 
-
-                @if( ($productMonth[0]->promo_start_date != NULL && $productMonth[0]->promo_end_date != NULL) && ($actual_date >= $productMonth[0]->promo_start_date && $actual_date <= $productMonth[0]->promo_end_date) )
-                          <div class="main-product-price" style="position:relative; top:10px;">
-                          {{ number_format($price*(100-$productMonth[0]->percentage)/100, 2, '.', ' ') }} {{ $quoteCurr }} 
-                          <span class="discount_price_home_page"> <strike>{{ number_format($price, 2, '.', ' ') }} {{ $quoteCurr }}</strike></span>
-                          </div>
-                        @else
-                          <div class="main-product-price" style="position:relative; top:10px;"> {{ number_format($price, 2, '.', ' ') }} {{ $quoteCurr }} </div>
-                        @endif
-
-
-
-               
+                 <!-- test if the product has an enabled price or  -->
+                 @if($disable_price_flag == 0)
+                    @if( ($productMonth[0]->promo_start_date != NULL && $productMonth[0]->promo_end_date != NULL) && ($actual_date >= $productMonth[0]->promo_start_date && $actual_date <= $productMonth[0]->promo_end_date) )
+                              <div class="main-product-price" style="position:relative; top:10px;">
+                              {{ number_format($price*(100-$productMonth[0]->percentage)/100, 2, '.', ' ') }} {{ $quoteCurr }} 
+                              <span class="discount_price_home_page"> <strike>{{ number_format($price, 2, '.', ' ') }} {{ $quoteCurr }}</strike></span>
+                              </div>
+                            @else
+                              <div class="main-product-price" style="position:relative; top:10px;"> {{ number_format($price, 2, '.', ' ') }} {{ $quoteCurr }} </div>
+                            @endif
 
 
                   <!-- test if the product is not liquid -->
@@ -121,6 +126,12 @@
                       
                     {{ Form::close() }}
                     @endif
+
+                  @else <!-- product price is disabled  -->
+                      <a class="best-seller-button ask_exp_link" href="{{ route('contact_us_path') }}"> ASK THE EXPERT </a>
+                  @endif 
+
+
                 </div>
 
               </div>
@@ -176,6 +187,13 @@
         <br/>
         <div class="row">
           @foreach($bestSeller as $b)
+           <?php  
+             $disable_price_flag = 0;
+
+             //test if the product has an disabled price or price = 0 => set flag to 1 
+             if($b->disable_price == 1 || $b->price == 0)
+               $disable_price_flag = 1;
+           ?>
 
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="panel panel-default panel_product_box_2">
@@ -200,16 +218,20 @@
                           $price = number_format((float)$price*$curr, 2, '.', '');
                         ?>
 
-                        @if( ($b->promo_start_date != NULL && $b->promo_end_date != NULL) && ($actual_date >= $b->promo_start_date && $actual_date <= $b->promo_end_date) )
-                          <div class="best-seller-price absolute_best_seller"> 
-                          {{ number_format($price*(100-$b->percentage)/100, 2, '.', ' ') }} {{ $quoteCurr }} 
-                          <span class="discount_price_home_page"> <strike>{{ number_format($price, 2, '.', ' ') }} {{ $quoteCurr }}</strike></span>
-                          </div>
-                        @else
-                          <div class="best-seller-price absolute_best_seller"> {{ number_format($price, 2, '.', ' ') }} {{ $quoteCurr }} </div>
-                        @endif
+                        <!-- if product price is enabled  -->
+                        @if($disable_price_flag == 0)   
+                          
+                          @if( ($b->promo_start_date != NULL && $b->promo_end_date != NULL) && ($actual_date >= $b->promo_start_date && $actual_date <= $b->promo_end_date) )
+                            <div class="best-seller-price absolute_best_seller"> 
+                            {{ number_format($price*(100-$b->percentage)/100, 2, '.', ' ') }} {{ $quoteCurr }} 
+                            <span class="discount_price_home_page"> <strike>{{ number_format($price, 2, '.', ' ') }} {{ $quoteCurr }}</strike></span>
+                            </div>
+                          @else
+                            <div class="best-seller-price absolute_best_seller"> {{ number_format($price, 2, '.', ' ') }} {{ $quoteCurr }} </div>
+                          @endif
 
-                         <!-- test if the product is not liquid -->
+                        
+                          <!-- test if the product is not liquid -->
                           @if($b->liquid_product == 0)
                           <a href="{{ route('cart_path_product', array($product_id) ) }}" class="best-seller-button add_to_cart_button"> ADD TO CART</a>  
                           @endif
@@ -223,6 +245,10 @@
                             
                           {{ Form::close() }}
                           @endif
+
+                        @else <!-- product price is disabled  -->
+                            <a class="best-seller-button add_to_cart_button ask_exp_link" href="{{ route('contact_us_path') }}"> ASK THE EXPERT </a>
+                        @endif   
 
                     </div>
                 </div>
@@ -240,7 +266,7 @@
 
         <div class="row" style="margin-top: 25px; margin-bottom: 25px;">
             @foreach($brandsImages as $b)
-               <div class="col-md-4 col-sm-4 col-xs-12"><a href="{{ route('brands_path', array($b->brand_id) ) }}" class="thumbnail"><img src="images/brands/{{$b->url_img}}" style="max-width:100%;" alt="{{$b->brand_title}}" title="{{$b->brand_title}}"></a></div>
+               <div class="col-md-3 col-sm-3 col-xs-12"><a href="{{ route('brands_path', array($b->brand_id) ) }}" class="thumbnail"><img src="images/brands/{{$b->url_img}}" style="max-width:100%;" alt="{{$b->brand_title}}" title="{{$b->brand_title}}"></a></div>
             @endforeach
     
         </div>

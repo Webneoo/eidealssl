@@ -25,8 +25,8 @@
 
                  {{ Form::label('brand_title', 'BRAND TITLE:')  }}
                <div class="form-group">
-                 <!-- View website http://eonasdan.github.io/bootstrap-datetimepicker/ -->
-                 <div class='input-group date' id='datetimepicker1'  style="width:100%;">
+                 
+                 <div class='input-group'  style="width:100%;">
                      {{ Form::text('brand_title', $b->brand_title, ['class' => 'form-control', 'placeholder' => 'Brand title'])  }}
     
                  </div>
@@ -41,8 +41,7 @@
 
               {{ Form::label('title_1', 'TITLE 1:')  }}
                <div class="form-group">
-                
-                <div class='input-group date' id='datetimepicker1'  style="width:100%;">
+                <div class='input-group'  style="width:100%;">
                     @if(!empty($b->title1))
                      {{ Form::text('title_1', $b->title1, ['class' => 'form-control', 'placeholder' => 'Title 1'])  }}
                     @endif
@@ -74,8 +73,7 @@
 
                 {{ Form::label('title_2', 'TITLE 2:')  }}
                <div class="form-group">
-        
-                 <div class='input-group date' id='datetimepicker1'  style="width:100%;">
+                 <div class='input-group'  style="width:100%;">
                     @if(!empty($b->title2)) 
                      {{ Form::text('title_2', $b->title2, ['class' => 'form-control', 'placeholder' => 'Title 2'])  }}
                     @endif
@@ -106,8 +104,7 @@
 
                 {{ Form::label('title_3', 'TITLE 3:')  }}
                <div class="form-group">
-                 <!-- View website http://eonasdan.github.io/bootstrap-datetimepicker/ -->
-                 <div class='input-group date' id='datetimepicker1'  style="width:100%;">
+                 <div class='input-group'  style="width:100%;">
                      @if(!empty($b->title3)) 
                      {{ Form::text('title_3', $b->title3, ['class' => 'form-control', 'placeholder' => 'Title 3'])  }}
                     @endif
@@ -139,8 +136,7 @@
 
                  {{ Form::label('title_4', 'TITLE 4:')  }}
                <div class="form-group">
-                 <!-- View website http://eonasdan.github.io/bootstrap-datetimepicker/ -->
-                 <div class='input-group date' id='datetimepicker1'  style="width:100%;">
+                 <div class='input-group'  style="width:100%;">
                      @if(!empty($b->title4)) 
                      {{ Form::text('title_4', $b->title4, ['class' => 'form-control', 'placeholder' => 'Title 4'])  }}
                     @endif
@@ -172,8 +168,7 @@
 
                  {{ Form::label('title_5', 'TITLE 5:')  }}
                <div class="form-group">
-                 <!-- View website http://eonasdan.github.io/bootstrap-datetimepicker/ -->
-                 <div class='input-group date' id='datetimepicker1'  style="width:100%;">
+                 <div class='input-group'  style="width:100%;">
                      @if(!empty($b->title5)) 
                      {{ Form::text('title_5', $b->title5, ['class' => 'form-control', 'placeholder' => 'Title 5'])  }}
                     @endif
@@ -207,17 +202,5 @@
         </div>
     </div>
  </div>
-
- <script src="js/moment.js"></script>
- <script src="js/datepicker.js"></script>
- <script type="text/javascript">
-     $(function () {
-         $('#datetimepicker1').datetimepicker({
-             pickTime: false,
-             format: 'YYYY-MM-DD'
-         });
-     });
- </script>
-
 
 @stop

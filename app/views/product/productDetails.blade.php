@@ -33,6 +33,14 @@
         <div class="row"> 
        @foreach ($product_info as $p)
 
+       <?php
+          $disable_price_flag = 0;
+
+          //test if the product has an disabled price or price = 0 => set flag to 1  -->
+          if($p->disable_price == 1 || $p->price == 0)
+            $disable_price_flag = 1;
+        ?>
+
           <!-- check if the product has an active promo -->
 
          <?php $actual_date = Carbon::now('Asia/Beirut'); ?>
@@ -74,6 +82,9 @@
                       ?>
                   </div>
                   <div>
+                    <!-- test if the product has an enabled price or  -->
+                    @if($disable_price_flag == 0)
+
                       <b style="font-size:18px;">Price: </b>
 
                       @if( ($p->promo_start_date != NULL && $p->promo_end_date != NULL) && ($actual_date >= $p->promo_start_date && $actual_date <= $p->promo_end_date) )
@@ -84,6 +95,8 @@
                       @else
                       <span class="best-seller-price"> <b> {{ $price }} {{ $quoteCurr }} </b></span>
                       @endif
+
+                    @endif
                   </div>
 
                     <br/><br/>
@@ -98,29 +111,32 @@
                       </div>
                       @endif
                     <?php
-                    } 
+                    }    
                     ?>
                   </div>
 
+                 <!-- test if the product has an enabled price or  -->
+                  @if($disable_price_flag == 0)
 
-                  <!-- test if the product is not liquid -->
-                  @if($p->liquid_product == 0)
-                  <a href="{{ route('cart_path_product', array($product_id) ) }}" class="best-seller-button" style="float:left;"> ADD TO CART</a>  
-                  @endif
+                      <!-- test if the product is not liquid -->
+                      @if($p->liquid_product == 0)
+                      <a href="{{ route('cart_path_product', array($product_id) ) }}" class="best-seller-button" style="float:left;"> ADD TO CART</a>  
+                      @endif
 
-                  <!-- test if the product is liquid -->
-                  @if($p->liquid_product == 1)
-                  {{ Form::open(['route' => ['products_details_path', $p->product_id, $p->sub_category_id, 'USD'], 'role' => 'form']) }}
+                      <!-- test if the product is liquid -->
+                      @if($p->liquid_product == 1)
+                      {{ Form::open(['route' => ['products_details_path', $p->product_id, $p->sub_category_id, 'USD'], 'role' => 'form']) }}
 
-                    <input name="liquid_product_id" type="hidden" value="{{$p->product_id}}" >
-                    <input name="submit_liquid_product" type="submit" value="ADD TO CART" class="best-seller-button" style="float:left; border:none;"/>
-                    
-                  {{ Form::close() }}
+                        <input name="liquid_product_id" type="hidden" value="{{$p->product_id}}" >
+                        <input name="submit_liquid_product" type="submit" value="ADD TO CART" class="best-seller-button" style="float:left; border:none;"/>
+                        
+                      {{ Form::close() }}
+                      @endif
+                      
                   @endif
 
                   <button type="button" class="ask_the_expert" style="position:relative; top:26px; left:8px;">
-                    <a href="{{ route('contact_us_path') }}"> ASK THE EXPERT
-                    </a>
+                    <a href="{{ route('contact_us_path') }}"> ASK THE EXPERT </a>
                   </button>   
                   <div class="sm_share_div">
                     <div class="share_details"><b>Share: </b></div> 

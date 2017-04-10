@@ -85,6 +85,8 @@
              pickTime: true,
              format: 'YYYY-MM-DD H:m:00'
          });
+
+         $('.bootstrap-datetimepicker-widget').css('display', 'none'); 
      });
  </script>
 

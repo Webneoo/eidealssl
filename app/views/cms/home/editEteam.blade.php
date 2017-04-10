@@ -44,16 +44,4 @@
     </div>
  </div>
 
- <script src="js/moment.js"></script>
- <script src="js/datepicker.js"></script>
- <script type="text/javascript">
-     $(function () {
-         $('#datetimepicker1').datetimepicker({
-             pickTime: false,
-             format: 'YYYY-MM-DD'
-         });
-     });
- </script>
-
-
 @stop

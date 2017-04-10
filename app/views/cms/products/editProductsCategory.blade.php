@@ -61,9 +61,11 @@
  <script type="text/javascript">
      $(function () {
          $('#datetimepicker1').datetimepicker({
-             pickTime: false,
+             pickTime: true,
              format: 'YYYY-MM-DD'
          });
+
+         $('.bootstrap-datetimepicker-widget').css('display', 'none'); 
      });
 
  </script>

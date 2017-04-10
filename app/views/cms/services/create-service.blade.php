@@ -20,7 +20,6 @@
 
               {{ Form::label('service_title', 'TITLE:')  }}
                <div class="form-group">
-                 <!-- View website http://eonasdan.github.io/bootstrap-datetimepicker/ -->
                  <div class='input-group' style="width:100%;">
                      {{ Form::text('service_title', null, ['class' => 'form-control', 'placeholder' => 'Enter the service title'])  }}
     
@@ -70,6 +69,8 @@
              pickTime: false,
              format: 'YYYY-MM-DD'
          });
+
+         $('.bootstrap-datetimepicker-widget').css('display', 'none'); 
      });
  </script>
 

@@ -24,7 +24,7 @@
               {{ Form::label('title_1', 'TITLE 1:')  }}
                <div class="form-group">
                  <!-- View website http://eonasdan.github.io/bootstrap-datetimepicker/ -->
-                 <div class='input-group date' id='datetimepicker1'  style="width:100%;">
+                 <div class='input-group'  style="width:100%;">
                      {{ Form::text('title_1', null, ['class' => 'form-control', 'placeholder' => 'Title 1'])  }}
     
                  </div>
@@ -41,7 +41,7 @@
                 {{ Form::label('title_2', 'TITLE 2:')  }}
                <div class="form-group">
                  <!-- View website http://eonasdan.github.io/bootstrap-datetimepicker/ -->
-                 <div class='input-group date' id='datetimepicker1'  style="width:100%;">
+                 <div class='input-group'  style="width:100%;">
                      {{ Form::text('title_2', null, ['class' => 'form-control', 'placeholder' => 'Title 2'])  }}
     
                  </div>
@@ -58,7 +58,7 @@
                 {{ Form::label('title_3', 'TITLE 3:')  }}
                <div class="form-group">
                  <!-- View website http://eonasdan.github.io/bootstrap-datetimepicker/ -->
-                 <div class='input-group date' id='datetimepicker1'  style="width:100%;">
+                 <div class='input-group'  style="width:100%;">
                      {{ Form::text('title_3', null, ['class' => 'form-control', 'placeholder' => 'Title 3'])  }}
     
                  </div>

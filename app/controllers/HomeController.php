@@ -7,7 +7,6 @@ use Laracasts\Flash\Flash;
 use eideal\Home\HomeRepository;
 use eideal\Products\ProductsRepository;
 use eideal\Forms\CreateStoreForm;
-use eideal\Forms\CreateAboutUsForms;
 use eideal\Forms\CreateSlideshowForm;
 use eideal\Media\MediasRepository;
 use Illuminate\Support\Facades\Session;
@@ -23,7 +22,6 @@ class HomeController extends \BaseController {
      private $homeRepository;
      private $createStoreForm;
      private $productsRepository;
-     private $createAboutUsForms;
      private $createSlideshowForm;
      private $mediasRepository;
      private $userRepository;
@@ -32,12 +30,11 @@ class HomeController extends \BaseController {
 
     function __construct(HomeRepository $homeRepository, MediasRepository $mediasRepository,
                          CreateStoreForm $createStoreForm, ProductsRepository $productsRepository,
-                         CreateAboutUsForms $createAboutUsForms, CreateSlideshowForm $createSlideshowForm, UserRepository $userRepository, BrandsRepository $brandsRepository, NewslettersForm $newslettersForm)
+                         CreateSlideshowForm $createSlideshowForm, UserRepository $userRepository, BrandsRepository $brandsRepository, NewslettersForm $newslettersForm)
     {
         $this->homeRepository = $homeRepository;
         $this->createStoreForm = $createStoreForm;
         $this->productsRepository = $productsRepository;
-        $this->createAboutUsForms = $createAboutUsForms;
         $this->createSlideshowForm = $createSlideshowForm;
         $this->mediasRepository = $mediasRepository;
         $this->userRepository = $userRepository;
@@ -519,8 +516,6 @@ class HomeController extends \BaseController {
     {   
          $pagename = pageName();
          $input = Input::all();
-      //   $this->createAboutUsForms->validate($input);
-
 
          if(Input::hasFile('about_us_img'))
         {

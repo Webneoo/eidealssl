@@ -55,6 +55,8 @@
              pickTime: false,
              format: 'YYYY-MM-DD'
          });
+
+         $('.bootstrap-datetimepicker-widget').css('display', 'none'); 
      });
  </script>
 

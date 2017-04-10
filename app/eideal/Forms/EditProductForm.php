@@ -23,7 +23,6 @@ class EditProductForm extends FormValidator {
         'product_title' => 'required',
         'product_short_desc' => 'required',
         'product_long_desc' => 'required',
-        'product_price' => 'required',
         'product_date' => 'required'
     ];
 

@@ -24,7 +24,6 @@ class CreateProductForm extends FormValidator {
         'product_title' => 'required',
         'product_short_desc' => 'required',
         'product_long_desc' => 'required',
-        'product_price' => 'required',
         'product_img_1' => 'image|required|mimes:jpeg,bmp,png,jpg',
         'product_date' => 'required'
 

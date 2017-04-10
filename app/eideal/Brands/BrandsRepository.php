@@ -28,9 +28,9 @@ class BrandsRepository {
                           WHERE B.brand_id = C.brand_id
                           ORDER BY RAND()
                           ) A
-                          GROUP BY A.brand_id")
-        );
-
+                          GROUP BY A.brand_id
+                          ORDER BY A.brand_title ASC")
+                        );
         return $q;
     }
 

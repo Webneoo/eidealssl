@@ -631,11 +631,9 @@ class ProductController extends \BaseController {
 
     public function update($product_id)
     {   
-
         $pagename = pageName();
 
         $input = Input::all();
-
 
         $product_info = $this->productsRepository->getProductInfoFromId($product_id);
         foreach($product_info as $p)

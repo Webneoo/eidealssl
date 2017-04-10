@@ -1795,6 +1795,18 @@ cursor:pointer;
     text-decoration:underline;
 }
 
+.ask_exp_link
+{
+    font-size:13px;
+    padding-top:9px;
+    padding-bottom:9px;
+}
+
+.ask_exp_link:visited, .ask_exp_link:focus
+{
+    color:white;
+}
+
 .newsletters_email_template
 {
     font-family:ComicSansMS;

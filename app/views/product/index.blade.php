@@ -36,9 +36,7 @@
             <!-- if the search didn't return any result --> 
             @if(empty($productsList) && isset($sequence))
             <br/>
-            <div class="no_results"> <i style="color:#eecc38" class="fa fa-exclamation-triangle"></i> No results found for <b>"{{ $sequence }}"</b> </div> 
-
-            @endif
+            <div class="no_results"> <i style="color:#eecc38" class="fa fa-exclamation-triangle"></i> No results found for <b>"{{ $sequence }}"</b> </div>@endif
 
 
         @if(!empty($productsList))    
@@ -48,15 +46,21 @@
               $c=0;
               foreach ($productsList as $p)
               {
+                $disable_price_flag = 0;
+
+                //test if the product has an disabled price or price = 0 => set flag to 1  -->
+                if($p->disable_price == 1 || $p->price == 0)
+                  $disable_price_flag = 1;
+
+
                 if($c%3 == 0 && $c!=0)
                 {
                   ?>
                   </div>
                    <div class="row product_squares">
               <?php
-              }  
+                }  
               ?>  
-
                    <div class="col-lg-4 col-md-4 product_box">
                       <div class="panel panel-default panel_product_box">
                               <?php $product_id = $p->product_id; ?>
@@ -79,22 +83,28 @@
                                       $price = number_format($price*$curr, 2, '.', '');
                                     ?>
 
+                                    <!-- test if the product has an enabled price or  -->
+                                    @if($disable_price_flag == 0)
+                                        
+                                        @if( ($p->promo_start_date != NULL && $p->promo_end_date != NULL) && ($actual_date >= $p->promo_start_date && $actual_date <= $p->promo_end_date) )
 
-                                    @if( ($p->promo_start_date != NULL && $p->promo_end_date != NULL) && ($actual_date >= $p->promo_start_date && $actual_date <= $p->promo_end_date) )
+                                          <div class="best-seller-price absolute_position">  <span class="prod_price"> {{ number_format($price*(100-$p->percentage)/100, 2, '.', ' ') }} </span> {{ $quoteCurr }}
+                                            <span class="discount_price"> <strike>{{ number_format($price, 2, '.', ' ') }} {{ $quoteCurr }}</strike></span>
+                                          </div>
+                                        @else
+                                        <div class="best-seller-price absolute_position">  <span class="prod_price"> {{ number_format($price, 2, '.', ' ') }} </span> {{ $quoteCurr }}</div>
+                                        @endif
 
-                                      <div class="best-seller-price absolute_position">  <span class="prod_price"> {{ number_format($price*(100-$p->percentage)/100, 2, '.', ' ') }} </span> {{ $quoteCurr }}
-                                        <span class="discount_price"> <strike>{{ number_format($price, 2, '.', ' ') }} {{ $quoteCurr }}</strike></span>
-                                      </div>
-                                    @else
-                                    <div class="best-seller-price absolute_position">  <span class="prod_price"> {{ number_format($price, 2, '.', ' ') }} </span> {{ $quoteCurr }}</div>
                                     @endif
                                 
                                  </div> 
 
-
+                              <!-- if product price is enabled  -->
+                              @if($disable_price_flag == 0)   
+                                
                                 <!-- test if the product is not liquid -->
                                 @if($p->liquid_product == 0)
-                                <a href="{{ route('cart_path_product', array($product_id) ) }}" class="best-seller-button add_to_cart_link"> ADD TO CART</a>  
+                                        <a href="{{ route('cart_path_product', array($product_id) ) }}" class="best-seller-button add_to_cart_link"> ADD TO CART</a>  
                                 @endif
 
                                 <!-- test if the product is liquid -->
@@ -106,6 +116,10 @@
                                   
                                 {{ Form::close() }}
                                 @endif
+
+                              @else <!-- product price is disabled  -->
+                                  <a class="best-seller-button add_to_cart_link ask_exp_link" href="{{ route('contact_us_path') }}"> ASK THE EXPERT </a>
+                              @endif  
 
                                 <br/>
                        </div>

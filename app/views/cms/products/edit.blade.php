@@ -55,12 +55,17 @@
 
                 <div class="form-group">
                     {{ Form::label('product_price', 'Price in USD ($)') }}
-                    {{ Form::text('product_price', $p->price, ['class' => 'form-control', 'placeholder' => 'Prodcut price', 'required' => 'required'])  }}
+                    {{ Form::text('product_price', $p->price, ['class' => 'form-control', 'placeholder' => 'Prodcut price', 'id' => 'product_price'])  }}
                 </div>
 
                 <div class="form-group">
-                    <input <?php if($p->liquid_product == 1) echo 'checked'; ?> type="checkbox" name="liquid_product" class="form-control" value="1" style="width:20px; height:20px; display:inline;">  
-                     {{ Form::label('liquid_product', 'Liquid product') }}         
+                    <input id="disable_price" <?php if($p->disable_price == 1) echo 'checked'; ?> type="checkbox" name="disable_price" class="form-control" value="1" style="width:20px; height:20px; display:inline; position:relative; top:3px; cursor:pointer;"> 
+                    <label class="disable_price" for="disable_price" style="cursor:pointer">Disable the price</label>    
+                </div>
+
+                <div class="form-group">
+                    <input id="liquid_product" <?php if($p->liquid_product == 1) echo 'checked'; ?> type="checkbox" name="liquid_product" class="form-control" value="1" style="width:20px; height:20px; display:inline; position:relative; top:3px; cursor:pointer">  
+                     <label class="liquid_product" for="liquid_product" style="cursor:pointer">Liquid product</label>       
                 </div>
 
 
@@ -68,7 +73,6 @@
                     <label for="product_img_1"> Product Main Image: <span style="color:blue">(Image size 900 x 649 px or a proportional one) </span></label>
                     <br/> <img src="images/products/<?php echo $p->img1; ?>" style="border:1px solid #2e2e2e" width="650px"/><br/>
                     {{ Form::file('product_img_1', null, ['class' => 'form-control'])  }}<br/>
-
                 </div>
 
                 <div class="form-group" >
@@ -158,7 +162,27 @@
              pickTime: true,
              format: 'YYYY-MM-DD H:m:00'
          });
+
+         $('.bootstrap-datetimepicker-widget').css('display', 'none'); 
      });
+
+
+     $(document).ready(function(){
+    if($('#disable_price:checked').length){
+        $('#product_price').attr('readonly',true); // On Load, should it be read only?
+    }
+
+    $('#disable_price').change(function(){
+        if($('#disable_price:checked').length){
+            $('#product_price').attr('readonly',true); //If checked - Read only
+        }else{
+            $('#product_price').attr('readonly',false);//Not Checked - Normal
+        }
+    });
+});
+
+
+
 
  </script>
 
