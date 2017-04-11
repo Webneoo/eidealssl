@@ -60,9 +60,9 @@
                       <img style="height:25px; position:relative; bottom:7px; margin-top:8px;" src="images/whatsapp_logo.png"/>  +971564452369 
                     </div>
 
-                    <a style="color:#01aae9; font-size:16px;" href="skype:santiago.susie?call" title="Call us on skype"> 
+                   <!--  <a style="color:#01aae9; font-size:16px;" href="skype:santiago.susie?call" title="Call us on skype"> 
                       <img style="height:25px; position:relative; bottom:7px; margin-top:8px;" src="images/skype.png"/> Call us 
-                    </a>
+                    </a> -->
 
                          <!--  <a href="skype:miachkar?call"> call me </a> -->
                     </p>  
