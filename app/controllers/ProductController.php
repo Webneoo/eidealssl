@@ -75,11 +75,9 @@ class ProductController extends \BaseController {
             if(!Auth::check())
             {   
              
-                 echo "
-                <script type=\"text/javascript\">
-                    alert('The product that you are trying to buy is a liquid product. Please sign in to proceed due to shipping restrictions');
-                </script>
-                ";
+                $alert_msg = '\nThank you for your interest in our products.\nThe selected product is a liquid product and cannot be added to the cart due to shipping restrictions to certain countries.\nPlease sign in to proceed';
+                
+                echo "<script type=\"text/javascript\">alert('".$alert_msg."');</script>";
 
                 return View::make('signin.index', array('pagename' => $pagename));         
             }
@@ -107,21 +105,16 @@ class ProductController extends \BaseController {
               
 
                
-                 Mail::send('emails.liquid-product', array('user_id' => $user_id, 'name' => $name, 'username' => $username, 'email' => $email, 'phone' => $phone, 
-                                                           'country' => $country, 'liquid_product_id' => $liquid_product_id, 'code' => $code, 
-                                                           'product_name' => $product_name, 'city' => $city, 'address' => $address), 
+                Mail::send('emails.liquid-product', array('user_id' => $user_id, 'name' => $name, 'username' => $username, 'email' => $email, 'phone' => $phone, 'country' => $country, 'liquid_product_id' => $liquid_product_id, 'code' => $code, 'product_name' => $product_name, 'city' => $city, 'address' => $address), 
                         function($message) use ($email)
                     {
                         $message->from($email, 'Eideal website')->subject('Liquid product email');
                         $message->to('ecommerce@eideal.com');
                     });
 
-
-                echo "
-                <script type=\"text/javascript\">
-                  alert('The selected product is a liquid product and cannot be added to the cart due to shipping restrictions. An email containing your purchase information has been sent to ecommerce@eideal.com and they will contact you soon.Thank you.');
-                </script>
-                ";          
+              $alert_msg = 'Dear '.Session::get('firstname').'\n\nThank you for your interest in our products.\nYour inquiry is well received.\nThe selected product is a liquid product and cannot be added to the cart due to shipping restrictions to certain countries.\nOne of our team members will get in touch with you ASAP from 9am-6pm, Sunday through Thursday to further update you about your order’s status and delivery options and itinerary.\n';
+                
+                echo "<script type=\"text/javascript\">alert('".$alert_msg."');</script>";          
             }
 
 
@@ -231,11 +224,9 @@ class ProductController extends \BaseController {
             if(!Auth::check())
             {   
              
-                 echo "
-                <script type=\"text/javascript\">
-                    alert('The product that you are trying to buy is a liquid product. Please sign in to proceed due to shipping restrictions');
-                </script>
-                ";
+                $alert_msg = '\nThank you for your interest in our products.\nThe selected product is a liquid product and cannot be added to the cart due to shipping restrictions to certain countries.\nPlease sign in to proceed';
+                
+                echo "<script type=\"text/javascript\">alert('".$alert_msg."');</script>";
 
                 return View::make('signin.index', array('pagename' => $pagename));         
             }
@@ -275,11 +266,9 @@ class ProductController extends \BaseController {
                     });
 
 
-                echo "
-                <script type=\"text/javascript\">
-                  alert('The selected product is a liquid product and cannot be added to the cart due to shipping restrictions. An email containing your purchase information has been sent to ecommerce@eideal.com and they will contact you soon.Thank you.');
-                </script>
-                ";          
+               $alert_msg = 'Dear '.Session::get('firstname').'\n\nThank you for your interest in our products.\nYour inquiry is well received.\nThe selected product is a liquid product and cannot be added to the cart due to shipping restrictions to certain countries.\nOne of our team members will get in touch with you ASAP from 9am-6pm, Sunday through Thursday to further update you about your order’s status and delivery options and itinerary.\n';
+                
+                echo "<script type=\"text/javascript\">alert('".$alert_msg."');</script>";      
             }
 
 
@@ -401,11 +390,9 @@ class ProductController extends \BaseController {
             if(!Auth::check())
             {   
 
-                 echo "
-                <script type=\"text/javascript\">
-                    alert('The product that you are trying to buy is a liquid product. Please sign in to proceed due to shipping restrictions');
-                </script>
-                ";
+                $alert_msg = '\nThank you for your interest in our products.\nThe selected product is a liquid product and cannot be added to the cart due to shipping restrictions to certain countries.\nPlease sign in to proceed';
+                
+                echo "<script type=\"text/javascript\">alert('".$alert_msg."');</script>";
 
                 return View::make('signin.index', array('pagename' => $pagename));         
             }
@@ -413,7 +400,6 @@ class ProductController extends \BaseController {
 
             else
             {   
-
                 $liquid_product_id = $input['liquid_product_id'];
                 $user_id = Session::get('user_id');
 
@@ -443,11 +429,9 @@ class ProductController extends \BaseController {
                     });
 
 
-                echo "
-                <script type=\"text/javascript\">
-                  alert('The selected product is a liquid product and cannot be added to the cart due to shipping restrictions. An email containing your purchase information has been sent to ecommerce@eideal.com and they will contact you soon.Thank you.');
-                </script>
-                ";          
+                $alert_msg = 'Dear '.Session::get('firstname').'\n\nThank you for your interest in our products.\nYour inquiry is well received.\nThe selected product is a liquid product and cannot be added to the cart due to shipping restrictions to certain countries.\nOne of our team members will get in touch with you ASAP from 9am-6pm, Sunday through Thursday to further update you about your order’s status and delivery options and itinerary.\n';
+                
+                echo "<script type=\"text/javascript\">alert('".$alert_msg."');</script>";      
             }
 
 

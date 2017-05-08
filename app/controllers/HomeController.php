@@ -67,11 +67,9 @@ class HomeController extends \BaseController {
             if(!Auth::check())
             {   
 
-                 echo "
-                <script type=\"text/javascript\">
-                    alert('The product that you are trying to buy is a liquid product. Please sign in to proceed due to shipping restrictions');
-                </script>
-                ";
+                $alert_msg = '\nThank you for your interest in our products.\nThe selected product is a liquid product and cannot be added to the cart due to shipping restrictions to certain countries.\nPlease sign in to proceed';
+                
+                echo "<script type=\"text/javascript\">alert('".$alert_msg."');</script>";
 
                 return View::make('signin.index', array('pagename' => $pagename));         
             }
@@ -109,11 +107,9 @@ class HomeController extends \BaseController {
                         $message->to('ecommerce@eideal.com');
                     });
 
-                echo "
-                <script type=\"text/javascript\">
-                  alert('The selected product is a liquid product and cannot be added to the cart due to shipping restrictions. An email containing your purchase information has been sent to ecommerce@eideal.com and they will contact you soon.Thank you.');
-                </script>
-                ";          
+                $alert_msg = 'Dear '.Session::get('firstname').'\n\nThank you for your interest in our products.\nYour inquiry is well received.\nThe selected product is a liquid product and cannot be added to the cart due to shipping restrictions to certain countries.\nOne of our team members will get in touch with you ASAP from 9am-6pm, Sunday through Thursday to further update you about your order’s status and delivery options and itinerary.\n';
+                
+                echo "<script type=\"text/javascript\">alert('".$alert_msg."');</script>";                  
             }
 
         }
@@ -253,11 +249,9 @@ class HomeController extends \BaseController {
             if(!Auth::check())
             {   
 
-                 echo "
-                <script type=\"text/javascript\">
-                    alert('The product that you are trying to buy is a liquid product. Please sign in to proceed due to shipping restrictions');
-                </script>
-                ";
+                $alert_msg = '\nThank you for your interest in our products.\nThe selected product is a liquid product and cannot be added to the cart due to shipping restrictions to certain countries.\nPlease sign in to proceed';
+                
+                echo "<script type=\"text/javascript\">alert('".$alert_msg."');</script>";
 
                 return View::make('signin.index', array('pagename' => $pagename));         
             }
@@ -295,11 +289,9 @@ class HomeController extends \BaseController {
                         $message->to('ecommerce@eideal.com');
                     });
 
-                echo "
-                <script type=\"text/javascript\">
-                  alert('The selected product is a liquid product and cannot be added to the cart due to shipping restrictions. An email containing your purchase information has been sent to ecommerce@eideal.com and they will contact you soon.Thank you.');
-                </script>
-                ";          
+                $alert_msg = 'Dear '.Session::get('firstname').'\n\nThank you for your interest in our products.\nYour inquiry is well received.\nThe selected product is a liquid product and cannot be added to the cart due to shipping restrictions to certain countries.\nOne of our team members will get in touch with you ASAP from 9am-6pm, Sunday through Thursday to further update you about your order’s status and delivery options and itinerary.\n';
+                
+                echo "<script type=\"text/javascript\">alert('".$alert_msg."');</script>";                   
             }
 
         }
