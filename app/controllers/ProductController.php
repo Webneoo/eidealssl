@@ -75,7 +75,7 @@ class ProductController extends \BaseController {
             if(!Auth::check())
             {   
              
-                $alert_msg = '\nThank you for your interest in our products.\nThe selected product is a liquid product and cannot be added to the cart due to shipping restrictions to certain countries.\nPlease sign in to proceed';
+                $alert_msg = '\nThank you for your interest in our products.\nThe selected product is a liquid product and cannot be added to the cart due to shipping restrictions to certain countries.\nPlease sign in to proceed.\nRegards';
                 
                 echo "<script type=\"text/javascript\">alert('".$alert_msg."');</script>";
 
@@ -112,7 +112,7 @@ class ProductController extends \BaseController {
                         $message->to('ecommerce@eideal.com');
                     });
 
-              $alert_msg = 'Dear '.Session::get('firstname').'\n\nThank you for your interest in our products.\nYour inquiry is well received.\nThe selected product is a liquid product and cannot be added to the cart due to shipping restrictions to certain countries.\nOne of our team members will get in touch with you ASAP from 9am-6pm, Sunday through Thursday to further update you about your order’s status and delivery options and itinerary.\n';
+              $alert_msg = 'Dear '.Session::get('firstname').',\n\nThank you for your interest in our products.\nYour inquiry is well received.\nThe selected product is a liquid product and cannot be added to the cart due to shipping restrictions to certain countries.\nOne of our team members will get in touch with you ASAP from 9am-6pm, Sunday through Thursday to further update you about your order’s status and delivery options and itinerary.\nRegards';
                 
                 echo "<script type=\"text/javascript\">alert('".$alert_msg."');</script>";          
             }
@@ -224,7 +224,7 @@ class ProductController extends \BaseController {
             if(!Auth::check())
             {   
              
-                $alert_msg = '\nThank you for your interest in our products.\nThe selected product is a liquid product and cannot be added to the cart due to shipping restrictions to certain countries.\nPlease sign in to proceed';
+                $alert_msg = '\nThank you for your interest in our products.\nThe selected product is a liquid product and cannot be added to the cart due to shipping restrictions to certain countries.\nPlease sign in to proceed.\nRegards';
                 
                 echo "<script type=\"text/javascript\">alert('".$alert_msg."');</script>";
 
@@ -266,7 +266,7 @@ class ProductController extends \BaseController {
                     });
 
 
-               $alert_msg = 'Dear '.Session::get('firstname').'\n\nThank you for your interest in our products.\nYour inquiry is well received.\nThe selected product is a liquid product and cannot be added to the cart due to shipping restrictions to certain countries.\nOne of our team members will get in touch with you ASAP from 9am-6pm, Sunday through Thursday to further update you about your order’s status and delivery options and itinerary.\n';
+               $alert_msg = 'Dear '.Session::get('firstname').',\n\nThank you for your interest in our products.\nYour inquiry is well received.\nThe selected product is a liquid product and cannot be added to the cart due to shipping restrictions to certain countries.\nOne of our team members will get in touch with you ASAP from 9am-6pm, Sunday through Thursday to further update you about your order’s status and delivery options and itinerary.\nRegards';
                 
                 echo "<script type=\"text/javascript\">alert('".$alert_msg."');</script>";      
             }
@@ -390,7 +390,7 @@ class ProductController extends \BaseController {
             if(!Auth::check())
             {   
 
-                $alert_msg = '\nThank you for your interest in our products.\nThe selected product is a liquid product and cannot be added to the cart due to shipping restrictions to certain countries.\nPlease sign in to proceed';
+                $alert_msg = '\nThank you for your interest in our products.\nThe selected product is a liquid product and cannot be added to the cart due to shipping restrictions to certain countries.\nPlease sign in to proceed.\nRegards';
                 
                 echo "<script type=\"text/javascript\">alert('".$alert_msg."');</script>";
 
@@ -429,7 +429,7 @@ class ProductController extends \BaseController {
                     });
 
 
-                $alert_msg = 'Dear '.Session::get('firstname').'\n\nThank you for your interest in our products.\nYour inquiry is well received.\nThe selected product is a liquid product and cannot be added to the cart due to shipping restrictions to certain countries.\nOne of our team members will get in touch with you ASAP from 9am-6pm, Sunday through Thursday to further update you about your order’s status and delivery options and itinerary.\n';
+                $alert_msg = 'Dear '.Session::get('firstname').',\n\nThank you for your interest in our products.\nYour inquiry is well received.\nThe selected product is a liquid product and cannot be added to the cart due to shipping restrictions to certain countries.\nOne of our team members will get in touch with you ASAP from 9am-6pm, Sunday through Thursday to further update you about your order’s status and delivery options and itinerary.\nRegards';
                 
                 echo "<script type=\"text/javascript\">alert('".$alert_msg."');</script>";      
             }
