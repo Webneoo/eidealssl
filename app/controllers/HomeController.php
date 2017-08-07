@@ -201,7 +201,7 @@ class HomeController extends \BaseController {
                   $emails = array();
 
                   $emails[0] = $email;
-                  $emails[1] = 'ecommerce@eideal.com';
+                  //$emails[1] = 'ecommerce@eideal.com';
 
                   foreach($emails as $e)
                   {
