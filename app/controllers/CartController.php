@@ -1131,6 +1131,9 @@ class CartController extends \BaseController {
                    // $paypal_amount = $_GET['amt'];
                    // $paypal_currency = $_GET['cc'];
                     $paypal_status = $_GET['st'];
+                    if(!isset($_GET['cm']) || empty($_GET['cm']))
+                    $paypal_message = '';
+                    else
                     $paypal_message = $_GET['cm'];
 
 
