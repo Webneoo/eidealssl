@@ -63,7 +63,12 @@
                 <div class="form-group">
                     <input id="liquid_product" type="checkbox" name="liquid_product" class="form-control" value="1" style="width:20px; height:20px; display:inline; position:relative; top:3px; cursor:pointer">  
                      <label class="liquid_product" for="liquid_product" style="cursor:pointer">Liquid product</label>       
-                </div>    
+                </div>
+
+                <div class="form-group">
+                    <input id="sold_out" type="checkbox" name="sold_out" class="form-control" value="1" style="width:20px; height:20px; display:inline; position:relative; top:3px; cursor:pointer">  
+                     <label class="sold_out" for="sold_out" style="cursor:pointer">Sold Out</label>       
+                </div>     
             
 
                 <div class="form-group" >

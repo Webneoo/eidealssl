@@ -478,7 +478,7 @@ class ProductController extends \BaseController {
         //  //split the currency units from the number
         // $html_number = preg_split('/(?=[A-Z])/', $finalData[0]);
 
-         $data = file_get_contents($url);
+         $data = file_get_contents($url); 
          preg_match_all("/<span class=bld>(.*)<\/span>/", $data, $converted);
          $final = preg_replace("/[^0-9.]/", "", $converted[1][0]);
 

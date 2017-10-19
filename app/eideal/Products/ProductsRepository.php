@@ -213,6 +213,13 @@ class ProductsRepository {
         else
           $disable_price =0;
 
+        // check if the product is sold out
+        if(isset($input['sold_out']) && $input['sold_out'] == 1)
+          $sold_out = 1;
+        else
+          $sold_out =0;
+
+
          $q = \DB::select(
             \DB::raw("UPDATE ta_products
                       SET code = :code, 
@@ -229,7 +236,8 @@ class ProductsRepository {
                           liquid_product = :liquid_product,
                           youtube_title = :youtube_title,
                           youtube_url = :youtube_url,
-                          disable_price = :disable_price
+                          disable_price = :disable_price,
+                          sold_out = :sold_out
                       WHERE product_id = :product_id"),
             array(':product_id' => $product_id, 
                   ':code' => $input['product_code'], 
@@ -246,7 +254,8 @@ class ProductsRepository {
                   ':liquid_product' => $input['liquid_product'],
                   ':youtube_title' => $input['youtube_title'],
                   ':youtube_url' => $input['youtube_url'],
-                  ':disable_price' => $disable_price
+                  ':disable_price' => $disable_price,
+                  ':sold_out' => $sold_out
                   )
             );
     }
@@ -259,10 +268,16 @@ class ProductsRepository {
         else
           $disable_price =0;
 
+        // check if the product is sold out
+        if(isset($input['sold_out']) && $input['sold_out'] == 1)
+          $sold_out = 1;
+        else
+          $sold_out =0;
+
 
          $q = \DB::select(
-            \DB::raw("INSERT INTO ta_products (code, title, small_desc, text, price, img1, img2, img3, img4, sub_category_id, created_at, updated_at, liquid_product, youtube_title, youtube_url, promo_start_date, promo_end_date, percentage, disable_price)
-                      VALUES (:code, :title, :small_desc, :text, :price, :img1, :img2, :img3, :img4, :sub_category_id, :created_at, :updated_at, :liquid_product, :youtube_title, :youtube_url, NULL, NULL, NULL, :disable_price)"),
+            \DB::raw("INSERT INTO ta_products (code, title, small_desc, text, price, img1, img2, img3, img4, sub_category_id, created_at, updated_at, liquid_product, youtube_title, youtube_url, promo_start_date, promo_end_date, percentage, disable_price, sold_out)
+                      VALUES (:code, :title, :small_desc, :text, :price, :img1, :img2, :img3, :img4, :sub_category_id, :created_at, :updated_at, :liquid_product, :youtube_title, :youtube_url, NULL, NULL, NULL, :disable_price, :sold_out)"),
             array(':code' => $input['product_code'], 
                   ':title' => $input['product_title'], 
                   ':small_desc' => $input['product_short_desc'],
@@ -278,8 +293,8 @@ class ProductsRepository {
                   ':liquid_product' => $input['liquid_product'],
                   ':youtube_title' => $input['youtube_title'],
                   ':youtube_url' => $input['youtube_url'],
-                  ':disable_price' => $disable_price
-
+                  ':disable_price' => $disable_price,
+                  ':sold_out' => $sold_out
                   )
             );
     }
@@ -348,7 +363,7 @@ class ProductsRepository {
 
          $q = \DB::select(
             \DB::raw("SELECT A.product_id, A.code, A.title, A.small_desc, A.text, 
-                             A.price, A.img1, A.img2, A.img3, A.img4, A.best_seller, A.sub_category_id, A.liquid_product, A.promo_start_date, A.promo_end_date, A.percentage, A.disable_price
+                             A.price, A.img1, A.img2, A.img3, A.img4, A.best_seller, A.sub_category_id, A.liquid_product, A.promo_start_date, A.promo_end_date, A.percentage, A.disable_price, A.sold_out
                       FROM ta_products A, ta_product_month B
                       WHERE A.product_id = B.product_id
                        ")
@@ -391,7 +406,7 @@ class ProductsRepository {
 
         $q = \DB::select(
             \DB::raw("SELECT A.order_id, A.user_id, A.order_status_id, C.product_id, C.code as id, C.price, B.quantity as qty, C.title as name, C.price,
-                             C.promo_start_date, C.promo_end_date, C.percentage
+                             C.promo_start_date, C.promo_end_date, C.percentage, C.sold_out
                       FROM ta_orders as A
                       LEFT JOIN ta_order_products as B ON A.order_id = B.order_id
                       LEFT JOIN ta_products as C on B.product_id = C.product_id

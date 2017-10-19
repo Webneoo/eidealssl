@@ -68,6 +68,11 @@
                      <label class="liquid_product" for="liquid_product" style="cursor:pointer">Liquid product</label>       
                 </div>
 
+                <div class="form-group">
+                    <input id="sold_out" <?php if($p->sold_out == 1) echo 'checked'; ?> type="checkbox" name="sold_out" class="form-control" value="1" style="width:20px; height:20px; display:inline; position:relative; top:3px; cursor:pointer">  
+                     <label class="sold_out" for="sold_out" style="cursor:pointer">Sold Out</label>       
+                </div>
+
 
                 <div class="form-group" >
                     <label for="product_img_1"> Product Main Image: <span style="color:blue">(Image size 900 x 649 px or a proportional one) </span></label>

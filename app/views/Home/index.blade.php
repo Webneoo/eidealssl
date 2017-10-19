@@ -84,6 +84,10 @@
                 <div class="discount_percentage_prod_of_month"> - {{ $productMonth[0]->percentage }}% </div>
               @endif
 
+              @if( $productMonth[0]->sold_out == 1 )
+                <div class="discount_percentage_prod_of_month" style="width:75px;"> Sold Out</div>
+              @endif
+
               <img id="main_img_src" src="images/products/{{ $productMonth[0]->img1 }}" class="best-seller-image" style="margin-bottom: 10px; border:1px solid #e0e0e0;"/>
               </a>
            
@@ -100,36 +104,42 @@
                     $price = number_format((float)$price*$curr, 2, '.', '');
                   ?>
 
-                 <!-- test if the product has an enabled price or  -->
-                 @if($disable_price_flag == 0)
-                    @if( ($productMonth[0]->promo_start_date != NULL && $productMonth[0]->promo_end_date != NULL) && ($actual_date >= $productMonth[0]->promo_start_date && $actual_date <= $productMonth[0]->promo_end_date) )
-                              <div class="main-product-price" style="position:relative; top:10px;">
-                              {{ number_format($price*(100-$productMonth[0]->percentage)/100, 2, '.', ' ') }} {{ $quoteCurr }} 
-                              <span class="discount_price_home_page"> <strike>{{ number_format($price, 2, '.', ' ') }} {{ $quoteCurr }}</strike></span>
-                              </div>
-                            @else
-                              <div class="main-product-price" style="position:relative; top:10px;"> {{ number_format($price, 2, '.', ' ') }} {{ $quoteCurr }} </div>
-                            @endif
+
+                <!-- check if the product of the month is sold out -->
+                @if( $productMonth[0]->sold_out == 0 )  
+
+                   <!-- test if the product has an enabled price or  -->
+                   @if($disable_price_flag == 0)
+                      @if( ($productMonth[0]->promo_start_date != NULL && $productMonth[0]->promo_end_date != NULL) && ($actual_date >= $productMonth[0]->promo_start_date && $actual_date <= $productMonth[0]->promo_end_date) )
+                                <div class="main-product-price" style="position:relative; top:10px;">
+                                {{ number_format($price*(100-$productMonth[0]->percentage)/100, 2, '.', ' ') }} {{ $quoteCurr }} 
+                                <span class="discount_price_home_page"> <strike>{{ number_format($price, 2, '.', ' ') }} {{ $quoteCurr }}</strike></span>
+                                </div>
+                              @else
+                                <div class="main-product-price" style="position:relative; top:10px;"> {{ number_format($price, 2, '.', ' ') }} {{ $quoteCurr }} </div>
+                              @endif
 
 
-                  <!-- test if the product is not liquid -->
-                    @if($productMonth[0]->liquid_product == 0)
-                    <a href="{{ route('cart_path_product', array($product_id) ) }}" class="best-seller-button"> ADD TO CART</a>  
-                    @endif
+                    <!-- test if the product is not liquid -->
+                      @if($productMonth[0]->liquid_product == 0)
+                      <a href="{{ route('cart_path_product', array($product_id) ) }}" class="best-seller-button"> ADD TO CART</a>  
+                      @endif
 
-                    <!-- test if the product is liquid -->
-                    @if($productMonth[0]->liquid_product == 1)
-                    {{ Form::open(['route' => 'home_path', 'role' => 'form']) }}
+                      <!-- test if the product is liquid -->
+                      @if($productMonth[0]->liquid_product == 1)
+                      {{ Form::open(['route' => 'home_path', 'role' => 'form']) }}
 
-                      <input name="liquid_product_id" type="hidden" value="{{$productMonth[0]->product_id}}" >
-                      <input name="submit_liquid_product" type="submit" value="ADD TO CART" class="best-seller-button" style="border:none;"/>
-                      
-                    {{ Form::close() }}
-                    @endif
+                        <input name="liquid_product_id" type="hidden" value="{{$productMonth[0]->product_id}}" >
+                        <input name="submit_liquid_product" type="submit" value="ADD TO CART" class="best-seller-button" style="border:none;"/>
+                        
+                      {{ Form::close() }}
+                      @endif
 
-                  @else <!-- product price is disabled  -->
-                      <a class="best-seller-button ask_exp_link" href="{{ route('contact_us_path') }}"> ASK THE EXPERT </a>
-                  @endif 
+                    @else <!-- product price is disabled  -->
+                        <a class="best-seller-button ask_exp_link" href="{{ route('contact_us_path') }}"> ASK THE EXPERT </a>
+                    @endif 
+
+                @endif
 
 
                 </div>
@@ -209,6 +219,10 @@
                           <div class="discount_percentage"> - {{ $b->percentage }}% </div>
                         @endif
 
+                        @if( $b->sold_out == 1 )
+                          <div class="discount_percentage" style="width:75px;"> Sold Out</div>
+                        @endif
+
                         <img src="images/products/{{ $b->img1 }}" class="best-seller-image img_height_index"/>
                       </a>
                         <h1 class="best-seller-h1">{{ $b->title }}</h1>
@@ -218,37 +232,42 @@
                           $price = number_format((float)$price*$curr, 2, '.', '');
                         ?>
 
-                        <!-- if product price is enabled  -->
-                        @if($disable_price_flag == 0)   
-                          
-                          @if( ($b->promo_start_date != NULL && $b->promo_end_date != NULL) && ($actual_date >= $b->promo_start_date && $actual_date <= $b->promo_end_date) )
-                            <div class="best-seller-price absolute_best_seller"> 
-                            {{ number_format($price*(100-$b->percentage)/100, 2, '.', ' ') }} {{ $quoteCurr }} 
-                            <span class="discount_price_home_page"> <strike>{{ number_format($price, 2, '.', ' ') }} {{ $quoteCurr }}</strike></span>
-                            </div>
-                          @else
-                            <div class="best-seller-price absolute_best_seller"> {{ number_format($price, 2, '.', ' ') }} {{ $quoteCurr }} </div>
-                          @endif
-
+                        <!-- Check if the best seller product is sold out -->
+                        @if($b->sold_out == 0)
                         
-                          <!-- test if the product is not liquid -->
-                          @if($b->liquid_product == 0)
-                          <a href="{{ route('cart_path_product', array($product_id) ) }}" class="best-seller-button add_to_cart_button"> ADD TO CART</a>  
-                          @endif
+                            <!-- if product price is enabled  -->
+                            @if($disable_price_flag == 0)   
+                              
+                              @if( ($b->promo_start_date != NULL && $b->promo_end_date != NULL) && ($actual_date >= $b->promo_start_date && $actual_date <= $b->promo_end_date) )
+                                <div class="best-seller-price absolute_best_seller"> 
+                                {{ number_format($price*(100-$b->percentage)/100, 2, '.', ' ') }} {{ $quoteCurr }} 
+                                <span class="discount_price_home_page"> <strike>{{ number_format($price, 2, '.', ' ') }} {{ $quoteCurr }}</strike></span>
+                                </div>
+                              @else
+                                <div class="best-seller-price absolute_best_seller"> {{ number_format($price, 2, '.', ' ') }} {{ $quoteCurr }} </div>
+                              @endif
 
-                          <!-- test if the product is liquid -->
-                          @if($b->liquid_product == 1)
-                          {{ Form::open(['route' => ['products_path', $b->sub_category_id], 'role' => 'form']) }}
-
-                            <input name="liquid_product_id" type="hidden" value="{{$b->product_id}}" >
-                            <input name="submit_liquid_product" type="submit" value="ADD TO CART" class="best-seller-button add_to_cart_button" style="border:none;"/>
                             
-                          {{ Form::close() }}
-                          @endif
+                              <!-- test if the product is not liquid -->
+                              @if($b->liquid_product == 0)
+                              <a href="{{ route('cart_path_product', array($product_id) ) }}" class="best-seller-button add_to_cart_button"> ADD TO CART</a>  
+                              @endif
 
-                        @else <!-- product price is disabled  -->
-                            <a class="best-seller-button add_to_cart_button ask_exp_link" href="{{ route('contact_us_path') }}"> ASK THE EXPERT </a>
-                        @endif   
+                              <!-- test if the product is liquid -->
+                              @if($b->liquid_product == 1)
+                              {{ Form::open(['route' => ['products_path', $b->sub_category_id], 'role' => 'form']) }}
+
+                                <input name="liquid_product_id" type="hidden" value="{{$b->product_id}}" >
+                                <input name="submit_liquid_product" type="submit" value="ADD TO CART" class="best-seller-button add_to_cart_button" style="border:none;"/>
+                                
+                              {{ Form::close() }}
+                              @endif
+
+                            @else <!-- product price is disabled  -->
+                                <a class="best-seller-button add_to_cart_button ask_exp_link" href="{{ route('contact_us_path') }}"> ASK THE EXPERT </a>
+                            @endif 
+
+                        @endif  
 
                     </div>
                 </div>

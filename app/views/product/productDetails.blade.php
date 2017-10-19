@@ -49,6 +49,10 @@
             <div class="discount_percentage_prod_of_month" style="position:relative; left:-10px;"> - {{ $p->percentage }}% </div>
           @endif
 
+          @if($p->sold_out == 1)
+            <div class="discount_percentage_prod_of_month" style="position:relative; left:-10px; width:75px;"> Sold Out </div>
+          @endif
+
 
           <?php $main_img = 'images/products/'.$p->img1; ?>
 
@@ -113,24 +117,29 @@
                     ?>
                   </div>
 
-                 <!-- test if the product has an enabled price or  -->
-                  @if($disable_price_flag == 0)
+                  <!-- test if the product is sold out -->
+                  @if($p->sold_out == 0)
 
-                      <!-- test if the product is not liquid -->
-                      @if($p->liquid_product == 0)
-                      <a href="{{ route('cart_path_product', array($product_id) ) }}" class="best-seller-button" style="float:left;"> ADD TO CART</a>  
+                     <!-- test if the product has an enabled price or  -->
+                      @if($disable_price_flag == 0)
+
+                          <!-- test if the product is not liquid -->
+                          @if($p->liquid_product == 0)
+                          <a href="{{ route('cart_path_product', array($product_id) ) }}" class="best-seller-button" style="float:left;"> ADD TO CART</a>  
+                          @endif
+
+                          <!-- test if the product is liquid -->
+                          @if($p->liquid_product == 1)
+                          {{ Form::open(['route' => ['products_details_path', $p->product_id, $p->sub_category_id, 'USD'], 'role' => 'form']) }}
+
+                            <input name="liquid_product_id" type="hidden" value="{{$p->product_id}}" >
+                            <input name="submit_liquid_product" type="submit" value="ADD TO CART" class="best-seller-button" style="float:left; border:none;"/>
+                            
+                          {{ Form::close() }}
+                          @endif
+                          
                       @endif
 
-                      <!-- test if the product is liquid -->
-                      @if($p->liquid_product == 1)
-                      {{ Form::open(['route' => ['products_details_path', $p->product_id, $p->sub_category_id, 'USD'], 'role' => 'form']) }}
-
-                        <input name="liquid_product_id" type="hidden" value="{{$p->product_id}}" >
-                        <input name="submit_liquid_product" type="submit" value="ADD TO CART" class="best-seller-button" style="float:left; border:none;"/>
-                        
-                      {{ Form::close() }}
-                      @endif
-                      
                   @endif
 
                   <button type="button" class="ask_the_expert" style="position:relative; top:26px; left:8px;">

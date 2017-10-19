@@ -115,7 +115,7 @@
                 </a>
               </td>
               <td style="text-align:center">
-                <a <?php if($itemNb  == 0) echo 'onclick = "return false"';?> type="button" class="btn" style="width:170px; font-family:MontserratLight; color:white;
+                <a <?php if($itemNb  == 0) echo 'onclick = "return false"';?> onclick="return checkSoldOutProducts();" type="button" class="btn" style="width:170px; font-family:MontserratLight; color:white;
                 background-color:#5d8c7a;" href="{{ route('checkout_path') }}">Proceed to checkout</a>
               </td>
               <td></td>
@@ -141,6 +141,8 @@
 
 <script type="text/javascript">
   
+var cartList=<?=json_encode($cartList)?>;
+
   onload=function(){
     var e=document.getElementById("refreshed");
       if(e.value=="no")e.value="yes";
@@ -163,6 +165,30 @@
     //var product_id = $("#add").attr( "productId" );
     window.location = 'remove-shopping-cart-'+product_id;
   }
+
+  //console.log(cartList);
+
+  
+  function checkSoldOutProducts()
+  {
+    var response = true;
+
+    jQuery(cartList).each(function(i, item){
+
+      if(item.sold_out == 1)
+      {  
+        alert('The following product: "'+item.name+' - '+item.id+'" is sold out. Please remove it from your cart in order to proceed');
+        response = false;
+      }
+    });
+
+    return response;
+
+    //  console.log(item.id, item.name, item.sold_out)
+  }
+
+
+
 
 
   

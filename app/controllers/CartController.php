@@ -84,24 +84,30 @@ class CartController extends \BaseController {
                 $cartList = $this->productsRepository->getProductsInCartFromUserId(Session::get('user_id'));  
                 if(empty($cartList)) // if the cart is empty => add a new order_id
                 {   
-                    // adding a new order id with the first product associated to the order_id
-                    $this->productsRepository->insertOrderIdProduct($products[0]->product_id, Session::get('user_id'), 1);
+                    if($products[0]->sold_out == 0) // of the product is not sold out
+                    {
+                        // adding a new order id with the first product associated to the order_id
+                        $this->productsRepository->insertOrderIdProduct($products[0]->product_id, Session::get('user_id'), 1);
+                    }
                 }
                 else // if the cart is not empty and the user already have an order_id
                 {   
-                    $product_exist_flag = 0; // flag that determine if the product exist or no. 0 => doesn't exist, 1 => exist
-                    foreach($cartList as $c)
-                        {
-                            if($c->product_id == $product_id) // if the product already exist in the cart
-                            {  
-                                $this->productsRepository->incrementQuantity($c->product_id, $c->order_id); //update it quantity
-                                $product_exist_flag = 1; // set flag to 1 => product exist => updating the product
-                            }      
-                        }
+                    if($products[0]->sold_out == 0) // of the product is not sold out
+                    {
+                        $product_exist_flag = 0; // flag that determine if the product exist or no. 0 => doesn't exist, 1 => exist
+                        foreach($cartList as $c)
+                            {
+                                if($c->product_id == $product_id) // if the product already exist in the cart
+                                {  
+                                    $this->productsRepository->incrementQuantity($c->product_id, $c->order_id); //update it quantity
+                                    $product_exist_flag = 1; // set flag to 1 => product exist => updating the product
+                                }      
+                            }
 
-                    if($product_exist_flag == 0) // if we didn't find the product in the cart => insert a new product same order id
-                    {   
-                        $this->productsRepository->insertProdcutInCart($product_id, $cartList[0]->order_id, 1);
+                        if($product_exist_flag == 0) // if we didn't find the product in the cart => insert a new product same order id
+                        {   
+                            $this->productsRepository->insertProdcutInCart($product_id, $cartList[0]->order_id, 1);
+                        }
                     }
                     
                 }
@@ -117,9 +123,11 @@ class CartController extends \BaseController {
             // if the user is offline
             else
             {   
-                $options = array('size' => $products[0]->product_id);
-                $this->cart->instance('shopping')->add($products[0]->code, $products[0]->title, 1, $products[0]->price, $options);
-
+                if($products[0]->sold_out == 0) // of the product is not sold out
+                    {
+                        $options = array('size' => $products[0]->product_id);
+                        $this->cart->instance('shopping')->add($products[0]->code, $products[0]->title, 1, $products[0]->price, $options);
+                    }
                 $cartList = $this->cart->instance('shopping')->content();
                 $itemNb = $this->cart->instance('shopping')->count();    
             }

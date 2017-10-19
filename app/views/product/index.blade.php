@@ -74,6 +74,10 @@
                                       <div class="discount_percentage"> - {{ $p->percentage }}% </div>
                                     @endif
 
+                                    @if($p->sold_out == 1)
+                                      <div class="discount_percentage" style="width:75px;"> Sold Out </div>
+                                    @endif
+
                                     <img src="images/products/{{ $p->img1 }}" class="best-seller-image height_img"/>
                                     
                                     <h1 class="best-seller-h1">{{ $p->title }}</h1>
@@ -99,27 +103,32 @@
                                 
                                  </div> 
 
-                              <!-- if product price is enabled  -->
-                              @if($disable_price_flag == 0)   
-                                
-                                <!-- test if the product is not liquid -->
-                                @if($p->liquid_product == 0)
-                                        <a href="{{ route('cart_path_product', array($product_id) ) }}" class="best-seller-button add_to_cart_link"> ADD TO CART</a>  
-                                @endif
-
-                                <!-- test if the product is liquid -->
-                                @if($p->liquid_product == 1)
-                                {{ Form::open(['route' => ['products_path', $p->sub_category_id], 'role' => 'form']) }}
-
-                                  <input name="liquid_product_id" type="hidden" value="{{$p->product_id}}" >
-                                  <input name="submit_liquid_product" type="submit" value="ADD TO CART" class="best-seller-button add_to_cart_link" style="border:none;"/>
+                              <!-- Test if the product is out of stock -->
+                              @if($p->sold_out == 0)
+                              
+                                <!-- if product price is enabled  -->
+                                @if($disable_price_flag == 0)   
                                   
-                                {{ Form::close() }}
-                                @endif
+                                  <!-- test if the product is not liquid -->
+                                  @if($p->liquid_product == 0)
+                                          <a href="{{ route('cart_path_product', array($product_id) ) }}" class="best-seller-button add_to_cart_link"> ADD TO CART</a>  
+                                  @endif
 
-                              @else <!-- product price is disabled  -->
-                                  <a class="best-seller-button add_to_cart_link ask_exp_link" href="{{ route('contact_us_path') }}"> ASK THE EXPERT </a>
-                              @endif  
+                                  <!-- test if the product is liquid -->
+                                  @if($p->liquid_product == 1)
+                                  {{ Form::open(['route' => ['products_path', $p->sub_category_id], 'role' => 'form']) }}
+
+                                    <input name="liquid_product_id" type="hidden" value="{{$p->product_id}}" >
+                                    <input name="submit_liquid_product" type="submit" value="ADD TO CART" class="best-seller-button add_to_cart_link" style="border:none;"/>
+                                    
+                                  {{ Form::close() }}
+                                  @endif
+
+                                @else <!-- product price is disabled  -->
+                                    <a class="best-seller-button add_to_cart_link ask_exp_link" href="{{ route('contact_us_path') }}"> ASK THE EXPERT </a>
+                                @endif 
+
+                            @endif 
 
                                 <br/>
                        </div>
