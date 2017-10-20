@@ -1,5 +1,9 @@
 @extends('layouts.default')
 
+@section('title')
+ test
+@stop
+
 @section('content')
 
   <div class="home_carousel_margin">
