@@ -1,6 +1,9 @@
 @extends('layouts.default')
 
-@section('title', 'test')
+@section('title', 'Eideal')
+@section('description', '')
+@section('keywords', '')
+@section('robots', 'INDEX,FOLLOW')
 
 @section('content')
 
