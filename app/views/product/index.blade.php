@@ -25,9 +25,9 @@
               <label class="product_subtitle">SORT BY</label>
 
               <select id="price" class="sortby_input" name="price">
-                  <option <?php if(!isset($order)) echo "selected"; ?> value="products-{{ $id }}">sort by</option>
-                  <option <?php if(isset($order) && $order == 0) echo "selected"; ?> value="products-{{ $id }}-0">Price low to high</option>
-                  <option <?php if(isset($order) && $order == 1) echo "selected"; ?> value="products-{{ $id }}-1">Price High to low</option>
+                  <option <?php if(!isset($order)) echo "selected"; ?> value="products-{{ $id }}-{{ $subcategory_info->title }}">sort by</option>
+                  <option <?php if(isset($order) && $order == 0) echo "selected"; ?> value="products-{{ $id }}-0-{{ $subcategory_info->title }} ">Price low to high</option>
+                  <option <?php if(isset($order) && $order == 1) echo "selected"; ?> value="products-{{ $id }}-1-{{ $subcategory_info->title }} ">Price High to low</option>
               </select>
               <div class="grey_line"> </div>
             @endif
@@ -63,8 +63,11 @@
               ?>  
                    <div class="col-lg-4 col-md-4 product_box">
                       <div class="panel panel-default panel_product_box">
-                              <?php $product_id = $p->product_id; ?>
-                                <div class="panel-body product_hover_click less_padding" onclick="location.href='{{ route('products_details_path', array($product_id, $id, "USD") ) }}'">
+                              <?php 
+                                  $product_id = $p->product_id; 
+                              ?>
+
+                                <div class="panel-body product_hover_click less_padding" onclick="location.href='{{ route('products_details_path', array($product_id, $id, "USD", $subcategory_info->title, $p->title)) }}'">
 
                                 <!-- check if the product has an active promo -->
 

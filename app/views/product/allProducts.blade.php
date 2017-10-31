@@ -35,8 +35,9 @@
               ?>  
 
                    <div class="col-lg-4 col-md-4">
-                      <div class="panel panel-default">          
-                          <div class="panel-body product_hover_click less_padding" onclick="location.href='{{ route('products_path', $a->sub_category_id) }}'">
+                      <div class="panel panel-default">  
+                      <?php $link = $a->sub_category_id.'-'.$a->title; ?>        
+                          <div class="panel-body product_hover_click less_padding" onclick="location.href='{{ route('products_path', $link) }}'">
                               <h1 class="best-seller-h1" style="margin-top:0px; height:30px;">{{ $a->title }}</h1>
                               <img alt="{{ $a->title }}" title="{{ $a->title }}" src="images/products_category/{{ $a->image }}" class="best-seller-image height_img"/> 
                           </div> 

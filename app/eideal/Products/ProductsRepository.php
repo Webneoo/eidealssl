@@ -137,10 +137,11 @@ class ProductsRepository {
     public function getFourRandomRelatedProducts($sub_category_id, $product_id)
     {   
           $q = \DB::select(
-                \DB::raw("SELECT * 
-                          FROM ta_products
-                          WHERE sub_category_id = :sub_category_id
-                          AND product_id <> :product_id
+                \DB::raw("SELECT A.*, B.title as subcategory_title 
+                          FROM ta_products as A
+                          LEFT JOIN ta_sub_category as B ON A.sub_category_id = B.sub_category_id
+                          WHERE A.sub_category_id = :sub_category_id
+                          AND A.product_id <> :product_id
                           ORDER BY RAND()
                           LIMIT 4"),
                 array(':sub_category_id' => $sub_category_id,
@@ -183,9 +184,10 @@ class ProductsRepository {
     public function getProductInfoFromId($product_id)
     {   
           $q = \DB::select(
-                \DB::raw("SELECT *
-                          FROM ta_products
-                          WHERE product_id = :product_id"),
+                \DB::raw("SELECT A.*, B.title as subcategory_title
+                          FROM ta_products as A
+                          LEFT JOIN ta_sub_category as B ON A.sub_category_id = B.sub_category_id
+                          WHERE A.product_id = :product_id"),
                 array(':product_id' => $product_id)
         );
 
@@ -363,9 +365,10 @@ class ProductsRepository {
 
          $q = \DB::select(
             \DB::raw("SELECT A.product_id, A.code, A.title, A.small_desc, A.text, 
-                             A.price, A.img1, A.img2, A.img3, A.img4, A.best_seller, A.sub_category_id, A.liquid_product, A.promo_start_date, A.promo_end_date, A.percentage, A.disable_price, A.sold_out
-                      FROM ta_products A, ta_product_month B
+                             A.price, A.img1, A.img2, A.img3, A.img4, A.best_seller, A.sub_category_id, A.liquid_product, A.promo_start_date, A.promo_end_date, A.percentage, A.disable_price, A.sold_out, C.title as subcategory_title
+                      FROM ta_products A, ta_product_month B, ta_sub_category C
                       WHERE A.product_id = B.product_id
+                      AND A.sub_category_id = C.sub_category_id
                        ")
             );
 

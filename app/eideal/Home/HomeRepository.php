@@ -223,9 +223,11 @@ class HomeRepository {
      public function getBestSellerProducts()
     {   
          $q = \DB::select(
-            \DB::raw("SELECT * FROM ta_products 
-                      WHERE best_seller = 1
-                      ORDER BY price ASC")
+            \DB::raw("SELECT A.*, B.title as subcategory_title 
+                      FROM ta_products as A
+                      LEFT JOIN ta_sub_category as B ON A.sub_category_id = B.sub_category_id
+                      WHERE A.best_seller = 1
+                      ORDER BY A.price ASC")
             );
 
         return $q;

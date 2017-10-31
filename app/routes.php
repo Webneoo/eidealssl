@@ -103,13 +103,13 @@ Route::post('products', [
 ]);
 
 
-Route::get('products-{id}-{order}', [
+Route::get('products-{id}-{order}-{category}', [
     'as' => 'products_path',
     'uses' => 'ProductController@indexOrder'
 ]);
 
 
-Route::get('products-{id}', [
+Route::get('products-{id}-{category}', [
     'as' => 'products_path',
     'uses' => 'ProductController@index'
 ]);
@@ -122,20 +122,20 @@ Route::post('products-{id}', [
 ]);
 
 
-Route::get('all-products', [
+Route::get('Hair-products', [
     'as' => 'all_products_path',
     'uses' => 'ProductController@allProducts'
 ]);
 
 
 
-Route::get('details-products-{product_id}-{id}-{quoteCurrency}',[
+Route::get('details-products-{product_id}-{id}-{quoteCurrency}-{category}-{product_name}',[
     'as' => 'products_details_path',
     'uses' => 'ProductController@productDetails'
     ]);
 
 
-Route::post('details-products-{product_id}-{id}-{quoteCurrency}',[
+Route::post('details-products-{product_id}-{id}-{quoteCurrency}-{category}-{product_name}',[
     'as' => 'products_details_path',
     'uses' => 'ProductController@productDetails'
     ]);

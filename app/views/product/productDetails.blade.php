@@ -30,7 +30,7 @@
       </div> <!-- end side menu -->
 
       <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 border_row">
-        <div class="row"> 
+        <div class="row">
        @foreach ($product_info as $p)
 
        <?php
@@ -130,7 +130,7 @@
 
                           <!-- test if the product is liquid -->
                           @if($p->liquid_product == 1)
-                          {{ Form::open(['route' => ['products_details_path', $p->product_id, $p->sub_category_id, 'USD'], 'role' => 'form']) }}
+                          {{ Form::open(['route' => ['products_details_path', $p->product_id, $p->sub_category_id, 'USD', $p->subcategory_title ,$p->title ], 'role' => 'form']) }}
 
                             <input name="liquid_product_id" type="hidden" value="{{$p->product_id}}" >
                             <input name="submit_liquid_product" type="submit" value="ADD TO CART" class="best-seller-button" style="float:left; border:none;"/>
@@ -233,10 +233,11 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
+        
           @foreach($related_products as $r)
 
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 bottom_margin_related_products">
-              <a class="related_products_link" href="{{ route('products_details_path', array($r->product_id, $id, "USD") ) }}">
+              <a class="related_products_link" href="{{ route('products_details_path', array($product_id, $id, 'USD', $r->subcategory_title, $r->title) ) }}">
                 <img src="images/products/{{ $r->img1 }}" class="details_related_image" style="width:100%;" title="{{ $r->title }} - {{$r->code}}" alt="{{ $r->title }}"/>
               </a>
             </div>
