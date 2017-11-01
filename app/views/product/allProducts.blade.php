@@ -1,5 +1,23 @@
 @extends('layouts.default')
 
+@section('title', 'Eideal | Hair tools in Dubai, curling iron, flat iron, hairdryer, beauty supplier, salon supplier, hair care')
+@section('description', 'Hair tools and accessories in Dubai. Whether you’re a hair professional or simply a hair enthusiast and lover, eideal.com is here to take your experience and journey to the next level.')
+
+<?php 
+
+  $keywords = '';
+
+  foreach ($all_subcategoryList as $a)
+  {
+    $keywords = $keywords.$a->title.', ';
+  }
+
+  $keywords = rtrim($keywords, ', ');
+ ?>
+
+@section('keywords', $keywords)
+@section('robots', 'INDEX,FOLLOW')
+
 @section('content')
 
  <div id="start"class="container">

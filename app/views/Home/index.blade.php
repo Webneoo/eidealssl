@@ -290,7 +290,8 @@
 
         <div class="row" style="margin-top: 25px; margin-bottom: 25px;">
             @foreach($brandsImages as $b)
-               <div class="col-md-3 col-sm-3 col-xs-12"><a href="{{ route('brands_path', array($b->brand_id) ) }}" class="thumbnail"><img src="images/brands/{{$b->url_img}}" style="max-width:100%;" alt="{{$b->brand_title}}" title="{{$b->brand_title}}"></a></div>
+              <?php $link = $b->brand_id.'-'.$b->brand_title; ?>
+               <div class="col-md-3 col-sm-3 col-xs-12"><a href="{{ route('brands_path', $link ) }}" class="thumbnail"><img src="images/brands/{{$b->url_img}}" style="max-width:100%;" alt="{{$b->brand_title}}" title="{{$b->brand_title}}"></a></div>
             @endforeach
     
         </div>

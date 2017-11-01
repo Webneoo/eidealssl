@@ -11,7 +11,7 @@
             <div class="col-lg-3 col-md-3 col-sm-3 second_sub_footer">
                 <h1> EIDEAL </h1>
                 <a href="{{ route('all_products_path') }}">PRODUCTS</a><br/>
-                <a href="{{ route('brands_path', $menu_brands[0]->brand_id) }}">BRANDS</a><br/>     
+                <a href="{{ route('brands_path', array($menu_brands[0]->brand_id, $menu_brands[0]->brand_title)) }}">BRANDS</a><br/>     
                 <a href="{{ route('eteam_path') }}">E-TEAM</a><br/>           
                 <a href="{{ route('videos_path') }}">VIDEOS</a><br/>
                 <a href="{{ route('news_path') }}">NEWS</a>

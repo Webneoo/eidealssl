@@ -288,7 +288,7 @@ Route::get('terms',[
 
 /* ------------------- BRANDS   ---------------*/
 
-Route::get('brands-{brand_id}',[
+Route::get('brands-{brand_id}-{brand_name}',[
     'as' => 'brands_path',
     'uses' => 'BrandController@index'
     ]);

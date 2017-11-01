@@ -116,13 +116,13 @@ class ProductsRepository {
     public function getAllProductsFromSearch($sequence)
     {   
           $q = \DB::select(
-                \DB::raw("SELECT A.product_id, A.code, A.title, A.small_desc, A.text, A.price, A.img1, A.sub_category_id, A.liquid_product, A.updated_at, A.promo_start_date, A.promo_end_date, A.percentage, A.disable_price 
+                \DB::raw("SELECT A.product_id, A.code, A.title, A.small_desc, A.text, A.price, A.img1, A.sub_category_id, A.liquid_product, A.updated_at, A.promo_start_date, A.promo_end_date, A.percentage, A.disable_price, A.sold_out  
                           FROM ta_products A
                           WHERE A.title LIKE '%".$sequence."%' OR A.small_desc LIKE '%".$sequence."%' OR A.text LIKE '%".$sequence."%'
 
                           UNION
                             
-                          SELECT A.product_id, A.code, A.title, A.small_desc, A.text, A.price, A.img1, A.sub_category_id, A.liquid_product, A.updated_at, A.promo_start_date, A.promo_end_date, A.percentage, A.disable_price 
+                          SELECT A.product_id, A.code, A.title, A.small_desc, A.text, A.price, A.img1, A.sub_category_id, A.liquid_product, A.updated_at, A.promo_start_date, A.promo_end_date, A.percentage, A.disable_price, A.sold_out 
                           FROM ta_products as A 
                           WHERE A.sub_category_id IN (SELECT A.sub_category_id
                           FROM ta_sub_category as A

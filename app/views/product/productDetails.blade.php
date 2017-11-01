@@ -1,5 +1,22 @@
 @extends('layouts.default')
 
+
+@section('title', 'Eideal | Hair tools in Dubai, '.$product_info[0]->title)
+
+<?php 
+// remove html tags
+$desc = strip_tags($product_info[0]->text);
+// remove white space and line-break
+$desc = preg_replace('/[\r\n]+/', " ", $desc);
+$desc = preg_replace('/[ \t]+/', ' ', $desc);
+
+ ?>
+
+@section('description', $desc)
+@section('keywords', 'Hair tools, curling iron, flat iron, hairdryer, beauty supplier, salon supplier, hair care, keratin, hair brushes, round brush, ceramic brush, scissors, '.$product_info[0]->title)
+@section('robots', 'INDEX,FOLLOW')
+
+
 @section('content')
 
  <div id="start" class="container">
