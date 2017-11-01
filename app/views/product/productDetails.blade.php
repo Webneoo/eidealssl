@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 
-@section('title', 'Eideal | Hair tools in Dubai, '.$product_info[0]->title)
+@section('title', 'Eideal | '.$product_info[0]->title)
 
 <?php 
 // remove html tags
