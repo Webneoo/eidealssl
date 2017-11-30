@@ -1,5 +1,10 @@
 @extends('layouts.default')
 
+@section('title', 'Eideal | Videos | Hair tools in Dubai and Lebanon, curling iron, flat iron, hairdryer, beauty supplier, salon supplier, hair care')
+@section('description', 'Discover all the videos and medias about Eideal and our hair tools in Dubai and Lebanon')
+@section('keywords', 'Hair tools, curling iron, flat iron, hairdryer, beauty supplier, salon supplier, hair care, keratin, hair brushes, round brush, ceramic brush, scissors')
+@section('robots', 'INDEX,FOLLOW')
+
 @section('content')
 
  <div id="start" class="container">
