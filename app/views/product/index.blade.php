@@ -2,7 +2,6 @@
 
 @section('title', 'Eideal | '.$subcategory_info->title)
 @section('description', 'Hair tools and accessories in Dubai. Whether you’re a hair professional or simply a hair enthusiast and lover, eideal.com is here to take your experience and journey to the next level.')
-
 <?php 
 
   $keywords = '';

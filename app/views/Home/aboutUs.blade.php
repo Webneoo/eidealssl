@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'Eideal | About us | Hair tools in Dubai, curling iron, flat iron, hairdryer, beauty supplier, salon supplier, hair care')
+@section('title', 'Eideal | About us | Hair tools in Dubai in Lebanon, curling iron, flat iron, hairdryer, beauty supplier, salon supplier, hair care')
 @section('description', 'Your one stop website to everything hair related. Whether you’re a hair professional or simply a hair enthusiast and lover, eideal.com is here to take your experience and journey to the next level.')
 @section('keywords', 'Hair tools, curling iron, flat iron, hairdryer, beauty supplier, salon supplier, hair care, keratin, hair brushes, round brush, ceramic brush, scissors')
 @section('robots', 'INDEX,FOLLOW')

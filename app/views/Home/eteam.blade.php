@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', 'Eideal | Team | A passionate team dedicated to Hair tools in Dubai, curling iron, flat iron, hairdryer, beauty supplier, salon supplier, hair care')
+@section('title', 'Eideal | Team | A passionate team dedicated to Hair tools in Dubai and Lebanon, curling iron, flat iron, hairdryer, beauty supplier, salon supplier, hair care')
 @section('description', 'A dedicated and enthousiastic team passioned by hairstyle and hair fashion.')
 @section('keywords', 'Hair tools, curling iron, flat iron, hairdryer, beauty supplier, salon supplier, hair care, keratin, hair brushes, round brush, ceramic brush, scissors')
 @section('robots', 'INDEX,FOLLOW')

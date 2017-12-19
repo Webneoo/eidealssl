@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
-@section('title', 'Eideal | Store Locator | Find your store to buy Hair tools in Dubai, curling iron, flat iron, hairdryer, beauty supplier, salon supplier, hair care')
-@section('description', 'Your one stop website to everything hair related. Whether you’re a hair professional or simply a hair enthusiast and lover, eideal.com is here to take your experience and journey to the next level.')
+@section('title', 'Eideal | Store Locator | Find your store to buy Hair tools in Dubai and Lebanon, curling iron, flat iron, hairdryer, beauty supplier, salon supplier, hair care')
+@section('description', 'Find the closest store to buy hair products, curling iron, flat iron, hairdryer and other tools in Dubai.')
 @section('keywords', 'Hair tools, curling iron, flat iron, hairdryer, beauty supplier, salon supplier, hair care, keratin, hair brushes, round brush, ceramic brush, scissors')
 @section('robots', 'INDEX,FOLLOW')
 

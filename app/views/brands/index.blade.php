@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
-@section('title', 'Eideal | Hair tools in Dubai, '.$brand_info[0]->brand_title)
-@section('description', 'Hair tools and accessories in Dubai. Whether you’re a hair professional or simply a hair enthusiast and lover, eideal.com is here to take your experience and journey to the next level.')
+@section('title', 'Eideal | '.$brand_info[0]->brand_title.' | Hair tools in Dubai')
+@section('description', 'Discover all our brands and products in Dubai and Lebanon')
 @section('keywords', 'Hair tools, curling iron, flat iron, hairdryer, beauty supplier, salon supplier, hair care, keratin, hair brushes, round brush, ceramic brush, scissors, '.$brand_info[0]->brand_title)
 @section('robots', 'INDEX,FOLLOW')
 

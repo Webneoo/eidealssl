@@ -1,5 +1,10 @@
  @extends('layouts.default')
 
+@section('title', 'Eideal | '.$service_details[0]->title.' | Hair tools in Dubai')
+@section('description', 'Discover all the services provided by eideal.com in Dubai and Lebanon')
+@section('keywords', 'Hair tools, curling iron, flat iron, hairdryer, beauty supplier, salon supplier, hair care, keratin, hair brushes, round brush, ceramic brush, scissors, '.$service_details[0]->title)
+@section('robots', 'INDEX,FOLLOW')
+
 @section('content')
 
 <!-- slideshow a faire -->

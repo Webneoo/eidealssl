@@ -1,5 +1,8 @@
 @extends('layouts.default')
 
+@section('title', 'Eideal | News | Hair tools in Dubai and Lebanon, curling iron, flat iron, hairdryer, beauty supplier, salon supplier, hair care')
+@section('description', 'Discover all the news about Eideal and our hair tools in Dubai and Lebanon')
+
 @section('content')
 
  <div id="start" class="container">
