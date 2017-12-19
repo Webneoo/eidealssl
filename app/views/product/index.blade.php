@@ -100,7 +100,7 @@
                                       <div class="discount_percentage" style="width:75px;"> Sold Out </div>
                                     @endif
 
-                                    <img src="images/products/{{ $p->img1 }}" class="best-seller-image height_img"/>
+                                    <img src="images/products/{{ $p->img1 }}" class="best-seller-image height_img" alt="{{$p->title}}" title="{{$p->title}}"/>
                                     
                                     <h1 class="best-seller-h1">{{ $p->title }}</h1>
                                     <p class="product_small_desc"> {{ $p->small_desc }} </p>

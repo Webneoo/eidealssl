@@ -13,7 +13,7 @@
      @foreach($newsDetails as $n)
       
       <div class="col-lg-7">
-        <img src="images/news/{{ $n->img }}" style="width:100%;">
+        <img src="images/news/{{ $n->img }}" alt="{{ $n->title }}" title="{{ $n->title }}" style="width:100%;">
       </div>
 
       <div class="col-lg-5">

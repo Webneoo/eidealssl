@@ -15,7 +15,7 @@
     </div>
     @foreach ($aboutUs as $a)
 
-        <img src="images/{{ $a->img }}" style="width:100%;">
+        <img src="images/{{ $a->img }}" style="width:100%;" alt="About Us Eideal" title="About Us Eideal">
         <div class="container">
             <div class="about_us_section">
                 <h2 class="page_h2_about_us"> {{ $a->title1 }} </h2><br/>

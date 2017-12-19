@@ -7,6 +7,11 @@
 
 @section('content')
 
+<blockquote style="position:absolute; left:-100%;">
+  <p></p>
+</blockquote>
+
+
   <div class="home_carousel_margin">
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="margin-bottom: 20px;">
       <!-- Indicators -->
@@ -33,7 +38,7 @@
       <!-- Wrapper for slides -->
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-          <img src="images/slideshow/{{ $slideShowList[0]->img_url }}" alt="" style="width: 100%;">
+          <img src="images/slideshow/{{ $slideShowList[0]->img_url }}" alt="Eideal | Hair tools in Dubai, curling iron, flat iron, hairdryer, beauty supplier, salon supplier, hair care" title="Eideal hair tools" style="width: 100%;">
         </div>
 
       <?php $c =1; ?>
@@ -43,7 +48,7 @@
           {
         ?>
             <div class="item">
-              <img src="images/slideshow/{{ $s->img_url }}" alt="" style="width: 100%;">
+              <img src="images/slideshow/{{ $s->img_url }}" alt="Eideal | Hair tools in Dubai, curling iron, flat iron, hairdryer, beauty supplier, salon supplier, hair care" title="Eideal hair tools" style="width: 100%;">
             </div>
         <?php
           }
@@ -93,7 +98,7 @@
                 <div class="discount_percentage_prod_of_month" style="width:75px;"> Sold Out</div>
               @endif
 
-              <img id="main_img_src" src="images/products/{{ $productMonth[0]->img1 }}" class="best-seller-image" style="margin-bottom: 10px; border:1px solid #e0e0e0;"/>
+              <img id="main_img_src" src="images/products/{{ $productMonth[0]->img1 }}" class="best-seller-image" alt="{{ $productMonth[0]->title }}" title="{{ $productMonth[0]->title }}" style="margin-bottom: 10px; border:1px solid #e0e0e0;"/>
               </a>
            
               <div>
@@ -162,11 +167,11 @@
               @foreach( $mediaList as $m)
                  @if($m->url != null)
                     <a target="_blank" href="{{$m->url}}" class="col-lg-2 col-md-3 col-sm-3 col-xs-4 media_link">
-                      <img src="images/medias/{{$m->img}}" class="main-product-image media_img" style="margin-bottom: 10px;"/>
+                      <img src="images/medias/{{$m->img}}" class="main-product-image media_img" style="margin-bottom: 10px;" alt="Eideal Medias" title="Eideal media"/>
                     </a>
                   @else
                     <div id="{{ $m->media_id }}" class="col-lg-2 col-md-3 col-sm-3 col-xs-4 media_link media_img_link" style="cursor:pointer;" onclick="showModal(this.id)">
-                       <img data-toggle="modal" data-target="#myModal" src="images/medias/{{$m->img}}" class="main-product-image media_img" style="margin-bottom: 10px;"/>
+                       <img data-toggle="modal" data-target="#myModal" src="images/medias/{{$m->img}}" class="main-product-image media_img" alt="Eideal Medias" title="Eideal media" style="margin-bottom: 10px;"/>
                     </div>
                      
                     <!-- Modal -->
@@ -180,7 +185,7 @@
                             <h4 class="modal-title"><?php echo strtoupper($productMonth[0]->title) ?></h4>
                           </div>
                           <div class="modal-body">
-                           <img style="width:100%;" src="images/medias/{{ $m->img }}">
+                           <img style="width:100%;" src="images/medias/{{ $m->img }}" alt="Eideal Medias" title="Eideal media" >
                           </div> 
                           <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -228,7 +233,7 @@
                           <div class="discount_percentage" style="width:75px;"> Sold Out</div>
                         @endif
 
-                        <img src="images/products/{{ $b->img1 }}" class="best-seller-image img_height_index"/>
+                        <img src="images/products/{{ $b->img1 }}" class="best-seller-image img_height_index" alt="{{ $b->title }}" title="{{ $b->title }}"/>
                       </a>
                         <h1 class="best-seller-h1">{{ $b->title }}</h1>
                         <p> {{$b->small_desc}} </p>

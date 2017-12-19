@@ -57,7 +57,7 @@
                         Mob: +971564452369 <br/>
 
                     <div style="font-family: MontserratRegular;"> 
-                      <img style="height:25px; position:relative; bottom:7px; margin-top:8px;" src="images/whatsapp_logo.png"/>  +971564452369 
+                      <img style="height:25px; position:relative; bottom:7px; margin-top:8px;" src="images/whatsapp_logo.png" alt="eideal whatsapp number" title="Eideal Whatsapp Number"/>  +971564452369 
                     </div>
 
                    <!--  <a style="color:#01aae9; font-size:16px;" href="skype:santiago.susie?call" title="Call us on skype"> 

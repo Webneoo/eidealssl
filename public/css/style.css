@@ -170,6 +170,8 @@ header
     margin-top: 25px;
     font-size: 16px;
     cursor:pointer;
+    border-radius: 5px;
+    font-size:14px;
 }
 
 .best-seller-button:hover, .main-product-button:hover
@@ -194,13 +196,15 @@ header
 
 .page-separator
 {
-    width: 100%;
+    width: 97%;
+    margin:auto;
     text-align: center;
     background: #676767;
     color: #ffffff;
     font-size: 15px;
     padding: 7px;
     font-family: MontserratRegular;
+
 }
 
 .in-the-media-h1
@@ -438,8 +442,9 @@ footer a:hover{
     cursor:pointer;
     margin-top:10px; 
     color:white;
-    font-size:16px;
     width:80px;
+    border-radius: 5px;
+    font-size:14px;
 }
 
 .send_contact:hover
@@ -540,9 +545,10 @@ footer a:hover{
     border:none;
     cursor:pointer;
     color:white;
-    font-size:16px;
     height:30px;
     margin-top:5px;
+    border-radius: 5px;
+    font-size:14px;
 }
 
 .validation
@@ -563,10 +569,11 @@ footer a:hover{
     border:none;
     cursor:pointer;
     color:white;
-    font-size:16px;
     height:30px;
     margin-top:25px;
     margin-left:30px;
+    border-radius: 5px;
+    font-size:14px;
 }
 
 .birthMonth
@@ -1770,12 +1777,13 @@ cursor:pointer;
 {
     width:150px;
     height:36px;
-    font-size:16px;
+    font-size:14px;
     text-align:center;
     border:none;
     background-color: #9a9a9a;
     color:white;
     margin-top:-1px;
+    border-radius: 5px;
 }
 
 .ask_the_expert a

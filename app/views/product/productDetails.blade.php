@@ -81,7 +81,7 @@ $desc = preg_replace('/[ \t]+/', ' ', $desc);
                <div class="large"></div>
 
                <!-- This is the small image -->
-               <img id="main_img_src" src="images/products/{{ $p->img1 }}" class="best-seller-image product_detail_image small"/>
+               <img id="main_img_src" src="images/products/{{ $p->img1 }}" class="best-seller-image product_detail_image small" alt="{{$p->title}}" title="{{$p->title}}"/>
             </div>
 
           </div>
@@ -126,7 +126,7 @@ $desc = preg_replace('/[ \t]+/', ' ', $desc);
                       ?>
                       @if($p->$img != '')
                       <div id="image_num_<?php echo $r; ?>" class="col-lg-3 col-md-3 col-sm-6 col-xs-6 img_product_thumb" onclick="changeImgSrc(this.id);">
-                        <img src="images/products/{{ $p->$img }}" class="details_related_image" style="width:100%;"/>
+                        <img src="images/products/{{ $p->$img }}" class="details_related_image" style="width:100%;" alt="{{$p->title}}" title="{{$p->title}}"/>
                       </div>
                       @endif
                     <?php

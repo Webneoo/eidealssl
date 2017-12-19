@@ -40,7 +40,7 @@
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox" style="height:445px">
                   <div class="item active">
-                    <img src="images/services/{{ $service_images[0]->image }}" alt="" style="width: 100%;">
+                    <img src="images/services/{{ $service_images[0]->image }}" alt="{{ $service_details[0]->title }}" title="{{ $service_details[0]->title }}" style="width: 100%;">
                   </div>
 
                 <?php $c =1; ?>

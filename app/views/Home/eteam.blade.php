@@ -14,7 +14,7 @@
     </div>
     <br/>
     @foreach ($eteam as $e)
-        <img src="images/{{ $e->img }}" style="width:100%;">
+        <img src="images/{{ $e->img }}" style="width:100%;" alt="Eideal Team | Eideal E-team" Title ="Eideal Team">
         <div class="container">
             <div class="about_us_section">
                 <p class="center">{{ $e->description }}</p>

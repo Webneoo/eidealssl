@@ -9,7 +9,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-2">
                     <div id="logo">
                       <a href="{{ route('home_path') }}" >
-                        <img src='images/eideal_logo_white.png' alt='Spread Communications'/>
+                        <img src='images/eideal_logo_white.png' alt='Eideal Logo' title="Eideal"/>
                       </a><h1 style='display:none'><a href=http://spreadcomms.com>Spread Communications</a></h1></div> 
                  </div>
                 

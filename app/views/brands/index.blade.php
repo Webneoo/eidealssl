@@ -34,7 +34,7 @@
     <div class="row" style="margin-top:20px;">
 		@foreach ($brand_info as $b)
       <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0" style="text-align:center;">
-  			<img style="margin-bottom:5px;" src="images/brands_logo/{{ $b->brand_logo }}"/>
+  			<img style="margin-bottom:5px;" src="images/brands_logo/{{ $b->brand_logo }}" alt="{{$brand_info[0]->brand_title}}" title="{{$brand_info[0]->brand_title}}"/>
   		</div>
     @endforeach
     </div>
@@ -64,7 +64,7 @@
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">
                   <div class="item active">
-                    <img src="images/brands/{{ $brand_images[0]->url_img }}" alt="" style="width: 100%;">
+                    <img src="images/brands/{{ $brand_images[0]->url_img }}" alt="{{$brand_info[0]->brand_title}}" title="{{$brand_info[0]->brand_title}}" style="width: 100%;">
                   </div>
 
                 <?php $c =1; ?>
@@ -74,7 +74,7 @@
                     { 
                   ?> 
                       <div class="item">
-                        <img src="images/brands/{{ $b->url_img }}" alt="" style="width: 100%;">
+                        <img src="images/brands/{{ $b->url_img }}" alt="{{$brand_info[0]->brand_title}}" title="{{$brand_info[0]->brand_title}}" style="width: 100%;">
                       </div>
                   <?php
                     }

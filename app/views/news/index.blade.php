@@ -39,7 +39,7 @@
           <a href="{{ route('display_news_path', $n->news_id) }}" class="col-lg-4 col-md-4 col-sm-4 col-sx-12 news_click">
 
            <hr class="gray_spliter">
-            <img src="images/news/{{ $n->img }} " class="news_image"/>
+            <img src="images/news/{{ $n->img }} " class="news_image" alt="{{ $n->title }}" title="{{ $n->title }}"/>
             <div class="news_title">{{ $n->title }}</div>
              <?php // change the format of the date 
                   $date=date_create($n->updated_at);  
