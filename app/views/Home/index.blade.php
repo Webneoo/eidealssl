@@ -137,7 +137,7 @@
 
                       <!-- test if the product is liquid -->
                       @if($productMonth[0]->liquid_product == 1)
-                      {{ Form::open(['route' => 'home_path', 'role' => 'form']) }}
+                      {{ Form::open(['route' => 'home_path']) }}
 
                         <input name="liquid_product_id" type="hidden" value="{{$productMonth[0]->product_id}}" >
                         <input name="submit_liquid_product" type="submit" value="ADD TO CART" class="best-seller-button" style="border:none;"/>
@@ -265,7 +265,7 @@
 
                               <!-- test if the product is liquid -->
                               @if($b->liquid_product == 1)
-                              {{ Form::open(['route' => ['products_path', $b->sub_category_id], 'role' => 'form']) }}
+                              {{ Form::open(['route' => ['products_path', $b->sub_category_id]]) }}
 
                                 <input name="liquid_product_id" type="hidden" value="{{$b->product_id}}" >
                                 <input name="submit_liquid_product" type="submit" value="ADD TO CART" class="best-seller-button add_to_cart_button" style="border:none;"/>
@@ -359,7 +359,7 @@
             <div class="col-lg-10 col-lg-offset-1">
              {{ $newsletters_info[0]->newsletters_text }}
 
-             {{ Form::open(['route' => 'home_newsletters_signup', 'role' => 'form', 'id' => 'newsletters_form']) }}
+             {{ Form::open(['route' => 'home_newsletters_signup', 'id' => 'newsletters_form']) }}
 
                    <div class="form-group">
                         {{ Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Email'])  }}

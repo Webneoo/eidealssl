@@ -58,9 +58,9 @@
 
     @include('layouts.partials.footer')
 
-    <script type='text/javascript' src='js/assets.js'></script>
+    <script src='js/assets.js'></script>
 
-    <script language="javascript">
+    <script>
     /*  document.onmousedown=disableclick;
       status="Right Click Disabled";
       function disableclick(event)
