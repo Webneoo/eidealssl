@@ -51,7 +51,7 @@
                   <!--      <li <?php if($pagename == 'where-to-buy-0') echo 'class="menu_seleted"'; ?>><a href="{{ route('where_to_buy_path',0) }}">WHERE TO BUY</a></li> -->
                         <li <?php if($pagename == 'contact-us') echo 'class="menu_seleted"'; ?>><a href="{{ route('contact_us_path') }}">CONTACT US</a></li>
                         <li>
-                          {{ Form::open(['route' => 'products_path_search', 'role' => 'form']) }}
+                          {{ Form::open(['route' => 'products_path_search']) }}
                             <div class="navMenu expander">
                               <input type="text" name="sequence" placeholder="Search">
                             </div>
@@ -59,7 +59,7 @@
                         </li>
                         
 
-                        <div id="smLinks" class="align_right">
+                        <div id="sm_links" class="align_right">
                             <div class="header-div" style="float:right;">
                          {{ Form::open(['route' => 'products_path_search', 'role' => 'form']) }}
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 select_currency_div" >
