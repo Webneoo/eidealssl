@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Session;
 use eideal\Users\UserRepository;
 use eideal\Brands\BrandsRepository;
 use eideal\Forms\NewslettersForm;
+use ImageController;
 
 
 
@@ -27,10 +28,11 @@ class HomeController extends \BaseController {
      private $userRepository;
      private $brandsRepository;
      private $newslettersForm;
+     private $imageController;
 
     function __construct(HomeRepository $homeRepository, MediasRepository $mediasRepository,
                          CreateStoreForm $createStoreForm, ProductsRepository $productsRepository,
-                         CreateSlideshowForm $createSlideshowForm, UserRepository $userRepository, BrandsRepository $brandsRepository, NewslettersForm $newslettersForm)
+                         CreateSlideshowForm $createSlideshowForm, UserRepository $userRepository, BrandsRepository $brandsRepository, NewslettersForm $newslettersForm, ImageController $imageController)
     {
         $this->homeRepository = $homeRepository;
         $this->createStoreForm = $createStoreForm;
@@ -40,6 +42,7 @@ class HomeController extends \BaseController {
         $this->userRepository = $userRepository;
         $this->brandsRepository = $brandsRepository;
         $this->newslettersForm = $newslettersForm;
+        $this->imageController = $imageController;
     }
 
  public function index()
@@ -434,6 +437,7 @@ class HomeController extends \BaseController {
         {
             $file = Input::file('slideshow_image');
             $file_name = time() . '-' . $file->getClientOriginalName();
+            $file_name = $this->imageController->fixFileName($file_name);
             $real_path = $file_name;
             $file->move(public_path() .'/images/slideshow/', $file_name);
             $input['slideshow_image'] = $real_path;
@@ -462,6 +466,8 @@ class HomeController extends \BaseController {
         {
             $file = Input::file('slideshow_image');
             $file_name = time() . '-' . $file->getClientOriginalName();
+            $file_name = $this->imageController->fixFileName($file_name);
+            dd($file_name);
             $real_path = $file_name;
             $file->move(public_path() .'/images/slideshow/', $file_name);
             $input['slideshow_image'] = $real_path;
