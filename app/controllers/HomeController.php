@@ -467,7 +467,6 @@ class HomeController extends \BaseController {
             $file = Input::file('slideshow_image');
             $file_name = time() . '-' . $file->getClientOriginalName();
             $file_name = $this->imageController->fixFileName($file_name);
-            dd($file_name);
             $real_path = $file_name;
             $file->move(public_path() .'/images/slideshow/', $file_name);
             $input['slideshow_image'] = $real_path;
