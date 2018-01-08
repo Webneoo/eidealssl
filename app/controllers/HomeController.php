@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Session;
 use eideal\Users\UserRepository;
 use eideal\Brands\BrandsRepository;
 use eideal\Forms\NewslettersForm;
-use ImageController;
+
 
 
 
