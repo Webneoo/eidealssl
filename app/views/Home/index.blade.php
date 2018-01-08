@@ -87,8 +87,9 @@
                <?php 
                  $product_id = $productMonth[0]->product_id;
                  $sub_category_id = $productMonth[0]->sub_category_id;
+                 $product_month_title_link = str_replace('|', ' ', $productMonth[0]->title);
                 ?>
-              <a class="product_img_link" href="{{ route('products_details_path', array($product_id, $sub_category_id, 'USD', $productMonth[0]->subcategory_title, $productMonth[0]->title) ) }}">
+              <a class="product_img_link" href="{{ route('products_details_path', array($product_id, $sub_category_id, 'USD', $productMonth[0]->subcategory_title, $product_month_title_link) ) }}">
               
               @if( ($productMonth[0]->promo_start_date != NULL && $productMonth[0]->promo_end_date != NULL) && ($actual_date >= $productMonth[0]->promo_start_date && $actual_date <= $productMonth[0]->promo_end_date) )
                 <div class="discount_percentage_prod_of_month"> - {{ $productMonth[0]->percentage }}% </div>
@@ -221,10 +222,10 @@
                       <?php 
                       $product_id = $b->product_id;
                       $sub_category_id = $b->sub_category_id;
-
+                      $best_seller_title_link = str_replace('|', ' ', $b->title);
 
                       ?>
-                      <a class="product_img_link" href="{{ route('products_details_path', array($product_id, $sub_category_id, 'USD', $b->subcategory_title, $b->title) ) }}"> 
+                      <a class="product_img_link" href="{{ route('products_details_path', array($product_id, $sub_category_id, 'USD', $b->subcategory_title, $best_seller_title_link) ) }}"> 
                         @if( ($b->promo_start_date != NULL && $b->promo_end_date != NULL) && ($actual_date >= $b->promo_start_date && $actual_date <= $b->promo_end_date) )
                           <div class="discount_percentage"> - {{ $b->percentage }}% </div>
                         @endif
