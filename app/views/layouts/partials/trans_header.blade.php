@@ -61,7 +61,7 @@
 
                         <div id="sm_links" class="align_right">
                             <div class="header-div" style="float:right;">
-                         {{ Form::open(['route' => 'products_path_search', 'role' => 'form']) }}
+                         {{ Form::open(['route' => 'products_path_search']) }}
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 select_currency_div" >
                               <b style="color:white;">Currency:</b> 
                              
