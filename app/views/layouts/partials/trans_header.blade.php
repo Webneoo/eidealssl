@@ -33,7 +33,8 @@
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">BRANDS <span class="caret"></span></a>
                           <ul class="dropdown-menu">
                             @foreach($menu_brands as $b)
-                             <li><a href="brands-{{$b->brand_id}}-{{ $b->brand_title}}">{{ $b->brand_title}}</a></li>
+                            <?php $url_name = str_replace(" ", "-", $b->brand_title); ?>
+                             <li><a href="brands-{{$b->brand_id}}-{{ $url_name}}">{{ $b->brand_title }}</a></li>
                             @endforeach
                           </ul>
                         </li>

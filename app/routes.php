@@ -12,6 +12,11 @@ Route::get('/', [
     'uses' => 'HomeController@index'
 ]);
 
+Route::get('/home', [
+    'as' => 'home_path',
+    'uses' => 'HomeController@index'
+]);
+
 
 Route::post('/', [
     'as' => 'home_newsletters_signup',
