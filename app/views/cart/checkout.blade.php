@@ -450,10 +450,49 @@
 
 
 
+  <div class=" fade show" id="modalPush" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="padding-right: 17px; z-index:9500;">
+      <div class="modal-dialog modal-notify modal-info modal-sm vat_modal_dialog" role="document">
+          <!--Content-->
+          <div class="modal-content text-center">
+              <!--Header-->
+              <div class="modal-header d-flex justify-content-center">
+                  <p class="heading">VAT NOTICE !</p>
+              </div>
+
+              <!--Body-->
+              <div class="modal-body vat_body">
+
+                  <i class="fa fa-bell fa-4x animated rotateIn mb-4 vat_icon" id="lock-refresh"></i>
+
+                  <p class="vat_p">From 1st January 2018, all prices for orders placed on EIDEAL website and in EIDEAL stores will be inclusive of VAT as per UAE law.</p>
+
+              </div>
+
+              <!--Footer-->
+              <div class="modal-footer flex-center" style="text-align:center;">
+                  <a type="button" class="btn vat_ok" data-dismiss="modal">OK</a>
+              </div>
+          </div>
+          <!--/.Content-->
+      </div>
+  </div>
+
+
+
+
+
+
 <script type="text/javascript">
   
    $(window).on('load',function(){
-        $('#myModal').modal('show');
+        $('#modalPush').modal('show');
+
+        $('#lock-refresh').addClass( 'fa-spin' );
+
+      //Trying to use setTimeout, but doesn't seem to work either.
+      var $el = $('#lock-refresh');
+      setTimeout(function() { $el.removeClass( 'fa-spin' ); }, 2000);  
+
     });
 
 
