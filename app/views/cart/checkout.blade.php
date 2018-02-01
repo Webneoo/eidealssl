@@ -422,8 +422,41 @@
 
 </div>
 
+
+<!-- Modal -->
+  <div id="myModal" class="modal fade all_modal" role="dialog" style="z-index:9500;">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">VAT Notice!</h4>
+        </div>
+        <div class="modal-body">
+          <br/>
+            <p style="text-align:center;">
+                From 1st January 2018, all prices for orders placed on EIDEAL website and in EIDEAL stores will be inclusive of VAT as per UAE law.
+            </p>
+            <br/>
+        </div> 
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
 <script type="text/javascript">
   
+   $(window).on('load',function(){
+        $('#myModal').modal('show');
+    });
+
+
 
   $( document ).ready(function() { 
 
