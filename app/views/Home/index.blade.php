@@ -70,9 +70,11 @@
     </div>
 
     <div class="container">
-        <div class="row">
-            <p class="best-seller-title"><b>PRODUCT OF THE MONTH</b></p>
+        <div class="row title_div">
+            <h2 class="title_eideal raleway">PRODUCT OF THE MONTH</h2>
+            <span class="span_h2 lato">Build your online store</span>
         </div>
+        <br/>
 
         <?php  
            $disable_price_flag = 0;
@@ -202,8 +204,26 @@
 
         <br/>
 
-        <div class="row">
-            <p class="page-separator"><b>BEST SELLERS</b></p>
+      </div>
+
+
+      <div class="parallax-window para_1" data-parallax="scroll" data-image-src="/images/slideshow/1454399666-_DSC834611.jpg">
+        
+          <div class="container parallax_container emphasis-title">  
+                <h2 class="raleway">Hair Tools & Accessories !</h2>
+                <p class="lead topmargin-sm lato" style="font-size: 19px; line-height:1;">Whether you’re a hair professional or simply a hair enthusiast and lover, eideal.com is here to take your experience and journey to the next level.</p>
+                <br/>
+                <a class="parallax_btn" href="{{route('all_products_path')}}">DISCOVER OUR PRODUCTS</a>                  
+          </div>
+
+      </div>
+
+
+      <div class="container">
+
+        <div class="row title_div">
+            <h2 class="title_eideal raleway">BEST SELLERS</h2>
+            <span class="span_h2 lato">Choose one of our best selling products.</span>
         </div>
         <br/>
         <div class="row">
@@ -288,11 +308,23 @@
 
         </div>
 
-        
+      </div> <!-- end container -->
+      <br/><br/>
+      <div class="parallax-window para_2" data-parallax="scroll" data-image-src="/images/slideshow/1515424490_1454399777_hicham_eid_photo_vogue.jpg">
+          <div class="container parallax_container emphasis-title">  
+                <h2 class="raleway">Unique Brands</h2>
+                <p class="lead topmargin-sm lato" style="font-size: 19px; line-height:1;">We specialize in hair products and accessories and distribute unique and international brands.</p>
+                <br/>
+                <a class="parallax_btn" href="{{route('brands_path', array(1, 'AMAZON-KERATIN'))}}">DISCOVER OUR BRANDS</a>                  
+          </div>
+      </div>
 
-        <div class="row">
-            <p class="page-separator" style=""><b>BRANDS</b></p>
+    <div class="container">
+        <div class="row title_div">
+            <h2 class="title_eideal raleway">OUR BRANDS</h2>
+            <span class="span_h2 lato">We distribute unique and international brands in the region.</span>
         </div>
+        <br/>
 
         <div class="row" style="margin-top: 25px; margin-bottom: 25px;">
             @foreach($brandsImages as $b)
@@ -413,8 +445,11 @@
   Session::put('newsletters_flag', '1');
   ?>
 
+  <script src="js/parallax.min.js"></script>
+  <script>
 
-    <script>
+    $('.para_1').parallax({imageSrc: '/images/slideshow/1454399666-_DSC834611.jpg'});
+    $('.para_2').parallax({imageSrc: '/images/slideshow/1515424490_1454399777_hicham_eid_photo_vogue.jpg'});
 
   $( document ).ready(function() {
 
