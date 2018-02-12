@@ -84,7 +84,7 @@ class CartController extends \BaseController {
                 $cartList = $this->productsRepository->getProductsInCartFromUserId(Session::get('user_id'));  
                 if(empty($cartList)) // if the cart is empty => add a new order_id
                 {   
-                    if($products[0]->sold_out == 0) // of the product is not sold out
+                    if($products[0]->sold_out == 0) // if the product is not sold out
                     {
                         // adding a new order id with the first product associated to the order_id
                         $this->productsRepository->insertOrderIdProduct($products[0]->product_id, Session::get('user_id'), 1);
@@ -311,7 +311,6 @@ class CartController extends \BaseController {
             $input = Input::all();
 
             $this->checkoutForm->validate($input);
-
             
                 Session::put('checkout_firstname', $input['firstname']);
                 Session::put('checkout_lastname', $input['lastname']);
@@ -324,7 +323,7 @@ class CartController extends \BaseController {
 
                 //get the total amout of your cart 
                 $q = $this->productsRepository->getTotalAmountOrderId(Session::get('user_id'));
-                $total_amount = $q[0]->total;
+                $subtotal = $q[0]->total;
 
                 // get the cart that exist in the database
                 $cartList = $this->productsRepository->getProductsInCartFromUserId(Session::get('user_id')); 
@@ -338,7 +337,7 @@ class CartController extends \BaseController {
                 // get all the active promo
                 $active_promo = $this->promoRepository->getActivePromo();
 
-                return View::make('cart.placeOrder', array('pagename' => $pagename, 'cartList' => $cartList, 'itemNb' => $itemNb, 'total_amount' => $total_amount, 'active_promo' => $active_promo, 'flag' =>$flag));
+                return View::make('cart.placeOrder', array('pagename' => $pagename, 'cartList' => $cartList, 'itemNb' => $itemNb, 'active_promo' => $active_promo, 'flag' =>$flag, 'subtotal' => $subtotal));
 
         }// end else of if(!Auth::check())
     }
@@ -364,7 +363,7 @@ class CartController extends \BaseController {
 
            //get the total amout of your cart 
             $q = $this->productsRepository->getTotalAmountOrderId(Session::get('user_id'));
-            $total_amount = $q[0]->total;
+            $subtotal = $q[0]->total;
 
             // get the cart that exist in the database
             $cartList = $this->productsRepository->getProductsInCartFromUserId(Session::get('user_id')); 
@@ -378,7 +377,7 @@ class CartController extends \BaseController {
             // get all the active promo
             $active_promo = $this->promoRepository->getActivePromo();
 
-            return View::make('cart.placeOrder', array('pagename' => $pagename, 'cartList' => $cartList, 'itemNb' => $itemNb, 'total_amount' => $total_amount, 'active_promo' => $active_promo, 'flag' => $flag));
+            return View::make('cart.placeOrder', array('pagename' => $pagename, 'cartList' => $cartList, 'itemNb' => $itemNb, 'subtotal' => $subtotal, 'active_promo' => $active_promo, 'flag' => $flag));
 
         }
 
@@ -389,9 +388,8 @@ class CartController extends \BaseController {
            
             //get the total amout of your cart 
             $q = $this->productsRepository->getTotalAmountOrderId(Session::get('user_id'));
-            $total_amount = $q[0]->total;
+            $subtotal = $q[0]->total;
            
-
             // get the cart that exist in the database
             $cartList = $this->productsRepository->getProductsInCartFromUserId(Session::get('user_id')); 
 
@@ -415,13 +413,12 @@ class CartController extends \BaseController {
             Session::put('promo_id', $promo_valid[0]->promo_id);
 
             // calculate the price after applying the promo and stock it into a session variable
-            $total_after_discount = (float)$total_amount*(100-$promo_valid[0]->percentage)/100;
-            Session::put('total_after_discount', $total_after_discount);
-
+            $subtotal_after_discount = (float)$subtotal*(100-$promo_valid[0]->percentage)/100;
+            Session::put('total_after_discount', $subtotal_after_discount);
 
             Session::put('promo_percentage', $promo_valid[0]->percentage);
 
-             return View::make('cart.placeOrder', array('pagename' => $pagename, 'cartList' => $cartList, 'itemNb' => $itemNb, 'total_amount' => $total_amount, 'active_promo' => $active_promo, 'promo_valid' => $promo_valid, 'flag' => $flag));
+             return View::make('cart.placeOrder', array('pagename' => $pagename, 'cartList' => $cartList, 'itemNb' => $itemNb, 'subtotal' => $subtotal, 'subtotal_after_discount' => $subtotal_after_discount, 'active_promo' => $active_promo, 'promo_valid' => $promo_valid, 'flag' => $flag));
         }
         
     }
@@ -462,16 +459,20 @@ class CartController extends \BaseController {
                     $promo_percentage  = NULL;
                 }
                
+                //total after VAT 
+                $total_amount = $total_amount+($total_amount*Config::get('global.VAT')/100);
+                $total_amount = number_format((float)$total_amount, 2, '.', '');
+
                 if (Session::has('promo_id'))
                 $promo_id = Session::get('promo_id');
                 else 
                 $promo_id = NULL;
 
-
+               
 
                 // get the cart that exist in the database
                 $cartList = $this->productsRepository->getProductsInCartFromUserId(Session::get('user_id')); 
-                
+                 
                 // update the the order_status_id to 2 and the shipping information
                 $this->productsRepository->updateWhenCashOnDelivery(Session::get('user_id'), $order_id, $original_price, $promo_price, $promo_id, $total_amount, Session::get('checkout_firstname'), Session::get('checkout_lastname'), Session::get('checkout_email'), 
                                         Session::get('checkout_phone'), Session::get('checkout_country'), Session::get('checkout_city'),
@@ -527,9 +528,6 @@ class CartController extends \BaseController {
                             $message->from(Session::get('checkout_email'), Session::get('checkout_firstname').' '.Session::get('checkout_lastname'))->subject('Product Purchase | Cash on delivery');
                             $message->to($email_admin);
                         });
-                
-
-
             }
 
             return View::make('cart.checkOnDeliveryResponse', array('pagename' => $pagename, 'order_id' => $order_id));
@@ -570,8 +568,9 @@ class CartController extends \BaseController {
             else 
             $total_amount = $q[0]->total;
 
-
-           
+            //total after VAT 
+            $total_amount = $total_amount+($total_amount*Config::get('global.VAT')/100);
+            $total_amount = number_format((float)$total_amount, 2, '.', '');
 
             if($itemNb == 0)
             {
@@ -907,12 +906,15 @@ class CartController extends \BaseController {
                                 $promo_price  = NULL;
                                 $promo_percentage  = NULL;
                             }
-                           
+
+                            //total after VAT 
+                            $total_amount = $total_amount+($total_amount*Config::get('global.VAT')/100);
+                            $total_amount = number_format((float)$total_amount, 2, '.', '');
+
                             if (Session::has('promo_id'))
                             $promo_id = Session::get('promo_id');
                             else 
                             $promo_id = NULL;
-
 
 
                             $firstname = Session::get('checkout_firstname');
@@ -923,7 +925,7 @@ class CartController extends \BaseController {
                             $city = Session::get('checkout_city');
                             $shipping_address = Session::get('checkout_address');
 
-                            $admin_email="ecommerce@eideal.com";
+                            $admin_email="ecommerce@eideal.com";             
 
 
                     // transaction approved, insert in the database
@@ -1093,7 +1095,6 @@ class CartController extends \BaseController {
             {
                 $original_price = $q[0]->total;
                 $total_amount = Session::get('total_after_discount');
-                $total_amount = number_format((float)$total_amount, 2, '.', '');
                 $promo_price  = Session::pull('total_after_discount');
                 $promo_percentage = Session::pull('promo_percentage');
             }
@@ -1101,10 +1102,13 @@ class CartController extends \BaseController {
             {
                 $original_price = $q[0]->total;
                 $total_amount = $q[0]->total;
-                $total_amount = number_format((float)$total_amount, 2, '.', '');
                 $promo_price  = NULL;
                 $promo_percentage  = NULL;
             }
+
+            //total after VAT 
+            $total_amount = $total_amount+($total_amount*Config::get('global.VAT')/100);
+            $total_amount = number_format((float)$total_amount, 2, '.', '');
            
             if (Session::has('promo_id'))
             $promo_id = Session::get('promo_id');
@@ -1154,7 +1158,6 @@ class CartController extends \BaseController {
 
 
 
-
                     //send the receipt to the client by mail -------------------
                      Mail::send('emails.paypal-purchase-email-success-client', 
                         array('cartList' => $cartList, 'amount' => $total_amount, 'trans_date' => $trans_date, 'firstname' => $firstname, 'lastname' => $lastname, 'email_address' => $email, 'phone' => $phone, 'country' => $country, 'city' => $city, 
@@ -1187,10 +1190,6 @@ class CartController extends \BaseController {
                         $message->from(Session::get('checkout_email'), Session::get('checkout_firstname').' '.Session::get('checkout_lastname'))->subject('Online product purchase | online payment');
                         $message->to($admin_email);
                     });
-
-
-
-
 
 
                     //destroy the cart 

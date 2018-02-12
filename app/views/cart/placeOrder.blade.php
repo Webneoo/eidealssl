@@ -110,32 +110,49 @@
                             </tr>
                         @endforeach
                               <tr>
+                                  <td style="padding-left:40px; font-family:MontserratLight; font-size:23px;"><b>Subtotal</b></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td style="text-align:center; font-family:MontserratLight; font-size:23px;"><b>{{ number_format((float)$subtotal*$curr, 2, '.', ' ') }} ({{ $quoteCurr }})</b></td>
+                                  <td></td>
+                              </tr>
+                        @if(isset($promo_valid) && !empty($promo_valid))
+                              <tr>
+                                  <td style="color: #337ab7; padding-left:40px; font-family:MontserratLight; font-size:20px;"><b>Promotion Discount</b></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td style="color: #337ab7; text-align:center; font-family:MontserratLight; font-size:20px;"><b> {{ $promo_valid[0]->percentage }} %</b></td>
+                                  <td></td>
+                              </tr>
+
+                              <tr>
+                                  <td style="padding-left:40px; font-family:MontserratLight; font-size:23px;"><b>Subtotal after discount</b></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td style="text-align:center; font-family:MontserratLight; font-size:23px;">
+                                  <?php $subtotal = (float)$subtotal_after_discount; ?>
+                                   <b> {{ number_format($subtotal*$curr, 2, '.', ' ') }} ( {{ $quoteCurr }})</b>
+                                  </td>
+                                  <td></td>
+                              </tr>
+                        @endif 
+                               <tr>
+                                  <td style="padding-left:40px; font-family:MontserratLight; font-size:20px;"><b>VAT</b></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td style="text-align:center; font-family:MontserratLight; font-size:20px;"><b>{{ Config::get('global.VAT') }}%</b></td>
+                                  <td></td>
+                              </tr> 
+                              <!-- total amount after applying VAT -->
+                              <?php $total_amount =  number_format(($subtotal + ($subtotal*Config::get('global.VAT')/100)), 2); ?>
+                              <tr>
                                   <td style="padding-left:40px; font-family:MontserratLight; font-size:25px;"><b>Total</b></td>
                                   <td></td>
                                   <td></td>
                                   <td style="text-align:center; font-family:MontserratLight; font-size:25px;"><b>{{ number_format((float)$total_amount*$curr, 2, '.', ' ') }} ({{ $quoteCurr }})</b></td>
                                   <td></td>
                               </tr>
-                        @if(isset($promo_valid) && !empty($promo_valid))
-                              <tr>
-                                  <td style="color: #337ab7; padding-left:40px; font-family:MontserratLight; font-size:25px;"><b>Promotion Discount</b></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td style="color: #337ab7; text-align:center; font-family:MontserratLight; font-size:25px;"><b> {{ $promo_valid[0]->percentage }} %</b></td>
-                                  <td></td>
-                              </tr>
 
-                              <tr>
-                                  <td style="padding-left:40px; font-family:MontserratLight; font-size:25px;"><b>Total after discount</b></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td style="text-align:center; font-family:MontserratLight; font-size:25px;">
-                                  <?php $total_after_discount = (float)$total_amount*$curr*(100-$promo_valid[0]->percentage)/100; ?>
-                                   <b> {{ number_format($total_after_discount, 2, '.', ' ') }} ( {{ $quoteCurr }})</b>
-                                  </td>
-                                  <td></td>
-                              </tr>
-                        @endif
                   </tbody>
 
                  </table>

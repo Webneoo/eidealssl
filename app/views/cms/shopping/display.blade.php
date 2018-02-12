@@ -70,7 +70,7 @@
                             <td style="text-align:center;"></td>
                             <td style="text-align:center;"></td>
                             <td style="text-align:center;"></td>
-                            <td style="text-align:center;"><b>Total</b></td>
+                            <td style="text-align:center;"><b>Subtotal</b></td>
                             <td style="text-align:center;"><b>${{ $order_id_info[0]->original_price }}</b></td>
                         </tr>
                       </table>
@@ -89,11 +89,21 @@
                 </tr>
 
                 <tr>
-                    <td style="text-align:center; font-size: 19px;"><b>OVERALL TOTAL</b></td>
-                    <td style="text-align:center; font-size: 19px;"> <b>$ {{ $order_id_info[0]->purchase_price }} </b></td>
+                    <td style="text-align:center; font-size: 17px;"><b>TOTAL AFTER DISCOUNT</b></td>
+                    <td style="text-align:center; font-size: 17px;"> <b>$ {{ $order_id_info[0]->original_price -  ($order_id_info[0]->original_price * $order_id_info[0]->percentage/100) }} </b></td>
                 </tr>
 
                 @endif
+
+                 <tr>
+                    <td style="text-align:center; font-size: 17px;"><b>VAT</b></td>
+                    <td style="text-align:center; font-size: 17px;"> <b>{{ $order_id_info[0]->vat}}%</b></td>
+                </tr>
+
+                <tr>
+                    <td style="text-align:center; font-size: 19px;"><b>OVERALL TOTAL</b></td>
+                    <td style="text-align:center; font-size: 19px;"> <b>$ {{ $order_id_info[0]->purchase_price }} </b></td>
+                </tr>
 
                 <tr>
                     <td colspan="2" style="text-align:center; font-size:17px; background:#337ab7; color:white"><b>Payment Details</b></td>

@@ -25,7 +25,7 @@
     <div class="row">
   		<div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3" style="text-align:center;font-family:'MontserratRegular';">
   			 <a type="button" class="btn" style="width:160px; font-family:MontserratLight; color:white;background-color:#676767;"
-            href="{{ route('products_path',1) }}"> Continue shopping </a>
+            href="{{ route('all_products_path') }}"> Continue shopping </a>
   		</div>
     </div>
     <br/><br/>

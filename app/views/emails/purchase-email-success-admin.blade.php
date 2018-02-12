@@ -120,6 +120,11 @@
 
                 @endif
                 
+                <tr>
+                   <td style="text-align:right;"><p><b>VAT:</b></p></td>
+                   <td style="text-align:left; padding-left:15px;"><p>{{ Config::get('global.VAT') }}%</p></td>
+                </tr>
+
                	<tr>
                    <td style="text-align:right;"><p><b>Purchase Amount:</b></p></td>
                    <td style="text-align:left; padding-left:15px;"><p>$ {{ $amount }} </p></td>

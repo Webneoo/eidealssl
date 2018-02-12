@@ -83,6 +83,14 @@
             ?>
 
              <tr>  
+                <td style="text-align:left; padding-left:15px;"><p></p></td>
+                <td style="text-align:left; padding-left:15px;"><p></p></td>
+                <td style="text-align:left; padding-left:15px;"><p></p></td>
+                <td style="text-align:left; padding-left:15px;"><p> <b>VAT</b></p></td>
+                <td style="text-align:left; padding-left:15px;"><p><b>{{ Config::get('global.VAT') }}%</b></p></td>
+             </tr> 
+
+             <tr>  
               <td style="text-align:left; padding-left:15px;"><p></p></td>
               <td style="text-align:left; padding-left:15px;"><p></p></td>
               <td style="text-align:left; padding-left:15px;"><p></p></td>

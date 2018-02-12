@@ -22,7 +22,7 @@
   </thead>
 
   <tbody>
-        <?php $price = 0; ?> 
+        <?php $price = 0;?> 
         @if(!empty($cartList)) 
             @foreach($cartList as $c)
               @if(!is_null($c->qty))
@@ -78,21 +78,48 @@
                   </tr>
 
                   <?php // calculating the total of the cart
+
+                     // Remove the white space for the thousand separator 
+                     $price = str_replace(' ', '', $price); 
+             
                      $price =  $price + ($c->price*$c->qty*$curr);
-                     $price = number_format((float)$price, 2, '.', ' '); 
+                     $price = number_format((float)$price, 2, '.', ' ');
                   ?>
               @endif <!-- end if(!is_null($c->product_id)) -->
             @endforeach
           @endif <!-- !empty($cartList) -->
           
 
+
+          <tr>
+              <td style="font-family:MontserratLight; font-size:23px;"><b>Subtotal</b></td>
+              <td></td>
+              <td></td>
+              <td style="text-align:center; font-family:MontserratLight; font-size:23px;"><b>{{ $price }} ({{ $quoteCurr }})</b></td>
+              <td></td>
+          </tr>
+
+          <tr>
+              <td style="font-family:MontserratLight; font-size:20px;"><b>VAT</b></td>
+              <td></td>
+              <td></td>
+              <td style="text-align:center; font-family:MontserratLight; font-size:20px;"><b>{{ Config::get('global.VAT') }}%</b></td>
+              <td></td>
+          </tr>
+
           <tr>
               <td style="font-family:MontserratLight; font-size:25px;"><b>Total</b></td>
               <td></td>
               <td></td>
-              <td style="text-align:center; font-family:MontserratLight; font-size:25px;"><b>{{ $price }} ({{ $quoteCurr }})</b></td>
+              <?php 
+              // Remove the white space for the thousand separator 
+                $price = str_replace(' ', '', $price); 
+              ?>
+   
+              <td style="text-align:center; font-family:MontserratLight; font-size:25px;"><b>{{ number_format(($price + ($price*Config::get('global.VAT')/100)), 2, '.', ' ') }} ({{ $quoteCurr }})</b></td>
               <td></td>
           </tr>
+
           <tr>
               <td></td>
               <td></td>
@@ -102,13 +129,13 @@
                   if(Session::get('product_id') != NULL) 
                   {
                   ?> 
-                  href="{{ route('products_path',Session::get('product_id')) }}"
+                   href="{{ route('products_path', Session::get('product_id').'-hair products') }}"
                   <?php 
                   }
                   else
                   {
                   ?>
-                  href="{{ route('products_path',1) }}"
+                  href="{{ route('all_products_path') }}"
                   <?php } ?>
                   >
                   Continue shopping
@@ -186,16 +213,6 @@ var cartList=<?=json_encode($cartList)?>;
 
     //  console.log(item.id, item.name, item.sold_out)
   }
-
-
-
-
-
-  
-
-
-  
-
 
 
 </script>

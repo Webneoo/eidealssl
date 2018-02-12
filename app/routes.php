@@ -120,7 +120,6 @@ Route::get('products-{id}-{category}', [
 ]);
 
 
-
 Route::post('products-{id}', [
     'as' => 'products_path',
     'uses' => 'ProductController@index'

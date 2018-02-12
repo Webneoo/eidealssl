@@ -631,7 +631,7 @@ class ProductsRepository {
 
 
     public function updateWhenCashOnDelivery($user_id, $order_id, $original_price, $promo_price, $promo_id, $total_amout, $firstname, $lastname, $email, $phone, $country, $city, $shipping_address)
-    {
+    { 
         \DB::table('ta_orders')
             ->where('user_id' ,  $user_id)
             ->where('order_id' , $order_id)
@@ -639,6 +639,7 @@ class ProductsRepository {
                       'original_price' => $original_price,
                       'promo_price' => $promo_price,
                       'promo_id' => $promo_id,
+                      'vat' => \Config::get('global.VAT'),
                       'purchase_price' => $total_amout,
                       'order_status_id' => 2,
                       'firstname' => $firstname,
@@ -665,6 +666,7 @@ class ProductsRepository {
                       'promo_price' => $promo_price,
                       'promo_id' => $promo_id,
                       'purchase_price' => $total_amout,
+                      'vat' => \Config::get('global.VAT'),
                       'order_status_id' => $order_status_id,
                       'firstname' => $firstname,
                       'lastname'=> $lastname,
@@ -757,6 +759,7 @@ class ProductsRepository {
                 'original_price' => $original_price,
                 'promo_price' => $promo_price,
                 'promo_id' => $promo_id,
+                'vat' => \Config::get('global.VAT'),
                 'purchase_price' => $total_amount,
                 'order_status_id' => $order_status_id,
                 'firstname' => $firstname,
