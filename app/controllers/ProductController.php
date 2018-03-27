@@ -437,64 +437,6 @@ class ProductController extends \BaseController {
 
         }
 
-
-
-        // for additional currency ticker symbols visit: http://finance.yahoo.com/currency-converter
-        $usd = array('USD','US Dollars');
-        $eur = array('EUR','Euro');
-        $lbp = array('LBP','Lebanese Pound');
-        $aed = array('AED','UAE Dirham');
-        $bhd = array('BHD','Bahraini Dinar');
-        $egp = array('EGP','Egyptian Pound');
-        $syp = array('SYP','Syrian Pound');
-        $qar = array('QAR','Qatar Rial');
-        $try = array('TRY','Turkish Lira');
-        $jod = array('JOD','Jordanian Dinar');
-        $iqd = array('IQD','Iraqi Dinar');
-        $irr = array('IRR','Iran Rial');
-        $yer = array('YER','Yemen Riyal');
-        $omr = array('OMR','Omani Rial');
-        $kwd = array('KWD','Kuwaiti Dinar');
-        $inr = array('INR','Indian Rupee');
-        $sar = array('SAR','Saudi Arabian Riyal');
-        $gbp = array('GBP','British Pound');
-   
-
-        //Google currency convertion rate
-        $url = "http://finance.google.com/finance/converter?a=1&from=USD&to=$quoteCurrency"; 
-
-        //  $request = curl_init(); 
-        //  $timeOut = 0; 
-        //  curl_setopt ($request, CURLOPT_URL, $url); 
-        //  curl_setopt ($request, CURLOPT_RETURNTRANSFER, 1); 
-        //  curl_setopt ($request, CURLOPT_USERAGENT,"Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1)"); 
-        //  curl_setopt ($request, CURLOPT_CONNECTTIMEOUT, $timeOut); 
-        //  $response = curl_exec($request); 
-        //  curl_close($request);  
-
-        // $regularExpression     = '#\<span class=bld\>(.+?)\<\/span\>#s';
-        // preg_match($regularExpression, $response, $finalData);
-
-        //  //split the currency units from the number
-        // $html_number = preg_split('/(?=[A-Z])/', $finalData[0]);
-
-         $data = file_get_contents($url); 
-         preg_match_all("/<span class=bld>(.*)<\/span>/", $data, $converted);
-         $final = preg_replace("/[^0-9.]/", "", $converted[1][0]);
-
-        // //split 
-       // $ex_rate = preg_split('/>/', $html_number[0]);
-        $ex_rate = (float)$final;
-        $ex_rate = number_format($ex_rate, 2, '.', '');
-
-        // currency convertion function
-        // $open = fopen("http://quote.yahoo.com/d/quotes.csv?s=USD$quoteCurrency=X&f=sl1d1t1c1ohgv&e=.csv", "r");
-        // $exchangeRate = fread($open, 2000);
-        // fclose($open);
-        // $exchangeRate = str_replace("\"", "", $exchangeRate);
-        // $exchangeRate = explode(",", $exchangeRate);
-         
-
         //get the list of medias inside the product details page
         $mediaList = $this->mediasRepository->getAllMediasListByProductId($product_id);
 
@@ -512,7 +454,6 @@ class ProductController extends \BaseController {
                      'id' => $id,
                      'product_id' => $product_id,
                      'quoteCurrency' => $quoteCurrency,
-                     'ex_rate' => $ex_rate,
                      'related_products' => $related_products));
     }
 

@@ -149,7 +149,7 @@
                                   <td style="padding-left:40px; font-family:MontserratLight; font-size:25px;"><b>Total</b></td>
                                   <td></td>
                                   <td></td>
-                                  <td style="text-align:center; font-family:MontserratLight; font-size:25px;"><b>{{ number_format((float)$total_amount*$curr, 2, '.', ' ') }} ({{ $quoteCurr }})</b></td>
+                                  <td style="text-align:center; font-family:MontserratLight; font-size:25px;"><b>{{ number_format($total_amount*$curr, 2, '.', ' ') }} ({{ $quoteCurr }})</b></td>
                                   <td></td>
                               </tr>
 
