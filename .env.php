@@ -4,8 +4,8 @@
 return array(
     'DB_HOST' => 'localhost',
     'DB_NAME' => 'eideal',
-    'DB_USERNAME' => 'michel',
-    'DB_PASSWORD' => '1be783ec',
+    'DB_USERNAME' => 'webneoo',
+    'DB_PASSWORD' => 'MysqL@118',
     'MANDRILL_SECRET' => 'f5sMDJOqFLsIxE0nURi3Iw'
 );
 
