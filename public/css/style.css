@@ -709,6 +709,10 @@ footer a:hover{
         left:0px;
     }
 
+       .nav>li>a
+    {
+        padding: 10px 13px !important;
+    }
 }
 
 
@@ -1117,6 +1121,8 @@ footer a:hover{
         border-left: 2px solid black !important;
         height:70px;  
     }
+
+
 
 }
 
