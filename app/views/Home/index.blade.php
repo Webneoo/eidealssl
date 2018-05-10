@@ -16,9 +16,9 @@
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="margin-bottom: 20px;">
       <!-- Indicators -->
 
-      <ol class="carousel-indicators">
+      <ol class="carousel-indicators carrousel_dots">
 
-        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active hidden-xs"></li>
       <?php 
         $actual_date = Carbon::now('Asia/Beirut');
         $i =1; 
@@ -27,20 +27,28 @@
      <?php 
       for($i=1; $i<=sizeof($slideShowList)-1; $i++) 
       {
-    ?>
-        <li data-target="#carousel-example-generic" data-slide-to="{{ $i }}"></li>
-    <?php
-      }
-    ?>
+      ?>
+          <li data-target="#carousel-example-generic" data-slide-to="{{ $i }}" class='hidden-xs'></li>
+      <?php
+        }
+      ?>
      
       </ol>
 
       <!-- Wrapper for slides -->
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-          <img src="images/slideshow/{{ $slideShowList[0]->img_url }}" alt="Eideal | Hair tools in Dubai, curling iron, flat iron, hairdryer, beauty supplier, salon supplier, hair care" title="Eideal hair tools" style="width: 100%;">
+          <img src="images/slideshow/{{ $slideShowList[0]->img_url }}" alt="Eideal | Hair tools in Dubai, curling iron, flat iron, hairdryer, beauty supplier, salon supplier, hair care | {{ $slideShowList[0]->title }}" title="Eideal hair tools" class="img_slideshow" style="width: 100%;">
+          <div class="carousel-caption fade_bg hidden-sm hidden-xs">
+              <h1 class="carousel-caption-header">{{ $slideShowList[0]->title }}</h1>
+              <p class="carousel-caption-text hidden-sm hidden-xs">
+                   {{ $slideShowList[0]->subtitle }}
+              </p>
+                @if($slideShowList[0]->link != NULL && $slideShowList[0]->link != '')
+                   <a href="{{$slideShowList[0]->title}}" class="btn btn-primary call_to_action">Learn more</a>
+                @endif
+          </div>
         </div>
-
       <?php $c =1; ?>
       @foreach ($slideShowList as $s)  
         <?php 
@@ -48,7 +56,16 @@
           {
         ?>
             <div class="item">
-              <img src="images/slideshow/{{ $s->img_url }}" alt="Eideal | Hair tools in Dubai, curling iron, flat iron, hairdryer, beauty supplier, salon supplier, hair care" title="Eideal hair tools" style="width: 100%;">
+              <img src="images/slideshow/{{ $s->img_url }}" alt="Eideal | Hair tools in Dubai, curling iron, flat iron, hairdryer, beauty supplier, salon supplier, hair care | {{ $slideShowList[0]->title }}" title="Eideal hair tools"  class="img_slideshow" style="width: 100%;">
+              <div class="carousel-caption fade_bg hidden-sm hidden-xs">
+                  <h1 class="carousel-caption-header">{{$s->title}}</h1>
+                  <p class="carousel-caption-text hidden-sm hidden-xs">
+                     {{$s->subtitle}}
+                  </p>
+                  @if($s->link != NULL && $s->link != '')
+                    <a href="{{$s->title}}" class="btn btn-primary call_to_action">Learn more</a>
+                  @endif
+              </div>
             </div>
         <?php
           }
@@ -69,148 +86,106 @@
       </a>
     </div>
 
-    <div class="container">
+
+    
+    <div class="container" style="margin-bottom:80px;">
         <div class="row title_div">
-            <h2 class="title_eideal raleway">PRODUCT OF THE MONTH</h2>
-            <span class="span_h2 lato">Build your online store</span>
+            <h2 class="title_eideal raleway">PRODUCT CATEGORIES</h2>
+            <span class="span_h2 lato">Choose a category and discover our best selling products</span>
         </div>
         <br/>
 
-        <?php  
-           $disable_price_flag = 0;
-
-           //test if the product has an disabled price or price = 0 => set flag to 1 
-           if($productMonth[0]->disable_price == 1 || $productMonth[0]->price == 0)
-             $disable_price_flag = 1;
-         ?>
-        
-        <div class="row">
-            <div class=" col-lg-offset-3 col-lg-6 col-md-offset-3 col-md-6 col-sm-offset-1 col-sm-10 col-xs-12">
-               <?php 
-                 $product_id = $productMonth[0]->product_id;
-                 $sub_category_id = $productMonth[0]->sub_category_id;
-                 $product_month_title_link = str_replace('|', ' ', $productMonth[0]->title);
-                ?>
-              <a class="product_img_link" href="{{ route('products_details_path', array($product_id, $sub_category_id, 'USD', $productMonth[0]->subcategory_title, $product_month_title_link) ) }}">
+        <div class='row hidden-sm hidden-xs'>
+          <div class='col-md-12'>
+            <div class="carousel slide media-carousel" id="media">
               
-              @if( ($productMonth[0]->promo_start_date != NULL && $productMonth[0]->promo_end_date != NULL) && ($actual_date >= $productMonth[0]->promo_start_date && $actual_date <= $productMonth[0]->promo_end_date) )
-                <div class="discount_percentage_prod_of_month"> - {{ $productMonth[0]->percentage }}% </div>
-              @endif
+              <div class="carousel-inner">
+             
+                <?php $active=1;  $p=1;?>
 
-              @if( $productMonth[0]->sold_out == 1 )
-                <div class="discount_percentage_prod_of_month" style="width:75px;"> Sold Out</div>
-              @endif
-
-              <img id="main_img_src" src="images/products/{{ $productMonth[0]->img1 }}" class="best-seller-image" alt="{{ $productMonth[0]->title }}" title="{{ $productMonth[0]->title }}" style="margin-bottom: 10px; border:1px solid #e0e0e0;"/>
-              </a>
-           
-              <div>
+                <div class="item @if($active == 1) active @endif">
+                  <div class="row">
+                  @foreach($subcategories as $s)
+                    <div class="col-md-3 categ_home_col">
+                      <?php $link = $s->sub_category_id.'-'.$s->title; ?>        
+                      <div class="thumbnail categ_box product_hover_click" onclick="location.href='{{ route('products_path', $link) }}'"><img alt="" src="images/products_category/{{$s->image}}" style="height:180px;"></div>
+                      <div class="categ_title">{{$s->title}}</div>
+                    </div>          
                     
-                <div style="padding-left:0px;" class="col-lg-9 col-md-9 col-sm-9">
-                    <h1 class="main-product-h1">{{ $productMonth[0]->title }}</h1>
-                    <p>{{ $productMonth[0]->small_desc }} </p>
-                </div>
-
-                <div class="col-lg-3 col-md-3 col-sm-3">
                   <?php 
-                    $price = $productMonth[0]->price; 
-                    $price = number_format((float)$price*$curr, 2, '.', '');
+                    if($p%4 == 0 && $p!=sizeof($subcategories)) 
+                    {
+                      $active = 0;
                   ?>
 
+                  </div>
+                </div>
+                <div class="item @if($active == 1) active @endif">
+                  <div class="row">
 
-                <!-- check if the product of the month is sold out -->
-                @if( $productMonth[0]->sold_out == 0 )  
+                  <?php
+                    }
+                    $p++; // increment counter 
+                  ?>
 
-                   <!-- test if the product has an enabled price or  -->
-                   @if($disable_price_flag == 0)
-                      @if( ($productMonth[0]->promo_start_date != NULL && $productMonth[0]->promo_end_date != NULL) && ($actual_date >= $productMonth[0]->promo_start_date && $actual_date <= $productMonth[0]->promo_end_date) )
-                                <div class="main-product-price" style="position:relative; top:10px;">
-                                {{ number_format($price*(100-$productMonth[0]->percentage)/100, 2, '.', ' ') }} {{ $quoteCurr }} 
-                                <span class="discount_price_home_page"> <strike>{{ number_format($price, 2, '.', ' ') }} {{ $quoteCurr }}</strike></span>
-                                </div>
-                              @else
-                                <div class="main-product-price" style="position:relative; top:10px;"> {{ number_format($price, 2, '.', ' ') }} {{ $quoteCurr }} </div>
-                              @endif
-
-
-                    <!-- test if the product is not liquid -->
-                      @if($productMonth[0]->liquid_product == 0)
-                      <a href="{{ route('cart_path_product', array($product_id) ) }}" class="best-seller-button"> ADD TO CART</a>  
-                      @endif
-
-                      <!-- test if the product is liquid -->
-                      @if($productMonth[0]->liquid_product == 1)
-                      {{ Form::open(['route' => 'home_path']) }}
-
-                        <input name="liquid_product_id" type="hidden" value="{{$productMonth[0]->product_id}}" >
-                        <input name="submit_liquid_product" type="submit" value="ADD TO CART" class="best-seller-button" style="border:none;"/>
-                        
-                      {{ Form::close() }}
-                      @endif
-
-                    @else <!-- product price is disabled  -->
-                        <a class="best-seller-button ask_exp_link" href="{{ route('contact_us_path') }}"> ASK THE EXPERT </a>
-                    @endif 
-
-                @endif
-
-
+                  @endforeach       
+                  </div>
                 </div>
 
               </div>
 
-            </div>
-            
-        </div>
-      
-
-        @if(!empty($mediaList))
-          <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
-              <h1 class="in-the-media-h1" style="margin-left: 15px;"> IN THE MEDIA </h1>
-              @foreach( $mediaList as $m)
-                 @if($m->url != null)
-                    <a target="_blank" href="{{$m->url}}" class="col-lg-2 col-md-3 col-sm-3 col-xs-4 media_link">
-                      <img src="images/medias/{{$m->img}}" class="main-product-image media_img" style="margin-bottom: 10px;" alt="Eideal Medias" title="Eideal media"/>
-                    </a>
-                  @else
-                    <div id="{{ $m->media_id }}" class="col-lg-2 col-md-3 col-sm-3 col-xs-4 media_link media_img_link" style="cursor:pointer;" onclick="showModal(this.id)">
-                       <img data-toggle="modal" data-target="#myModal" src="images/medias/{{$m->img}}" class="main-product-image media_img" alt="Eideal Medias" title="Eideal media" style="margin-bottom: 10px;"/>
-                    </div>
-                     
-                    <!-- Modal -->
-                    <div id="myModal_{{ $m->media_id }}" class="modal fade all_modal" role="dialog" style="z-index:9500;">
-                      <div class="modal-dialog">
-
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title"><?php echo strtoupper($productMonth[0]->title) ?></h4>
-                          </div>
-                          <div class="modal-body">
-                           <img style="width:100%;" src="images/medias/{{ $m->img }}" alt="Eideal Medias" title="Eideal media" >
-                          </div> 
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                          </div>
-                        </div>
-
-                      </div>
-                    </div>
-                   @endif
-              @endforeach
+              <a data-slide="prev" href="#media" class="left carousel-control left_arrow_container"><img class="left_arrow" src="images/prev.png"></a>
+              <a data-slide="next" href="#media" class="right carousel-control right_arrow_container"><img class="right_arrow" src="images/prev.png"></a>
+            </div>                          
           </div>
-        @endif
+        </div>
+
+
+        <div class='row hidden-lg hidden-md'>
+          <div class='col-md-12'>
+            <div class="carousel slide media-carousel" id="media2">
+              
+              <div class="carousel-inner">
+             
+                <?php  $p=1;?>
+
+                @foreach($subcategories as $s)
+                <div class="item @if($p == 1) active @endif">
+                  <div class="row">
+                 
+                    <div class="col-md-12 categ_home_col">
+                      <?php $link = $s->sub_category_id.'-'.$s->title; ?>        
+                      <div class="thumbnail categ_box product_hover_click" onclick="location.href='{{ route('products_path', $link) }}'">
+                        <img alt="" src="images/products_category/{{$s->image}}" style="height:180px;">
+                      </div>
+                      <div class="categ_title">{{$s->title}}</div>
+                    </div>          
+
+                  </div>
+                </div>
+                <?php $p++; ?>
+                @endforeach       
+              </div>
+
+              <a data-slide="prev" href="#media2" class="left carousel-control left_arrow_container"><img class="left_arrow" src="images/prev.png"></a>
+              <a data-slide="next" href="#media2" class="right carousel-control right_arrow_container"><img class="right_arrow" src="images/prev.png"></a>
+            </div>                          
+          </div>
+        </div>
+
+
 
         <br/>
-
-      </div>
-
+        <div class="row" style="text-align:center">
+          <a class="btn btn-blue" style="padding-right:20px; padding-left:20px; margin-top:20px;" href="{{ route('all_products_path') }}">View All</a>
+        </div>
+    </div>
+    
 
       <div class="parallax-window para_1" data-parallax="scroll" data-image-src="/images/slideshow/1454399666-_DSC834611.jpg">
         
           <div class="container parallax_container emphasis-title">  
-                <h2 class="raleway">Hair Tools & Accessories !</h2>
+                <h2 class="raleway h2_accessories">Hair Tools<span class="hidden-xs hidden-sm hidden-md"> & Accessories</span> !</h2>
                 <p class="lead topmargin-sm lato" style="font-size: 19px; line-height:1;">Whether you’re a hair professional or simply a hair enthusiast and lover, eideal.com is here to take your experience and journey to the next level.</p>
                 <br/>
                 <a class="parallax_btn" href="{{route('all_products_path')}}">DISCOVER OUR PRODUCTS</a>                  
@@ -219,6 +194,8 @@
       </div>
 
 
+
+      <!--======================== BEST SELLERS =============-->
       <div class="container">
 
         <div class="row title_div">
@@ -236,7 +213,7 @@
                $disable_price_flag = 1;
            ?>
 
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 best_seller_col">
                 <div class="panel panel-default panel_product_box_2">
                     <div class="panel-body">
                       <?php 
@@ -257,7 +234,7 @@
                         <img src="images/products/{{ $b->img1 }}" class="best-seller-image img_height_index" alt="{{ $b->title }}" title="{{ $b->title }}"/>
                       </a>
                         <h1 class="best-seller-h1">{{ $b->title }}</h1>
-                        <p> {{$b->small_desc}} </p>
+                        <p style='padding-left:15px; padding-right:15px;'> {{$b->small_desc}} </p>
                         <?php 
                           $price = $b->price; 
                           $price = number_format((float)$price*$curr, 2, '.', '');
@@ -326,10 +303,14 @@
         </div>
         <br/>
 
-        <div class="row" style="margin-top: 25px; margin-bottom: 25px;">
-            @foreach($brandsImages as $b)
+        <div class="row brands_row" style="margin-top: 25px; margin-bottom: 25px;">
+            @foreach($brandsLogo as $b)
               <?php $link = $b->brand_id.'-'.$b->brand_title; ?>
-               <div class="col-md-3 col-sm-3 col-xs-12"><a href="{{ route('brands_path', $link ) }}" class="thumbnail"><img src="images/brands/{{$b->url_img}}" style="max-width:100%;" alt="{{$b->brand_title}}" title="{{$b->brand_title}}"></a></div>
+               <div class="col-md-3 col-sm-3 col-xs-12 brands_col">
+                  <a href="{{ route('brands_path', $link ) }}" class="thumbnail brands_a">
+                    <img src="images/brands_logo/{{$b->brand_logo}}" style="max-width:100%;" alt="{{$b->brand_title}}" title="{{$b->brand_title}}">
+                  </a>
+                </div>
             @endforeach
     
         </div>
@@ -341,22 +322,22 @@
 
                    <tr>
                        <td class="bottom-table hidden-xs">
-                           <i class="fa fa-4x fa-money bottom-icon"></i>
+                           <i class="fa fa-4x fa-money bottom-icon" style="color:#417797"></i>
                           <h1> Cash on Delivery </h1>
                           <p> We offer competitive prices on our 30 plus product range </p>
                       </td>
                       <td class="bottom-table delivery_box">
-                          <i style="margin-top:-20px;" class="fa fa-4x fa-truck bottom-icon"></i>
+                          <i style="margin-top:-20px; color:#417797;" class="fa fa-4x fa-truck bottom-icon"></i>
                           <h1> 48 Hours Free Delivery </h1>
                           <p class="delivery_product"> Products available in stock </p>
                       </td>
                       <td class="bottom-table">
-                          <i class="fa fa-4x fa-credit-card bottom-icon"></i>
+                          <i class="fa fa-4x fa-credit-card bottom-icon" style="color:#417797;"></i>
                           <h1> Safe Payment </h1>
                           <p> Pay with the world's most popular and secure payment methods </p>
                       </td>
                       <td class="bottom-table hidden-xs">
-                          <i class="fa fa-4x fa-cart-arrow-down bottom-icon"></i>
+                          <i class="fa fa-4x fa-cart-arrow-down bottom-icon" style="color:#417797;"></i>
                           <h1> Shop with Confidence </h1>
                           <p> Our Buyer Protection covers your purchase from click to delivery </p>
                       </td>

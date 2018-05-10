@@ -61,7 +61,10 @@ class HomeController extends \BaseController {
 
         $mediaList = $this->mediasRepository->getAllMediasListByProductId($productMonth[0]->product_id);
 
-        $brandsImages = $this->brandsRepository->getAllBrandsImages();
+        $brandsLogo = $this->brandsRepository->getAllBrands();
+
+        $subcategories = $this->productsRepository->getAllSubcategory();
+
         
          // if the product is liquid
         if(isset($input['submit_liquid_product']))
@@ -119,7 +122,7 @@ class HomeController extends \BaseController {
 
         $newsletters_info = $this->homeRepository->getNewsLettersInfo();
 
-        return View::make('Home.index', array('pagename' => $pagename, 'slideShowList' => $slideShowList, 'mediaList' => $mediaList, 'bestSeller' => $bestSeller , 'productMonth' => $productMonth, 'brandsImages' => $brandsImages, 'newsletters_info' => $newsletters_info));
+        return View::make('Home.index', array('pagename' => $pagename, 'slideShowList' => $slideShowList, 'mediaList' => $mediaList, 'bestSeller' => $bestSeller , 'productMonth' => $productMonth, 'brandsLogo' => $brandsLogo, 'newsletters_info' => $newsletters_info, 'subcategories' => $subcategories));
  }
 
 
@@ -232,77 +235,7 @@ class HomeController extends \BaseController {
         // ======================= END NEWSLETTERS SIGN UP PROCESS =============================
 
 
-
-        $slideShowList = $this->homeRepository->showSlideshow();
-       
-
-        $bestSeller = $this->homeRepository->getBestSellerProducts();
-
-        $productMonth = $this->productsRepository->selectProductOfTheMonth();
-
-
-        $mediaList = $this->mediasRepository->getAllMediasListByProductId($productMonth[0]->product_id);
-
-        $brandsImages = $this->brandsRepository->getAllBrandsImages();
-        
-         // if the product is liquid
-        if(isset($input['submit_liquid_product']))
-        {   
-            //if the user is online
-            if(!Auth::check())
-            {   
-
-                $alert_msg = '\nThank you for your interest in our products.\nThe selected product is a liquid product and cannot be added to the cart due to shipping restrictions to certain countries.\nPlease sign in to proceed.\nRegards';
-                
-                echo "<script type=\"text/javascript\">alert('".$alert_msg."');</script>";
-
-                return View::make('signin.index', array('pagename' => $pagename));         
-            }
-
-            else
-            {   
-
-                $liquid_product_id = $input['liquid_product_id'];
-                $user_id = Session::get('user_id');
-
-
-                $liquid_product_info = $this->productsRepository->getProductInfoFromId($liquid_product_id);
-                $user_info = $this->userRepository->getUserInfoById($user_id);
-
-
-                $name = $user_info[0]->firstname. ' '.$user_info[0]->lastname;
-                $username = $user_info[0]->username;
-                $email = $user_info[0]->email;
-                $phone = $user_info[0]->phone;
-                $country = $user_info[0]->country;
-                $city = $user_info[0]->city;
-                $address = $user_info[0]->address;
-
-                $code = $liquid_product_info[0]->code;
-                $product_name = $liquid_product_info[0]->title;
-              
-
-               
-                 Mail::send('emails.liquid-product', array('user_id' => $user_id, 'name' => $name, 'username' => $username, 'email' => $email, 'phone' => $phone, 
-                                                           'country' => $country, 'liquid_product_id' => $liquid_product_id, 'code' => $code, 
-                                                           'product_name' => $product_name, 'city' => $city, 'address' => $address), 
-                        function($message) use ($email)
-                    {
-                        $message->from($email, 'Eideal website')->subject('Liquid product email');
-                        $message->to('ecommerce@eideal.com');
-                    });
-
-                $alert_msg = 'Dear '.Session::get('firstname').',\n\nThank you for your interest in our products.\nYour inquiry is well received.\nThe selected product is a liquid product and cannot be added to the cart due to shipping restrictions to certain countries.\nOne of our team members will get in touch with you ASAP from 9am-6pm, Sunday through Thursday to further update you about your order’s status and delivery options and itinerary.\nRegards';
-                
-                echo "<script type=\"text/javascript\">alert('".$alert_msg."');</script>";                   
-            }
-
-        }
-
-        $newsletters_info = $this->homeRepository->getNewsLettersInfo();
-
-        return View::make('Home.index', array('pagename' => $pagename, 'slideShowList' => $slideShowList, 'mediaList' => $mediaList, 'bestSeller' => $bestSeller , 'productMonth' => $productMonth, 'brandsImages' => $brandsImages, 'newsletters_info' => $newsletters_info));
-
+       return Redirect::back();
     }
 
     public function aboutUs()

@@ -11,6 +11,7 @@
      <title data-ng-bind="pageTitle()">Eideal CMS</title>
 
      <!-- Bootstrap Core CSS -->
+          <link rel="shortcut icon" href="images/logo_ico.ico"/>
           <link href="/css/bootstrap.min.css" rel="stylesheet">
           <!-- MetisMenu CSS -->
           <link href="/css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">

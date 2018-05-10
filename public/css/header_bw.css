@@ -1,0 +1,51 @@
+.navMenu input {
+    background: url('../images/magnifier.png') 5px center no-repeat;
+    background-size: 12px 12px;
+    border:none;
+    color: transparent;
+    font-size: 12px;
+    position:relative;
+    color:black;
+    outline: none;
+    padding: 3px 5px 3px 20px;
+    width: 40px;
+    /* CSS3 */
+   color:white;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    border-radius:10px;
+}
+
+.navMenu input:hover { opacity: 1 }
+
+.navMenu input:focus {
+    opacity: 1;
+    width: 110px;
+    border-radius: 10px;
+    border: 1px solid #AAA;
+    cursor:;
+}
+
+.navMenu input:focus ~ a { width: 110px }
+
+
+.navMenu input::-webkit-input-placeholder { color:transparent; }
+.navMenu input:-moz-placeholder { color:transparent; }
+
+
+.navMenu input:focus::-webkit-input-placeholder { color:#c7c7cd; }
+.navMenu input:focus:-moz-placeholder { color:#c7c7cd; }
+
+
+.navMenu
+{
+    position:relative;
+    top:13px;
+}
+
+.search_input
+{
+    color:black !important;
+}

@@ -313,9 +313,12 @@ class HomeRepository {
      public function addSlideshow($input)
     {   
          $q = \DB::select(
-            \DB::raw("INSERT INTO ta_slideshow (img_url, slideshow_date)
-                      VALUES (:img_url, :date_slideshow)"),
+            \DB::raw("INSERT INTO ta_slideshow (img_url, title, subtitle, link, slideshow_date)
+                      VALUES (:img_url, :title, :subtitle, :link, :date_slideshow)"),
             array(':img_url' => $input['slideshow_image'], 
+                  ':title' => $input['title'],
+                  ':subtitle' => $input['subtitle'],
+                  ':link' => $input['link'],
                   ':date_slideshow' => $input['date_slideshow']
                  )
             );
@@ -326,11 +329,17 @@ class HomeRepository {
     {   
          $q = \DB::select(
             \DB::raw("UPDATE ta_slideshow
-                      SET img_url = :img_url, 
+                      SET img_url = :img_url,
+                          title = :title,
+                          subtitle = :subtitle,
+                          link = :link, 
                           slideshow_date = :date_slideshow 
                       WHERE image_id = :image_id"),
             array(':image_id' => $image_id, 
                   ':img_url' => $input['slideshow_image'], 
+                  ':title' => $input['title'],
+                  ':subtitle' => $input['subtitle'],
+                  ':link' => $input['link'],
                   ':date_slideshow' => $input['date_slideshow']
                  )
             );

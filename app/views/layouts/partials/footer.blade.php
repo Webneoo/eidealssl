@@ -3,26 +3,26 @@
         <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-3">
                 <h1> INFORMATION </h1>
-                <a href="{{ route('terms_path') }}">TERMS & CONDITIONS</a><br/>
-                <a href="{{ route('privacy_path') }}">PRIVACY POLICY</a><br/>
-                <a href="{{ route('disclaimer_path') }}">DISCLAIMER</a><br/>  
-                <a href="{{ route('about_us_path') }}">ABOUT US</a>
+                <a href="{{ route('terms_path') }}">Terms & Conditions</a><br/>
+                <a href="{{ route('privacy_path') }}">Privacy Policy</a><br/>
+                <a href="{{ route('disclaimer_path') }}">Disclaimer</a><br/>  
+                <a href="{{ route('about_us_path') }}">About us</a>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3 second_sub_footer">
                 <h1> EIDEAL </h1>
-                <a href="{{ route('all_products_path') }}">PRODUCTS</a><br/>
-                <a href="{{ route('brands_path', array($menu_brands[0]->brand_id, $menu_brands[0]->brand_title)) }}">BRANDS</a><br/>     
-                <a href="{{ route('eteam_path') }}">E-TEAM</a><br/>           
-                <a href="{{ route('videos_path') }}">VIDEOS</a><br/>
-                <a href="{{ route('news_path') }}">NEWS</a>
+                <a href="{{ route('all_products_path') }}">Products</a><br/>
+                <a href="{{ route('brands_path', array($menu_brands[0]->brand_id, $menu_brands[0]->brand_title)) }}">Brands</a><br/>     
+                <a href="{{ route('eteam_path') }}">E-Team</a><br/>           
+                <a href="{{ route('videos_path') }}">Videos</a><br/>
+                <a href="{{ route('news_path') }}">News</a>
                 
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3">
                 <h1> LEARN MORE </h1>
                 <!-- <a href="{{ route('where_to_buy_path',0) }}">WHERE TO BUY</a><br/> -->
-                <a href="{{ route('service_path', $menu_services[0]->service_id) }}">SERVICES</a><br/>
-                <a href="{{ route('contact_us_path') }}">CONTACT US</a><br/>
-                <a href="{{ route('contact_us_path') }}#careers">CAREERS</a><br/>
+                <a href="{{ route('service_path', $menu_services[0]->service_id) }}">Services</a><br/>
+                <a href="{{ route('contact_us_path') }}">Contact Us</a><br/>
+                <a href="{{ route('contact_us_path') }}#careers">Careers</a><br/>
                 <a href="{{ route('faq_path') }}">FAQs</a>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3">

@@ -8,12 +8,12 @@
     <meta name="description" content="@yield('description')">
     <meta name="keywords" content="@yield('keywords')">
     <meta name="robots" content="@yield('robots')">
-    <link rel="shortcut icon" href="images/logo_eideal.ico"/>
+    <link rel="shortcut icon" href="images/logo_ico.ico"/>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="stylesheet" href="css/style.css?v=<?php echo filemtime('css/style.css');?>" type="text/css" media="all" />
-    <link rel="stylesheet" href="css/header_css.css?v=<?php echo filemtime('css/header_css.css');?>" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/header_bw.css?v=<?php echo filemtime('css/header_bw.css');?>" type="text/css" media="all" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Latest compiled and minified CSS -->
@@ -54,7 +54,7 @@
 
   <body>
 
-        @include('layouts.partials.trans_header')
+        @include('layouts.partials.header_black_white')
 
         @yield('content')
 

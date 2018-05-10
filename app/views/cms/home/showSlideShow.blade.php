@@ -16,6 +16,9 @@
                 <tr>
                     <th>#</th>
                     <th>Images</th>
+                    <th>Title</th>
+                    <th>Subtitle</th>
+                    <th>link</th>
                     <th>Date</th>
                     <th></th>
                 </tr>
@@ -24,7 +27,14 @@
              @foreach ($slideShowList as $s)
              <tr>    
                 <td>{{ $s->image_id }}</td>
-                <td> <img src="images/slideshow/{{ $s->img_url }}" style="height:60px;"></td>
+                <td><img src="images/slideshow/{{ $s->img_url }}" style="height:60px;"></td>
+                <td>{{ $s->title }}</td>
+                <td>{{ $s->subtitle }}</td>
+                <td>
+                    @if($s->link != NULL && $s->link != "")
+                         <a target="_blank" href="{{$s->link}}">{{$s->link}}</a>
+                    @endif
+                </td>
                 <td>{{ $s->slideshow_date }}</td>
                 <td>
                     <a href="{{ route('edit_slideshow_path', $s->image_id) }}"><i class="fa fa-edit fa-fw"></i></a>
