@@ -45,7 +45,7 @@
                    {{ $slideShowList[0]->subtitle }}
               </p>
                 @if($slideShowList[0]->link != NULL && $slideShowList[0]->link != '')
-                   <a href="{{$slideShowList[0]->title}}" class="btn btn-primary call_to_action">Learn more</a>
+                   <a href="{{$slideShowList[0]->link}}" class="btn btn-primary call_to_action">Learn more</a>
                 @endif
           </div>
         </div>
