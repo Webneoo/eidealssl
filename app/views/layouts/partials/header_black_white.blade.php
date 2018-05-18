@@ -1,7 +1,7 @@
 <div class="black_container">
   <div class="black_content">
     <div class="b_header_1"> 
-        Your go-to online hair treatment online store  &nbsp&nbsp | &nbsp&nbsp <i class="fa fa-phone" aria-hidden="true"></i>
+        Your go-to online hair products store  &nbsp&nbsp | &nbsp&nbsp <i class="fa fa-phone" aria-hidden="true"></i>
         +971 42594665  &nbsp&nbsp | &nbsp&nbsp
     </div>
 
@@ -178,5 +178,19 @@
     else
       $('.navbar').css('margin-top', '30px');
 });
+
+
+  // open dropdown list on mouse over
+  $('.dropdown').mouseover(function () {
+
+      $(this).addClass('open');
+  });
+
+  // close dropdown list on mouse out
+   $('.dropdown').mouseout(function () {
+
+      $(this).removeClass('open');
+  });
+
 
 </script>
