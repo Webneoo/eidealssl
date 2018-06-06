@@ -58,12 +58,11 @@
                         P.O. Box: 187123 <br/>
                         Dubai, UAE <br/>
                         Tel: +97142594665 <br/>
-                        Fax: +97142594669 <br/>
                         Mob: +971564452369 <br/>
 
-                    <div style="font-family: MontserratRegular;"> 
+                 <!--    <div style="font-family: MontserratRegular;"> 
                       <img style="height:25px; position:relative; bottom:7px; margin-top:8px;" src="images/whatsapp_logo.png" alt="eideal whatsapp number" title="Eideal Whatsapp Number"/>  +971564452369 
-                    </div>
+                    </div> -->
 
                    <!--  <a style="color:#01aae9; font-size:16px;" href="skype:santiago.susie?call" title="Call us on skype"> 
                       <img style="height:25px; position:relative; bottom:7px; margin-top:8px;" src="images/skype.png"/> Call us 
@@ -113,7 +112,6 @@
                         Starco <br/>
                         Downtown, Beirut<br/>
                         Tel: +9611366081<br/>
-                        Fax: +9611366008 <br/>
                         Mob: +96170366007 <br/>
                     </p>  
                   </div>

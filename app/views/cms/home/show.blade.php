@@ -46,7 +46,6 @@
           
                 @foreach($store_info as $s)
                  <tr>
-
                    <td>{{ $s->name }}</td>
                     <td>{{ $s->country }}</td>
                     <td>{{ $s->region }}</td>

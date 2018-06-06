@@ -137,7 +137,7 @@ header
     font-family: MontserratRegular;
 }
 
-.best-seller-price
+.best-seller-price, .product_price
 {
     color:#417797;
     font-size: 18px;
@@ -860,6 +860,16 @@ footer a:hover{
         border-left: 2px solid black !important;
         height:70px;  
     }
+
+    .product_price
+    {
+       position:absolute;
+        left:25;
+        right:25;
+        top:290px; 
+    }
+
+
 }
 
 
@@ -893,11 +903,12 @@ footer a:hover{
     }
 
 
-    .best-seller-price
+    .product_price
     {
        position:absolute;
         left:25;
-        right:25; 
+        right:25;
+        top:270px; 
     }
 
     .absolute_best_seller
@@ -2126,7 +2137,7 @@ cursor:pointer;
     font-size:14px;
     text-align:center;
     border:none;
-    background-color: #9a9a9a;
+    background-color: #417797;
     color:white;
     margin-top:-1px;
     border-radius: 3px;
@@ -2154,11 +2165,14 @@ cursor:pointer;
     font-size:13px;
     padding-top:9px;
     padding-bottom:9px;
+    background: #ffffff;
+    color: #417797;
+    border: 1px solid #417797 !important;
 }
 
 .ask_exp_link:visited, .ask_exp_link:focus
 {
-    color:white;
+    color:417797;
 }
 
 .newsletters_email_template

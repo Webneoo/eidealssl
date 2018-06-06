@@ -44,8 +44,6 @@
           <a title="Login" href="{{ route('sign_in_path') }}"><i style="color:white;" class="fa fa-sign-in"></i>&nbsp<span class="d-none d-md-inline-block">Login</span></a>
         @else
           <a href="{{ route('my_account_path') }}" class="header_links" style="margin-right: 20px;"> Hi, {{ Session::get('username') }} </a>
-         
-
 
           <a title="Log out" href="{{ route('sign_out_frontend_path') }}" class="signup-btn"><i style="color:white;" class="fa fa-sign-out"></i>&nbsp<span class="d-none d-md-inline-block">Logout</span></a>
         @endif  
@@ -68,17 +66,17 @@
       </button>
 
        
-        <a href="{{ route('cart_path') }}" class="fa fa-shopping-cart cart_link navbar-toggle hidden-lg hidden-md hidden-sm" style="border:none; color:black;">
-              <?php 
-                  $cart_item = Session::get('cart_item');
-                  if(isset($cart_item) && $cart_item != 0)
-                  {
-               ?>
-              <span class="red_notification"> {{ $cart_item }} </span> 
-              <?php 
-                  }
-              ?>
-          </a>
+      <a href="{{ route('cart_path') }}" class="fa fa-shopping-cart cart_link navbar-toggle hidden-lg hidden-md hidden-sm" style="border:none; color:black;">
+            <?php 
+                $cart_item = Session::get('cart_item');
+                if(isset($cart_item) && $cart_item != 0)
+                {
+             ?>
+            <span class="red_notification"> {{ $cart_item }} </span> 
+            <?php 
+                }
+            ?>
+        </a>
 
       <a class="navbar-brand" href="{{ route('home_path') }}"> <img src='images/eideal_logo_black.png' alt='Eideal Logo' title="Eideal"/> </a>
     </div>

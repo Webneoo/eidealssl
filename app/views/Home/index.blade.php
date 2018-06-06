@@ -303,12 +303,12 @@
         </div>
         <br/>
 
-        <div class="row brands_row" style="margin-top: 25px; margin-bottom: 25px;">
+        <div class="row brands_row" style="margin-top: 25px; margin-bottom: 25px;">  
             @foreach($brandsLogo as $b)
               <?php $link = $b->brand_id.'-'.$b->brand_title; ?>
                <div class="col-md-3 col-sm-3 col-xs-12 brands_col">
                   <a href="{{ route('brands_path', $link ) }}" class="thumbnail brands_a">
-                    <img src="images/brands_logo/{{$b->brand_logo}}" style="max-width:100%;" alt="{{$b->brand_title}}" title="{{$b->brand_title}}">
+                    <img src="images/brands_logo/{{$b->logo_bw}}" style="max-width:100%;" alt="{{$b->brand_title}}" title="{{$b->brand_title}}">
                   </a>
                 </div>
             @endforeach

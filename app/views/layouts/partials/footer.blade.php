@@ -39,7 +39,7 @@
                 <div>
                     <img style="height:35px;" src="images/visa-mastercard-paypal.png" alt="Eideal | secured payment | Payment Method | visa | paypal | master card" title="Eideal Payement method">
                 </div>
-                 <div class="copyright">Copyright © 2017 <a target="_blank" class="webneoo_link" style="text-decoration: underline;" href="https://webneoo.com">webneoo</a>.</div>
+                 <div class="copyright">Copyright © 2018 <a target="_blank" class="webneoo_link" style="text-decoration: underline;" href="https://webneoo.com">webneoo</a>.</div>
             </div>
         </div>
 
