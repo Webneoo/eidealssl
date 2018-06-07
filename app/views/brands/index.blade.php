@@ -34,7 +34,7 @@
     <div class="row" style="margin-top:20px;">
 		@foreach ($brand_info as $b)
       <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0" style="text-align:center;">
-  			<img style="margin-bottom:5px;" src="images/brands_logo/{{ $b->brand_logo }}" alt="{{$brand_info[0]->brand_title}}" title="{{$brand_info[0]->brand_title}}"/>
+  			<img style="margin-bottom:15px; height:64px;" src="images/brands_logo/{{ $b->brand_logo }}" alt="{{$brand_info[0]->brand_title}}" title="{{$brand_info[0]->brand_title}}"/>
   		</div>
     @endforeach
     </div>

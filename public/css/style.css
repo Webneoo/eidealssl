@@ -1288,12 +1288,12 @@ footer a:hover{
         box-shadow: none !important;
         padding:20px !important;
         height:70px;  
+        margin-bottom:45px;
     }
 
     .brands_col img
     {
         max-width:80% !important;
-        padding-bottom:25px !important; 
     }
 
 }
