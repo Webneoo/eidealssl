@@ -112,7 +112,7 @@ $desc = preg_replace('/[ \t]+/', ' ', $desc);
                           <span class="discount_price_home_page"> <strike>{{ $price }} {{ $quoteCurr }}</strike></span>
                     
                       @else
-                      <span class="best-seller-price"> <b> {{ $price }} {{ $quoteCurr }} </b></span>
+                      <span class="best-seller-price" style="position:relative; top:0px;"> <b> {{ $price }} {{ $quoteCurr }} </b></span>
                       @endif
 
                     @endif
