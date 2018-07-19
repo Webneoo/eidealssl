@@ -39,7 +39,7 @@
         <a href="{{ route('create_brand_path') }}" class="btn btn-primary">CREATE A BRAND </a>
 
     </div>
-{{dd('nouristas2')}}
+
     <!-- JAVASCRIPT DATATABLES -->
     <script>
         $(document).ready(function() {
@@ -51,5 +51,5 @@
     </script>
     <script src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
     <script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
-
+{{dd('nouristas3')}}
 @stop
