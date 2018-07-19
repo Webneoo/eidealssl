@@ -706,7 +706,7 @@ class ProductController extends \BaseController {
   // -------------- CMS BEST SELLER --------------------
 
     public function showBestSeller()
-    {   
+    {   dd('test');
         $pagename = pageName();
         $productsList = $this->productsRepository->getAllProductsList();   
 

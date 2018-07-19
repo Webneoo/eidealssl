@@ -22,11 +22,11 @@
                     <th>Delete</th>
                 </tr>
             </thead>
-                  
+
          @foreach($brandList as $b)   
             <tbody>    
                    <td>{{ $b->brand_id }}</td>
-                   <td><img src="images/brands_logo/{{ $b->brand_logo }}"></td>
+                   <td><img style="width:150px;" src="images/brands_logo/{{ $b->brand_logo }}"></td>
                    <td>{{ $b->brand_title }}</td>
                    <td><a href="{{ route('show_brand_slideshow_path', $b->brand_id) }}"><i class="fa fa-edit fa-fw"></i></a></td>
                    <td><a href="{{ route('edit_brand_details_path', $b->brand_id) }}"><i class="fa fa-edit fa-fw"></i></a></td>
