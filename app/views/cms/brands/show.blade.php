@@ -8,7 +8,7 @@
 
     @include('cms.layouts.partials.errors')
     @include('flash::message')
-{{dd('nouristas')}}
+
     <div class="row">
 
         <table class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -39,7 +39,7 @@
         <a href="{{ route('create_brand_path') }}" class="btn btn-primary">CREATE A BRAND </a>
 
     </div>
-
+{{dd('nouristas2')}}
     <!-- JAVASCRIPT DATATABLES -->
     <script>
         $(document).ready(function() {
