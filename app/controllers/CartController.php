@@ -502,7 +502,7 @@ class CartController extends \BaseController {
                             $emails = array();
 
                             $emails[0] = $email_client;
-                            $emails[1] = 'ecommerce@eideal.com';
+                        //    $emails[1] = 'ecommerce@eideal.com';
 
                             foreach($emails as $e)
                             {
@@ -516,7 +516,7 @@ class CartController extends \BaseController {
 
 
                  //mail for EIDEAL admin --------------------------------
-                 $email_admin = 'ecommerce@eideal.com';
+                 $email_admin = 'info@webneoo.com';
                 
                  Mail::send('emails.cash-on-delivery-admin-email', 
                             array('cartList' => $cartList, 'firstname' => Session::get('checkout_firstname'), 'lastname' => Session::get('checkout_lastname'),

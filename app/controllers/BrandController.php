@@ -34,7 +34,7 @@ class BrandController extends \BaseController {
     // --------------------- CMS WHERE TO BUY  -------------------------------
 
     public function show()
-    {   
+    {   dd('test');
         $pagename = pageName();
         $brandList = $this->brandsRepository->getAllBrands();
         return View::make('cms.brands.show', array('pagename' => $pagename, 'brandList' => $brandList));

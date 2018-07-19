@@ -55,7 +55,7 @@ class PasswordForgottenController extends \BaseController {
                 $this->userRepository->updatePasswordByUserId($user_id, $random_password);
 
 
-                Mail::send('emails.reset-password', array('random_password' => $random_password), function($message) use ($email)
+                Mail::send('emails.reset-password', array('random_password' => $random_password, 'name'=>$username[0]->firstname, 'username'=>$username[0]->username), function($message) use ($email)
                 {
                     $message->from('noreply@eideal.com', 'Eideal website')->subject('Reset Your Password');
                     $message->to($email);
