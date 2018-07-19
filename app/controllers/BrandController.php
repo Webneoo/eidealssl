@@ -36,7 +36,7 @@ class BrandController extends \BaseController {
     public function show()
     {   
         $pagename = pageName();
-        $brandList = $this->brandsRepository->getAllBrands();dd('nour');
+        $brandList = $this->brandsRepository->getAllBrands();
         return View::make('cms.brands.show', array('pagename' => $pagename, 'brandList' => $brandList));
     }
 
