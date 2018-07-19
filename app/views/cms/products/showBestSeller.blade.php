@@ -89,5 +89,5 @@
     </script>
     <script src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
     <script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
-{{dd('nour')}}
+
 @stop
