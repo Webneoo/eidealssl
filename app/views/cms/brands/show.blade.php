@@ -5,10 +5,10 @@
     <div class="row">
         <div class="col-lg-12">  <h1 class="page-header">List of brands </h1>   </div>
     </div>
-{{dd('nouristas')}}
+
     @include('cms.layouts.partials.errors')
     @include('flash::message')
-
+{{dd('nouristas')}}
     <div class="row">
 
         <table class="table table-striped table-bordered table-hover" id="dataTables-example">
