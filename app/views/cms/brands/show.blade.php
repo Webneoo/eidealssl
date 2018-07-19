@@ -22,7 +22,7 @@
                     <th>Delete</th>
                 </tr>
             </thead>
-   {{dd($brandList)}}      
+                  
          @foreach($brandList as $b)   
             <tbody>    
                    <td>{{ $b->brand_id }}</td>
