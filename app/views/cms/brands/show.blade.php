@@ -22,7 +22,7 @@
                     <th>Delete</th>
                 </tr>
             </thead>
-         
+   {{dd($brandList)}}      
          @foreach($brandList as $b)   
             <tbody>    
                    <td>{{ $b->brand_id }}</td>
@@ -51,5 +51,4 @@
     </script>
     <script src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
     <script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
-{{dd('nouristas3')}}
 @stop
