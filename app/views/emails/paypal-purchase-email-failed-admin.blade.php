@@ -54,9 +54,9 @@
         	<tr>  
             <td style="text-align:left; padding-left:15px;"><p><b>Product Code:</b> </p></td>
             <td style="text-align:left; padding-left:15px;"><p><b> Product_title</b> </p></td>
-            <td style="text-align:left; padding-left:15px;"><p><b> Price </b></p></td>
+            <td style="text-align:left; padding-left:15px;"><p><b> Price ({{ $quoteCurr }})</b></p></td>
             <td style="text-align:left; padding-left:15px;"><p><b> Quantity </b></p></td>
-            <td style="text-align:left; padding-left:15px;"><p><b>Total </b> </p></td>
+            <td style="text-align:left; padding-left:15px;"><p><b>Total ({{ $quoteCurr }})</b> </p></td>
           </tr>
 
             <?php 
@@ -78,9 +78,9 @@
 
               <td style="text-align:left; padding-left:15px;"><p> {{ $c->id }} </p></td>
               <td style="text-align:left; padding-left:15px;"><p> {{ $c->name }} </p></td>
-              <td style="text-align:left; padding-left:15px;"><p> {{ $c->price }} </p></td>
+              <td style="text-align:left; padding-left:15px;"><p> {{ number_format((float)$c->price*$curr, 2, '.', '') }}  </p></td>
               <td style="text-align:left; padding-left:15px;"><p> {{ $c->qty }} </p></td>
-              <td style="text-align:left; padding-left:15px;"><p> {{ ($c->qty)*($c->price) }} </p></td>
+              <td style="text-align:left; padding-left:15px;"><p> {{ number_format((float)($c->qty)*($c->price)*($curr), 2, '.', '') }} {{ ($c->qty)*($c->price) }} </p></td>
             </tr>	
 
   			     <?php
@@ -103,7 +103,7 @@
                 <td style="text-align:left; padding-left:15px;"><p></p></td>
                 <td style="text-align:left; padding-left:15px;"><p></p></td>
                 <td style="text-align:left; padding-left:15px;"><p> <b>Original price </b></p></td>
-                <td style="text-align:left; padding-left:15px;"><p>{{ $original_price }} $</p></td>
+                <td style="text-align:left; padding-left:15px;"><p>{{ number_format((float)$original_price*$curr, 2, '.', '') }}</p></td>
              </tr> 
 
              <tr>  
@@ -131,7 +131,7 @@
                 <td style="text-align:left; padding-left:15px;"><p></p></td>
                 <td style="text-align:left; padding-left:15px;"><p></p></td>
                 <td style="text-align:left; padding-left:15px;"><p> <b>Overall Total Amount</b></p></td>
-                <td style="text-align:left; padding-left:15px;"><p><b>{{ $amount }} $</b></p></td>
+                <td style="text-align:left; padding-left:15px;"><p><b>{{ number_format((float)$amount*$curr, 2, '.', '') }} </b></p></td>
              </tr> 
 
         </table>
@@ -166,7 +166,7 @@
                 
                 <tr>
                    <td style="text-align:right;"><p><b>Purchase Amount:</b></p></td>
-                   <td style="text-align:left; padding-left:15px;"><p>$ {{ $amount }} </p></td>
+                   <td style="text-align:left; padding-left:15px;"><p>{{ number_format((float)$amount*$curr, 2, '.', '') }} </p></td>
                 </tr>
 
                 <tr>

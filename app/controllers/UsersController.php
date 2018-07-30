@@ -112,7 +112,7 @@ class UsersController extends \BaseController {
 
         Mail::send('emails.signup-email-template', array('username' => $username, 'firstname' => $firstname), function($message) use ($email)
                 {
-                    $message->from('info@eideal.com', 'EIDEAL')->subject('Welcome to EIDEAL');
+                    $message->from('noreply@eideal.com', 'EIDEAL')->subject('Welcome to EIDEAL');
                     $message->to($email);
                 });
 

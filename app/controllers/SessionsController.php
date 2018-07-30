@@ -81,6 +81,7 @@ class SessionsController extends \BaseController {
         Session::put('birth_date', $user->birth_date);
         Session::put('phone', $user->phone);
         Session::put('address', $user->address);
+        Session::put('city', $user->city);
         Session::put('country', $user->country);
         Session::put('promo_pts', $user->promo_pts);
 

@@ -163,7 +163,7 @@ class HomeController extends \BaseController {
 
                   foreach($emails as $e)
                   {
-                      $message->from('ecommerce@eideal.com', 'EIDEAL')->subject('EIDEAL | Thanks for subscribing');
+                      $message->from('noreply@eideal.com', 'EIDEAL')->subject('Thank you for signing up to EIDEAL');
                       $message->to($e);
                   }
 

@@ -487,16 +487,20 @@ class CartController extends \BaseController {
                 // empty the cart item counter 
                 Session::put('cart_item', 0);
 
-
+  
                 // ----------- SEND EMAIL TO BOTH ADMIN AND USER -------------------------
                 
                  //mail for the client ------------------------------------
                  $email_client = Session::get('checkout_email');
-
+                 
+                 $actual_datetime = Carbon::now();
+                 $purchase_date = Carbon::parse($actual_datetime)->format('d-m-Y');
+                 $purchase_time = Carbon::parse($actual_datetime)->format('h:i a');
+  
                  Mail::send('emails.cash-on-delivery-client-email', 
                             array('cartList' => $cartList, 'firstname' => Session::get('checkout_firstname'), 'lastname' => Session::get('checkout_lastname'),
                                   'email_address' => Session::get('checkout_email'), 'phone' => Session::get('checkout_phone'),
-                                  'country' => Session::get('checkout_country'), 'city' => Session::get('checkout_city'), 'shipping_address' => Session::get('checkout_address'), 'order_id' => $order_id, 'original_price' => $original_price, 'total_amount' => $total_amount, 'promo_percentage' => $promo_percentage, 'promo_price' => $promo_price), 
+                                  'country' => Session::get('checkout_country'), 'city' => Session::get('checkout_city'), 'shipping_address' => Session::get('checkout_address'), 'order_id' => $order_id, 'original_price' => $original_price, 'total_amount' => $total_amount, 'promo_percentage' => $promo_percentage, 'promo_price' => $promo_price, 'purchase_date' => $purchase_date, 'purchase_time' => $purchase_time), 
                             function($message) use ($email_client)
                         {   
                             $emails = array();
@@ -506,7 +510,7 @@ class CartController extends \BaseController {
 
                             foreach($emails as $e)
                             {
-                                $message->from('ecommerce@eideal.com', 'EIDEAL')->subject('Thank you for your purchase | Eideal');
+                                $message->from('ecommerce@eideal.com', 'EIDEAL')->subject('EIDEAL: Order confirmation');
                                 $message->to($e);
                             }
 
@@ -516,7 +520,7 @@ class CartController extends \BaseController {
 
 
                  //mail for EIDEAL admin --------------------------------
-                 $email_admin = 'info@webneoo.com';
+                 $email_admin = 'ecommerce@eideal.com';
                 
                  Mail::send('emails.cash-on-delivery-admin-email', 
                             array('cartList' => $cartList, 'firstname' => Session::get('checkout_firstname'), 'lastname' => Session::get('checkout_lastname'),
@@ -663,410 +667,409 @@ class CartController extends \BaseController {
          $SECURE_SECRET = "2ED66F5C89B9F38AE24B86CD192BDD9B";
 
         //check if this page is being redirected from payment client thus carrying the field vpc_TxnResponseCode
-            if (isset($_GET['vpc_TxnResponseCode']))
+        if (isset($_GET['vpc_TxnResponseCode']))
+        {
+            //function to map each response code number to a text message   
+            function getResponseDescription($responseCode) 
             {
-                //function to map each response code number to a text message   
-                function getResponseDescription($responseCode) 
-                {
-                    switch ($responseCode) {
-                        case "0" : $result = "Transaction Successful"; break;
-                        case "?" : $result = "Transaction status is unknown"; break;
-                        case "1" : $result = "Unknown Error"; break;
-                        case "2" : $result = "Bank Declined Transaction"; break;
-                        case "3" : $result = "No Reply from Bank"; break;
-                        case "4" : $result = "Expired Card"; break;
-                        case "5" : $result = "Insufficient funds"; break;
-                        case "6" : $result = "Error Communicating with Bank"; break;
-                        case "7" : $result = "Payment Server System Error"; break;
-                        case "8" : $result = "Transaction Type Not Supported"; break;
-                        case "9" : $result = "Bank declined transaction (Do not contact Bank)"; break;
-                        case "A" : $result = "Transaction Aborted"; break;
-                        case "C" : $result = "Transaction Cancelled"; break;
-                        case "D" : $result = "Deferred transaction has been received and is awaiting processing"; break;
-                        case "E" : $result = "Invalid Credit Card"; break;
-                        case "F" : $result = "3D Secure Authentication failed"; break;
-                        case "I" : $result = "Card Security Code verification failed"; break;
-                        case "G" : $result = "Invalid Merchant"; break;
-                        case "L" : $result = "Shopping Transaction Locked (Please try the transaction again later)"; break;
-                        case "N" : $result = "Cardholder is not enrolled in Authentication scheme"; break;
-                        case "P" : $result = "Transaction has been received by the Payment Adaptor and is being processed"; break;
-                        case "R" : $result = "Transaction was not processed - Reached limit of retry attempts allowed"; break;
-                        case "S" : $result = "Duplicate SessionID (OrderInfo)"; break;
-                        case "T" : $result = "Address Verification Failed"; break;
-                        case "U" : $result = "Card Security Code Failed"; break;
-                        case "V" : $result = "Address Verification and Card Security Code Failed"; break;
-                        case "X" : $result = "Credit Card Blocked"; break;
-                        case "Y" : $result = "Invalid URL"; break;                
-                        case "B" : $result = "Transaction was not completed"; break;                
-                        case "M" : $result = "Please enter all required fields"; break;                
-                        case "J" : $result = "Transaction already in use"; break;
-                        case "BL" : $result = "Card Bin Limit Reached"; break;                
-                        case "CL" : $result = "Card Limit Reached"; break;                
-                        case "LM" : $result = "Merchant Amount Limit Reached"; break;                
-                        case "Q" : $result = "IP Blocked"; break;                
-                        case "R" : $result = "Transaction was not processed - Reached limit of retry attempts allowed"; break;                
-                        case "Z" : $result = "Bin Blocked"; break;
+                switch ($responseCode) {
+                    case "0" : $result = "Transaction Successful"; break;
+                    case "?" : $result = "Transaction status is unknown"; break;
+                    case "1" : $result = "Unknown Error"; break;
+                    case "2" : $result = "Bank Declined Transaction"; break;
+                    case "3" : $result = "No Reply from Bank"; break;
+                    case "4" : $result = "Expired Card"; break;
+                    case "5" : $result = "Insufficient funds"; break;
+                    case "6" : $result = "Error Communicating with Bank"; break;
+                    case "7" : $result = "Payment Server System Error"; break;
+                    case "8" : $result = "Transaction Type Not Supported"; break;
+                    case "9" : $result = "Bank declined transaction (Do not contact Bank)"; break;
+                    case "A" : $result = "Transaction Aborted"; break;
+                    case "C" : $result = "Transaction Cancelled"; break;
+                    case "D" : $result = "Deferred transaction has been received and is awaiting processing"; break;
+                    case "E" : $result = "Invalid Credit Card"; break;
+                    case "F" : $result = "3D Secure Authentication failed"; break;
+                    case "I" : $result = "Card Security Code verification failed"; break;
+                    case "G" : $result = "Invalid Merchant"; break;
+                    case "L" : $result = "Shopping Transaction Locked (Please try the transaction again later)"; break;
+                    case "N" : $result = "Cardholder is not enrolled in Authentication scheme"; break;
+                    case "P" : $result = "Transaction has been received by the Payment Adaptor and is being processed"; break;
+                    case "R" : $result = "Transaction was not processed - Reached limit of retry attempts allowed"; break;
+                    case "S" : $result = "Duplicate SessionID (OrderInfo)"; break;
+                    case "T" : $result = "Address Verification Failed"; break;
+                    case "U" : $result = "Card Security Code Failed"; break;
+                    case "V" : $result = "Address Verification and Card Security Code Failed"; break;
+                    case "X" : $result = "Credit Card Blocked"; break;
+                    case "Y" : $result = "Invalid URL"; break;                
+                    case "B" : $result = "Transaction was not completed"; break;                
+                    case "M" : $result = "Please enter all required fields"; break;                
+                    case "J" : $result = "Transaction already in use"; break;
+                    case "BL" : $result = "Card Bin Limit Reached"; break;                
+                    case "CL" : $result = "Card Limit Reached"; break;                
+                    case "LM" : $result = "Merchant Amount Limit Reached"; break;                
+                    case "Q" : $result = "IP Blocked"; break;                
+                    case "R" : $result = "Transaction was not processed - Reached limit of retry attempts allowed"; break;                
+                    case "Z" : $result = "Bin Blocked"; break;
 
-                        default  : $result = "Unable to be determined"; 
-                    }
-                    return $result;
+                    default  : $result = "Unable to be determined"; 
                 }
+                return $result;
+            }
 
 
 
 
-                  //function to map each issuer response code number to a text message   
-                function getIssuerResponseDescription($acqResponseCode) 
-                {
-                    switch ($acqResponseCode) {
-                        case "00" : $result = "Approved"; break;
-                        case "01" : $result = "Refer to Card Issuer"; break;
-                        case "02" : $result = "Refer to Card Issuer"; break;
-                        case "03" : $result = "Invalid Merchant"; break;
-                        case "04" : $result = "Pick Up Card"; break;
-                        case "05" : $result = "Do Not Honor"; break;
-                        case "07" : $result = "Pick Up Card"; break;
-                        case "12" : $result = "Invalid Transaction"; break;
-                        case "14" : $result = "Invalid Card Number (No such Number)"; break;
-                        case "15" : $result = "No Such Issuer"; break;
-                        case "33" : $result = "Expired Card"; break;
-                        case "34" : $result = "Suspected Fraud"; break;
-                        case "36" : $result = "Restricted Card"; break;
-                        case "39" : $result = "No Credit Account"; break;
-                        case "41" : $result = "Card Reported Lost"; break;
-                        case "43" : $result = "Stolen Card"; break;
-                        case "51" : $result = "Insufficient Funds"; break;
-                        case "54" : $result = "Expired Card"; break;
-                        case "57" : $result = "Transaction Not Permitted"; break;
-                        case "59" : $result = "Suspected Fraud"; break;
-                        case "62" : $result = "Restricted Card"; break;
-                        case "65" : $result = "Exceeds withdrawal frequency limit"; break;
-                        case "91" : $result = "Cannot Contact Issuer"; break;
- 
-                        default  : $result = "Unable to be determined"; 
-                    }
-                    return $result;
+              //function to map each issuer response code number to a text message   
+            function getIssuerResponseDescription($acqResponseCode) 
+            {
+                switch ($acqResponseCode) {
+                    case "00" : $result = "Approved"; break;
+                    case "01" : $result = "Refer to Card Issuer"; break;
+                    case "02" : $result = "Refer to Card Issuer"; break;
+                    case "03" : $result = "Invalid Merchant"; break;
+                    case "04" : $result = "Pick Up Card"; break;
+                    case "05" : $result = "Do Not Honor"; break;
+                    case "07" : $result = "Pick Up Card"; break;
+                    case "12" : $result = "Invalid Transaction"; break;
+                    case "14" : $result = "Invalid Card Number (No such Number)"; break;
+                    case "15" : $result = "No Such Issuer"; break;
+                    case "33" : $result = "Expired Card"; break;
+                    case "34" : $result = "Suspected Fraud"; break;
+                    case "36" : $result = "Restricted Card"; break;
+                    case "39" : $result = "No Credit Account"; break;
+                    case "41" : $result = "Card Reported Lost"; break;
+                    case "43" : $result = "Stolen Card"; break;
+                    case "51" : $result = "Insufficient Funds"; break;
+                    case "54" : $result = "Expired Card"; break;
+                    case "57" : $result = "Transaction Not Permitted"; break;
+                    case "59" : $result = "Suspected Fraud"; break;
+                    case "62" : $result = "Restricted Card"; break;
+                    case "65" : $result = "Exceeds withdrawal frequency limit"; break;
+                    case "91" : $result = "Cannot Contact Issuer"; break;
+
+                    default  : $result = "Unable to be determined"; 
                 }
+                return $result;
+            }
 
-
-
-                
-                //function to display a No Value Returned message if value of field is empty
-                function null2unknown($data) 
-                {
-                    if ($data == "") 
-                        return "No Value Returned";
-                     else 
-                        return $data;
-                }       
-                //get secure hash value of merchant 
-                //get the secure hash sent from payment client
-                $vpc_Txn_Secure_Hash = addslashes($_GET["vpc_SecureHash"]);
-                unset($_GET["vpc_SecureHash"]); 
-                ksort($_GET);
-                // set a flag to indicate if hash has been validated
-                $errorExists = false;
-                //check if the value of response code is valid
-                if (strlen($SECURE_SECRET) > 0 && addslashes($_GET["vpc_TxnResponseCode"]) != "7" && addslashes($_GET["vpc_TxnResponseCode"]) != "No Value Returned") 
-                {
-                    //creat an md5 variable to be compared with the passed transaction secure hash to check if url has been tampered with or not
-                    $md5HashData = $SECURE_SECRET;
-
-                    //creat an md5 variable to be compared with the passed transaction secure hash to check if url has been tampered with or not
-                    $md5HashData_2 = $SECURE_SECRET;
-
-                    // sort all the incoming vpc response fields and leave out any with no value
-                    foreach($_GET as $key => $value) 
-                    {
-                        if ($key != "vpc_SecureHash" && strlen($value) > 0 && $key != 'action' ) 
-                        {
-                            
-                            $md5HashData_2 .= str_replace(" ",'+',$value);
-                            $md5HashData .= $value;
-                            
-                        }
-                    }
-
-                    //if transaction secure hash is the same as the md5 variable created 
-                    if ((strtoupper($vpc_Txn_Secure_Hash) == strtoupper(md5($md5HashData)) || strtoupper($vpc_Txn_Secure_Hash) == strtoupper(md5($md5HashData_2))))
-                    {
-                        $hashValidated = "<b>CORRECT</b>";
-                        $errorExists = false;
-                    } 
-                    else 
-                    {
-                        $hashValidated = "<b>INVALID HASH</b>";
-                        $errorExists = true;
-                    }
-                } 
-                else 
-                {
-                    $hashValidated = "<FONT color='orange'><b>Not Calculated - No 'SECURE_SECRET' present.</b></FONT>";
-                }
-                
-                //the the fields passed from the url to be displayed
-                if(isset($_GET["amount"]))
-                $amount          = null2unknown(addslashes($_GET["amount"])/100);
-                else
-                $amount='No Value Returned';
-
-                if(isset($_GET["vpc_Message"]))
-                $message         = null2unknown(addslashes($_GET["vpc_Message"]));
-                else
-                $message='No Value Returned';
-
-                if(isset($_GET["vpc_Card"]))
-                $cardType        = null2unknown(addslashes($_GET["vpc_Card"]));
-                else
-                $cardType='No Value Returned';
-
-  
-                if(isset($_GET["vpc_TransactionNo"]))
-                $transactionNo   = null2unknown(addslashes($_GET["vpc_TransactionNo"]));
-                else
-                $transactionNo='No Value Returned';
-
-                if(isset($_GET["orderInfo"]))
-                $orderInfo       = null2unknown(addslashes($_GET["orderInfo"]));
-                else
-                $orderInfo='No Value Returned';
-
-                if(isset($_GET["vpc_ReceiptNo"]))
-                $receiptNo       = null2unknown(addslashes($_GET["vpc_ReceiptNo"]));
-                else
-                $receiptNo='No Value Returned';
-
-                if(isset($_GET["merchTxnRef"]))
-                $merchTxnRef     = null2unknown(addslashes($_GET["merchTxnRef"]));
-                else
-                $merchTxnRef='No Value Returned';
-
-                if(isset($_GET["vpc_AcqResponseCode"]))
-                $acqResponseCode = null2unknown(addslashes($_GET["vpc_AcqResponseCode"]));
-                else
-                $acqResponseCode='No Value Returned';
-
-
-                if(isset($_GET["vpc_TxnResponseCode"]))
-                $txnResponseCode = null2unknown(addslashes($_GET["vpc_TxnResponseCode"]));
-                else
-                $txnResponseCode='No Value Returned';
 
 
             
-                if(isset($_GET["vpc_TxnResponseCode"]))
-                $txnResponseCodeDesc =getResponseDescription($txnResponseCode);
-                else
-                $txnResponseCodeDesc='No Value Returned';
-                
-                if(isset($_GET["vpc_AcqResponseCode"]))
-                $issuerResponseCodeDesc =getIssuerResponseDescription($acqResponseCode);
-                else
-                $issuerResponseCodeDesc='No Value Returned';
+            //function to display a No Value Returned message if value of field is empty
+            function null2unknown($data) 
+            {
+                if ($data == "") 
+                    return "No Value Returned";
+                 else 
+                    return $data;
+            }       
+            //get secure hash value of merchant 
+            //get the secure hash sent from payment client
+            $vpc_Txn_Secure_Hash = addslashes($_GET["vpc_SecureHash"]);
+            unset($_GET["vpc_SecureHash"]); 
+            ksort($_GET);
+            // set a flag to indicate if hash has been validated
+            $errorExists = false;
+            //check if the value of response code is valid
+            if (strlen($SECURE_SECRET) > 0 && addslashes($_GET["vpc_TxnResponseCode"]) != "7" && addslashes($_GET["vpc_TxnResponseCode"]) != "No Value Returned") 
+            {
+                //creat an md5 variable to be compared with the passed transaction secure hash to check if url has been tampered with or not
+                $md5HashData = $SECURE_SECRET;
 
+                //creat an md5 variable to be compared with the passed transaction secure hash to check if url has been tampered with or not
+                $md5HashData_2 = $SECURE_SECRET;
 
-
-                $trans_date = Carbon::now();
-                // Show 'Error' in title if an error condition
-                $errorTxt = "";
-                
-
-                // Hash value false, false gateway
-                if ($txnResponseCode == "7" || $txnResponseCode == "No Value Returned" || $errorExists == true) 
+                // sort all the incoming vpc response fields and leave out any with no value
+                foreach($_GET as $key => $value) 
                 {
-                    $errorTxt = "Error ";
+                    if ($key != "vpc_SecureHash" && strlen($value) > 0 && $key != 'action' ) 
+                    {
+                        
+                        $md5HashData_2 .= str_replace(" ",'+',$value);
+                        $md5HashData .= $value;
+                        
+                    }
+                }
+
+                //if transaction secure hash is the same as the md5 variable created 
+                if ((strtoupper($vpc_Txn_Secure_Hash) == strtoupper(md5($md5HashData)) || strtoupper($vpc_Txn_Secure_Hash) == strtoupper(md5($md5HashData_2))))
+                {
+                    $hashValidated = "<b>CORRECT</b>";
+                    $errorExists = false;
+                } 
+                else 
+                {
+                    $hashValidated = "<b>INVALID HASH</b>";
+                    $errorExists = true;
+                }
+            } 
+            else 
+            {
+                $hashValidated = "<FONT color='orange'><b>Not Calculated - No 'SECURE_SECRET' present.</b></FONT>";
+            }
+            
+            //the the fields passed from the url to be displayed
+            if(isset($_GET["amount"]))
+            $amount          = null2unknown(addslashes($_GET["amount"])/100);
+            else
+            $amount='No Value Returned';
+
+            if(isset($_GET["vpc_Message"]))
+            $message         = null2unknown(addslashes($_GET["vpc_Message"]));
+            else
+            $message='No Value Returned';
+
+            if(isset($_GET["vpc_Card"]))
+            $cardType        = null2unknown(addslashes($_GET["vpc_Card"]));
+            else
+            $cardType='No Value Returned';
+
+
+            if(isset($_GET["vpc_TransactionNo"]))
+            $transactionNo   = null2unknown(addslashes($_GET["vpc_TransactionNo"]));
+            else
+            $transactionNo='No Value Returned';
+
+            if(isset($_GET["orderInfo"]))
+            $orderInfo       = null2unknown(addslashes($_GET["orderInfo"]));
+            else
+            $orderInfo='No Value Returned';
+
+            if(isset($_GET["vpc_ReceiptNo"]))
+            $receiptNo       = null2unknown(addslashes($_GET["vpc_ReceiptNo"]));
+            else
+            $receiptNo='No Value Returned';
+
+            if(isset($_GET["merchTxnRef"]))
+            $merchTxnRef     = null2unknown(addslashes($_GET["merchTxnRef"]));
+            else
+            $merchTxnRef='No Value Returned';
+
+            if(isset($_GET["vpc_AcqResponseCode"]))
+            $acqResponseCode = null2unknown(addslashes($_GET["vpc_AcqResponseCode"]));
+            else
+            $acqResponseCode='No Value Returned';
+
+
+            if(isset($_GET["vpc_TxnResponseCode"]))
+            $txnResponseCode = null2unknown(addslashes($_GET["vpc_TxnResponseCode"]));
+            else
+            $txnResponseCode='No Value Returned';
+
+
+        
+            if(isset($_GET["vpc_TxnResponseCode"]))
+            $txnResponseCodeDesc =getResponseDescription($txnResponseCode);
+            else
+            $txnResponseCodeDesc='No Value Returned';
+            
+            if(isset($_GET["vpc_AcqResponseCode"]))
+            $issuerResponseCodeDesc =getIssuerResponseDescription($acqResponseCode);
+            else
+            $issuerResponseCodeDesc='No Value Returned';
+
+
+
+            $trans_date = Carbon::now();
+            $purchase_date = Carbon::parse($trans_date)->format('d-m-Y');
+            $purchase_time = Carbon::parse($trans_date)->format('h:i a');   
+
+            // Show 'Error' in title if an error condition
+            $errorTxt = "";
+            
+
+            // Hash value false, false gateway
+            if ($txnResponseCode == "7" || $txnResponseCode == "No Value Returned" || $errorExists == true) 
+            {
+                $errorTxt = "Error ";
+                 return View::make('cart.bankAudiResponse', 
+                        array('pagename' => $pagename, 'cartList' => $cartList, 'itemNb' => $itemNb, 'errorTxt' => $errorTxt, 
+                              'hashValidated' =>  $hashValidated, 'errorExists' => $errorExists, 'txnResponseCode' => $txnResponseCode,
+                              'trans_date' => $trans_date));
+            }
+
+
+
+            if ($txnResponseCode != "7" && $txnResponseCode != "No Value Returned" && $errorExists == false) 
+
+            {       
+
+                // get the total amount and the order_id of the cart to buy 
+                $q = $this->productsRepository->getTotalAmountOrderId(Session::get('user_id'));
+                $order_id = $q[0]->order_id;
+               
+                // check if there is a promo applied 
+                if (Session::has('total_after_discount'))
+                {
+                    $original_price = $q[0]->total;
+                    $total_amount = Session::get('total_after_discount');
+                    $promo_price  = Session::pull('total_after_discount');
+                    $promo_percentage = Session::pull('promo_percentage');
+                }
+                else // if no promo is applied
+                {
+                    $original_price = $q[0]->total;
+                    $total_amount = $q[0]->total;
+                    $promo_price  = NULL;
+                    $promo_percentage  = NULL;
+                }
+
+                //total after VAT 
+                $total_amount = $total_amount+($total_amount*Config::get('global.VAT')/100);
+                $total_amount = number_format((float)$total_amount, 2, '.', '');
+
+                if (Session::has('promo_id'))
+                $promo_id = Session::get('promo_id');
+                else 
+                $promo_id = NULL;
+
+
+                $firstname = Session::get('checkout_firstname');
+                $lastname = Session::get('checkout_lastname');
+                $email = Session::get('checkout_email');
+                $phone = Session::get('checkout_phone');
+                $country = Session::get('checkout_country');
+                $city = Session::get('checkout_city');
+                $shipping_address = Session::get('checkout_address');
+
+                $admin_email="ecommerce@eideal.com";   
+                 
+
+                // transaction approved, insert in the database
+                if($txnResponseCode == "0" && $errorExists == false)
+                {   
+                    // update the status of the order (3)(payment approved) using the bank repsonse and the shipping info 
+                    $this->productsRepository->updateBankPayment($user_id, $order_id, $original_price, $promo_price, $promo_id, $total_amount, $firstname, $lastname, $email, 
+                                $phone, $country, $city, $shipping_address, $orderInfo, $transactionNo, $message, 
+                                $txnResponseCodeDesc, $issuerResponseCodeDesc, $receiptNo, $cardType, 3);
+                    
+                    // if promo applied, insert the promo id in the ta_promo_user table to mark as used    
+                    if (Session::has('promo_id'))
+                        $this->promoRepository->markPromoAsUsed(Session::pull('promo_id'), Session::get('user_id'));
+                                        
+                    //send the receipt to the client by mail -------------------
+                     Mail::send('emails.online-payment-email-client', 
+                        array('cartList' => $cartList, 'merchTxnRef' => $merchTxnRef,
+                              'transactionNo' => $transactionNo, 'orderInfo' => $orderInfo, 'amount' => $total_amount, 
+                              'txnResponseCodeDesc' => $txnResponseCodeDesc, 'receiptNo' => $receiptNo, 'cardType' => $cardType, 
+                              'issuerResponseCodeDesc' => $issuerResponseCodeDesc,'txn_message' => $message, 'txnResponseCode' => $txnResponseCode, 
+                              'trans_date' => $trans_date,'errorExists' => $errorExists, 'firstname' => $firstname, 'lastname' => $lastname,
+                              'email_address' => $email, 'phone' => $phone, 'country' => $country, 'city' => $city, 
+                              'shipping_address' => $shipping_address,'promo_percentage' => $promo_percentage, 'original_price' => $original_price, 'purchase_date' => $purchase_date, 'purchase_time' => $purchase_time, 'order_id' => $order_id, 'promo_price' => $promo_price, 'total_amount' => $total_amount, 'success_flag' => 1),
+                        function($message) use ($email)
+                    {   
+                        $emails = array();
+
+                        $emails[0] = $email;
+                        $emails[1] = 'ecommerce@eideal.com';
+
+                        foreach($emails as $e)
+                        {
+                            $message->from('noreply@eideal.com', 'EIDEAL')->subject('EIDEAL: Order confirmation');
+                            $message->to($e);
+                        }
+
+                         $headers = $message->getHeaders();
+                         $headers->addTextHeader('X-MC-PreserveRecipients', 'false');
+                    });
+
+
+                     //send an email notification to the admin -------------------
+                      
+                     Mail::send('emails.purchase-email-success-admin', 
+                        array('cartList' => $cartList, 'firstname' => $firstname,'merchTxnRef' => $merchTxnRef,
+                              'transactionNo' => $transactionNo, 'orderInfo' => $orderInfo, 'amount' => $total_amount, 
+                              'txnResponseCodeDesc' => $txnResponseCodeDesc, 'receiptNo' => $receiptNo, 'cardType' => $cardType, 
+                              'issuerResponseCodeDesc' => $issuerResponseCodeDesc,'txn_message' => $message, 'txnResponseCode' => $txnResponseCode, 
+                              'trans_date' => $trans_date,'errorExists' => $errorExists, 'firstname' => $firstname, 'lastname' => $lastname,
+                              'email_address' => $email, 'phone' => $phone, 'country' => $country, 'city' => $city, 
+                              'shipping_address' => $shipping_address,'promo_percentage' => $promo_percentage, 'original_price' => $original_price), 
+                        function($message) use ($admin_email)
+                    {
+                        $message->from(Session::get('checkout_email'), Session::get('checkout_firstname').' '.Session::get('checkout_lastname'))->subject('Online product purchase | online payment');
+                        $message->to($admin_email);
+                    });
+
+
+
+                      $this->cart->instance('shopping')->destroy();
+                     
+                      // set the number of items in the cart to zero  
+                      Session::put('cart_item', 0);
+
+
                      return View::make('cart.bankAudiResponse', 
-                            array('pagename' => $pagename, 'cartList' => $cartList, 'itemNb' => $itemNb, 'errorTxt' => $errorTxt, 
-                                  'hashValidated' =>  $hashValidated, 'errorExists' => $errorExists, 'txnResponseCode' => $txnResponseCode,
-                                  'trans_date' => $trans_date));
+                        array('pagename' => $pagename, 'cartList' => $cartList, 'itemNb' => $itemNb, 'merchTxnRef' => $merchTxnRef,
+                              'transactionNo' => $transactionNo, 'orderInfo' => $orderInfo, 'amount' => $amount, 
+                              'txnResponseCodeDesc' => $txnResponseCodeDesc, 'receiptNo' => $receiptNo, 'cardType' => $cardType, 
+                              'issuerResponseCodeDesc' => $issuerResponseCodeDesc,'message' => $message, 'txnResponseCode' => $txnResponseCode, 
+                              'trans_date' => $trans_date, 'errorExists' => $errorExists));
+
                 }
 
 
-
-                if ($txnResponseCode != "7" && $txnResponseCode != "No Value Returned" && $errorExists == false) 
-
-                {       
-
-                    // get the total amount and the order_id of the cart to buy 
-                            $q = $this->productsRepository->getTotalAmountOrderId(Session::get('user_id'));
-                            $order_id = $q[0]->order_id;
-                           
-                            // check if there is a promo applied 
-                            if (Session::has('total_after_discount'))
-                            {
-                                $original_price = $q[0]->total;
-                                $total_amount = Session::get('total_after_discount');
-                                $promo_price  = Session::pull('total_after_discount');
-                                $promo_percentage = Session::pull('promo_percentage');
-                            }
-                            else // if no promo is applied
-                            {
-                                $original_price = $q[0]->total;
-                                $total_amount = $q[0]->total;
-                                $promo_price  = NULL;
-                                $promo_percentage  = NULL;
-                            }
-
-                            //total after VAT 
-                            $total_amount = $total_amount+($total_amount*Config::get('global.VAT')/100);
-                            $total_amount = number_format((float)$total_amount, 2, '.', '');
-
-                            if (Session::has('promo_id'))
-                            $promo_id = Session::get('promo_id');
-                            else 
-                            $promo_id = NULL;
+                else //transaction not approved, other error
+                {
+                    // update the status of the order (4)(bank audi error) using the bank repsonse and the shipping info 
+                    $this->productsRepository->updateBankPayment($user_id, $order_id, $original_price, $promo_price, $promo_id, $total_amount, $firstname, $lastname, $email, 
+                                $phone, $country, $city, $shipping_address, $orderInfo, $transactionNo, $message, 
+                                $txnResponseCodeDesc, $issuerResponseCodeDesc, $receiptNo, $cardType, 4);
+                        
 
 
-                            $firstname = Session::get('checkout_firstname');
-                            $lastname = Session::get('checkout_lastname');
-                            $email = Session::get('checkout_email');
-                            $phone = Session::get('checkout_phone');
-                            $country = Session::get('checkout_country');
-                            $city = Session::get('checkout_city');
-                            $shipping_address = Session::get('checkout_address');
+                    //send the email failed notification to the client  -------------------
+                     Mail::send('emails.online-payment-email-client', 
+                        array('cartList' => $cartList, 'merchTxnRef' => $merchTxnRef,
+                              'transactionNo' => $transactionNo, 'orderInfo' => $orderInfo, 'amount' => $total_amount, 
+                              'txnResponseCodeDesc' => $txnResponseCodeDesc, 'receiptNo' => $receiptNo, 'cardType' => $cardType, 
+                              'issuerResponseCodeDesc' => $issuerResponseCodeDesc,'txn_message' => $message, 'txnResponseCode' => $txnResponseCode, 
+                              'trans_date' => $trans_date,'errorExists' => $errorExists, 'firstname' => $firstname, 'lastname' => $lastname,
+                              'email_address' => $email, 'phone' => $phone, 'country' => $country, 'city' => $city, 
+                              'shipping_address' => $shipping_address, 'promo_percentage' => $promo_percentage, 'original_price' => $original_price, 'purchase_date' => $purchase_date, 'purchase_time' => $purchase_time, 'order_id' => $order_id, 'promo_price' => $promo_price, 'total_amount' => $total_amount, 'success_flag' => 0),
+                    function($message) use ($email)
+                    {   
+                        $emails = array();
 
-                            $admin_email="ecommerce@eideal.com";             
+                        $emails[0] = $email;
+                        $emails[1] = 'ecommerce@eideal.com';
 
-
-                    // transaction approved, insert in the database
-                        if($txnResponseCode == "0" && $errorExists == false)
-                        {   
-                            // update the status of the order (3)(payment approved) using the bank repsonse and the shipping info 
-                            $this->productsRepository->updateBankPayment($user_id, $order_id, $original_price, $promo_price, $promo_id, $total_amount, $firstname, $lastname, $email, 
-                                        $phone, $country, $city, $shipping_address, $orderInfo, $transactionNo, $message, 
-                                        $txnResponseCodeDesc, $issuerResponseCodeDesc, $receiptNo, $cardType, 3);
-                            
-                            // if promo applied, insert the promo id in the ta_promo_user table to mark as used    
-                            if (Session::has('promo_id'))
-                                $this->promoRepository->markPromoAsUsed(Session::pull('promo_id'), Session::get('user_id'));
-                                
-                            
-                        //send the receipt to the client by mail -------------------
-                         Mail::send('emails.purchase-email-success-client', 
-                            array('cartList' => $cartList, 'merchTxnRef' => $merchTxnRef,
-                                  'transactionNo' => $transactionNo, 'orderInfo' => $orderInfo, 'amount' => $total_amount, 
-                                  'txnResponseCodeDesc' => $txnResponseCodeDesc, 'receiptNo' => $receiptNo, 'cardType' => $cardType, 
-                                  'issuerResponseCodeDesc' => $issuerResponseCodeDesc,'txn_message' => $message, 'txnResponseCode' => $txnResponseCode, 
-                                  'trans_date' => $trans_date,'errorExists' => $errorExists, 'firstname' => $firstname, 'lastname' => $lastname,
-                                  'email_address' => $email, 'phone' => $phone, 'country' => $country, 'city' => $city, 
-                                  'shipping_address' => $shipping_address,'promo_percentage' => $promo_percentage, 'original_price' => $original_price),
-                            function($message) use ($email)
-                        {   
-                            $emails = array();
-
-                            $emails[0] = $email;
-                            $emails[1] = 'ecommerce@eideal.com';
-
-                            foreach($emails as $e)
-                            {
-                                $message->from('ecommerce@eideal.com', 'EIDEAL')->subject('Thank you for your purchase | EIDEAL');
-                                $message->to($e);
-                            }
-
-                             $headers = $message->getHeaders();
-                             $headers->addTextHeader('X-MC-PreserveRecipients', 'false');
-                        });
-
-
-                         //send an email notification to the admin -------------------
-                          
-                         Mail::send('emails.purchase-email-success-admin', 
-                            array('cartList' => $cartList, 'firstname' => $firstname,'merchTxnRef' => $merchTxnRef,
-                                  'transactionNo' => $transactionNo, 'orderInfo' => $orderInfo, 'amount' => $total_amount, 
-                                  'txnResponseCodeDesc' => $txnResponseCodeDesc, 'receiptNo' => $receiptNo, 'cardType' => $cardType, 
-                                  'issuerResponseCodeDesc' => $issuerResponseCodeDesc,'txn_message' => $message, 'txnResponseCode' => $txnResponseCode, 
-                                  'trans_date' => $trans_date,'errorExists' => $errorExists, 'firstname' => $firstname, 'lastname' => $lastname,
-                                  'email_address' => $email, 'phone' => $phone, 'country' => $country, 'city' => $city, 
-                                  'shipping_address' => $shipping_address,'promo_percentage' => $promo_percentage, 'original_price' => $original_price), 
-                            function($message) use ($admin_email)
+                        foreach($emails as $e)
                         {
-                            $message->from(Session::get('checkout_email'), Session::get('checkout_firstname').' '.Session::get('checkout_lastname'))->subject('Online product purchase | online payment');
-                            $message->to($admin_email);
-                        });
-
-
-
-                          $this->cart->instance('shopping')->destroy();
-                         
-                          // set the number of items in the cart to zero  
-                          Session::put('cart_item', 0);
-
-
-                        return View::make('cart.bankAudiResponse', 
-                                array('pagename' => $pagename, 'cartList' => $cartList, 'itemNb' => $itemNb, 'merchTxnRef' => $merchTxnRef,
-                                      'transactionNo' => $transactionNo, 'orderInfo' => $orderInfo, 'amount' => $amount, 
-                                      'txnResponseCodeDesc' => $txnResponseCodeDesc, 'receiptNo' => $receiptNo, 'cardType' => $cardType, 
-                                      'issuerResponseCodeDesc' => $issuerResponseCodeDesc,'message' => $message, 'txnResponseCode' => $txnResponseCode, 
-                                      'trans_date' => $trans_date, 'errorExists' => $errorExists));
-
+                            $message->from('noreply@eideal.com', 'EIDEAL')->subject('EIDEAL: Order transaction failed');
+                            $message->to($e);
                         }
 
+                         $headers = $message->getHeaders();
+                         $headers->addTextHeader('X-MC-PreserveRecipients', 'false');
+                    });
 
 
-                        else //transaction not approved, other error
-                        {
-                            // update the status of the order (4)(bank audi error) using the bank repsonse and the shipping info 
-                            $this->productsRepository->updateBankPayment($user_id, $order_id, $original_price, $promo_price, $promo_id, $total_amount, $firstname, $lastname, $email, 
-                                        $phone, $country, $city, $shipping_address, $orderInfo, $transactionNo, $message, 
-                                        $txnResponseCodeDesc, $issuerResponseCodeDesc, $receiptNo, $cardType, 4);
-                                
+                     //send an email notification to the admin -------------------
+
+                     Mail::send('emails.purchase-email-failed-admin', 
+                        array('cartList' => $cartList, 'firstname' => $firstname,'merchTxnRef' => $merchTxnRef,
+                              'transactionNo' => $transactionNo, 'orderInfo' => $orderInfo, 'amount' => $total_amount, 
+                              'txnResponseCodeDesc' => $txnResponseCodeDesc, 'receiptNo' => $receiptNo, 'cardType' => $cardType, 
+                              'issuerResponseCodeDesc' => $issuerResponseCodeDesc,'txn_message' => $message, 'txnResponseCode' => $txnResponseCode, 
+                              'trans_date' => $trans_date,'errorExists' => $errorExists, 'firstname' => $firstname, 'lastname' => $lastname,
+                              'email_address' => $email, 'phone' => $phone, 'country' => $country, 'city' => $city, 
+                              'shipping_address' => $shipping_address, 'promo_percentage' => $promo_percentage, 'original_price' => $original_price), 
+                        function($message) use ($admin_email)
+                    {
+                        $message->from(Session::get('checkout_email'), Session::get('checkout_firstname').' '.Session::get('checkout_lastname'))->subject('Online purchase failed | Bank Error');
+                        $message->to($admin_email);
+                    });
 
 
-                        //send the email failed notification to the client  -------------------
-                         Mail::send('emails.purchase-email-failed-client', 
-                            array('cartList' => $cartList, 'merchTxnRef' => $merchTxnRef,
+
+                    return View::make('cart.bankAudiResponse', 
+                            array('pagename' => $pagename, 'cartList' => $cartList, 'itemNb' => $itemNb, 'merchTxnRef' => $merchTxnRef,
                                   'transactionNo' => $transactionNo, 'orderInfo' => $orderInfo, 'amount' => $total_amount, 
                                   'txnResponseCodeDesc' => $txnResponseCodeDesc, 'receiptNo' => $receiptNo, 'cardType' => $cardType, 
-                                  'issuerResponseCodeDesc' => $issuerResponseCodeDesc,'txn_message' => $message, 'txnResponseCode' => $txnResponseCode, 
-                                  'trans_date' => $trans_date,'errorExists' => $errorExists, 'firstname' => $firstname, 'lastname' => $lastname,
-                                  'email_address' => $email, 'phone' => $phone, 'country' => $country, 'city' => $city, 
-                                  'shipping_address' => $shipping_address, 'promo_percentage' => $promo_percentage, 'original_price' => $original_price),
-                            function($message) use ($email)
-                        {   
-                            $emails = array();
-
-                            $emails[0] = $email;
-                            $emails[1] = 'ecommerce@eideal.com';
-
-                            foreach($emails as $e)
-                            {
-                                $message->from('ecommerce@eideal.com', 'EIDEAL')->subject('Purchase transaction failed | EIDEAL');
-                                $message->to($e);
-                            }
-
-                             $headers = $message->getHeaders();
-                             $headers->addTextHeader('X-MC-PreserveRecipients', 'false');
-                        });
-
-
-                         //send an email notification to the admin -------------------
-
-                         Mail::send('emails.purchase-email-failed-admin', 
-                            array('cartList' => $cartList, 'firstname' => $firstname,'merchTxnRef' => $merchTxnRef,
-                                  'transactionNo' => $transactionNo, 'orderInfo' => $orderInfo, 'amount' => $total_amount, 
-                                  'txnResponseCodeDesc' => $txnResponseCodeDesc, 'receiptNo' => $receiptNo, 'cardType' => $cardType, 
-                                  'issuerResponseCodeDesc' => $issuerResponseCodeDesc,'txn_message' => $message, 'txnResponseCode' => $txnResponseCode, 
-                                  'trans_date' => $trans_date,'errorExists' => $errorExists, 'firstname' => $firstname, 'lastname' => $lastname,
-                                  'email_address' => $email, 'phone' => $phone, 'country' => $country, 'city' => $city, 
-                                  'shipping_address' => $shipping_address, 'promo_percentage' => $promo_percentage, 'original_price' => $original_price), 
-                            function($message) use ($admin_email)
-                        {
-                            $message->from(Session::get('checkout_email'), Session::get('checkout_firstname').' '.Session::get('checkout_lastname'))->subject('Online purchase failed | Bank Error');
-                            $message->to($admin_email);
-                        });
-
-
-
-                        return View::make('cart.bankAudiResponse', 
-                                array('pagename' => $pagename, 'cartList' => $cartList, 'itemNb' => $itemNb, 'merchTxnRef' => $merchTxnRef,
-                                      'transactionNo' => $transactionNo, 'orderInfo' => $orderInfo, 'amount' => $total_amount, 
-                                      'txnResponseCodeDesc' => $txnResponseCodeDesc, 'receiptNo' => $receiptNo, 'cardType' => $cardType, 
-                                      'issuerResponseCodeDesc' => $issuerResponseCodeDesc,'message' => $message, 'txnResponseCode' => $txnResponseCode, 
-                                      'trans_date' => $trans_date, 'errorExists' => $errorExists));
-                        }
-          
+                                  'issuerResponseCodeDesc' => $issuerResponseCodeDesc,'message' => $message, 'txnResponseCode' => $txnResponseCode, 
+                                  'trans_date' => $trans_date, 'errorExists' => $errorExists));
                 }
-
+            }
 
 
          } // end if (isset($_GET['vpc_TxnResponseCode']))
@@ -1129,6 +1132,8 @@ class CartController extends \BaseController {
 
             // get the current date and time
             $trans_date = Carbon::now();
+            $purchase_date = Carbon::parse($trans_date)->format('d-m-Y');
+            $purchase_time = Carbon::parse($trans_date)->format('h:i a');   
 
             // ======= IF TRANSACTION APPROVED ===============
            
@@ -1159,9 +1164,9 @@ class CartController extends \BaseController {
 
 
                     //send the receipt to the client by mail -------------------
-                     Mail::send('emails.paypal-purchase-email-success-client', 
-                        array('cartList' => $cartList, 'amount' => $total_amount, 'trans_date' => $trans_date, 'firstname' => $firstname, 'lastname' => $lastname, 'email_address' => $email, 'phone' => $phone, 'country' => $country, 'city' => $city, 
-                              'shipping_address' => $shipping_address, 'promo_percentage' => $promo_percentage, 'original_price' => $original_price, 'paypal_transaction_id' => $paypal_transaction_id, 'order_id' => $order_id, 'paypal_message' => $paypal_message),
+                     Mail::send('emails.paypal-purchase-email-client', 
+                        array('cartList' => $cartList, 'total_amount' => $total_amount, 'trans_date' => $trans_date, 'firstname' => $firstname, 'lastname' => $lastname, 'email_address' => $email, 'phone' => $phone, 'country' => $country, 'city' => $city, 
+                              'shipping_address' => $shipping_address, 'promo_percentage' => $promo_percentage, 'original_price' => $original_price, 'paypal_transaction_id' => $paypal_transaction_id, 'order_id' => $order_id, 'paypal_message' => $paypal_message, 'success_flag' => 1),
                         function($message) use ($email)
                     {   
                         $emails = array();
@@ -1210,7 +1215,6 @@ class CartController extends \BaseController {
 
             // if paypal failed to return response
             else
-
             {
                 if(!isset($_GET['tx']))
                     $paypal_transaction_id = 'none';
@@ -1221,9 +1225,9 @@ class CartController extends \BaseController {
                     $this->productsRepository->updatePayPalPayment($user_id, $order_id, $paypal_transaction_id, $original_price, $promo_price, $promo_id, $total_amount, $firstname, $lastname, $email, $phone, $country, $city, $shipping_address, $paypal_message, 7);
 
                     //send the failed transaction receipt to the client by mail -------------------
-                     Mail::send('emails.paypal-purchase-email-failed-client', 
-                        array('cartList' => $cartList, 'amount' => $total_amount, 'trans_date' => $trans_date, 'firstname' => $firstname, 'lastname' => $lastname, 'email_address' => $email, 'phone' => $phone, 'country' => $country, 'city' => $city, 
-                              'shipping_address' => $shipping_address, 'promo_percentage' => $promo_percentage, 'original_price' => $original_price, 'paypal_transaction_id' => $paypal_transaction_id, 'order_id' => $order_id, 'paypal_message' => $paypal_message),
+                     Mail::send('emails.paypal-purchase-email-client', 
+                        array('cartList' => $cartList, 'total_amount' => $total_amount, 'trans_date' => $trans_date, 'firstname' => $firstname, 'lastname' => $lastname, 'email_address' => $email, 'phone' => $phone, 'country' => $country, 'city' => $city, 
+                              'shipping_address' => $shipping_address, 'promo_percentage' => $promo_percentage, 'original_price' => $original_price, 'paypal_transaction_id' => $paypal_transaction_id, 'order_id' => $order_id, 'paypal_message' => $paypal_message, 'success_flag' => 0),
                         function($message) use ($email)
                     {
                         $emails = array();
@@ -1242,7 +1246,7 @@ class CartController extends \BaseController {
                     });
 
 
-                     //send a failed transaction email notification to the admin -------------------
+                    //send a failed transaction email notification to the admin -------------------
                       
                      Mail::send('emails.paypal-purchase-email-failed-admin', 
                        array('cartList' => $cartList, 'amount' => $total_amount, 'trans_date' => $trans_date, 'firstname' => $firstname, 'lastname' => $lastname, 'email_address' => $email, 'phone' => $phone, 'country' => $country, 'city' => $city, 

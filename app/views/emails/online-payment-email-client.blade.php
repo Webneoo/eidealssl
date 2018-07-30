@@ -246,6 +246,11 @@
     font-weight: 700;
   }
 
+  .resp_table
+  {
+    padding-left:55px;
+  }
+
   /* -------------------------------------
       RESPONSIVE AND MOBILE FRIENDLY STYLES
   ------------------------------------- */
@@ -287,6 +292,11 @@
     .invoice {
       width: 100% !important;
     }
+
+    .resp_table
+    {
+      padding-left:0px;
+    }
   }
 
   /*# sourceMappingURL=styles.css.map */
@@ -318,6 +328,16 @@
                     Thank you for your purchase on <a href="https://eideal.com">www.eideal.com</a>. 
                   </td>
                 </tr>
+
+                @if($success_flag == 0)
+                <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+                  <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding-left:55px; text-align:left;" valign="top">
+                    It seems that something went wrong and your transaction was declined.
+                  </td>
+                </tr>
+                @endif
+
+
                 <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                   <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding-left:55px; text-align:left;" valign="top">
                     Please find below your detailed order:
@@ -404,56 +424,108 @@
                   </td>
                 </tr>
 
-                  <table width="100%" cellpadding="0" cellspacing="0" style="margin-left:55px;">
+                  <table width="100%" cellpadding="0" cellspacing="0" class="resp_table">
                     <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding-left:55px; text-align:left; width:50%; padding: 0 0 3px;" valign="top">
+                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; text-align:left; width:50%; padding: 0 0 3px;" valign="top">
                         <b>Billing address</b>
                       </td>
-                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding-left:55px; text-align:left; width:50%; padding: 0 0 3px;" valign="top">
+                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0;text-align:left; width:50%; padding: 0 0 3px;" valign="top">
                         <b>Delivery address</b>
                       </td>
                     </tr>
                     <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; margin: 0;">
-                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; vertical-align: top; margin: 0; padding-left:55px; text-align:left; width:50%; padding: 0 0 3px;" valign="top">
+                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; vertical-align: top; margin: 0;text-align:left; width:50%; padding: 0 0 3px;" valign="top">
                        {{ Session::get('firstname') }} {{ Session::get('lastname') }}
                       </td>
-                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; vertical-align: top; margin: 0; padding-left:55px; text-align:left; width:50%; padding: 0 0 3px;" valign="top">
+                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; vertical-align: top; margin: 0;text-align:left; width:50%; padding: 0 0 3px;" valign="top">
                         {{$firstname}} {{$lastname}}
                       </td>
                     </tr>
                     <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; margin: 0;">
-                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; vertical-align: top; margin: 0; padding-left:55px; text-align:left; width:50%; padding: 0 0 3px;" valign="top">
+                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; vertical-align: top; margin: 0;text-align:left; width:50%; padding: 0 0 3px;" valign="top">
                        {{ Session::get('address') }}
                       </td>
-                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; vertical-align: top; margin: 0; padding-left:55px; text-align:left; width:50%; padding: 0 0 3px;" valign="top">
+                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; vertical-align: top; margin: 0;text-align:left; width:50%; padding: 0 0 3px;" valign="top">
                         {{$shipping_address}}
                       </td>
                     </tr>
                     <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; margin: 0;">
-                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; vertical-align: top; margin: 0; padding-left:55px; text-align:left; width:50%; padding: 0 0 3px;" valign="top">
+                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; vertical-align: top; margin: 0;text-align:left; width:50%; padding: 0 0 3px;" valign="top">
                        {{ Session::get('city') }}
                       </td>
-                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; vertical-align: top; margin: 0; padding-left:55px; text-align:left; width:50%; padding: 0 0 3px;" valign="top">
+                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; vertical-align: top; margin: 0;text-align:left; width:50%; padding: 0 0 3px;" valign="top">
                         {{$city}}
                       </td>
                     </tr>
                     <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; margin: 0;">
-                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; vertical-align: top; margin: 0; padding-left:55px; text-align:left; width:50%; padding: 0 0 3px;" valign="top">
+                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; vertical-align: top; margin: 0;text-align:left; width:50%; padding: 0 0 3px;" valign="top">
                        {{ Session::get('country') }}
                       </td>
-                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; vertical-align: top; margin: 0; padding-left:55px; text-align:left; width:50%; padding: 0 0 3px;" valign="top">
+                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; vertical-align: top; margin: 0;text-align:left; width:50%; padding: 0 0 3px;" valign="top">
                         {{$country}}
                       </td>
                     </tr>
                     <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; margin: 0;">
-                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; vertical-align: top; margin: 0; padding-left:55px; text-align:left; width:50%; padding: 0 0 3px;" valign="top">
+                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; vertical-align: top; margin: 0;text-align:left; width:50%; padding: 0 0 3px;" valign="top">
                        Mobile number: {{ Session::get('phone') }}
                       </td>
-                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; vertical-align: top; margin: 0; padding-left:55px; text-align:left; width:50%; padding: 0 0 3px;" valign="top">
+                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; vertical-align: top; margin: 0;text-align:left; width:50%; padding: 0 0 3px;" valign="top">
                         Mobile number: {{$phone}}
                       </td>
                     </tr>
                   </table>
+
+                  <table width="100%" cellpadding="0" cellspacing="0" class="resp_table" style="margin-top:40px;">
+                    <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin-top: 30px;">
+                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0;text-align:left; padding: 0 0 3px;" valign="top">
+                        <b>Bank response</b>
+                      </td>
+                    </tr>
+                    <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; margin: 0;">
+                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; vertical-align: top; margin: 0;text-align:left;padding: 0 0 3px;" valign="top">
+                        <u>Order Reference</u>: {{ $orderInfo }}
+                      </td>
+                    </tr>
+                    <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; margin: 0;">
+                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; vertical-align: top; margin: 0;text-align:left;padding: 0 0 3px;" valign="top">
+                       <u>Transaction #</u>: {{ $transactionNo }}
+                      </td>
+                    </tr>
+                    <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; margin: 0;">
+                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; vertical-align: top; margin: 0;text-align:left;padding: 0 0 3px;" valign="top">
+                       <u>Transaction status</u>: {{ $txn_message }}
+                      </td>
+                    </tr>
+                    <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; margin: 0;">
+                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; vertical-align: top; margin: 0;text-align:left;padding: 0 0 3px;" valign="top">
+                       <u>Transaction response</u>: {{ $txnResponseCodeDesc }}
+                      </td>
+                    </tr>
+                    <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; margin: 0;">
+                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; vertical-align: top; margin: 0;text-align:left;padding: 0 0 3px;" valign="top">
+                       <u>Issuer Response</u>: {{ $issuerResponseCodeDesc }}
+                      </td>
+                    </tr>
+
+                   
+                  <!-- only display the following fields if not an error condition -->
+                  @if ($txnResponseCode != "7" && $txnResponseCode != "No Value Returned") 
+                  
+                    <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; margin: 0;">
+                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; vertical-align: top; margin: 0;text-align:left;padding: 0 0 3px;" valign="top">
+                       <u>Transaction response</u>: {{ $txnResponseCodeDesc }}
+                      </td>
+                    </tr>
+                    <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; margin: 0;">
+                      <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 13px; vertical-align: top; margin: 0;text-align:left;padding: 0 0 3px;" valign="top">
+                       <u>Issuer Response</u>: {{ $issuerResponseCodeDesc }}
+                      </td>
+                    </tr>
+
+                  @endif
+
+                  </table>
+         
 
                 <table width="100%" cellpadding="0" cellspacing="0" class="resp_table" style="margin-top:40px;"> 
                   <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
@@ -462,7 +534,6 @@
                     </td>
                   </tr>
                 </table>
-
 
               </table>
             </td>
