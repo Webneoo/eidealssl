@@ -109,7 +109,7 @@ class ProductController extends \BaseController {
                         function($message) use ($email)
                     {
                         $message->from($email, 'Eideal website')->subject('Liquid product email');
-                        $message->to('ecommerce@eideal.com');
+                        $message->to('info@eideal.com');
                     });
 
               $alert_msg = 'Dear '.Session::get('firstname').',\n\nThank you for your interest in our products.\nYour inquiry is well received.\nThe selected product is a liquid product and cannot be added to the cart due to shipping restrictions to certain countries.\nOne of our team members will get in touch with you ASAP from 9am-6pm, Sunday through Thursday to further update you about your order’s status and delivery options and itinerary.\nRegards';

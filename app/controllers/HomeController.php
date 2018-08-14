@@ -163,7 +163,7 @@ class HomeController extends \BaseController {
 
                   foreach($emails as $e)
                   {
-                      $message->from('noreply@eideal.com', 'EIDEAL')->subject('Thank you for signing up to EIDEAL');
+                      $message->from('info@eideal.com', 'EIDEAL')->subject('Thank you for signing up to EIDEAL');
                       $message->to($e);
                   }
 
@@ -175,7 +175,7 @@ class HomeController extends \BaseController {
              // email for the admin
              Mail::send('emails.newsletters-admin', array('email' => $input['email']),  function($message) use ($email)
                 {
-                    $message->from('noreply@eideal.com', 'EIDEAL website')->subject('EIDEAL | Thanks for subscribing');
+                    $message->from('info@eideal.com', 'EIDEAL website')->subject('EIDEAL | Thanks for subscribing');
                     $message->to('ecommerce@eideal.com');
                 });
 
@@ -211,7 +211,7 @@ class HomeController extends \BaseController {
 
                   foreach($emails as $e)
                   {
-                      $message->from('ecommerce@eideal.com', 'EIDEAL')->subject('EIDEAL | Thanks for subscribing');
+                      $message->from('info@eideal.com', 'EIDEAL')->subject('EIDEAL | Thanks for subscribing');
                       $message->to($e);
                   }
 
@@ -222,7 +222,7 @@ class HomeController extends \BaseController {
              // email for the admin
              Mail::send('emails.newsletters-admin', array('email' => $input['email']),  function($message) use ($email)
                 {
-                    $message->from('noreply@eideal.com', 'EIDEAL website')->subject('EIDEAL | Thanks for subscribing');
+                    $message->from('info@eideal.com', 'EIDEAL website')->subject('EIDEAL | Thanks for subscribing');
                     $message->to('ecommerce@eideal.com');
                 });
 

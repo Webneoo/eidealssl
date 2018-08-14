@@ -510,7 +510,7 @@ class CartController extends \BaseController {
 
                             foreach($emails as $e)
                             {
-                                $message->from('ecommerce@eideal.com', 'EIDEAL')->subject('EIDEAL: Order confirmation');
+                                $message->from('info@eideal.com', 'EIDEAL')->subject('EIDEAL: Order confirmation');
                                 $message->to($e);
                             }
 
@@ -965,7 +965,7 @@ class CartController extends \BaseController {
 
                         foreach($emails as $e)
                         {
-                            $message->from('noreply@eideal.com', 'EIDEAL')->subject('EIDEAL: Order confirmation');
+                            $message->from('info@eideal.com', 'EIDEAL')->subject('EIDEAL: Order confirmation');
                             $message->to($e);
                         }
 
@@ -1035,7 +1035,7 @@ class CartController extends \BaseController {
 
                         foreach($emails as $e)
                         {
-                            $message->from('noreply@eideal.com', 'EIDEAL')->subject('EIDEAL: Order transaction failed');
+                            $message->from('info@eideal.com', 'EIDEAL')->subject('EIDEAL: Order transaction failed');
                             $message->to($e);
                         }
 
@@ -1176,7 +1176,7 @@ class CartController extends \BaseController {
 
                         foreach($emails as $e)
                         {
-                            $message->from('ecommerce@eideal.com', 'EIDEAL')->subject('Thank you for your purchase | EIDEAL');
+                            $message->from('info@eideal.com', 'EIDEAL')->subject('Thank you for your purchase | EIDEAL');
                             $message->to($e);
                         }
 
@@ -1237,7 +1237,7 @@ class CartController extends \BaseController {
 
                         foreach($emails as $e)
                         {
-                            $message->from('ecommerce@eideal.com', 'EIDEAL')->subject('Failed Transaction | EIDEAL');
+                            $message->from('info@eideal.com', 'EIDEAL')->subject('Failed Transaction | EIDEAL');
                             $message->to($e);
                         }
 
