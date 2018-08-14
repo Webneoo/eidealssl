@@ -58,7 +58,7 @@
                         @if($t->order_status_id == 2) 
                         <form onsubmit="return confirm('Are you sure you want to set the order ID # {{ $t->order_id }} as paid ?');" method="POST" action="shopping-management" >
                             <input type="hidden" name="order_id" value="{{ $t->order_id }}">
-                            <input type="submit" value="Mark as paid" style="display: block; margin:auto;" type="button" class="btn btn-success"/>
+                            <input type="submit" value="Mark as paid" style="display: block; margin:auto;" type="button" class="btn btn-success btn-xs"/>
                         </form>
                         @endif
 
