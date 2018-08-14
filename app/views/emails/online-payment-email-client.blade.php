@@ -325,7 +325,7 @@
                 </tr>
                 <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                   <td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding-left:55px; text-align:left;" valign="top">
-                    Thank you for your purchase on <a href="https://eideal.com">www.eideal.com</a>. 
+                    Thank you for your purchase from <a href="https://eideal.com">www.eideal.com</a>. 
                   </td>
                 </tr>
 
