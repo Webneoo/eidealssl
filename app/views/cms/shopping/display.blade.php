@@ -102,7 +102,7 @@
 
                 <tr>
                     <td style="text-align:center; font-size: 19px;"><b>OVERALL TOTAL</b></td>
-                    <td style="text-align:center; font-size: 19px;"> <b>$ {{ $order_id_info[0]->purchase_price }} </b></td>
+                    <td style="text-align:center; font-size: 19px;"> <b>$ {{ number_format($order_id_info[0]->purchase_price, 2, '.', '') }}</b></td>
                 </tr>
 
                 <tr>
@@ -116,7 +116,7 @@
 
                 <tr>
                     <td style="text-align:center;"><b>Purchased Amount</b></td>
-                    <td style="text-align:center;">$ {{ $order_id_info[0]->purchase_price }}</td>
+                    <td style="text-align:center;">$ {{ number_format($order_id_info[0]->purchase_price, 2, '.', '') }}</td>
                 </tr>
 
                 <tr>

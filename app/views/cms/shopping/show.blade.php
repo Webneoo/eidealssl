@@ -65,8 +65,8 @@
                         @if($t->order_status_id == 6)
                         <div style="text-align:center"> 
                        
-                            <a onclick="return confirm('Are you sure you want to accept the order ID # {{ $t->order_id }} ?');" href="{{ route('paypal_validation_path', array($t->order_id, '8') ) }}" class="btn btn-success"> Accept </a>
-                            <a onclick="return confirm('Are you sure you want to decline the order ID # {{ $t->order_id }} ?');"" href="{{ route('paypal_validation_path', array($t->order_id, '9')) }}" class="btn btn-danger"> Decline </a>
+                            <a onclick="return confirm('Are you sure you want to accept the order ID # {{ $t->order_id }} ?');" href="{{ route('paypal_validation_path', array($t->order_id, '8') ) }}" class="btn btn-success btn-xs"> Accept </a>
+                            <a onclick="return confirm('Are you sure you want to decline the order ID # {{ $t->order_id }} ?');"" href="{{ route('paypal_validation_path', array($t->order_id, '9')) }}" class="btn btn-danger btn-xs"> Decline </a>
                         </div>
                         @endif
                     </td>
