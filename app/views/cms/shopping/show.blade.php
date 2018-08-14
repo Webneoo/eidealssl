@@ -40,7 +40,7 @@
                     <td><a href="{{ route('display_transaction_path', $t->order_id) }}">{{ $t->audi_order_id }}</a></td>
                     <td><a href="{{ route('display_transaction_path', $t->order_id) }}">{{ $t->paypal_order_id }}</td>
                     <td><a href="{{ route('display_user_path', $t->user_id) }}">{{ $t->username }}</a></td>
-                    <td> $ {{ $t->purchase_price  }}</td>
+                    <td> $ {{ number_format($t->purchase_price, 2, '.', '') }}</td>
                     <td> {{ $t->payment_method }}</td>
                     <td>{{ $t->purchase_date }}</td>
                     <td>
