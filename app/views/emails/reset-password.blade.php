@@ -106,8 +106,8 @@
 										</tr>
 
 										<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-											<td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
-												If you didn’t request to reset your password, please contact our customer service at <a href="mailto:info@eideal.com">info@eideal.com.</a>
+											<td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 20px 0 20px;" valign="top">
+												If you didn’t request to reset your password, <br/> please contact our customer service at <a href="mailto:info@eideal.com">info@eideal.com.</a>
 											</td>
 										</tr>
 
