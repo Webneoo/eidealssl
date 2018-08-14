@@ -506,7 +506,7 @@ class CartController extends \BaseController {
                             $emails = array();
 
                             $emails[0] = $email_client;
-                        //    $emails[1] = 'ecommerce@eideal.com';
+                        //    $emails[1] = 'info@eideal.com';
 
                             foreach($emails as $e)
                             {
@@ -520,7 +520,7 @@ class CartController extends \BaseController {
 
 
                  //mail for EIDEAL admin --------------------------------
-                 $email_admin = 'ecommerce@eideal.com';
+                 $email_admin = 'info@eideal.com';
                 
                  Mail::send('emails.cash-on-delivery-admin-email', 
                             array('cartList' => $cartList, 'firstname' => Session::get('checkout_firstname'), 'lastname' => Session::get('checkout_lastname'),
@@ -932,7 +932,7 @@ class CartController extends \BaseController {
                 $city = Session::get('checkout_city');
                 $shipping_address = Session::get('checkout_address');
 
-                $admin_email="ecommerce@eideal.com";   
+                $admin_email="info@eideal.com";   
                  
 
                 // transaction approved, insert in the database
@@ -961,7 +961,7 @@ class CartController extends \BaseController {
                         $emails = array();
 
                         $emails[0] = $email;
-                        $emails[1] = 'ecommerce@eideal.com';
+                        $emails[1] = 'info@eideal.com';
 
                         foreach($emails as $e)
                         {
@@ -1031,7 +1031,7 @@ class CartController extends \BaseController {
                         $emails = array();
 
                         $emails[0] = $email;
-                        $emails[1] = 'ecommerce@eideal.com';
+                        $emails[1] = 'info@eideal.com';
 
                         foreach($emails as $e)
                         {
@@ -1127,7 +1127,7 @@ class CartController extends \BaseController {
             $city = Session::get('checkout_city');
             $shipping_address = Session::get('checkout_address');
 
-            $admin_email="ecommerce@eideal.com";
+            $admin_email="info@eideal.com";
 
 
             // get the current date and time
@@ -1172,7 +1172,7 @@ class CartController extends \BaseController {
                         $emails = array();
 
                         $emails[0] = $email;
-                        $emails[1] = 'ecommerce@eideal.com';
+                        $emails[1] = 'info@eideal.com';
 
                         foreach($emails as $e)
                         {
@@ -1233,7 +1233,7 @@ class CartController extends \BaseController {
                         $emails = array();
 
                         $emails[0] = $email;
-                        $emails[1] = 'ecommerce@eideal.com';
+                        $emails[1] = 'info@eideal.com';
 
                         foreach($emails as $e)
                         {

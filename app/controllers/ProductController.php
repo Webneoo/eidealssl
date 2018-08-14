@@ -262,7 +262,7 @@ class ProductController extends \BaseController {
                         function($message) use ($email)
                     {
                         $message->from($email, 'Eideal website')->subject('Liquid product email');
-                        $message->to('ecommerce@eideal.com');
+                        $message->to('info@eideal.com');
                     });
 
 
@@ -425,7 +425,7 @@ class ProductController extends \BaseController {
                         function($message) use ($email)
                     {
                         $message->from($email, 'Eideal website')->subject('Liquid product email');
-                        $message->to('ecommerce@eideal.com');
+                        $message->to('info@eideal.com');
                     });
 
 
