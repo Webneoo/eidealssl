@@ -173,11 +173,11 @@ class HomeController extends \BaseController {
 
 
              // email for the admin
-             Mail::send('emails.newsletters-admin', array('email' => $input['email']),  function($message) use ($email)
-                {
-                    $message->from('info@eideal.com', 'EIDEAL website')->subject('EIDEAL | Thanks for subscribing');
-                    $message->to('info@eideal.com');
-                });
+             // Mail::send('emails.newsletters-admin', array('email' => $input['email']),  function($message) use ($email)
+             //    {
+             //        $message->from('info@eideal.com', 'EIDEAL website')->subject('EIDEAL | Thanks for subscribing');
+             //        $message->to('info@eideal.com');
+             //    });
 
 
             Flash::success('You have been successfully subscribed to the newsletters');
@@ -220,11 +220,11 @@ class HomeController extends \BaseController {
                 });
 
              // email for the admin
-             Mail::send('emails.newsletters-admin', array('email' => $input['email']),  function($message) use ($email)
-                {
-                    $message->from('info@eideal.com', 'EIDEAL website')->subject('EIDEAL | Thanks for subscribing');
-                    $message->to('info@eideal.com');
-                });
+             // Mail::send('emails.newsletters-admin', array('email' => $input['email']),  function($message) use ($email)
+             //    {
+             //        $message->from('info@eideal.com', 'EIDEAL website')->subject('EIDEAL | Thanks for subscribing');
+             //        $message->to('info@eideal.com');
+             //    });
 
 
              Flash::success('You have been successfully subscribed to the newsletters');
