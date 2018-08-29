@@ -522,16 +522,16 @@ class CartController extends \BaseController {
                  //mail for EIDEAL admin --------------------------------
                  $email_admin = 'info@eideal.com';
                 
-                 Mail::send('emails.cash-on-delivery-admin-email', 
-                            array('cartList' => $cartList, 'firstname' => Session::get('checkout_firstname'), 'lastname' => Session::get('checkout_lastname'),
-                                  'email_address' => Session::get('checkout_email'), 'phone' => Session::get('checkout_phone'),
-                                  'country' => Session::get('checkout_country'), 'city' => Session::get('checkout_city'), 
-                                  'shipping_address' => Session::get('checkout_address'), 'order_id' => $order_id, 'original_price' => $original_price, 'total_amount' => $total_amount, 'promo_percentage' => $promo_percentage, 'promo_price' => $promo_price), 
-                            function($message) use ($email_admin)
-                        {
-                            $message->from(Session::get('checkout_email'), Session::get('checkout_firstname').' '.Session::get('checkout_lastname'))->subject('Product Purchase | Cash on delivery');
-                            $message->to($email_admin);
-                        });
+                 // Mail::send('emails.cash-on-delivery-admin-email', 
+                 //            array('cartList' => $cartList, 'firstname' => Session::get('checkout_firstname'), 'lastname' => Session::get('checkout_lastname'),
+                 //                  'email_address' => Session::get('checkout_email'), 'phone' => Session::get('checkout_phone'),
+                 //                  'country' => Session::get('checkout_country'), 'city' => Session::get('checkout_city'), 
+                 //                  'shipping_address' => Session::get('checkout_address'), 'order_id' => $order_id, 'original_price' => $original_price, 'total_amount' => $total_amount, 'promo_percentage' => $promo_percentage, 'promo_price' => $promo_price), 
+                 //            function($message) use ($email_admin)
+                 //        {
+                 //            $message->from(Session::get('checkout_email'), Session::get('checkout_firstname').' '.Session::get('checkout_lastname'))->subject('Product Purchase | Cash on delivery');
+                 //            $message->to($email_admin);
+                 //        });
             }
 
             return View::make('cart.checkOnDeliveryResponse', array('pagename' => $pagename, 'order_id' => $order_id));
