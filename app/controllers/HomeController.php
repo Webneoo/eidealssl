@@ -109,7 +109,7 @@ class HomeController extends \BaseController {
                                                            'product_name' => $product_name, 'city' => $city, 'address' => $address), 
                         function($message) use ($email)
                     {
-                        $message->from($email, 'Eideal website')->subject('Liquid product email');
+                        $message->from($email, 'EIDEAL')->subject('Liquid product email');
                         $message->to('info@eideal.com');
                     });
 
@@ -175,7 +175,7 @@ class HomeController extends \BaseController {
              // email for the admin
              // Mail::send('emails.newsletters-admin', array('email' => $input['email']),  function($message) use ($email)
              //    {
-             //        $message->from('info@eideal.com', 'EIDEAL website')->subject('EIDEAL | Thanks for subscribing');
+             //        $message->from('info@eideal.com', 'EIDEAL')->subject('EIDEAL | Thanks for subscribing');
              //        $message->to('info@eideal.com');
              //    });
 
@@ -222,7 +222,7 @@ class HomeController extends \BaseController {
              // email for the admin
              // Mail::send('emails.newsletters-admin', array('email' => $input['email']),  function($message) use ($email)
              //    {
-             //        $message->from('info@eideal.com', 'EIDEAL website')->subject('EIDEAL | Thanks for subscribing');
+             //        $message->from('info@eideal.com', 'EIDEAL')->subject('EIDEAL | Thanks for subscribing');
              //        $message->to('info@eideal.com');
              //    });
 

@@ -71,14 +71,22 @@
 									<meta itemprop="name" content="Confirm Email" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;" />
 									<table width="100%" cellpadding="0" cellspacing="0" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 										<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-											<tr align="center"><img style="width:150px; margin-bottom:10px;" src="https://eideal.com/images/eideal_logo_black.png"></tr>
+											<tr align="center"><img style="width:150px; margin-bottom:10px;" src="https://eideal.com/images/eideal_logo_black.png">
+											</tr>
+
+											<tr>
+												<td align="center" class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
+													<h1>WELCOME</h1>
+												</td>
+											</tr>
+											
 											<td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
 												Dear {{ $firstname }}, 
 											</td>
 										</tr>
 										<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 											<td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px; color:black;" valign="top">
-												You have been successfully registered with EIDEAL with the username: <b> {{ ucfirst($username) }} </b>.
+												You have been successfully registered with EIDEAL with the username: <b> {{ ucfirst($username) }} </b> &nbsp; .
 											</td>
 										</tr>
 
