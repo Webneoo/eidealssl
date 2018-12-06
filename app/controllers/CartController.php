@@ -1193,7 +1193,7 @@ class CartController extends \BaseController {
                         function($message) use ($admin_email)
                     {
                         $message->from(Session::get('checkout_email'), Session::get('checkout_firstname').' '.Session::get('checkout_lastname'))->subject('Online product purchase | online payment');
-                        $message->to($admin_email);
+                        $message->to('waheed@eideal.com');
                     });
 
 
@@ -1233,7 +1233,7 @@ class CartController extends \BaseController {
                         $emails = array();
 
                         $emails[0] = $email;
-                        $emails[1] = 'info@eideal.com';
+                        $emails[1] = 'waheed@eideal.com';
 
                         foreach($emails as $e)
                         {
@@ -1254,7 +1254,7 @@ class CartController extends \BaseController {
                         function($message) use ($admin_email)
                     {
                         $message->from(Session::get('checkout_email'), Session::get('checkout_firstname').' '.Session::get('checkout_lastname'))->subject('Failed purchase transaction | Paypal Error');
-                        $message->to($admin_email);
+                        $message->to('waheed@eideal.com');
                     });
 
                      return View::make('cart.paypalResponse', 
