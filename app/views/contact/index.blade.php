@@ -58,7 +58,7 @@
                         P.O. Box: 187123 <br/>
                         Dubai, UAE <br/>
                         Tel: +97142594665 <br/>
-                        Mob: +971564452369 <br/>
+                        Mob: +971556292853 <br/>
 
                  <!--    <div style="font-family: MontserratRegular;"> 
                       <img style="height:25px; position:relative; bottom:7px; margin-top:8px;" src="images/whatsapp_logo.png" alt="eideal whatsapp number" title="Eideal Whatsapp Number"/>  +971564452369 
